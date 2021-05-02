@@ -1,0 +1,445 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:1845:0:0:0:0:0 with SMTP id j5csp1127347uag;
+        Wed, 10 Feb 2021 00:18:37 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwc6KfCJA132/thGQJtiew6oweUqJ6ZHk7qCc5RUvYy7s+Afn6lBe+vLauSBOeHjw5+wWTI
+X-Received: by 2002:a05:620a:12d5:: with SMTP id e21mr2273366qkl.131.1612945117414;
+        Wed, 10 Feb 2021 00:18:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1612945117; cv=none;
+        d=google.com; s=arc-20160816;
+        b=UPceL3+DhVFg0IgsfCcr+46A3UIwT0g0+RsEmycORe9Y0tkZeBS2mLoqlglOJHyeNL
+         ECChVBCP8qU6VF6ukzqeL0zUQJ7AkF1PvB6Iokf4Q2Zvgxzbo1TlVedF5kN2+Hxh39Ru
+         pbTyfyEXp8URyDWZNosRx6Uizy214OogD55wK4JFxs39liLuq46Mmc9c9NfwIJ39zdsz
+         Dio1yZlp1XFqXvOeGJ0HrA/9So2COQUDH8/0A58mrmO3nfS7Yer1V3vcNbyDemUyWPjW
+         BTDoHE6pkiRX+W2EW9d3hCFdYmj9WsL3WuHfhxDroZ4NIl6mh/AGWbJGt0gTwbuWCDkW
+         7UxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=Fg6KnMvUC1J9sm7jLV6FlHOBD17Sl7Cbt5NHAzfG+no=;
+        b=N3pQ5MChNklQuyKAgLgqMScpTDid2LEkLH/oSMdAb/WNhVT3RmSHlEu7rUJPmgZanH
+         7r/u5nXzDWkXgTaR6NY2WJMbFxRmaYRvrQNuRMxjzwn7tp02bDXoQyvE1PF+SdRI5aZ/
+         hr3m0I/5aMmOiHNIPSj3MVI1C11onjVgtU6JoJrVtYmZcIyRAY56rbDar8S7KPvIgZb/
+         pZT7e5QYe6DGhyq3+2GPmytNLOABDtREa3vhtkaV9FJn4Yuwp6rgqknzMFrrmVWr5DdR
+         mRvQRkvb+GGpseQ4LsexF68aDQrsc48V/eDdXV4HmWcF94tBqdY3kejlS9tbk1KaET3g
+         K+Vg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@reddit.com header.s=2ybsbk45dtwlgerewyfzx5qt442lak5j header.b=fHTqBVoE;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=L2eobawG;
+       spf=pass (google.com: domain of 010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com designates 23.251.229.110 as permitted sender) smtp.mailfrom=010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=reddit.com
+Return-Path: <010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com>
+Received: from e229-110.smtp-out.amazonses.com (e229-110.smtp-out.amazonses.com. [23.251.229.110])
+        by mx.google.com with ESMTPS id g17si824116qvo.137.2021.02.10.00.18.37
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Wed, 10 Feb 2021 00:18:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of 010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com designates 23.251.229.110 as permitted sender) client-ip=23.251.229.110;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@reddit.com header.s=2ybsbk45dtwlgerewyfzx5qt442lak5j header.b=fHTqBVoE;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=L2eobawG;
+       spf=pass (google.com: domain of 010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com designates 23.251.229.110 as permitted sender) smtp.mailfrom=010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@amazonses.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=reddit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=2ybsbk45dtwlgerewyfzx5qt442lak5j; d=reddit.com; t=1612945117;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+	bh=UH4xob26XP1Wh3npkVS+ZN0tyYB5O8yrZ8/ywz4fC2k=;
+	b=fHTqBVoECgJaHgsePeQuv1M/c9fQBln6oCGc9zmHWOzpmYlzQ3p32tz3XoW9e/No
+	23yiPyHOW5rHlsjg9wXliXzy3gc598cYCjCd7OlxoWdP7Z1H2++AdqgZoz9t7zvzVtV
+	FamQ0QChPLaTBNwfH19M/0v+OAyWgPLBynCPJUgg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1612945117;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+	bh=UH4xob26XP1Wh3npkVS+ZN0tyYB5O8yrZ8/ywz4fC2k=;
+	b=L2eobawGsbFBlRjkGvhLF4HRlNDc9sFeihvxh7IL67RUAL6c9fDzIykIimtGQjlk
+	BIYI1pJSdaO6Nq/bs2vHCjLWADENUoNz37tiwFcqnMEE+Tdi7ryFqG4aUVbZhvlULT5
+	6W/ZlzirgOUNvDc2OA5+arS20PUIFL6ieKb2toi0=
+From: Reddit <noreply@reddit.com>
+To: miphilipk@gmail.com
+Subject: Verify your Reddit email address
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <010001778b054e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000@email.amazonses.com>
+Date: Wed, 10 Feb 2021 08:18:36 +0000
+X-SES-Outgoing: 2021.02.10-23.251.229.110
+Feedback-ID: 1.us-east-1.UqlFplRllIQtiw+Kq2b87y7uRSu9p66fMici2AQNsMU=:AmazonSES
+X-TUID: o3nFduVXjdYc
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>
+=09<!-- MonitorCampaignID: verify_email -->
+
+=09<!--[if gte mso 9]>
+=09<xml>
+=09=09<o:OfficeDocumentSettings>
+=09=09<o:AllowPNG/>
+=09=09<o:PixelsPerInch>96</o:PixelsPerInch>
+=09=09</o:OfficeDocumentSettings>
+=09</xml>
+=09<![endif]-->
+=09<meta http-equiv=3D"Content-type" content=3D"text/html; charset=3Dutf-8"=
+ />
+=09<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1, maximum-scale=3D1" />
+=09<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+=09<meta name=3D"format-detection" content=3D"date=3Dno" />
+=09<meta name=3D"format-detection" content=3D"address=3Dno" />
+=09<meta name=3D"format-detection" content=3D"telephone=3Dno" />
+=09<meta name=3D"x-apple-disable-message-reformatting" />
+=09 <!--[if !mso]><!-->
+=09 <!--<![endif]-->
+=09<title>Email Template</title>
+=09<!--[if gte mso 9]>
+=09<style type=3D"text/css" media=3D"all">
+=09=09sup { font-size: 100% !important; }
+=09</style>
+=09<![endif]-->
+=09
+
+=09<style type=3D"text/css" media=3D"screen">
+=09=09body { padding:0 !important; margin:0 auto !important; display:block =
+!important; min-width:100% !important; width:100% !important; background:#f=
+fffff; -webkit-text-size-adjust:none }
+=09=09a { color:#313e42; text-decoration:none }
+=09=09p { padding:0 !important; margin:0 !important }=20
+=09=09img { margin: 0 !important; -ms-interpolation-mode: bicubic; /* Allow=
+ smoother rendering of resized image in Internet Explorer */ }
+
+=09=09a[x-apple-data-detectors] {
+=09=09    color: inherit !important;
+=09=09    text-decoration: inherit !important;
+=09=09    font-size: inherit !important;
+=09=09    font-family: inherit !important;
+=09=09    font-weight: inherit !important;
+=09=09    line-height: inherit !important;
+=09=09}
+=09=09
+=09=09.btn-12 a { display: block; padding: 4px; text-decoration: none; }
+=09=09.btn-14 a { display: block; padding: 8px; text-decoration: none; }
+=09=09.btn-14-4 a { display: block; padding: 8px; text-decoration: none; }
+
+=09=09.l-red a { color: #ff0000; }
+=09=09
+=09=09=09=09
+=09=09/* Mobile styles */
+=09=09@media only screen and (max-device-width: 480px), only screen and (ma=
+x-width: 480px) {
+=09=09=09.mpx-16 { padding-left: 16px !important; padding-right: 16px !impo=
+rtant; }
+
+=09=09=09.mpb-20 { padding-bottom: 20px !important; }
+
+=09=09=09.mpb-40 { padding-bottom: 40px !important; }
+
+=09=09=09.mfz-14 { font-size: 14px !important; }
+
+=09=09=09.mlh-16 { line-height: 16px !important; }
+
+=09=09=09.mpb-28 { padding-bottom: 28px !important; }
+
+=09=09=09.mlh-18 { line-height: 18px !important; }
+
+=09=09=09.mpb-34 { padding-bottom: 34px !important; }
+
+=09=09=09.mpt-16 { padding-top: 16px !important; }
+
+=09=09=09.mpt-34 { padding-top: 34px !important; }
+
+=09=09=09.mpx-12 { padding-left: 12px !important; padding-right: 12px !impo=
+rtant; }
+
+=09=09=09.mfz-12 { font-size: 12px !important; }
+
+=09=09=09.mpb-8 { padding-bottom: 8px !important; }
+
+=09=09=09u + .body .gwfw { width:100% !important; width:100vw !important; }
+
+=09=09=09.td,
+=09=09=09.m-shell { width: 100% !important; min-width: 100% !important; }
+=09=09=09
+=09=09=09.mt-left { text-align: left !important; }
+=09=09=09.mt-center { text-align: center !important; }
+=09=09=09.mt-right { text-align: right !important; }
+=09=09=09
+=09=09=09.me-left { margin-right: auto !important; }
+=09=09=09.me-center { margin: 0 auto !important; }
+=09=09=09.me-right { margin-left: auto !important; }
+
+=09=09=09.h-auto { height: auto !important; }
+=09=09=09.w-auto { width: auto !important; }
+
+=09=09=09.fluid-img img { width: 100% !important; max-width: 100% !importan=
+t; height: auto !important; }
+
+=09=09=09.column,
+=09=09=09.column-top,
+=09=09=09.column-dir,
+=09=09=09.column-dir-top { float: left !important; width: 100% !important; =
+display: block !important; }
+
+=09=09=09.m-hide { display: none !important; width: 0 !important; height: 0=
+ !important; font-size: 0 !important; line-height: 0 !important; min-height=
+: 0 !important; }
+=09=09=09.m-block { display: block !important; }
+
+=09=09=09/*Width*/
+=09=09=09.w-15 { width: 15px !important; }
+
+=09=09=09.w-8 { width: 8px !important; height: auto !important; }
+
+=09=09=09.w-12 { width: 12px !important; height: auto !important; }
+
+=09=09=09.w-60 { width: 60px !important; height: auto !important; }
+
+=09=09=09.w-54 { width: 54px !important; height: auto !important; }
+=09=09=09.w-54 img { width: 54px !important; height: auto !important; }
+
+=09=09=09.w-104 { width: 104px !important; height: auto !important; }
+=09=09=09.w-104 img { width: 104px !important; height: auto !important; }
+
+=09=09=09.w-114 { width: 114px !important; height: auto !important; }
+=09=09=09.w-114 img { width: 114px !important; height: auto !important; }
+
+=09=09=09.btn-14-4 { font-size: 12px !important; line-height: 16px !importa=
+nt; }
+=09=09=09.btn-14-4 a { padding: 4px !important; }
+
+=09=09=09.w-2p { width: 2% !important; }
+=09=09=09.w-32p { width: 32% !important; }
+=09=09=09.w-49p { width: 49% !important; }
+=09=09=09.w-50p { width: 50% !important; }
+=09=09=09.w-100p { width: 100% !important; }
+
+=09=09=09/*Text*/
+=09=09=09
+=09=09}
+=09</style>
+</head>
+<body class=3D"body" style=3D"padding:0 !important; margin:0 auto !importan=
+t; display:block !important; min-width:100% !important; width:100% !importa=
+nt; background:#ffffff; -webkit-text-size-adjust:none;">
+=09<center>
+=09=09<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" style=3D"margin: 0; padding: 0; width: 100%;" bgcolor=3D"#ffffff" class=
+=3D"gwfw">
+=09=09=09<tr>
+=09=09=09=09<td style=3D"margin: 0; padding: 0; width: 100%;" align=3D"cent=
+er">
+=09=09=09=09=09<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" class=3D"m-shell">
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td class=3D"td" style=3D"width:600px; min-width:600px=
+; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"=
+>
+=09=09=09=09=09=09=09=09<table width=3D"100%" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0">
+
+=09=09=09=09=09=09=09=09=09<!-- Verify your email address -->
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09<td class=3D"img" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:left;">
+=09=09=09=09=09=09=09=09=09=09=09<table width=3D"100%" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"px-32 mpx-16" style=3D"=
+padding-left: 32px; padding-right: 32px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"pt-25 pt-16 pb=
+-28 mpb-20" style=3D"padding-top: 16px; padding-bottom: 28px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table width=3D"100%" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"pb-54=
+ mpb-40" style=3D"padding-bottom: 54px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table width=3D=
+"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=
+=3D"img w-104" width=3D"112" style=3D"font-size:0pt; line-height:0pt; text-=
+align:left;"><a href=3D"https://www.reddit.com/" target=3D"_blank"><img src=
+=3D"https://www.redditstatic.com/emaildigest/logo.png" width=3D"112" height=
+=3D"39" border=3D"0" alt=3D"" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=
+=3D"img" width=3D"20" style=3D"font-size:0pt; line-height:0pt; text-align:l=
+eft;"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table=
+ width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+<td align=3D"right">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09<td class=3D"img" width=3D"16" valign=3D"top" style=3D"font-size:0=
+pt; line-height:0pt; text-align:left;"><img src=3D"https://www.redditstatic=
+.com/emaildigest/user_default_icon_small.png" width=3D"16" height=3D"16" bo=
+rder=3D"0" alt=3D"" /></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09<td class=3D"img" width=3D"4" style=3D"font-size:0pt; line-height:=
+0pt; text-align:left;"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09<td class=3D"text-12 c-grey-4" style=3D"font-size:12px; line-heigh=
+t:14px; font-family:Helvetica, Arial, sans-serif; text-align:left; min-widt=
+h:auto !important; color:#7a9299;"><a href=3D"https://www.reddit.com/user/m=
+iphilip/?correlation_id=3D769d7a0d-8165-4bc3-bb8b-b73707585d96&amp;email_ty=
+pe=3Dverify_email&amp;ref=3Dverify_email&amp;ref_campaign=3Dverify_email&am=
+p;ref_source=3Demail" target=3D"_blank" class=3D"link c-grey-4" style=3D"te=
+xt-decoration:none; color:#7a9299;"><span class=3D"link c-grey-4" style=3D"=
+text-decoration:none; color:#7a9299;">u/miphilip</span></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</t=
+r>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tabl=
+e>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"text-=
+16 mfz-14 mlh-16 pb-34" style=3D"font-size:16px; line-height:18px; color:#0=
+00000; font-family:Helvetica, Arial, sans-serif; text-align:left; min-width=
+:auto !important; padding-bottom: 34px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09Hi there,
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<br /><br />
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09Your email addr=
+ess <a target=3D"_blank" class=3D"link c-dark-3" style=3D"text-decoration:n=
+one; color:#000000;"><span class=3D"link c-dark-3" style=3D"text-decoration=
+:none; color:#000000;">miphilipk@gmail.com</span></a> has been added to you=
+r <span class=3D"link c-dark-3" style=3D"text-decoration:none; color:#00000=
+0;">miphilip</span> Reddit account. But wait, we&rsquo;re not done yet...=
+=20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<br /><br />
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09To finish verif=
+ying your email address and securing your account, <span class=3D"link c-da=
+rk-3" style=3D"text-decoration:none; color:#000000;">click the button below=
+</span>.=20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"pb-40=
+ mpb-28" align=3D"center" style=3D"padding-bottom: 40px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table width=3D=
+"214" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=
+=3D"btn-14" bgcolor=3D"#0079d3" style=3D"border-radius: 4px; font-size:14px=
+; line-height:18px; mso-padding-alt:8px; color:#ffffff; font-family:Helveti=
+ca, Arial, sans-serif; text-align:center; min-width:auto !important;"><a hr=
+ef=3D"https://www.reddit.com/verification/eyJhY2NvdW50X2lkIjogInQyX2EwNW5te=
+W5uIiwgInNpZyI6ICJBUUFBWElzbllNTFA2MFpNNGVUdGE2MDA1aHd4QVViVXN5NmlBMTFRWEJZ=
+UFktNXBZVmVvIn0?correlation_id=3D769d7a0d-8165-4bc3-bb8b-b73707585d96&amp;r=
+ef=3Dverify_email&amp;ref_campaign=3Dverify_email&amp;ref_source=3Demail" t=
+arget=3D"_blank" class=3D"link c-white" style=3D"display: block; padding: 8=
+px; text-decoration:none; color:#ffffff;"><span class=3D"link c-white" styl=
+e=3D"text-decoration:none; color:#ffffff;"><strong>Verify Email Address</st=
+rong></span></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"text-=
+16 mfz-14 mlh-16 pb-28" style=3D"font-size:16px; line-height:18px; color:#0=
+00000; font-family:Helvetica, Arial, sans-serif; text-align:left; min-width=
+:auto !important; padding-bottom: 28px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09If miphilip isn=
+&rsquo;t your Reddit account, <a href=3D"https://www.reddit.com/remove_emai=
+l/t2_a05nmynn/eyJhY2NvdW50X2lkIjogInQyX2EwNW5teW5uIiwgInNpZyI6ICJBUUFBWElzb=
+llBWm5IOWVIV3NkVk1EMXR2amNvVFVjaEZfdk1sUWNrQXlKVzJLR1ZuRFVYIn0?correlation_=
+id=3D769d7a0d-8165-4bc3-bb8b-b73707585d96&amp;ref=3Dverify_email&amp;ref_ca=
+mpaign=3Dverify_email&amp;ref_source=3Demail" target=3D"_blank" class=3D"li=
+nk c-blue" style=3D"text-decoration:none; color:#006cbf;"><span class=3D"li=
+nk c-blue" style=3D"text-decoration:none; color:#006cbf;">let us know</span=
+></a> and we&rsquo;ll make sure nothing weird is going on.=20
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09</tr>
+                                    <!-- END Verify your email address -->
+                                   =20
+                                    <!-- Footer - 2 -->
+=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09<td class=3D"pb-34 mpb-20" bgcolor=3D"#f1f5f6=
+" style=3D"padding-bottom: 34px;">
+=09=09=09=09=09=09=09=09=09=09=09<table width=3D"100%" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"fluid-img mpb-8" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left;"><a href=3D"https://ww=
+w.reddit.com/" target=3D"_blank"><img src=3D"https://redditstatic.s3.amazon=
+aws.com/emaildigest/footer_logo_8_8.png" width=3D"600" height=3D"125" borde=
+r=3D"0" alt=3D"" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"pb-40 mpb-20" align=3D"=
+center" style=3D"padding-bottom: 40px;">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"img w-114" val=
+ign=3D"top" style=3D"font-size:0pt; line-height:0pt; text-align:left;"><a h=
+ref=3D"https://apps.apple.com/us/app/reddit/id1064216828" target=3D"_blank"=
+><img src=3D"https://redditstatic.s3.amazonaws.com/emaildigest/app_store_8_=
+8.png" width=3D"124" height=3D"37" border=3D"0" alt=3D"" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"img w-8" width=
+=3D"10" style=3D"font-size:0pt; line-height:0pt; text-align:left;"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"img w-114" val=
+ign=3D"top" style=3D"font-size:0pt; line-height:0pt; text-align:left;"><a h=
+ref=3D"https://play.google.com/store/apps/details?id=3Dcom.reddit.frontpage=
+" target=3D"_blank"><img src=3D"https://redditstatic.s3.amazonaws.com/email=
+digest/google_play_8_8.png" width=3D"124" height=3D"37" border=3D"0" alt=3D=
+"" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"text-16-8 mfz-12 mlh-18=
+ c-dark-8-8 a-center px-24 mpx-12" style=3D"font-size:16px; line-height:18p=
+x; font-family:Helvetica, Arial, sans-serif; min-width:auto !important; col=
+or:#222222; text-align:center; padding-left: 24px; padding-right: 24px;">54=
+8 Market St., #16093, San Francisco, CA 94104=E2=80=935401</td>
+=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09<!-- END Footer - 2 -->
+=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09</table>
+=09=09=09=09</td>
+=09=09=09</tr>
+=09=09</table>
+=09</center>
+<img alt=3D"" src=3D"http://ql9whnmm.r.us-east-1.awstrack.me/I0/010001778b0=
+54e1d-f9c2128c-7df6-4de2-b0ff-38494ab832e7-000000/JpJtmNn5_uaE5FTqpm3lpokwr=
+Ik=3D200" style=3D"display: none; width: 1px; height: 1px;">
+</body>
+</html>

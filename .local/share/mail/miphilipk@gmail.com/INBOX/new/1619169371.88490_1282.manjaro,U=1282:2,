@@ -1,0 +1,1160 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:a9f:236a:0:0:0:0:0 with SMTP id 97csp2019729uae;
+        Sun, 13 Dec 2020 04:46:25 -0800 (PST)
+X-Received: by 2002:a05:6102:1173:: with SMTP id k19mr18102432vsg.51.1607863585312;
+        Sun, 13 Dec 2020 04:46:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1607863585; cv=none;
+        d=google.com; s=arc-20160816;
+        b=OVhX15ywd8JEM54t0I5C3KMOYbULJxHdXkRrQtXjWeJUV1s5Af1eKUjJzioU3AZg1A
+         aWBpf/VaZhk9DNzz4hnKVf6SQlUto5T1EECenxR4mr//kdBnB/6/1RA2NCN6eLvp0MDr
+         KYby+Zs8SM4IJ3GHGbpVTSRLMJne9OmNe1AUsxN4hjFYQl+TlP16qBs07P2w6950lU92
+         sK6BqF5VX2xsjIuWcWFJlHZ9qgzhGEfbLTr9BLYxdnBjOUdajL0kqE6mjJnvIhBxKwkl
+         3e8x+ttfDSFRTScZG3Pd3iHdOSpDuqM/flJ+8nMtIfgCt+n4v58A4WNcGyMfMi2Pd6yz
+         f+8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :dkim-signature;
+        bh=3ugZkZWt3PpAhpAz7DUeiaYIGFl5ism/s/olkkyjqME=;
+        b=iJlqwqLMte5ms0v7lbyuYt5qjaS1XRKfdIoGcN8QJBjCwdkNuyl6+aFEJYv2ZZvjBD
+         OaixRe8d5JxILJxV75FC2ac5ikberqlyQ+yqY8opq4tssGkSy9iq86PD8w+jA27Xo4Pb
+         JdC8qGFrjM1e1/wG+Y70Ew9G1vPpdV03BnDCWDZaCn+9TC7CkqKAqL/P5YBxNOK7CE1D
+         4Wslwzc2Vf5iMj1HY6ybVp60mjWSOiQx+K9kUpcgm5PFcWYc2E1otSJ/GmLAI9m+BOyQ
+         cG7VWfRbe9LXmQZ3StXfeDKxLP/ufZyDzWKPSluR4Jl3Df5wVchrPsI4COcxBVj7qIQX
+         a7sw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=eujw2+2g;
+       spf=pass (google.com: domain of 3ia3wxwckczcefi5gcp7ff7c5.3fdd9g89c9gb7d19c.3fd@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3IA3WXwcKCZcEFI5GCP7FF7C5.3FDD9G89C9GB7D19C.3FD@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3IA3WXwcKCZcEFI5GCP7FF7C5.3FDD9G89C9GB7D19C.3FD@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 6sor9630229vsi.23.2020.12.13.04.46.24
+        for <miphilipk@gmail.com>
+        (Google Transport Security);
+        Sun, 13 Dec 2020 04:46:25 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3ia3wxwckczcefi5gcp7ff7c5.3fdd9g89c9gb7d19c.3fd@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=eujw2+2g;
+       spf=pass (google.com: domain of 3ia3wxwckczcefi5gcp7ff7c5.3fdd9g89c9gb7d19c.3fd@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3IA3WXwcKCZcEFI5GCP7FF7C5.3FDD9G89C9GB7D19C.3FD@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:date:reply-to:feedback-id:message-id:subject:from:to;
+        bh=3ugZkZWt3PpAhpAz7DUeiaYIGFl5ism/s/olkkyjqME=;
+        b=eujw2+2goz+EMx938+GUFVlTJ0c4XheObv8d9NUy1WbWi522C/XmdJ/8g2del89rkU
+         QTOnvV6uwevY/rAgLFxbY7evu10WLWO3I+Qwv3OtTHgB+HJKeqA8AhDvRW95/zZ4gMcA
+         Zx9lzlU97pnJu93XC2uQ8Dp7ZOoITM+CUqAQZV5tZvwLRHF1Gcm0aFkk/VvSKrdOUgEJ
+         xpTOV3xpuPjnKSMmGQ82isbG7TJXDRq6e4k/4mqF2VsByTSnoYbqmq+155vCzSZo9bYy
+         lUcCEB37CgofqOip4s0/b4gMcSKYaoQbvUZy79L3McNfbWdAHeW6VU0a4Tba5nSUhUL5
+         tdZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:date:reply-to:feedback-id
+         :message-id:subject:from:to;
+        bh=3ugZkZWt3PpAhpAz7DUeiaYIGFl5ism/s/olkkyjqME=;
+        b=hOffNAZR14WEW5WxIvXi0kObQwsBaBSxCLlYNm45q9ELJrqsajGrj+DylHnqE1N01j
+         HEzmozDzEkmZFBh1WrUVpcW5vP/U1C/FViCs9D1fuP0CATPzKsBM7SALuRUzF7WB4UE8
+         /28X4ctngtNdE33OXspG6iyENusAr4z2YYogJnbRFt7LUKrZlU08qOYHy4/89J3bk2Q6
+         JtYngRUajpYxozyLfgCqc3akQTCJ1NBzhBz9TDS65ijmIdIfPlxKvRnTsFzYu/CQftP3
+         XfZdzNn8RI8afFjcxNSJIt08nDb2LuYkAspDMRRV+YY/OYWtpeQsRmOV1JY2vZFjtK6/
+         SmeQ==
+X-Gm-Message-State: AOAM531oDRXNb3T2u9zxt0czU92Hvz7kk5vAXPVytQ5QxL5bAeY/OBZz
+	fiHYpJ/7gpG2mdQ=
+X-Google-Smtp-Source: ABdhPJyATdPwC5QK2rCrLk2Yk0maA1G3YNv5DgQprm9Mle8+ucfhIXGxab58z9aDoD9cv9JwxpkwEeE=
+MIME-Version: 1.0
+X-Received: by 2002:a67:ea02:: with SMTP id g2mr19553027vso.3.1607863584704;
+ Sun, 13 Dec 2020 04:46:24 -0800 (PST)
+Date: Sun, 13 Dec 2020 04:46:24 -0800
+Reply-To: Google <noreply@google.com>
+X-Google-Id: 4051709
+Feedback-ID: P2725-0:C20139638:M110385795-en:gamma
+X-Notifications: GAMMA:<a38a704fc34d27e4cb398099ae388f7942de0766-20139638-110869419@google.com>
+Message-ID: <a38a704fc34d27e4cb398099ae388f7942de0766-20139638-110869419@google.com>
+Subject: Important policy changes for Google Account storage
+From: Google <noreply@google.com>
+To: miphilipk@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000d04b5705b657e9f6"
+X-TUID: yFav0pZcPda0
+
+--000000000000d04b5705b657e9f6
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+RGVhciBHb29nbGUgVXNlciwNCg0KV2UgYXJlIHdyaXRpbmcgdG8gbGV0IHlvdSBrbm93IHRoYXQg
+d2UgcmVjZW50bHkgYW5ub3VuY2VkIG5ldyBzdG9yYWdlICANCnBvbGljaWVzIGZvciBHb29nbGUg
+QWNjb3VudHMgdXNpbmcgIA0KR21haWw8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBzZXJ2ZS9t
+a3QvcC9BRC1GbkV5X1NGVzZHMEh6a1lFblVreWQtakJ1d0Y4SG9Lb2wxaklhakdaLV80UmQ3b2Jf
+cUx2OFZPY05tdWc3VzVCQXBQNGJPVk1OUkMtalZSOTJPLW9UTDBOVjMxUU9QVFo4bmpSRnBUVHI2
+MmtINkdzPiwgIA0KR29vZ2xlICANCkRyaXZlPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYXBwc2Vy
+dmUvbWt0L3AvQUQtRm5FeWMwYWE2TFE1RXBsSVZNMmUtV2dFNHlwdWZoZG5ZQ0pOZHR2MkFKMEVX
+eFZ4XzBUUDhITkpidVFNWmRjbHJldjRoMGZlSHlEQ1JfaXJGSWJFUHcxVDlEanpONHlsWjBWeWxk
+dHM3eVk5U0p5bEZpTW8+ICANCihpbmNsdWRpbmcgR29vZ2xlIERvY3MsIFNoZWV0cywgU2xpZGVz
+LCBEcmF3aW5ncywgRm9ybXMsIGFuZCBKYW1ib2FyZCAgDQpmaWxlcykgYW5kL29yIEdvb2dsZSAg
+DQpQaG90b3M8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV3VXl6
+X1N6V3Aybmc4THkySXFsMVR3dmN6cUtPMVlJclFBN3NOVHpVZUZRUDNLOXF5REl1aEgxOXRiY1Nq
+MlZBWmZvNTlsWldGNFduMG1CdWZuX1lETkxiVWxiNjFFZHpwbTRZcG1GVE5lRGQzN2dsVnoyaFM0
+PiAgDQp0aGF0IGJyaW5nIHVzIGluIGxpbmUgd2l0aCBpbmR1c3RyeSBwcmFjdGljZXMuIFNpbmNl
+IHlvdSBoYXZlIHByZXZpb3VzbHkgIA0KdXNlZCBvbmUgb3IgbW9yZSBvZiB0aGVzZSBwcm9kdWN0
+cyBpbiB5b3VyIEdvb2dsZSBBY2NvdW50ICANCnN0b3JhZ2U8aHR0cHM6Ly93d3cuZ29vZ2xlLmNv
+bS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV4WVdhdEs5WDQ5d3hiX1cwdDE3SmhiOW9mTk02NWRkNWlr
+N3B6QWg5am1odXkyemNxWkVTZzVCQ3liYUM3OWplS0sxNUNPcXpmWkEzbFJEbGxSVmJ1TWVsZGNx
+ZnNPLWdOWTYtd1VzVHdZcEpNUHItMUhOXzdmWDA5NzJVYXV2cHlrd1lKTmdXQWpzTUZXWllCMktK
+Wm5HS09RQWM2aTl1TTR5WTdWQ0stdT4sICANCndlIHdhbnRlZCB0byB0ZWxsIHlvdSBhYm91dCB0
+aGUgbmV3IHBvbGljaWVzIHdlbGwgYmVmb3JlIHRoZXkgZ28gaW50byAgDQplZmZlY3Qgb24gSnVu
+ZSAxLCAyMDIxLiBCZWxvdyBpcyBhIHN1bW1hcnkgb2YgdGhlIG5ldyBwb2xpY2llcy4gUGxlYXNl
+ICANCnJlZmVyZW5jZSBvdXIgSGVscCBDZW50ZXIgIA0KYXJ0aWNsZTxodHRwczovL3d3dy5nb29n
+bGUuY29tL2FwcHNlcnZlL21rdC9wL0FELUZuRXdIZm12YU9qWFFVY0Q5QTVkZU8wbklOWk5xM1Ru
+QlhCemZjaDlqcWlyODJzQ1dvZGJJdnFSSXE1b3BrX1pUdHJlYW56WGkzcEJ0UUJ3dlN5S3JvN3Q0
+dEgxMXNvVDRzN2xDT3RYcVJhREdDNThyWXlibVE1Z3k0aGRBMzZBemlHbEZRdUp3TmN2TzhJQT4g
+IA0KZm9yIGEgY29tcGxldGUgbGlzdCBvZiB3aGF0J3MgY2hhbmdpbmcuDQoNCg0KU3VtbWFyeSBv
+ZiB0aGUgbmV3IHBvbGljaWVzIChlZmZlY3RpdmUgSnVuZSAxLCAyMDIxKToNCg0KLSBJZiB5b3Un
+cmUgIA0KaW5hY3RpdmU8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1G
+bkV4cC1tTFExS2tXcnNSbXlRZWVRZnRmUjFRdDlTb0lYUnliOU51UlpoRDUtT0lLVm1WYU1Fbkhn
+Zjc5aExtQzM0U2RDY19CdWtKLVVHMGJicHJ5Wm9ZR3VqNmh1eERVYjFlQTE1Ull3MWRFT1cxODdj
+WTA3RUlxYUItTG93dFJQR2lsX09lV0hTMXQ+ICANCmZvciAyIHllYXJzICgyNCBtb250aHMpIGlu
+IEdtYWlsLCBEcml2ZSBvciBQaG90b3MsIHdlIG1heSBkZWxldGUgdGhlICANCmNvbnRlbnQgaW4g
+dGhlIHByb2R1Y3QocykgaW4gd2hpY2ggeW91J3JlIGluYWN0aXZlLiBHb29nbGUgIA0KT25lPGh0
+dHBzOi8vd3d3Lmdvb2dsZS5jb20vYXBwc2VydmUvbWt0L3AvQUQtRm5FeDBNQXRaVTlBVG9tWnBt
+MVBRV1RxMHJVQVpRM0hYNlJqVndkbVhGbFRNZDhIbVFrdGlpSEwwV3pTTVhqLTcxNGFKUTc0elNi
+MmQyMUVOczdkVktNUWl2LVNYMFFneTNHbnhGdm1RMmtWUFVZemhBM2JJdllGMGZGdzlOX3o1eW1U
+UmZwdjE5WEpwYWRGcm9kQ3BObHVuYlNudj4gIA0KbWVtYmVycyB3aG8gYXJlIHdpdGhpbiB0aGVp
+ciBzdG9yYWdlIHF1b3RhIGFuZCBpbiAgDQpnb29kLXN0YW5kaW5nPGh0dHBzOi8vd3d3Lmdvb2ds
+ZS5jb20vYXBwc2VydmUvbWt0L3AvQUQtRm5FeTdtSi05VHlIOUR3d3hLMk10STJfRUVtVV9oQVFQ
+OEdvaE1LeFg3dHR5Z0lWd3o4VzliSXVPdkVGUzNpa0FJdTc5ZVVtQXBCaHlROXhiN08zMDM1WEJk
+UU1mMkVVemtsQlV2YVJlODRIazlMYnJydW5FQWJZbTg4RURSbzNqOVJlU2lRPiAgDQp3aWxsIG5v
+dCBiZSBpbXBhY3RlZCBieSB0aGlzIG5ldyBpbmFjdGl2ZSBwb2xpY3kuDQoNCg0KLSBJZiB5b3Ug
+ZXhjZWVkIHlvdXIgc3RvcmFnZSBsaW1pdCBmb3IgMiB5ZWFycywgd2UgbWF5IGRlbGV0ZSB5b3Vy
+IGNvbnRlbnQgIA0KYWNyb3NzIEdtYWlsLCBEcml2ZSBhbmQgUGhvdG9zLg0KDQpXaGF0IHRoaXMg
+bWVhbnMgZm9yIHlvdToNCg0KLSBZb3Ugd29uJ3QgYmUgaW1wYWN0ZWQgYnkgdGhlc2UgY2hhbmdl
+cyB1bmxlc3MgeW91J3ZlIGJlZW4gaW5hY3RpdmUgb3IgIA0Kb3ZlciB5b3VyIHN0b3JhZ2UgbGlt
+aXQgZm9yIDIgeWVhcnMuIEFzIHRoaXMgcG9saWN5IGdvZXMgaW50byBlZmZlY3QgSnVuZSAgDQox
+LCAyMDIxLCB0aGUgZWFybGllc3QgaXQgd291bGQgYmUgZW5mb3JjZWQgaXMgSnVuZSAxLCAyMDIz
+Lg0KDQotIEFmdGVyIEp1bmUgMSwgMjAyMSwgaWYgeW91IGFyZSBlaXRoZXIgaW5hY3RpdmUgb3Ig
+b3ZlciB5b3VyIHN0b3JhZ2UgIA0KbGltaXQsIHdlIHdpbGwgc2VuZCB5b3UgZW1haWwgcmVtaW5k
+ZXJzIGFuZCBub3RpZmljYXRpb25zIGluIGFkdmFuY2UgYW5kICANCnByaW9yIHRvIGRlbGV0aW5n
+IGFueSBjb250ZW50Lg0KDQotIEV2ZW4gaWYgeW91IGFyZSBlaXRoZXIgaW5hY3RpdmUgb3Igb3Zl
+ciB5b3VyIHN0b3JhZ2UgbGltaXQgZm9yIG9uZSBvciAgDQptb3JlIG9mIHRoZXNlIHNlcnZpY2Vz
+IGFuZCBjb250ZW50IGlzIGRlbGV0ZWQsIHlvdSB3aWxsIHN0aWxsIGJlIGFibGUgdG8gIA0Kc2ln
+biBpbi4NCg0KLSBOb3RlOiBUaGUgaW5hY3Rpdml0eSBhbmQgb3ZlciBxdW90YSBzdG9yYWdlIHBv
+bGljaWVzIHdpbGwgYXBwbHkgb25seSB0byAgDQpjb25zdW1lciB1c2VycyBvZiBHb29nbGUgc2Vy
+dmljZXMuIEdvb2dsZSBXb3Jrc3BhY2UsIEcgU3VpdGUgZm9yIEVkdWNhdGlvbiAgDQphbmQgRyBT
+dWl0ZSBmb3IgTm9ucHJvZml0cyBwb2xpY2llcyBhcmUgbm90IGNoYW5naW5nIGF0IHRoaXMgdGlt
+ZSwgYW5kICANCmFkbWlucyBzaG91bGQgbG9vayB0byB0aGUgQWRtaW4gSGVscCAgDQpjZW50ZXI8
+aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV5Nnl1emtFREVxb0o2
+NXRFYkVhMDNYYXJ3TzFranNJSldGcC1uMUp5QThwaXUyM3o0cTNlMzdqamgzZFpqTWh6QjdQeW5v
+UG9Dak9nb0tEbzRELVBjNzNCYWktWG80eFhSSF9SNVhJal9DRDVpVFVnbmpSVXRTOFh3Q1JBPiAg
+DQpmb3Igc3RvcmFnZSBwb2xpY2llcyByZWxhdGVkIHRvIHRoZWlyIHN1YnNjcmlwdGlvbnMuDQoN
+Cg0KTGVhcm4gbW9yZSBhYm91dCBob3cgdG8ga2VlcCB5b3VyIGFjY291bnQgYWN0aXZlDQoNCi0g
+VG8gbGVhcm4gbW9yZSBhYm91dCBob3cgdG8gcmVtYWluIGFjdGl2ZSB3aXRoIHRoZXNlIHByb2R1
+Y3RzLCB2aXNpdCB0aGlzICANCkhlbHAgQ2VudGVyICANCnBhZ2U8aHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV3RFRrY1hlY0tRNFBMTVliTlUxZGJKQXBBZHVOeGl1
+c0R5ZnFrbWVEcUVfTUYwN19MRXFJQ0F4WjRwQ1JSQVVrcDk3eHZsb1kwU05oZHBfRlFUeWYxTk9v
+dWQ3dmhUblpIUWhfbkpRbHVHc1FPckJmaHY4eE1PNlZHYWdzNTVtZUtkaWpoOGNmVnpodE9FcWRq
+UWlibz4uDQoNCg0KLSBUaGUgSW5hY3RpdmUgQWNjb3VudCAgDQpNYW5hZ2VyPGh0dHBzOi8vd3d3
+Lmdvb2dsZS5jb20vYXBwc2VydmUvbWt0L3AvQUQtRm5FeXUyNk0yQlgzazI3N1Y0T2dQeksyVi1q
+aHd0cHNaQTBDTEJPMDNmYkFJTGtwakd2T1ZjQjBsODNiemN3NzlLNENZS2tIQ2xTRnEzWU5qV1RI
+RzRrdEUzRkkxbXM0Y0pWZVlGWEJSWm0tcFhBLWl1MXBhVWtQcmV2TkF2ZVB2VVFLcXY2OGg+ICAN
+CmNhbiBoZWxwIHlvdSBtYW5hZ2Ugc3BlY2lmaWMgY29udGVudCBhbmQgbm90aWZ5IGEgdHJ1c3Rl
+ZCBjb250YWN0IGlmIHlvdSAgDQpzdG9wIHVzaW5nIHlvdXIgR29vZ2xlIEFjY291bnQgZm9yIGEg
+Y2VydGFpbiBwZXJpb2Qgb2YgdGltZSAoYmV0d2VlbiAzLTE4ICANCm1vbnRocykuIE5vdGU6IHRo
+ZSBuZXcgMiB5ZWFyIGluYWN0aXZlIHBvbGljeSB3aWxsIGFwcGx5IHJlZ2FyZGxlc3Mgb2YgeW91
+ciAgDQpJbmFjdGl2ZSBBY2NvdW50IE1hbmFnZXIgc2V0dGluZ3MuIFlvdSBjYW4gbGVhcm4gbW9y
+ZSBhYm91dCB0aGVzZSBjaGFuZ2VzICANCmFuZCB3YXlzIHRvIG1hbmFnZSB5b3VyIG9yIGEgbG92
+ZWQgb25lJ3MgYWNjb3VudCBpbiBvdXIgSGVscCAgDQpDZW50ZXI8aHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV5ZmRodUJtVnR2Mk8tT3JFUjVZdVJqVHVTWlgzZWpx
+b3JtMzl4VmMwV3dmY2ZIYWFzR3B2X0dmdndjSi1fNVRFRV9QcHdEWHV5a1ppd1J2WnJzWVVON09W
+NnpyNzgyRTBTVGFIT2JHZ3p4OHRjRTdneUo0cmlKb3dnWkpnZXo4MWRWPi4NCg0KDQpMZWFybiBo
+b3cgdG8gbWFuYWdlIHlvdXIgc3RvcmFnZQ0KDQotIExlYXJuIG1vcmUgYWJvdXQgdGhlIG92ZXIg
+cXVvdGEgIA0KcG9saWN5PGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYXBwc2VydmUvbWt0L3AvQUQt
+Rm5FejA4d1hFU1oySTdmMmNHR0NvcGlkZVRiZ3VHUVFHRm5wNmdrWURvckRSSEt3Z0pMRldOdnZI
+UFNyQ1JLalQyS3dBVEw3VjJwQ0tIWHJiT3BhaTBISGlpcS1ueHViOWdTbDlEWEhFeHZiME1GNXhU
+SkdLNTFpWVktdTltUk1IU3JWZy1abmo1cmhfdEZsYzgwbzdoRFhuR2c+ICANCmFuZCB3aGF0IGNv
+dW50cyBhZ2FpbnN0IHN0b3JhZ2UgIA0KcXVvdGE8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBz
+ZXJ2ZS9ta3QvcC9BRC1GbkV4cElFaUdWaURRRHhoTXF5ZWJQeTJBaWQ2ZFhKLUpBcC1nNUN2TV9j
+Y0ZZb28tYXNBVmY5dVZlZi1KcTR4QW1pMXFtWWNla2Zha0hQQXZRWGdJb2w5VFhwVlY3RFdsdjA3
+RTYteU11a1daZkI1ZW10cHpGVHpSQW9YZ0ZaX2Y1ekFRVjdiZWxpY3hQTjF1Pi4NCg0KDQotIFlv
+dSBjYW4gdXNlIHRoZSBmcmVlIHN0b3JhZ2UgbWFuYWdlciBpbiB0aGUgR29vZ2xlIE9uZSAgDQph
+cHA8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9hcHBzZXJ2ZS9ta3QvcC9BRC1GbkV5ejdtVnk5R0xq
+TFR6XzhySlFabmtVUktWNUhxeHgtdjYyUzk1UEJPdnVDTDhZWHFFWnN6VmI1dld4MEdoLWExYWIt
+UE1UV2pFemd3QVRXVXpGNXNsS0F3dHU2MnMwOHROQllhek1Kd3hlelA1ZllleVM1eFZROHMzeVpZ
+UGZGakI0RktxRVVUZ2J1cERDRWpPWmNUMzdRZ1BMNnBYeHMzSlRTS3gwdWM4R0o1V1g+ICANCmFu
+ZCBvbiB0aGUgIA0Kd2ViPGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vYXBwc2VydmUvbWt0L3AvQUQt
+Rm5FemtKczVYZTdjdjczNXdLYllrdmRNTkhoTVgzM0F0T0x5NjJCVFFZbEhHUkM0QnhCZ281U1Nh
+Um5GaUgtRmVnUncyRzlLc1duQXNMZU5VVkxBMjhDand1aXVaWW10T1lDS0VQWG9iTTB5MjF6TUZZ
+XzdGS2owYnVGWU5RS2xUQlVqX2NCU0h2VC1NdjVuQlR6aVVkR3dTSHBmdmwzOUozU1RTNHVVQk8y
+UEZNUlU+ICANCnRvIHNlZSBob3cgeW91J3JlIHVzaW5nIHlvdXIgR29vZ2xlIEFjY291bnQgc3Rv
+cmFnZSwgYW5kIGZyZWUgdXAgc3BhY2UgIA0KYWNyb3NzIEdtYWlsLCBHb29nbGUgRHJpdmUsIGFu
+ZCBHb29nbGUgUGhvdG9zLg0KDQoNClRoYW5rIHlvdSBmb3IgdXNpbmcgb3VyIHNlcnZpY2VzLg0K
+WW91ciBHb29nbGUgVGVhbQ0KDQoNCsKpIDIwMjAgR29vZ2xlIExMQyAxNjAwIEFtcGhpdGhlYXRy
+ZSBQYXJrd2F5LCBNb3VudGFpbiBWaWV3LCBDQSA5NDA0Mw0KDQpZb3UgaGF2ZSByZWNlaXZlZCB0
+aGlzIG1hbmRhdG9yeSBlbWFpbCBhbm5vdW5jZW1lbnQgdG8gdXBkYXRlIHlvdSBhYm91dCAgDQpp
+bXBvcnRhbnQgaW5mb3JtYXRpb24gcmVsYXRlZCB0byB5b3VyIEdvb2dsZSBBY2NvdW50Lg0KDQo=
+--000000000000d04b5705b657e9f6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns=3Dhttp://www.w3.org/1999/xhtml xmlns:v=3Durn:schemas-microsoft=
+-com:vml xmlns:o=3Durn:schemas-microsoft-com:office:office lang=3Den>
+   <head>
+     <title>Google Policy Update Email</title>
+      <meta name=3Dx-apple-disable-message-reformatting>
+      <meta http-equiv=3DX-UA-Compatible>
+      <meta http-equiv=3DContent-Type content=3D"text/html; charset=3DUTF-8=
+">
+      <meta name=3Dviewport content=3D"initial-scale =3D 1.0,maximum-scale =
+=3D 1.0" />
+      <meta name=3DHandheldFriendly content=3Dtrue />
+      <meta name=3DMobileOptimized content=3D482 />
+      <meta name=3Dviewport content=3Dtarget-densitydpi=3Ddevice-dpi />
+
+<link href=3Dhttps://fonts.googleapis.com/css?family=3DRoboto:100,100i,300,=
+300i,400,400i,500,500i,700,700i rel=3Dstylesheet>
+<style>
+  .showdesktop{
+    display:block;
+  }
+  .showmobile{
+    display:none;
+  }
+  @media screen and (max-width:823px){
+    .showmobile{display:block !important;}
+    .showdesktop{display:none !important;}
+  }
+
+.showdesktop1{
+    display:block;
+  }
+  .showmobile1{
+    display:none;
+  }
+  @media screen and (max-width:823px){
+    .showmobile1{display:inline-block !important; padding-right:8px !import=
+ant; }
+    .showdesktop1{display:none !important;}
+  }
+
+.showdesktop_inline{
+    display:inline-block ;
+  }
+  .showmobile_inline{
+    display:none;
+  }
+  @media screen and (max-width:823px){
+    .showmobile_inline{display:inline !important;}
+    .showdesktop_inline{display:none !important;}
+  }
+ =20
+</style>
+<!--[if mso]>
+<style>*{font-family: Arial, serif !important;}
+span, td, table, div,a,p{font-family: Arial, serif !important;}</style>
+<![endif]-->
+        <style>
+          wbr{display:none !important;}
+         =20
+         =20
+          @media screen and (max-width:823px){
+            .top_logo{text-align:center;}
+            .head_para{padding: 0px 30px 24px 30px !important;}
+            .para-content{padding: 0px 30px 20px 30px !important;}
+            .bullet_td{padding: 0px 30px 0px 30px !important;}
+            .bullet_point{vertical-align: top !important;}
+            .bullet-content{padding: 0px 0px 20px 0px !important;}
+            .footer_content1{padding: 30px 30px 20px 30px !important;}
+            .footer_content{padding: 10px 30px 20px 30px !important;}
+            .para_footer{padding: 10px 30px 0px 30px !important;}
+            }
+          @media only screen and (max-width: 812px) and (orientation: lands=
+cape) {
+            .top_logo{text-align:center;}
+            .head_para{padding: 0px 30px 24px 30px !important;}
+            .para-content{padding: 0px 30px 20px 30px !important;}
+            .bullet_td{padding: 0px 30px 0px 30px !important;}
+            .bullet_point{vertical-align: top !important;}
+            .bullet-content{padding: 0px 0px 20px 0px !important;}
+            .footer_content1{padding: 30px 30px 20px 30px !important;}
+            .footer_content{padding: 10px 30px 20px 30px !important;}
+            .para_footer{padding: 10px 30px 0px 30px !important;}
+          }
+
+        </style>
+     <!--[if gte mso 9]>
+<xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+   </head>
+<body style=3D"font-family:'Google Sans','Roboto', Arial, sans-serif; margi=
+n:0; padding:0; " class=3Dbody>
+<div style=3D"font-size: 0px; line-height: 0px; color: #ffffff; display: no=
+ne; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0p=
+x; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left:=
+ 0px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp;</div>
+
+<center class=3Dwrapper_app style=3D"width:100%; margin:4px auto 0 auto;">
+<!--[if gte mso 9]>  =20
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"718" style=3D"width:718px; margin:0; padding:0; table-layout:fixed; " r=
+ole=3D"presentation">
+            <![endif]--> <!--[if !mso]><!-- -->=20
+            <table border=3D0 cellpadding=3D0 cellspacing=3D0 style=3D"marg=
+in:0 auto; padding:0; table-layout:fixed; background-color: #ffffff" role=
+=3Dpresentation>
+               <!--<![endif]-->
+          <div style=3D"width: auto; line-height:0px; font-size: 0px; heigh=
+t:0px; overflow: hidden;"><img alt=3D"" height=3D1 src=3Dhttps://www.google=
+.com/appserve/mkt/img/AD-FnEx5L-6XzLAQNcjynksaA305wop6HZEPetCkp87UzA7yOw.gi=
+f width=3D3></div>
+               <tr style=3D"border-collapse: collapse; border-spacing: 0; p=
+adding: 0; margin: 0;">
+                  <td style=3D"max-width:718px; padding: 0; margin: 0;width=
+:718px;border: 1px solid #e0e0e0;min-width:100% " width=3D100% align=3Dcent=
+er class=3D"main_table main_table_dm" valign=3Dtop>
+<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3Dwidt=
+h:100%; role=3Dpresentation>
+    <tr>
+       <td style=3D"font-family: 'Google Sans','Roboto', Arial, sans-serif;=
+direction:ltr; text-align:center; font-weight:normal;color: #202124;word-br=
+eak: normal;display: none;font-size:0px;line-height:0px;" dir=3Dltr>
+       New inactive and over quota storage policies
+       </td>
+    </tr>
+
+</table>
+<div style=3D"font-size: 0px; line-height: 0px;height: 0px;width: 0px;max-w=
+idth: 0px;max-height:0px;display:none;overflow:hidden;">&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+
+  <table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3Dba=
+ckground:#fff role=3Dpresentation>
+
+      <tr>
+         <td class=3Dtop_logo style=3D"padding:61px 58px 48px" align=3Dleft=
+>
+          =20
+        <img src=3Dhttps://services.google.com/fh/files/emails/logo_google_=
+lg.png alt=3D"" width=3D120>
+         =20
+          </td>
+      </tr>
+  </table>
+
+		<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"w=
+idth: 100%;" role=3Dpresentation>
+			<tbody>
+				<tr>
+					<td class=3Dhead_para align=3Dleft style=3D"font-family: 'Google Sans'=
+,'Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:24px;=
+line-height:54px;text-align:left;font-weight:400;color: #202124; padding: 0=
+px 52px 0px 52px; padding-bottom:20px; word-break: normal;font-size: 20px;l=
+ine-height:32px; padding:3px 67px 21px 52px;" dir=3Dltr>Dear <span style=3D=
+"white-space: nowrap !important;">Google</span> User,</td>
+				</tr>
+			</tbody>
+		</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"=
+width: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dpara-content align=3Dleft style=3D"font-family: 'Google S=
+ans','Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:1=
+4px;line-height:22px;text-align:left;font-weight:400;color: #5F6368; paddin=
+g: 0px 52px 0px 52px; word-break: normal;padding:13px 67px 51px 52px;" dir=
+=3Dltr>        <span class=3Dshowdesktop>We are writing to let you know tha=
+t we recently announced new storage policies for <span style=3D"white-space=
+: nowrap !important;">Google</span> Accounts using <span style=3D"white-spa=
+ce: nowrap !important;"><a class=3Dapple_link1 href=3Dhttps://www.google.co=
+m/appserve/mkt/p/AD-FnEwJyHmzpncCtHBB_CITs6oHYPMqTMxE_kT1Uya6Ir6m4TbC1R85lD=
+FYnyTPJW7BXmIoGg0OYOtnC7NBCXN4qn0lRGjWtQSs5xGHPwOailoVYYFnBQ style=3Dtext-d=
+ecoration:none;color:#1A73E8; target=3D_blank><u><span style=3D"white-space=
+: nowrap !important;">Gmail</span></u></a>,</span> <a class=3Dapple_link1 h=
+ref=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEyWcUY7SdQgHvgR81wqzeJqLsx=
+qIo7NEdVnYnEhK7fvrTS9dtlpFn6TpaLwACH7d_aHMBFLY5NjcJLN5e6WBHk8lYUBtkD707KqVW=
+rkS4QAf6Q5rrzkvA style=3Dtext-decoration:none;color:#1A73E8; target=3D_blan=
+k><u><span style=3D"white-space: nowrap !important;">Google Drive</span></u=
+></a> (including <span style=3D"white-space: nowrap !important;">Google</sp=
+an> Docs, Sheets, Slides, Drawings, Forms, and Jamboard files) and/or <a cl=
+ass=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEzrIat7=
+7-0b_MdOFLLqkTO9Y6oXcfWNwunBoTMEcDyslzmljgdiAy0cOXk80h1iGx04MlUqcd3qaI2JMF1=
+DCK6HSlOvJ6G0vQghlRUS-5M08RdNUshiuVz5Fgk style=3Dtext-decoration:none;color=
+:#1A73E8; target=3D_blank><u><span style=3D"white-space: nowrap !important;=
+">Google Photos</span></u></a> that bring us in line with industry practice=
+s. Since you have previously used one or more of these products in your <a =
+class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEz4rV=
+sT1dR7XbHqDwDt6SWQZIoun8FPpVzkUxK7RRFCAOqXzdoB8Fot-E5e9eZgds3ax10lWa8Zu8DVM=
+Rsxn-Im74B1MdFpnO-xdWP9gwVlL4IE4avj7CVTF_QD0PVv4DM7d120GTz0qeq8Ighd43tYRkEn=
+sCQ4E96yZxEnpiKykgs style=3Dtext-decoration:none;color:#1A73E8; target=3D_b=
+lank><u><span style=3D"white-space: nowrap !important;">Google</span> Accou=
+nt storage</u></a>, we wanted to tell you about the new policies well befor=
+e they go into effect on <span style=3D"white-space: nowrap !important;"><s=
+pan style=3D"white-space: nowrap !important;">June 1, 2021</span>.</span> B=
+elow is a summary of the new policies. Please reference our <a class=3Dappl=
+e_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEwCRE7iaFaVafSPOG=
+7O51oDslORzCDo_H8ncbzZZc6f94aM5vzfy7zyct8UZ_nyolAVZVUIbsQw_tHHjQNw-1sQx_c6M=
+1TdzIxTEVfjMFaFNllZSLnFjM_e6xsq0ewqnZDn8womTDobnfTEgQ style=3Dtext-decorati=
+on:none;color:#1A73E8; target=3D_blank><u>Help Center article</u></a> for a=
+ complete list of what's changing.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>We are writing to le=
+t you know that we recently announced new storage policies for <span style=
+=3D"white-space: nowrap !important;">Google</span> Accounts using <span sty=
+le=3D"white-space: nowrap !important;"><a class=3Dapple_link1 href=3Dhttps:=
+//www.google.com/appserve/mkt/p/AD-FnEyKC3WhJ412sxTXyBsUBACnDAkEvKQznItZQVf=
+xr8HWtEwpIe0G-iMKBj46uN-GRX_aVqtbz2Dw4ZLz4ww6FJULczTmiJRTJZ5RfTsN9FFipjtKgc=
+pMqsY style=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u><span =
+style=3D"white-space: nowrap !important;">Gmail</span></u></a>,</span> <a c=
+lass=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnExtJvo=
+72djPmYlEAvdKwTaOstn3Jd1eV-_UgIE-dWA-uZj91JX_edj-iQstQZbMugDcATykNKZuMAchWk=
+CTDKCJ-HjdZi60CgLjjawM2zCUBDYc-kLZgXOxqDE style=3Dtext-decoration:none;colo=
+r:#1A73E8; target=3D_blank><u><span style=3D"white-space: nowrap !important=
+;">Google Drive</span></u></a> (including <span style=3D"white-space: nowra=
+p !important;">Google</span> Docs, Sheets, Slides, Drawings, Forms, and Jam=
+board files) and/or <a class=3Dapple_link1 href=3Dhttps://www.google.com/ap=
+pserve/mkt/p/AD-FnEzDCtvMDLY7XRGFW19Nl_RngroLF_eRest3ktIs_WGuzcbyNm9DUG9Yc4=
+CEztMDpWkr1YZaI1NTSuj-F0ST6faTT6bAPTUP_-dy2ARiVcxDvbRnzD5Abpht0ur1bHqE styl=
+e=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u><span style=3D"w=
+hite-space: nowrap !important;">Google Photos</span></u></a> that bring us =
+in line with industry practices. Since you have previously used one or more=
+ of these products in your <a class=3Dapple_link1 href=3Dhttps://www.google=
+.com/appserve/mkt/p/AD-FnEwqSGiThSP5d3nlMUm7lEXZn8cxWnWxYMG1MDZX01NB87hJEEa=
+z6azhLjH2U4TjsZXUda939RjkpAemTuA4mVVZxdXQ6YaCV4krpawMIgptcQLCVSZWCYiu2jY6jl=
+cabxrrbNZXXd4P0d_m4hyodp8v0GxKKOTSkCkePxc19IVzy996t4nr style=3Dtext-decorat=
+ion:none;color:#1A73E8; target=3D_blank><u><span style=3D"white-space: nowr=
+ap !important;">Google</span> Account storage</u></a>, we wanted to tell yo=
+u about the new policies well before they go into effect on <span style=3D"=
+white-space: nowrap !important;"><span style=3D"white-space: nowrap !import=
+ant;">June 1, 2021</span>.</span> Below is a summary of the new policies. P=
+lease reference our <a class=3Dapple_link1 href=3Dhttps://www.google.com/ap=
+pserve/mkt/p/AD-FnEwCDd6j3PJQ1x2euYiAgUry1ovwhxeJt2aAZyRqVrQcE7e0L6X7iIEsAu=
+rkGAGQdYrbsLTMLN0hAeRMNlgh9pI_rKsfIKWKpdcYr2CclCFagl1VO0sN2xz5tk3pZThupRhkg=
+uli1VU0A0dsAK8ARMg style=3Dtext-decoration:none;color:#1A73E8; target=3D_bl=
+ank><u>Help Center article</u></a> for a complete list of what's changing.<=
+/span>
+      </td>
+					</tr>
+				</tbody>
+			</table>
+
+		<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"w=
+idth: 100%;" role=3Dpresentation>
+			<tbody>
+				<tr>
+					<td class=3Dhead_para align=3Dleft style=3D"font-family: 'Google Sans'=
+,'Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:24px;=
+line-height:54px;text-align:left;font-weight:400;color: #202124; padding: 0=
+px 52px 0px 52px; padding-bottom:20px; word-break: normal;font-size: 20px;l=
+ine-height:32px;padding-bottom:27px;" dir=3Dltr>Summary of the new policies=
+ (effective <span style=3D"white-space: nowrap !important;">June 1, 2021</s=
+pan>):</td>
+				</tr>
+			</tbody>
+		</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; padding-bottom:23px;" dir=3Dltr>        <span class=3Dshowdesktop>If you=
+'re <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-=
+FnEy5uRyrUxUglTwNAjtze68aZJqhTDeXdcNfmSBwb44oGceVXz79ETre1eM5JFvEzMDrpPK9Te=
+1VRa-OIkTYGt8RyvFw4xTWPvyZX92Wab2k5yOLPuxYkklbEQhuzS8_1zQoQ-Y6VXSAw58 style=
+=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u>inactive</u></a> =
+for <span style=3D"white-space: nowrap !important;">2 years</span> <span st=
+yle=3D"white-space: nowrap !important;">(24 months)</span> in <span style=
+=3D"white-space: nowrap !important;"><span style=3D"white-space: nowrap !im=
+portant;">Gmail</span>,</span> <span style=3D"white-space: nowrap !importan=
+t;">Drive</span> or Photos, we may delete the content in the product(s) in =
+which you're inactive. <a class=3Dapple_link1 href=3Dhttps://www.google.com=
+/appserve/mkt/p/AD-FnEwXToVA276C9h0-Pu-1wZmCzA_C6-iGLZgnUqRknKU1iWM1-0EvcSb=
+kMdWdAvuDLE4Oo7Px_waqNiMJnTUz1KLqkoTQHxEz99HO0o7Qy1XQdM9j5TEqwYGVVtfNWC_pXS=
+S8ZIXTLvZeRjOWhprmMk1Y7MnMX1E style=3Dtext-decoration:none;color:#1A73E8; t=
+arget=3D_blank><u><span style=3D"white-space: nowrap !important;">Google On=
+e</span></u></a> members who are within their storage quota and in <a class=
+=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnExRaQjYrEQ=
+OalI5L0isSwCO57yluKNwiinUgy_lUo0hJOOMy64G3ALQ6PFHohQqNAxhUon3uUcVhQu_O4OJhB=
+BhxBHpPmXnBn8fYevUbQEVKYywsMSIvv47ZevIlAXCminX-oV9 style=3Dtext-decoration:=
+none;color:#1A73E8; target=3D_blank><u>good-standing</u></a> will not be im=
+pacted by this new inactive policy.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>If you're <a class=
+=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEy2dYzCuiO=
+OnnfYkUDXJDt45GN_WhGgCyf4OLdX4TRjeY2xVtYmftX7EurhWI3z-N8PrN_nfDkEL3-9LQxPzG=
+o5xiMAcbFuqFsTAXHA483fM9YY63dPkDvQZvudQ9M3fL7pPFjsrXKVDkY9Winv style=3Dtext=
+-decoration:none;color:#1A73E8; target=3D_blank><u>inactive</u></a> for <sp=
+an style=3D"white-space: nowrap !important;">2 years</span> <span style=3D"=
+white-space: nowrap !important;">(24 months)</span> in <span style=3D"white=
+-space: nowrap !important;"><span style=3D"white-space: nowrap !important;"=
+>Gmail</span>,</span> <span style=3D"white-space: nowrap !important;">Drive=
+</span> or Photos, we may delete the content in the product(s) in which you=
+'re inactive. <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve=
+/mkt/p/AD-FnEydPq040ndR3ZrJrhPb6IX6As7ThhVXtxzpytBLci9iMOHYfrizD9pM4geQtKct=
+nwoaCI0spSHYJGdEP8haRgcvx2E8n0ubc0kKUUOZu4UGWBGE_f1gMAzbzYhQxtvs1JOeH7c55Ml=
+8jIwJqXFHO5YcU4xowA8sHEX1 style=3Dtext-decoration:none;color:#1A73E8; targe=
+t=3D_blank><u><span style=3D"white-space: nowrap !important;">Google One</s=
+pan></u></a> members who are within their storage quota and in <a class=3Da=
+pple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEyh_C9IQcdnZu2=
+i-2AiBedNE2d6nMOlb3btiGx9v9OaaUPn-Xfik1kDm9hcvWjj0zmCfA3nZC55tc4z6sKgL7LjAh=
+YBdt-FhPcWfQL9tILhD4QdHQiWOGABauDx7CRtcGHB4thBR_cqog style=3Dtext-decoratio=
+n:none;color:#1A73E8; target=3D_blank><u>good-standing</u></a> will not be =
+impacted by this new inactive policy.</span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; " dir=3Dltr>If you exceed your storage limit for <span style=3D"white-sp=
+ace: nowrap !important;">2 years,</span> we may delete your content across =
+<span style=3D"white-space: nowrap !important;"><span style=3D"white-space:=
+ nowrap !important;">Gmail</span>,</span> <span style=3D"white-space: nowra=
+p !important;">Drive</span> and Photos.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"w=
+idth: 100%;" role=3Dpresentation>
+			<tbody>
+				<tr>
+					<td class=3Dhead_para align=3Dleft style=3D"font-family: 'Google Sans'=
+,'Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:24px;=
+line-height:54px;text-align:left;font-weight:400;color: #202124; padding: 0=
+px 52px 0px 52px; padding-bottom:20px; word-break: normal;font-size: 20px;l=
+ine-height:32px;padding-top:36px; padding-bottom:30px;" dir=3Dltr>What this=
+ means for you:</td>
+				</tr>
+			</tbody>
+		</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x;  padding-bottom:22px;" dir=3Dltr>You won't be impacted by these changes =
+unless you've been inactive or over your storage limit for <span style=3D"w=
+hite-space: nowrap !important;">2 years.</span> As this policy goes into ef=
+fect <span style=3D"white-space: nowrap !important;"><span style=3D"white-s=
+pace: nowrap !important;">June 1, 2021</span>,</span> the earliest it would=
+ be enforced is <span style=3D"white-space: nowrap !important;">June 1, 202=
+3.</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; " dir=3Dltr>After <span style=3D"white-space: nowrap !important;"><span =
+style=3D"white-space: nowrap !important;">June 1, 2021</span>,</span> if yo=
+u are either inactive or over your storage limit, we will send you email re=
+minders and notifications in advance and prior to deleting any content.</td=
+>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; " dir=3Dltr>Even if you are either inactive or over your storage limit f=
+or one or more of these services and content is deleted, you will still be =
+able to sign in.</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; padding-bottom: 31px;" dir=3Dltr>        <span class=3Dshowdesktop><stro=
+ng>Note:</strong> The inactivity and over quota storage policies will apply=
+ only to consumer users of <span style=3D"white-space: nowrap !important;">=
+Google</span> services. <span style=3D"white-space: nowrap !important;"><sp=
+an style=3D"white-space: nowrap !important;">Google Workspace</span>,</span=
+> <span style=3D"white-space: nowrap !important;">G Suite</span> for Educat=
+ion and <span style=3D"white-space: nowrap !important;">G Suite</span> for =
+Nonprofits policies are not changing at this time, and admins should look t=
+o the <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/A=
+D-FnEwDM_084m3TCbibh-yPQol1gKWypeP3sXcQQgQ_ELzZo6XRrI2OBxvppP3jhpHzagd8SoGk=
+inDiBPai50OfYz1khsqp_BFJgdb0E1w4qxnMwqk9bN4CMJWWhKhl1V6L style=3Dtext-decor=
+ation:none;color:#1A73E8; target=3D_blank><u>Admin Help center</u></a> for =
+storage policies related to their subscriptions.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;><strong>Note:</stron=
+g> The inactivity and over quota storage policies will apply only to consum=
+er users of <span style=3D"white-space: nowrap !important;">Google</span> s=
+ervices. <span style=3D"white-space: nowrap !important;"><span style=3D"whi=
+te-space: nowrap !important;">Google Workspace</span>,</span> <span style=
+=3D"white-space: nowrap !important;">G Suite</span> for Education and <span=
+ style=3D"white-space: nowrap !important;">G Suite</span> for Nonprofits po=
+licies are not changing at this time, and admins should look to the <a clas=
+s=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEzp3AW1ab=
+dfUPV6PH2F1l3fDordFyGl7iAHDtpaYkVB5RscsHLIfJzj7hZvJP2ehZgJQg6qO5jZw25yBVUzr=
+VMHrN_93cMSO-UEMKXyDlWOE7TeM8yC2iD8C4IgGzkVabWI1w style=3Dtext-decoration:n=
+one;color:#1A73E8; target=3D_blank><u>Admin Help center</u></a> for storage=
+ policies related to their subscriptions.</span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"w=
+idth: 100%;" role=3Dpresentation>
+			<tbody>
+				<tr>
+					<td class=3Dhead_para align=3Dleft style=3D"font-family: 'Google Sans'=
+,'Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:24px;=
+line-height:54px;text-align:left;font-weight:400;color: #202124; padding: 0=
+px 52px 0px 52px; padding-bottom:20px; word-break: normal;font-size: 20px;l=
+ine-height:32px;padding-top:36px; padding-bottom:34px;" dir=3Dltr>Learn mor=
+e about how to keep your account active</td>
+				</tr>
+			</tbody>
+		</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; padding-bottom:22px;" dir=3Dltr>        <span class=3Dshowdesktop>To lea=
+rn more about how to remain active with these products, visit this <a class=
+=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEyLMJJg2Xt=
+d9MIPcbF07aAEE2WSL-i7e5dywIzPY8EbsKMs0F6FUMlVCOXli8nDhC_dJlt5Jpc4G8hrHTsdz6=
+0SXZ0wYi71utS7OuSsd-O5ucju4npp7YieWxzQQZR2FDzOQo62qBkbxvc9mKmpmzE27g style=
+=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u>Help Center page<=
+/u></a>.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>To learn more about =
+how to remain active with these products, visit this <a class=3Dapple_link1=
+ href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEx-LPd9-M9OQLJery3LYTFy8=
+MbzCxoqDihyMBrzJoiCp3dFFBwsVgKJNVJs1luOakRDdjtlwSGG_OldJogJ4xc1Gs7u2S4ObPDm=
+hMFX8_h6-tCxXVGaRx1q-ZaVLfREy1iYwSx5oMbHDDcONP4uk9VqWD9rOvg style=3Dtext-de=
+coration:none;color:#1A73E8; target=3D_blank><u>Help Center page</u></a>.</=
+span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; padding-bottom: 17px;" dir=3Dltr>        <span class=3Dshowdesktop>The <=
+a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEyY=
+7cEigfIUgdPKmGwKXUcHjvEtTP9qfKOMV9LPC9rYoOH_TSF3g5aSaqgCGBbi3vN8mqFTcCpfgcn=
+ZxrVNFkyj_li9uTq4YdD9IJQhnyIFI4C4IR1feL7C_TWD7HcRBC-We5BIwF4 style=3Dtext-d=
+ecoration:none;color:#1A73E8; target=3D_blank><u>Inactive Account Manager</=
+u></a> can help you manage specific content and notify a trusted contact if=
+ you stop using your <span style=3D"white-space: nowrap !important;">Google=
+</span> Account for a certain period of time (between <span style=3D"white-=
+space: nowrap !important;">3-18 months</span>). Note: the new <span style=
+=3D"white-space: nowrap !important;">2 year</span> inactive policy will app=
+ly regardless of your Inactive Account Manager settings. You can learn more=
+ about these changes and ways to manage your or a loved one's account in ou=
+r <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-Fn=
+Ey2NbtZeqSWy19e1O0mbmIhslj-OsLjKDaHkloaZCsFMxjqK_Ta8pK7zVyDm4-6wGoEJ9xEXaJf=
+pMAeCVRIxeZ9o7V8V5LAtlkWNgNwH85w-oxYUt0njELvu3DETLDSbUz5M3w style=3Dtext-de=
+coration:none;color:#1A73E8; target=3D_blank><u>Help Center</u></a>.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>The <a class=3Dapple=
+_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEy-InmzBXVcSPdrfME=
+VLd-rPbhXvpGr0Q5J70VHI2bHXZobRCnJdOFpN3tfGxG6slvKAOp6FdIPj7eBJvzCBJrnIdwZk1=
+ALFWi367Z5Ogj8E-_NWX3NBqmXEF7VDedbpJk9yo0dSrjJTPdV style=3Dtext-decoration:=
+none;color:#1A73E8; target=3D_blank><u>Inactive Account Manager</u></a> can=
+ help you manage specific content and notify a trusted contact if you stop =
+using your <span style=3D"white-space: nowrap !important;">Google</span> Ac=
+count for a certain period of time (between <span style=3D"white-space: now=
+rap !important;">3-18 months</span>). Note: the new <span style=3D"white-sp=
+ace: nowrap !important;">2 year</span> inactive policy will apply regardles=
+s of your Inactive Account Manager settings. You can learn more about these=
+ changes and ways to manage your or a loved one's account in our <a class=
+=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEzdKgBhMlp=
+ugh0OQY26tcRqf_czfkbJgaWUOb390drFNph_BWIw95RehEuPHwpfRVtTbiVyim0SMTq6oSQESa=
+13DpBJ6xp8vbVVBwzu7J6B2keFTGuWZQtfyUH_C-3DPBixhApFBOWz style=3Dtext-decorat=
+ion:none;color:#1A73E8; target=3D_blank><u>Help Center</u></a>.</span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"w=
+idth: 100%;" role=3Dpresentation>
+			<tbody>
+				<tr>
+					<td class=3Dhead_para align=3Dleft style=3D"font-family: 'Google Sans'=
+,'Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:24px;=
+line-height:54px;text-align:left;font-weight:400;color: #202124; padding: 0=
+px 52px 0px 52px; padding-bottom:20px; word-break: normal;font-size: 20px;l=
+ine-height:32px;padding-top:36px; padding-bottom:34px;" dir=3Dltr>Learn how=
+ to manage your storage</td>
+				</tr>
+			</tbody>
+		</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; padding-bottom:22px;" dir=3Dltr>        <span class=3Dshowdesktop>Learn =
+more about the <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserv=
+e/mkt/p/AD-FnExzQUuHdEMu0PZlC6JzdBIGN8wPObzhsxgESg_mBAK4AJgxo4KZkWakIazA3fW=
+GFU40f86wbhOnFplV_l-y30LaH8aJsrCP8dqEZMHFnyY19V5GK0Vq3euT71y8uuc48XGg_Tc5Yl=
+ILqOt4WXYvBQIGSGOs style=3Dtext-decoration:none;color:#1A73E8; target=3D_bl=
+ank><u>over quota policy</u></a> and what counts against <a class=3Dapple_l=
+ink1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEw2fgd9TOvfNmvzCokx7=
+vjrbXLyWqB4VAcSClhaMhPmA9VsW9Epzg7HfG_fU9kEhwQPdDum-ESg6NDtTPBpyU3njt06KET9=
+K4Mbv5MBRop8qskG5zurWMJ2asov-RR5RMLdAVhD48f3PYD2vho style=3Dtext-decoration=
+:none;color:#1A73E8; target=3D_blank><u>storage quota</u></a>.</span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>Learn more about the=
+ <a class=3Dapple_link1 href=3Dhttps://www.google.com/appserve/mkt/p/AD-FnE=
+znFWEtie4GBmhOwpBNRuC-91v7GiMdtS2tck9XPI84EQz--07l8NKVK1M2sov16ijDYoz4B3oW8=
+WPnY5WAwDLoCcP-tgqkMmaBi--wE7BusWtxLqXciu7irBdqAxxviJ0_0LR0P4yeVO2l8ynMY1q8=
+i-LscYYKfg style=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u>o=
+ver quota policy</u></a> and what counts against <a class=3Dapple_link1 hre=
+f=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEzySDz2uHrTKo_05Mjbu-50S6D9e=
+BQnTSlPX33Cx8zkOW3AKwupTDEQbbKe_oRmuMy8wDOy2N2J9iBS1lRmKj2-lbSFfl6_jK3jsd_9=
+o2_3ajYH86nkYU06y2MHqFMEcX5dJXN4FarY5_bLwBZ9-YEA style=3Dtext-decoration:no=
+ne;color:#1A73E8; target=3D_blank><u>storage quota</u></a>.</span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D"" style=3D"wi=
+dth: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dbullet_td align=3Dleft style=3D"font-family: 'Google Sans=
+','Roboto', Arial, sans-serif; direction:ltr;text-align:left;padding-bottom=
+: 25px;padding: 0px 68px 0px 48px; word-break: normal;" dir=3Dltr>
+							<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=
+=3D"width: 100%;" dir=3Dltr role=3Dpresentation>
+								<tbody>
+									<tr>
+										<td class=3Dbullet_point style=3D"-webkit-text-size-adjust:none; =
+border-collapse:collapse; color:#5F6368; font-family: 'Google Sans','Roboto=
+', Arial, sans-serif;  font-size:12px; font-weight:400; letter-spacing:0; l=
+ine-height:22px; padding-left:2px; padding-bottom:15px; padding-right:7px; =
+text-align:center; vertical-align:top; width:30px; word-break: normal;" val=
+ign=3Dtop align=3Dcenter> <strong style=3Dfont-weight:bold>&bull;</strong> =
+</td>
+										<td class=3Dbullet-content valign=3Dtop align=3Dleft style=3D"fon=
+t-family: 'Google Sans','Roboto', Arial, sans-serif;  direction:ltr; text-a=
+lign:left; font-size:14px;line-height:22px; text-align:left; font-weight:no=
+rmal;color: #5F6368; padding: 0 0px;word-break: normal; padding-bottom: 15p=
+x; " dir=3Dltr>        <span class=3Dshowdesktop>You can use the free stora=
+ge manager in the <a class=3Dapple_link1 href=3Dhttps://www.google.com/apps=
+erve/mkt/p/AD-FnEyvovVmmIWXyW0zvsk_qBLzh0jrYVGbCxRnx1MI5prOlXqEblXdI5BZtDSU=
+TuR-RuCO9xwTG6DAOZW6tT_ENO2hBOVZwRQpLiNIDaQ3iLKgEEa9O2mUJQ_XRWcBrHY5PO05aav=
+gkYSkBl-x5YG2eXW6s5nczJNWajP42n--GdWVZQrAVjc style=3Dtext-decoration:none;c=
+olor:#1A73E8; target=3D_blank><u><span style=3D"white-space: nowrap !import=
+ant;">Google One</span> app</u></a> and <a class=3Dapple_link1 href=3Dhttps=
+://www.google.com/appserve/mkt/p/AD-FnEzhXFbyNKDrUsDW7R9d2KIXOdUr-qJMikLhcJ=
+GspPrBKF-aMdWDELsEqUcdwyx3QEmbxkSCLOKZv2YIcm55C9l-bJSXneIbeYfGOhn2Qp6ukdOr4=
+W-dILta2zLUQcwRi2PGjqGYiQNVzoWesPv56v2qt5IHPMA_-m0G81Hm5S4TStOUNg style=3Dt=
+ext-decoration:none;color:#1A73E8; target=3D_blank><u>on the web</u></a> to=
+ see how you're using your <span style=3D"white-space: nowrap !important;">=
+Google</span> Account storage, and free up space across <span style=3D"whit=
+e-space: nowrap !important;"><span style=3D"white-space: nowrap !important;=
+">Gmail</span>,</span> <span style=3D"white-space: nowrap !important;"><spa=
+n style=3D"white-space: nowrap !important;">Google Drive</span>,</span> and=
+ <span style=3D"white-space: nowrap !important;"><span style=3D"white-space=
+: nowrap !important;">Google Photos</span>.</span></span>
+        <span class=3Dshowmobile style=3Ddisplay:none;>You can use the free=
+ storage manager in the <a class=3Dapple_link1 href=3Dhttps://www.google.co=
+m/appserve/mkt/p/AD-FnEyCoo9L9W26UN3jPVJhbo-VU6szVfpecedNt0V10CONk8AkkNp1p6=
+p6iZw4noDfHSuvGyRXvBAYOD-uZQ2TcoapKURCRt3OlcHHycTAGdVNtbjxlBQ-gDufMhZVVDeD8=
+eOkHF9vvQvIY88bRWycbU9Te1K_rlIdV0VyZ48mtHJSrYues40VrAxl style=3Dtext-decora=
+tion:none;color:#1A73E8; target=3D_blank><u><span style=3D"white-space: now=
+rap !important;">Google One</span> app</u></a> and <a class=3Dapple_link1 h=
+ref=3Dhttps://www.google.com/appserve/mkt/p/AD-FnEw-RaNwDrySKQJj_HwkPRwojYw=
+E_UG6mXt1CiiANRkTPOY6cQ6thZ3-HTn8WVbHZG9ouQ6oSL_VFhj9bfBtzCKB6WqwKZRBUjE4XN=
+MU1zGRs56e-maNE-_0xjv-bTU5OCz2rj3fjPZmKBAKKkZQH2UkMsSF1sH_TnUerCwSJLGyUgzfr=
+m76aeQ style=3Dtext-decoration:none;color:#1A73E8; target=3D_blank><u>on th=
+e web</u></a> to see how you're using your <span style=3D"white-space: nowr=
+ap !important;">Google</span> Account storage, and free up space across <sp=
+an style=3D"white-space: nowrap !important;"><span style=3D"white-space: no=
+wrap !important;">Gmail</span>,</span> <span style=3D"white-space: nowrap !=
+important;"><span style=3D"white-space: nowrap !important;">Google Drive</s=
+pan>,</span> and <span style=3D"white-space: nowrap !important;"><span styl=
+e=3D"white-space: nowrap !important;">Google Photos</span>.</span></span>
+      </td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"=
+width: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dpara_footer align=3Dleft style=3D"font-family: 'Google Sa=
+ns','Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:14=
+px;line-height:22px;text-align:left;font-weight:400;color: #5F6368; padding=
+: 0px 52px 0px 52px; word-break: normal;padding-top: 28px;" dir=3Dltr>Thank=
+ you for using our services.</td>
+					</tr>
+				</tbody>
+			</table>
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"=
+width: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dpara-content align=3Dleft style=3D"font-family: 'Google S=
+ans','Roboto', Arial, sans-serif; direction:ltr;text-align:left;font-size:1=
+4px;line-height:22px;text-align:left;font-weight:400;color: #5F6368; paddin=
+g: 0px 52px 0px 52px; word-break: normal;padding-bottom: 56px; " dir=3Dltr>=
+Your <span style=3D"white-space: nowrap !important;">Google</span> Team</td=
+>
+					</tr>
+				</tbody>
+			</table>
+
+			<table cellspacing=3D0 cellpadding=3D0 border=3D0 width=3D100% style=3D"=
+width: 100%;" role=3Dpresentation>
+				<tbody>
+					<tr>
+						<td class=3Dfooter_content1 align=3Dleft style=3D"direction:ltr;font-=
+size: 12px;line-height:18px; padding: 42px 40px 0px 40px; color:#25272B; fo=
+nt-family: 'Roboto', Arial, sans-serif; text-align:center; border-top: 1px =
+solid #DADADA; word-break: normal;" dir=3Dltr>
+
+
+      <span style=3D"font-size:inherit; color:inherit; font-weight:inherit;=
+ line-height:inherit; font-family:inherit;">&copy; 2020 Google LLC 1600 Amp=
+hitheatre Parkway, Mountain View, CA 94043</span>
+  =20
+  =20
+</td>
+					</tr>
+                  <tr>
+						<td class=3Dfooter_content align=3Dleft style=3D"direction:ltr;font-s=
+ize: 12px;line-height:18px; padding: 42px 40px 0px 40px; color:#25272B; fon=
+t-family: 'Roboto', Arial, sans-serif; text-align:center; word-break: norma=
+l;font-size: 12px;line-height:18px; padding:18px 40px 61px 40px; color:#252=
+72B; text-align:center;" dir=3Dltr>You have received this mandatory email a=
+nnouncement to update you about important information related to your <span=
+ style=3D"white-space: nowrap !important;">Google</span> Account.</td>
+					</tr>
+				</tbody>
+			</table>
+
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+
+--000000000000d04b5705b657e9f6--

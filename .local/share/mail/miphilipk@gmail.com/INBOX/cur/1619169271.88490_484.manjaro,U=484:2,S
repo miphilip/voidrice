@@ -1,0 +1,415 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:a9f:2f02:0:0:0:0:0 with SMTP id x2csp486231uaj;
+        Sat, 9 Feb 2019 04:11:09 -0800 (PST)
+X-Google-Smtp-Source: AHgI3Ib+WvGc0mVMEVEvJ0vMI6oRBoBLU3XL+PPh04a2C2Nd4oRr1I/rGYQGaUUFao0fPWwHBi3c
+X-Received: by 2002:a25:b78d:: with SMTP id n13mr20551564ybh.423.1549714269121;
+        Sat, 09 Feb 2019 04:11:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1549714269; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ANp0umZKFqJjtTY70Pa8CCq3SfL9oiUAle0tIRBb3T9GiWC0yz2gOlDuu6ngjHxgtN
+         BRh0JJGD4e4O32YTc7StKEfaCj4rZVKe/UqjkR6Z0ZAYL3xElOqHEWiriFdUpxj4D8TS
+         bQS4tLoqDUeOZeUyUbmT6jiLUERukytvc1zHZwzQUWu1Klu1gxzEFCRVtl5rwkhFbehs
+         oEGfb7eB/oA+c8vS4nTTcdBtW1JOx9pLRPeFHnBCaEIivk65rpbIFXJ2xafqBaNfc6Pi
+         k8agu3mV6FWOHGGI2Ron2f4gj3xhM9Q98YL9oYFyRV9De/66KXaIp2e/Q5cJvx0fIIB7
+         DeLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:subject:reply-to:mime-version:from:date
+         :dkim-signature:dkim-signature;
+        bh=u4dzFc+mi54l7pcoI+ZqyIDpzdWFXHdNtVysckKLPoI=;
+        b=zbVk6LN6UY0FqqF7X6TquQJf5s/YBtOdzBTs8YscReV/1F8gUbHhvtLJMPQAvLiDsq
+         5MU50W28/ZZV+W06y7hJB+XY8SQEAm484as2Oi6MX6zBw6zC8+qXf6NUd3LG5ppcfg8d
+         Stg1B8Sl0BC4bVr8EpX2mVSLbT6PBARP2bsfBv9MoGwSgDSTTUqiQRN9JTGwpSzGnPcw
+         5bMGyB0BmyXmgo1BizBtWa8MuxlXqHwLx0DRDmAngMbbSEZXKpMPmT/JviCarK9mxflo
+         HfG87W6MA85jZL+Y9e5Hl0cY9vcsklBGWz6QBnVFqBNumr8ILJ7Z2uTqw0iZJdTJo5U4
+         CuCw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@center.io header.s=s1 header.b="J3/DeHJI";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=aA7RmBQE;
+       spf=pass (google.com: domain of bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io designates 167.89.52.66 as permitted sender) smtp.mailfrom="bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io"
+Return-Path: <bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io>
+Received: from o5.mail.center.io (o5.mail.center.io. [167.89.52.66])
+        by mx.google.com with ESMTPS id 134si2828723ybc.79.2019.02.09.04.11.08
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 09 Feb 2019 04:11:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io designates 167.89.52.66 as permitted sender) client-ip=167.89.52.66;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@center.io header.s=s1 header.b="J3/DeHJI";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=aA7RmBQE;
+       spf=pass (google.com: domain of bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io designates 167.89.52.66 as permitted sender) smtp.mailfrom="bounces+2840101-db7a-miphilipk=gmail.com@mail.center.io"
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=center.io; 
+	h=content-type:from:mime-version:reply-to:subject:to; s=s1; 
+	bh=0O8Z6DD2LPfeYyPpUX1AjhTwye4=; b=J3/DeHJIjs6B/3pmJp5O7mc6IGPl0
+	7/UulHaCixVAGd/+n8EhR6wupAMNJCkb2wfIvirQGaMcZHJl1Nk0ZjB432XU3I+9
+	ubuudYs4OpvWXoVaKorJdOcpjPi9WarhLgQb1PBODXZgLwILUUyPYlHhUvid+/AA
+	+7H+icqDUU0+oQ=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=0O8Z6DD2LPfeYyPpUX1AjhTwye4=; b=aA7RmBQEkYkwQjLnQW
+	CKNVXbZDpM6r74yX14o7hhDvE4/O4DBw25tSV0yz9zlq/HX5AiWt8zL1gqYlhMP5
+	mjDvxng2Q5jnkFHQHQpJWc9KlZd3wa5C20E76yxnMwPeVVS2kgK6VC7gQacOQeAv
+	Cy32zo1sYyzr+T9VEqS/ER2y4=
+Received: by filter0173p3mdw1.sendgrid.net with SMTP id filter0173p3mdw1-15024-5C5EC35B-1
+        2019-02-09 12:11:07.025462916 +0000 UTC m=+319575.816504259
+Received: from Mjg0MDEwMQ (185.194.178.107.gae.googleusercontent.com [107.178.194.185])
+	by ismtpd0035p1mdw1.sendgrid.net (SG) with HTTP id NYWAE2xrR2-_iMTQIty5AQ
+	for <miphilipk@gmail.com>; Sat, 09 Feb 2019 12:11:07.038 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=5fc3bc8bd2e3d7547000a4234ca7d5c881dd3b3b2435695056d6a7f448d8
+Date: Sat, 09 Feb 2019 12:11:07 +0000 (UTC)
+From: "rootsh3ll" <no_reply@leadbrite.com>
+Mime-Version: 1.0
+Reply-To: rootsh3ll <harry@rootsh3ll.com>
+Subject: Wireless Pentesting and Security
+To: miphilipk@gmail.com
+Message-ID: <NYWAE2xrR2-_iMTQIty5AQ@ismtpd0035p1mdw1.sendgrid.net>
+X-SG-EID: 812ECH3peFc5YZPJCZBZPJypFmDO0RxRs9TkuWEbRrvTsTNfjHG3qg9WMXdfh0Vwxwqf9VGbYxh6Ma
+ Su0u2ouP/p6ZfqcfvHehD3Vq3VHKk2bPiVj8QpL0vCJWnq5EAk+/pqVJbIiWzeQC8wK5SPlqIILFdn
+ 19AVoxzLcoXeCBWI8gjSeyumGyXsTCxExqdoRl9L6Pu81ppDg3rJkXAfIe/ujhl+08uhe+gXAfZUmS
+ M=
+X-SG-ID: abJri/z89ozyEJuJkS5UoNzstGJwUlP07ct7WDKdYKHe0JnJPpiQ4COhnlD9vZb9YouSc79/ChW6cE
+ 2g6Xvrk9LFkYLqVfSD617WhwQN/WA=
+X-Feedback-ID: 2840101:3tYdUQka1u2Q9CtVaNf56tVLOrJc/ncme8AiYFZga0s=:l9BfCQyAuUJPDWEfUjtiv9uNloybJHJZiB6zASwDkug=:SG
+X-TUID: QgUsKGnPNB4l
+
+--5fc3bc8bd2e3d7547000a4234ca7d5c881dd3b3b2435695056d6a7f448d8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+Wireless Pentesting and Security
+
+Hi,
+
+Thank you for your interest in Kali Linux Wireless Pentesting and Security.=
+ This copy includes 10 chapters that covers everything from Installing Kali=
+ Linux to Creating Fake Access Points to get Cleartext WPA2 Password(s) on =
+the go!
+Click the big blue button below to claim your download
+We hope this asset helps you to deepen your knowledge of Wireless Security.=
+ If you&amp;rsquo;d like to explore how rootsh3ll can help learning and dis=
+covering more of hacking and security, Join the forum (Member&amp;#39;s Are=
+a) today(http://link.center.io/wf/click?upn=3DGn2wObTEPZToo8U0MjYBWUN8Z5WQZ=
+CcupTWKhbAa1XoezMxWyTP9MGNZu2v1CuIqlg2-2BcUY8lktleyzRq15MImzQ3mUyfvl4kZmdXJ=
+HJckpHfbTRMlQf1z-2FJ2SHJKyQ8Nn-2FjVUyeJOe07XQCIt4Cq6MAsYicPW4TqcsWLi9tWsA-3=
+D_HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY0=
+9S-2BkVlrPZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQZs2bRo8nHI=
+7NvR9OKofjrjpDmpgW6EDiWe-2Bglktm92Xfkoiz497g5a-2FBO8DzIntdN4lxU64OZlcqp707p=
+agAlGN9Dasp-2Be3ggt-2BIH9-2FcTEfnD6dYP9OaU08VckKkO9H3Op4pQefkUisams-2By-2Bs=
+R9mSyvaxyFUHcAvZfDieVedPvVliIskLpsDDbccZ4hZDQk It&amp;#39;s free
+
+Best,Hardeep Singh,
+rootsh3ll
+
+
+Wireless Pentesting and Security
+
+CLAIM YOUR DOWNLOAD:
+http://link.center.io/wf/click?upn=3DGn2wObTEPZToo8U0MjYBWWPv-2BU-2F4Roixyt=
+MKSMvrtnfliGPQfZcQw1Qimoo9rX2hHkavelBhYS9pPBVrIByYnsZAKgxbbl6jkUCXp-2BeiEQd=
+jZylmLqxPdkU-2B19D2caNev-2FO3m1BbJjFDNspE-2FdMm3AltTbA0sRHg658lgzQKtwW-2B77=
+KyEHiUx3Hj66z80qJQ_HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2=
+BVJQ2CMvYUBk2IqY09S-2BkVlrPZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4S=
+zC-2FMQCIPDnJcTiTQyKnWM5NneKNViNtH8bcUwUKoE-2BOZ9Nx0oeRsF4QBA8DPb0fe00EOExC=
+FIb1kIJvqRtQ-2BjDe2PnvxG9Q1uz2PId8z1ABcYghgBX2BgJkhbP30c4Ktinb4qiFee35OTDpm=
+0aWUn-2FLTjcovAjj-2B4BkQJ0FlnbAuH7mkZNoL5Skp8pcMdjCV5Quq6
+
+&lt;table border=3D&#34;0&#34; cellpadding=3D&#34;0&#34; cellspacing=3D&#34=
+;0&#34; style=3D&#34;caret-color: rgb(34, 34, 34); color: rgb(34, 34, 34); =
+font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;&#34;&gt;&lt=
+;tbody&gt;&lt;tr&gt;&lt;td style=3D&#34;margin: 0px;&#34;&gt;Hi,&lt;br /&gt=
+;&lt;br /&gt;Thank you for your interest in&amp;nbsp;&lt;em&gt;Kali Linux W=
+ireless Pentesting and Security&lt;/em&gt;. This copy includes 10 chapters =
+that covers everything from&amp;nbsp;&lt;em&gt;Installing Kali Linux&lt;/em=
+&gt; to &lt;em&gt;Creating Fake Access Points&lt;/em&gt; to get &lt;em&gt;C=
+leartext WPA2 Password&lt;/em&gt;(s) on the go!&lt;/td&gt;&lt;/tr&gt;&lt;tr=
+&gt;&lt;td style=3D&#34;margin: 0px;&#34;&gt;&lt;br style=3D&#34;font-size:=
+ 16px; caret-color: rgb(76, 81, 93); color: rgb(76, 81, 93); font-family: R=
+oboto, RobotoDraft, Helvetica, Arial, sans-serif;&#34; /&gt;&lt;span style=
+=3D&#34;font-size: 16px; caret-color: rgb(76, 81, 93); color: rgb(76, 81, 9=
+3); font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;&#34;&gt=
+;&lt;strong&gt;Click the big blue button below to claim your download&lt;/s=
+trong&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=3D&#34;m=
+argin: 0px;&#34;&gt;&lt;div&gt;&lt;br /&gt;We hope this asset helps you to =
+deepen your knowledge of Wireless Security. If you&amp;rsquo;d like to expl=
+ore how rootsh3ll can help learning and discovering more of hacking and sec=
+urity, &lt;a href=3D&#34;http://link.center.io/wf/click?upn=3DGn2wObTEPZToo=
+8U0MjYBWUN8Z5WQZCcupTWKhbAa1XoezMxWyTP9MGNZu2v1CuIqlg2-2BcUY8lktleyzRq15MIm=
+zQ3mUyfvl4kZmdXJHJckpHfbTRMlQf1z-2FJ2SHJKyQ8Nn-2FjVUyeJOe07XQCIt4CqwX8YkODc=
+xc3eS-2BVq2QvUBM-3D_HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-=
+2BVJQ2CMvYUBk2IqY09S-2BkVlrPZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4=
+SzC-2FMQ3z9hAIZTP8OnBFmYDugjILhgkdzrpiIqVKUnMcdvwpYHvRvqFpuL8hQi7J1n49Faxwj=
+sspuEA0f3SztJpBoCsDIuy-2FKT5a9pf9lvHuPh945zuvpu5Vaq9D5mnwWJH7dnbRIRuboU3ZUI=
+-2Fhu1mLMpDzDR80VlUc-2B7tAyHb-2Fm4fLtLcSFx981WhDYDWu-2B03MTl the forum (Mem=
+ber&amp;#39;s Area) today&lt;/a&gt;. &lt;strong&gt;It&amp;#39;s free&lt;/st=
+rong&gt;&lt;br /&gt;&lt;br /&gt;Best,&lt;/div&gt;&lt;p dir=3D&#34;ltr&#34;&=
+gt;Hardeep Singh,&lt;br /&gt;rootsh3ll&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/=
+tbody&gt;&lt;/table&gt;
+
+----
+This content Delivered By Leadpages=
+
+--5fc3bc8bd2e3d7547000a4234ca7d5c881dd3b3b2435695056d6a7f448d8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>
+  <meta name=3D"format-detection" content=3D"telephone=3Dno">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width; initial-scale=3D=
+1.0; maximum-scale=3D1.0; user-scalable=3Dno;">
+  <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3D9; IE=3D8; IE=3D7; I=
+E=3DEDGE" />
+
+=20=20
+  <title>Wireless Pentesting and Security</title>
+=20=20
+
+  <style type=3D"text/css">
+    /* Some resets and issue fixes */
+    #outlook a {
+      padding: 0;
+    }
+
+    body {
+      width: 100% !important;
+      -webkit-text;
+      size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ReadMsgBody {
+      width: 100%;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .backgroundTable {
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+       !important;
+    }
+
+    table td {
+      border-collapse: collapse;
+    }
+
+    .ExternalClass * {
+      line-height: 115%;
+    }
+
+    /* End reset */
+
+    /* Media Query */
+    @media screen and (max-width: 630px) {
+      td[id=3Dbase__top-content] {
+        width: 320px !important;
+      }
+    }
+  </style>
+
+</head>
+
+<body style=3D"padding:0; margin:0">
+
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"margin: =
+0; padding: 0" width=3D"100%">
+    <tr>
+      <td align=3D"center" valign=3D"top">
+
+        <table id=3D"base-email-top" align=3D"center" cellpadding=3D"0" cel=
+lspacing=3D"0" border=3D"0" width=3D"100%" bgcolor=3D"#FFFFFF"
+          style=3D"margin: 24px 0px 24px 0px;">
+
+          <tr>
+            <td>
+
+              <table id=3D"base__top-content" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" width=3D"436px" style=3D"font-family: Helvetica, Arial,=
+ sans-serif; font-size: 16px; text-align: left; color: #4c515d;"
+                align=3D"center">
+                <tbody>
+                  <tr>
+                    <td style=3D"height: 48px; font-size: 0px; line-height:=
+ 0;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align=3D"center" style=3D"font-size: 36px; text-ali=
+gn: center; color: #020020; padding: 0px 48px 0px 48px;">
+                      <strong>Wireless Pentesting and Security</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style=3D"height: 24px; font-size: 0px; line-height:=
+ 0;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <hr style=3D"width: 50px; height: 3px; background-col=
+or: #020020; border: none;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style=3D"height: 24px; font-size: 0px; line-height:=
+ 0;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td style=3D"line-height: 24px;">
+                      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"caret-color: rgb(34, 34, 34); color: rgb(34, 34, 34); font-fami=
+ly: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;"><tbody><tr><td styl=
+e=3D"margin: 0px;">Hi,<br /><br />Thank you for your interest in&nbsp;<em>K=
+ali Linux Wireless Pentesting and Security</em>. This copy includes 10 chap=
+ters that covers everything from&nbsp;<em>Installing Kali Linux</em> to <em=
+>Creating Fake Access Points</em> to get <em>Cleartext WPA2 Password</em>(s=
+) on the go!</td></tr><tr><td style=3D"margin: 0px;"><br style=3D"font-size=
+: 16px; caret-color: rgb(76, 81, 93); color: rgb(76, 81, 93); font-family: =
+Roboto, RobotoDraft, Helvetica, Arial, sans-serif;" /><span style=3D"font-s=
+ize: 16px; caret-color: rgb(76, 81, 93); color: rgb(76, 81, 93); font-famil=
+y: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;"><strong>Click the bi=
+g blue button below to claim your download</strong></span></td></tr><tr><td=
+ style=3D"margin: 0px;"><div><br />We hope this asset helps you to deepen y=
+our knowledge of Wireless Security. If you&rsquo;d like to explore how root=
+sh3ll can help learning and discovering more of hacking and security, <a hr=
+ef=3D"http://link.center.io/wf/click?upn=3DGn2wObTEPZToo8U0MjYBWUN8Z5WQZCcu=
+pTWKhbAa1XoezMxWyTP9MGNZu2v1CuIqlg2-2BcUY8lktleyzRq15MImzQ3mUyfvl4kZmdXJHJc=
+kpHfbTRMlQf1z-2FJ2SHJKyQ8Nn-2FjVUyeJOe07XQCIt4Cq4yjANWo-2BC-2FzMQwDl5MeRI4-=
+3D_HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY=
+09S-2BkVlrPZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQ2lAvirtzu=
+ee2GOraX-2FNv3NF7AFe-2FGUZc7HqjjnaQUdW-2Fc8yyTHhXYN3nz0NJ-2F91VkPtf99EalmnV=
+YS0PSEkjnY26OBYgSCan51Wu1-2B7BwHgbTZBXVLg6-2FghMEt1XjMlCLQptpkD6vGOnm8MX-2F=
+yUNVJEvv77O3Xovg3rCCcXTxNCCXygeSI3rBplAlHecrtbO">Join the forum (Member&#39=
+;s Area) today</a>. <strong>It&#39;s free</strong><br /><br />Best,</div><p=
+ dir=3D"ltr">Hardeep Singh,<br />rootsh3ll</p></td></tr></tbody></table>
+                    </td>
+                  </tr>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  <tr>
+                    <td style=3D"height: 48px; font-size: 0px; line-height:=
+ 0;">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align=3D"center">
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                      <div>
+                        <!--[if mso]>
+                    <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"https://rootsh3ll=
+.leadpages.net/f/12a5c7cd0439c5-0/140b48ed128bac-NXVlyRjSRJianQ8BXFwTp/wire=
+less-pentesting-and-security.pdf" style=3D"height:48px;v-text-anchor:middle=
+;width:295px;" arcsize=3D"50%" stroke=3D"f" fillcolor=3D"#0069FF">
+                      <w:anchorlock/>
+                      <center>
+                    <![endif]-->
+                        <a href=3D"http://link.center.io/wf/click?upn=3DGn2=
+wObTEPZToo8U0MjYBWWPv-2BU-2F4RoixytMKSMvrtnfliGPQfZcQw1Qimoo9rX2hHkavelBhYS=
+9pPBVrIByYnsZAKgxbbl6jkUCXp-2BeiEQdjZylmLqxPdkU-2B19D2caNev-2FO3m1BbJjFDNsp=
+E-2FdMm3AltTbA0sRHg658lgzQKtwW-2B77KyEHiUx3Hj66z80qJQ_HhmRExLflmI6pwiWhENr6=
+6Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY09S-2BkVlrPZFV3l6Y8xoy2m=
+Ydst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQwyAmclt9yzloqaCugOGCmYiIIeRPLFUjS=
+0V3xzskKGkhbrswbihOZ06BG5HsVlbUMChVrmF8cIP-2FBad-2Fv9cv-2BRfhLByua-2Br5FHv1=
+vW92YqRQepqMciuMgz-2FWXt7LASKdSBw14AGfeuTjc9JegxEkJEjxaxZ3M0YKc7u6N7XP64nJM=
+cCTCKFg7zH6ZU6agUOa" style=3D"background-color:#0069FF;border-radius:24px;c=
+olor:#ffffff;display:inline-block;font-family:sans-serif;font-size:13px;fon=
+t-weight:bold;line-height:48px;text-align:center;text-decoration:none;width=
+:295px;-webkit-text-size-adjust:none;">CLAIM YOUR DOWNLOAD</a>
+                        <!--[if mso]>
+                      </center>
+                    </v:roundrect>
+                  <![endif]-->
+                      </div>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                    </td>
+                  </tr>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  <tr>
+                    <td style=3D"height: 68px; font-size: 0px; line-height:=
+ 0;">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+        <table id=3D"base-email-bottom" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" width=3D"100%" bgcolor=3D"#f2f4f7" style=3D"padding: 24px 0px=
+ 24px 0px;">
+          <tr>
+            <td>
+
+              <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" width=3D"500px" style=3D"font-family: Helvetica, Arial, sans-se=
+rif; font-size: 12px; text-align: center; color: #797f89;">
+                <tbody>
+                  <tr>
+                    <td align=3D"center">
+                      <p style=3D"font-weight: 300; line-height: 12px;">Thi=
+s content was delivered to you by <a href=3D"http://link.center.io/wf/click=
+?upn=3DGn2wObTEPZToo8U0MjYBWV6o-2BsdbqBgZUc3H-2BBl2jq1C6qXi8i9snp-2BBU5lw8B=
+77_HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY=
+09S-2BkVlrPZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQ1VmuC9SGV=
+EzbD46xdNJhIHPR1I4zpo467lDMeWaEWNUNv8yj0YbLalxecgqgqGNETZw-2BPyFI6UX64fUHTc=
+BEDTDQ0gR0tulHi-2Fw6b-2BmM2pAbrKhenA9hr8QDXYQG3rTTKbj3DKAchWvXAylpTHqSXvilY=
+7k1IvBI3VuZNOk0j-2FOJNnuzbryg5X-2FlEaq-2FQnAN"
+                          style=3D"color: #797f89; text-decoration: none;">=
+Leadpages&reg;</a>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align=3D"center">
+                      <p style=3D"font-weight: 300; line-height: 18px;">
+                        <a href=3D"http://link.center.io/wf/click?upn=3DGn2=
+wObTEPZToo8U0MjYBWV6o-2BsdbqBgZUc3H-2BBl2jq1C6qXi8i9snp-2BBU5lw8B77_HhmRExL=
+flmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY09S-2BkVlr=
+PZFV3l6Y8xoy2mYdst9mit-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQceTPvUREKsnSvVf89Nm=
+i6QfUqS15FDmuMQHa5AOMHppmOIKwpL9TKiAY4tZEF-2BC76BzV6yM2Cx8GmSic9uqQnUYSywla=
+YzzKt-2BFb3yYVp3ZcBMr4qdDglg0Ep-2F5maj1ko5vA0ojUVqQJSVnEAt2VZVj1lZKsrGWuP8p=
+P-2F15uu-2B5xXpTeAM-2BesAqaRBPmF7hS" style=3D"color: #797f89; text-decorati=
+on: none;">Leadpages.net</a>
+                        <br />
+                        Avenue 81, Inc., 251 N 1st Avenue Suite #200
+                        <br />
+                        Minneapolis, MN 55401
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+
+<img src=3D"http://link.center.io/wf/open?upn=3DHhmRExLflmI6pwiWhENr66Da8eR=
+APUHESkCYpaaeZnMpUZ-2BRJXo4-2BVJQ2CMvYUBk2IqY09S-2BkVlrPZFV3l6Y8xoy2mYdst9m=
+it-2FTOlMKUEQ3lGljQNUyxcK5X4SzC-2FMQK24gqsaWv35iCQ-2BN7jdNj-2Fsfhbd2fVU9quc=
+LMD2VVkik23Kn7LQuy54CHa-2BwMUukTwc3FAMJPySm9-2F-2FwiJUgGkoVu8iokJHrhMQpTWCU=
+-2BoJu0eSUMyZWQl8Ha-2BnmFHCOzCntwEYfNvvVmCFCJyZqEp2Wtj65aZkmPAdBA4F7U0o4rFJ=
+TYBfj67O3NNX86epQ" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"=
+height:1px !important;width:1px !important;border-width:0 !important;margin=
+-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;marg=
+in-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;p=
+adding-right:0 !important;padding-left:0 !important;"/>
+</body>
+
+</html>
+
+--5fc3bc8bd2e3d7547000a4234ca7d5c881dd3b3b2435695056d6a7f448d8--

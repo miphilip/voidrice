@@ -1,0 +1,1598 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:31db:0:0:0:0:0 with SMTP id e27csp1750599uan;
+        Sat, 30 May 2020 15:57:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzbJoNKU1b0Fmj+MNf+7/Hx8HQ0gKeDcneeyiSWuKLX2L6D8xRnWGcNjEiPiDmKyl8KHUVL
+X-Received: by 2002:ac8:895:: with SMTP id v21mr13834960qth.185.1590879453273;
+        Sat, 30 May 2020 15:57:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1590879453; cv=none;
+        d=google.com; s=arc-20160816;
+        b=D3xfTMtf3DHAb7LfHoGjX30lVgvB7CE7evLpuIGTm4SGp6Q0lnb28TRzhMVWEzSYfv
+         /qFs+fV7tYmp2ygj2FdIdqjYx7FeszLQTsisCZykI0nk4CwkigKbExdmPux4+3mcSTa/
+         5k7Lm9mYli1MfnU0Wt1hFtpQo4ije534me2Sm04ydXOKl4Re6xEw/Kh37pGqgtJXYnf+
+         PVhW7+ucq/nHVcLgensDGPYBA5uk7NIZwSNzixO8+CcEWRdJB+uLR4yM6EAwHtwnwcOq
+         vIdyLrkHfQauPfD7PhCfj5nI0nlyq85X7ncqpAw0su2ahdgqTpwX7fha1t5bbWiwY/Pt
+         d8Yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:list-unsubscribe:subject:to:from:mime-version
+         :dkim-signature;
+        bh=0DBovVoaW6UAnIB3CpQTVz1lYa2iZFLFgYfsXYaRdcc=;
+        b=GF/sV5fw0tTHRJ578vBvgamc1yXvuW1juTRIG3qASGG6wboIntzPI8jDj1QPRZAbLh
+         3I52Zcpgn2wXF+LvnRQLKe81luFFos2Qd2+PZLdRtfb8KfbhPq4SdNZI3e+0Yzmdz5mA
+         MvryREFs97v0ldr7X2gP7jXlmVEZvzN7k9JP1VvrgRwIzNuceMh9X80ypgxwsvZiNMPG
+         hPLmk9FJIi+K9SttdWIAuEfQIPl6ZQMwZWpexMl+Hn0bnRY9K87WEa4/0TXsftx4jlcQ
+         WtSyeqI7HRqqu7VPvKvZDOgq9I+Hj0IF3o/GWqocQR2KKrcP4oScwim/1s0eO+mrhAsZ
+         kRmw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=dFezt+9t;
+       spf=pass (google.com: domain of noreply@quora.com designates 34.202.185.198 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Return-Path: <noreply@quora.com>
+Received: from o31.pigeon.quora.com (o31.pigeon.quora.com. [34.202.185.198])
+        by mx.google.com with ESMTPS id o5si6970431qte.7.2020.05.30.15.57.32
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 30 May 2020 15:57:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@quora.com designates 34.202.185.198 as permitted sender) client-ip=34.202.185.198;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=dFezt+9t;
+       spf=pass (google.com: domain of noreply@quora.com designates 34.202.185.198 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Received: 
+	by pigeon-at-10032 (OpenSMTPD) with ESMTP id f068fc6a
+	for <miphilipk@gmail.com>;
+	Sat, 30 May 2020 22:57:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=quora.com; h=
+	content-type:mime-version:from:to:subject:list-unsubscribe:date
+	:message-id; s=pigeon; bh=OMElDtaWVxUpLBJaOjA5VAdFXMs=; b=dFezt+
+	9tDMdLSa1d84xcROeJEwlKxfVRjeJzXJCcuF5Ms8FqPdflM7VjOhG7XA85BNITLr
+	Jgxy5pnz2dPI0IPE8OGpV9qf9MY/AmH1CRWEItx0z7AWy0thZ2RFmhd1MQCwYLTy
+	Ko4j8nk5VAmkES+ErQSagVXZH+eCNPEAANDki8jTkW8VQk8yFUuP1/ZTJeOLwndz
+	7aYhHXwSsdw8LY7iF/F7pd/AEMEj4BzVdEFVhbjxT2W3k+G+WlPcZ9eDw7SvDwnq
+	jESnQRq4tJbYc2Hr8LT9llNCJZqsgFQfDRf/iSiL8pAqVYvfay+ErYHuC3dFN7gj
+	ubnBzKOHlXAwQ6lQ==
+Content-Type: multipart/alternative;
+ boundary="===============0678255373034764122=="
+MIME-Version: 1.0
+From: Quora <curiosity-noreply@quora.com>
+To: miphilipk@gmail.com
+Subject: =?utf-8?q?More_related_to_=22What=27s_the_difference_between_a_wall_charger_?=
+ =?utf-8?q?and_a_USB_charger=3F=22?=
+List-Unsubscribe: <https://www.quora.com/email_optout/qemail_unsubscribe?email_track_id=a88cea9bf2ce4621a1adc2a6d0f42168&t=1590879451979028&token=044315ab068a792586ac4d98e82b4869e86be0944433748e55da80d1f8d389ede7f7e92c5f98c9deaa7f92666af7ef0db38f5656a575733829cea8d4e7e709b8&type=130&uid=865920808>
+X-CID: csBa-ADqFkQNm6AtJyoZdvgKoafIlSZNJEz8rxMmCZHzSFCPJtemQYaO8WuwZcKUq1W-Wm0CQ-n22HljyrI_GxDmVgv0lfkjb_JIBfu9lvHKxyi296ra--cwipEavOGuMFf0QjwAAQIA
+Date: Sat, 30 May 2020 22:57:32 +0000
+Message-ID: <csBa-ADqFkQNm6AtJyoZdvgKoafIlSZNJEz8rxMmCZHzSFCPJtemQYaO8WuwZcKUq1W-Wm0CQ-n22HljyrI_GxDmVgv0lfkjb_JIBfu9lvHKxyi296ra--cwipEavOGuMFf0QjwAAQIA@t1.msgid.quoramail.com>
+X-SMTPAPI: =?utf-8?q?=7B=22unique=5Fargs=22=3A_=7B=22Message-ID=22=3A_=22=3CcsBa-ADqFkQ?=
+ =?utf-8?q?Nm6AtJyoZdvgKoafIlSZNJEz8rxMmCZHzSFCPJtemQYaO8WuwZcKUq1W-Wm0CQ-n2?=
+ =?utf-8?q?2HljyrI=5FGxDmVgv0lfkjb=5FJIBfu9lvHKxyi296ra--cwipEavOGuMFf0QjwAA?=
+ =?utf-8?q?QIA=40t1=2Emsgid=2Equoramail=2Ecom=3E=22=2C_=22account=22=3A_=22m?=
+ =?utf-8?q?ain=22=2C_=22email=5Ftype=22=3A_130=2C_=22ip=5Fpool=22=3A_=22main?=
+ =?utf-8?q?=22=2C_=22X-QMSG=22=3A_=22g1dxSHWctR78EGjUFGcOxHs5HHFXX1bno7tAPCL?=
+ =?utf-8?q?6PjsShojVUAIUcHa1yMZIoYjDY33nhPyn-1yCfuU7ZZBLHMHVbxr5Pfje7CUhz6V4?=
+ =?utf-8?q?YIcYEwSNQuujzQWAMTCoBRNP0dJvxHW8K6LKPZGr74I=5F8QYo-WIX3xW-yJbyGBr?=
+ =?utf-8?q?XzPLQdjkDbqmNPW=5FTKKrwjNKe-So1=5FVbpj9soAEWzcLBw16jnmbiLhJDwlbzt?=
+ =?utf-8?q?TLdvFb8eMX5LKfwS=5Fhz5MOxOBII7MOMqO=5Fb-bI0t5ga6fMjNAxj59dF5lglRs?=
+ =?utf-8?q?1URo=5FGCSM4SVcYSb9c9fL-s=5FbUY9BVMskMumQ4fzKK=5FAKjj8KiUFWFhiXMT?=
+ =?utf-8?q?4JzWVCYbe7dup3hWCUM7KXX8IbueKd9IMq-aI4oOcJoFaIvd8rOumwWWonjUeOrBo?=
+ =?utf-8?q?qoMpIwx6c-HP4O3VI1hTJ6gALwWBexCcxsu4kjQuw2X0tjoOIwfpXxYVwhCy0Y0DW?=
+ =?utf-8?q?42jmqyt4iJGPhBkXJgZS5WkzYGZlY4c7JhZSaXz7yz4b5OCu=5F0mIPdegiUWFO7F?=
+ =?utf-8?q?nw4c4NvjZUYMnmjhsjTlL0ohQABAgA=3D=22=7D=2C_=22category=22=3A_=5B?=
+ =?utf-8?q?=22account=5Fmain=22=2C_=22email=5Ftype=5F130=22=2C_=22ip=5Fpool?=
+ =?utf-8?q?=5Fmain=22=5D=2C_=22filters=22=3A_=7B=22bypass=5Flist=5Fmanagemen?=
+ =?utf-8?q?t=22=3A_=7B=22settings=22=3A_=7B=22enable=22=3A_1=7D=7D=7D=2C_=22?=
+ =?utf-8?q?ip=5Fpool=22=3A_=22main=22=7D?=
+X-QMSG: =?utf-8?q?g1dxSHWctR78EGjUFGcOxHs5HHFXX1bno7tAPCL6PjsShojVUAIUcHa1yMZIoYjDY3?=
+ =?utf-8?q?3nhPyn-1yCfuU7ZZBLHMHVbxr5Pfje7CUhz6V4YIcYEwSNQuujzQWAMTCoBRNP0dJ?=
+ =?utf-8?q?vxHW8K6LKPZGr74I=5F8QYo-WIX3xW-yJbyGBrXzPLQdjkDbqmNPW=5FTKKrwjNKe?=
+ =?utf-8?q?-So1=5FVbpj9soAEWzcLBw16jnmbiLhJDwlbztTLdvFb8eMX5LKfwS=5Fhz5MOxOB?=
+ =?utf-8?q?II7MOMqO=5Fb-bI0t5ga6fMjNAxj59dF5lglRs1URo=5FGCSM4SVcYSb9c9fL-s?=
+ =?utf-8?q?=5FbUY9BVMskMumQ4fzKK=5FAKjj8KiUFWFhiXMT4JzWVCYbe7dup3hWCUM7KXX8I?=
+ =?utf-8?q?bueKd9IMq-aI4oOcJoFaIvd8rOumwWWonjUeOrBoqoMpIwx6c-HP4O3VI1hTJ6gAL?=
+ =?utf-8?q?wWBexCcxsu4kjQuw2X0tjoOIwfpXxYVwhCy0Y0DW42jmqyt4iJGPhBkXJgZS5WkzY?=
+ =?utf-8?q?GZlY4c7JhZSaXz7yz4b5OCu=5F0mIPdegiUWFO7Fnw4c4NvjZUYMnmjhsjTlL0ohQ?=
+ =?utf-8?q?ABAgA=3D?=
+X-TUID: +8CvoPOwEfjH
+
+--===============0678255373034764122==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+Stories from your activity
+
+-----
+
+
+Question: Which method charges cell phones faster - a wall charger or a USB=
+ charger via computer?
+
+Answer from Anish Bhalerao
+
+Timothy Kirk [ https://www.quora.com/profile/Timothy-Kirk ] got his point a=
+cross and he got it right for what he says. (A low voltage for a USB port m=
+ay be caused due to many=20
+Read More: https://www.quora.com/Which-method-charges-cell-phones-faster-a-=
+wall-charger-or-a-USB-charger-via-computer?top_ans=3D3163117
+-----
+Question: What is the difference between wall charger and travel adapter?
+
+Answer from Chandra Ganeshan
+
+Wall charger is the one that is connected to the wall socket and charges yo=
+ur phone. The voltage, frequency and type of the electrical socket varies w=
+ith different countries.=20
+Read More: https://www.quora.com/What-is-the-difference-between-wall-charge=
+r-and-travel-adapter?top_ans=3D25373432
+-----
+Question: What is the difference between a fast charger and a standard USB =
+wall adapter? Looking at their outputs, they look close to the same.
+
+Answer from Giulio Moro
+
+Most USB ports can supply 0.5A, 1A, 2A, 2.1A, or even 2.4A of current using=
+ the regular full size USB ports. They are usually black or blue in color. =
+The blue is the newer sty
+Read More: https://www.quora.com/What-is-the-difference-between-a-fast-char=
+ger-and-a-standard-USB-wall-adapter-Looking-at-their-outputs-they-look-clos=
+e-to-the-same?top_ans=3D183785682
+-----
+Question: What are the differences between an adapter and a charger?
+
+Answer from Dave Haynie
+
+In pure technical terms, they=E2=80=99re quite different. I hate to sound g=
+lib, but an adapater adapts, a charger charges. S=E2=80=99truth.
+
+An adapter is a component that joins two different
+Read More: https://www.quora.com/What-are-the-differences-between-an-adapte=
+r-and-a-charger?top_ans=3D79494760
+-----
+Question: What is the difference between an 18 watt wall charger and a 30 w=
+att wall charger?
+
+Answer from Dave Haynie
+
+Both the Quick Charge 2.0 and Quick Charge 3.0 specifications support a max=
+imum power of 18W over the USB cable and into your phone's charger. Quick C=
+harge 2.0 is limited to 5
+Read More: https://www.quora.com/What-is-the-difference-between-an-18-watt-=
+wall-charger-and-a-30-watt-wall-charger?top_ans=3D38148102
+-----
+Question: Does a phone charge faster when plugged directly into the wall ou=
+tlet or when it is plugged into a computer via USB?
+
+Answer from Chad Courtney
+
+It=E2=80=99s really depend on the spec=E2=80=99s of the wall charger, and t=
+he USB port.
+
+Wall chargers will output 5V but max current of 0.5A, 1.0A, 2.1A, (and high=
+er charging rates if has a=20
+Read More: https://www.quora.com/Does-a-phone-charge-faster-when-plugged-di=
+rectly-into-the-wall-outlet-or-when-it-is-plugged-into-a-computer-via-USB?t=
+op_ans=3D100562971
+-----
+Question: How does a USB charger cable work?
+
+Answer from Ajaya Gupta
+
+=E2=80=8B
+
+A USB cable has 4 connecting wires.
+2 for data communication between mobile and laptop/computer.
+The remaining 2 are responsible for giving 5V DC to the USB device (mobile)
+Read More: https://www.quora.com/How-does-a-USB-charger-cable-work?top_ans=
+=3D13306615
+-----
+Question: Why would I buy a 1-amp USB charger instead of a 2.1-amp charger?
+
+Answer from S=C3=A9bastien Janiszewski
+
+Your understanding is good. USB voltage is always 5V so only current (amps)=
+ matter while charging your USB device.
+
+In short, with more amps, the charge will be quicker.
+
+Howe
+Read More: https://www.quora.com/Why-would-I-buy-a-1-amp-USB-charger-instea=
+d-of-a-2-1-amp-charger?top_ans=3D27696979
+-----
+Question: Can I plug USB speakers into a USB cell phone wall charger for po=
+wer?
+
+Answer from Nagendra Subramhanya
+
+Short answer is YES, but you should check the input voltage and current con=
+sumption of the speaker and the output voltage of the adapter.
+
+More specific answer can be given if
+Read More: https://www.quora.com/Can-I-plug-USB-speakers-into-a-USB-cell-ph=
+one-wall-charger-for-power?top_ans=3D32241713
+-----
+Question: Is there any difference between using a USB cable to charge and u=
+sing mobile chargers?
+
+Answer from Matthew Lai
+
+Yes.
+
+When USB was first designed, it was for things like mice and keyboard, not =
+for charging cellphones (cellphones in 1998 did not have USB ports).
+
+That's why USB originall
+Read More: https://www.quora.com/Is-there-any-difference-between-using-a-US=
+B-cable-to-charge-and-using-mobile-chargers?top_ans=3D10651490
+-----
+
+-----
+To control which emails we send you, visit: https://www.quora.com/qemail/tr=
+ack_click?aoid&aoty=3D14&aty=3D4&cp=3D0&ct=3D1590879451939226&et=3D130&id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&source&src=3D1&st=3D1590879451945075&st=
+ories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_B=
+OOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7=
+C1_aZeRxq4mA41&ty&ty_data&uid=3D3sE2gvko3ih&v=3D0
+
+To unsubscribe from this type of email, visit: https://www.quora.com/email_=
+optout/qemail_unsubscribe?email_track_id=3Da88cea9bf2ce4621a1adc2a6d0f42168=
+&t=3D1590879452097333&token=3D01c67b0a1183e5f1a0bffc5ac8f304a7126ad4787e627=
+3bd472e3f9b4a5a1b8aeb059bac9cbb2e5cb8b48951f1704cd85fed3af73c5e63f9758add23=
+634e669d&type=3D130&uid=3D865920808
+--===============0678255373034764122==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><style type=3D"text/css">
+@media screen and (max-width:480px) {
+  .background_inner {
+    padding: 0!important;
+    background: #fff!important;
+  }
+
+  .container {
+    padding: 0 8px 16px!important;
+  }
+
+  .footer_container {
+    border-top: 1px solid #e2e2e2!important;
+  }
+
+  .AnnualThankYouEmail .background_inner {
+    padding: 10px 0!important;
+  }
+
+  .polish_background_inner {
+    padding: 10px 0!important;
+  }
+
+  .polish_header_logo img.header_logo_img {
+    width: 118px!important;
+    height: 40px!important;
+  }
+
+  .polish_header_title {
+    font-size: 16px!important;
+    padding-top: 0!important;
+    padding-bottom: 5px!important;
+  }
+
+  .polish_question_text {
+    line-height: 1.3!important;
+  }
+
+  .polish_story .voters_list,
+.polish_story .user_link {
+    line-height: 1.5!important;
+  }
+
+  .polish_story .truncated_q_text,
+.polish_story .qtext_para {
+    line-height: 1.5!important;
+  }
+
+  .polish_story .content_header {
+    padding: 6px 0!important;
+  }
+
+  .EndOfYearLookbackEmail .stat_large {
+    font-size: 28px!important;
+  }
+
+  .EndOfYearLookbackEmail .content_text {
+    text-align: center!important;
+  }
+
+  .EndOfYearLookbackEmail .half_column {
+    width: 100%!important;
+  }
+
+  .EndOfYearLookbackEmail .img_wrapper {
+    margin: 10px auto!important;
+  }
+
+  .TopicDigestEmail .topic_digest_header_logo img.polish_header_logo_img {
+    width: 89px!important;
+    height: 30px!important;
+  }
+
+  .TopicDigestEmail .topic_digest_header_title {
+    font-size: 16px!important;
+    padding-top: 0!important;
+    padding-bottom: 5px!important;
+  }
+
+  .WriteDigestEmail .question_text .rendered_qtext {
+    font-size: 16px!important;
+  }
+
+  .email_app_link-content {
+    display: block!important;
+    text-align: center!important;
+  }
+
+  .email_app_link-text,
+.email_app_link-badges_wrapper {
+    display: block!important;
+  }
+
+  .email_app_link-text {
+    padding-bottom: 0!important;
+    box-sizing: border-box!important;
+  }
+
+  .email_app_link-badges_wrapper {
+    padding-left: 10px!important;
+  }
+}
+@media screen and (max-width:600px) {
+  .DigestEmail .mobile_image.digest_ad {
+    display: table!important;
+    width: 92vw;
+  }
+
+  .DigestEmail .desktop_image.digest_ad {
+    display: none!important;
+  }
+}
+</style><style type=3D"text/css">
+@media (max-width:812px) {
+  .ad_email_background .ad_table {
+    margin: 0;
+  }
+}
+@media (max-width:812px) {
+  .ad_email_background .ad_table {
+    margin: 0;
+  }
+}
+</style></head><body class=3D"email_body" style=3D"-webkit-text-size-adjust=
+: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; width: 100%;"><d=
+iv class=3D"q_ltr u-ltr lang_en" dir=3D"ltr" lang=3D"en"><table class=3D"Se=
+archEngagementEmail EmailComponent Email background" cellpadding=3D"0" bord=
+er=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; background: #eee; font-family: -apple-system,BlinkMacSystemFont=
+,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif=
+; font-size: 13px; width: 100%; height: 100%; text-align: left;" width=3D"1=
+00%" height=3D"100%" align=3D"left"><tbody><tr><td class=3D"polish_backgrou=
+nd_inner" align=3D"center" valign=3D"top" style=3D"border-collapse: collaps=
+e; padding: 0; background: #fff;"><table cellpadding=3D"0" cellspacing=3D"0=
+" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso=
+-table-rspace: 0;"><tbody><tr><td class=3D"container" align=3D"left" style=
+=3D"border-collapse: collapse; background: #fff; padding: 32px; width: 525p=
+x; height: 100%; border-radius: 3px;" width=3D"525" height=3D"100%"><table =
+class=3D"polish_container_inner" style=3D"border-collapse: collapse; mso-ta=
+ble-lspace: 0; mso-table-rspace: 0; width: 100%; cellpadding: 0; cellspacin=
+g: 0; border: 0;" width=3D"100%"><tbody><tr><td class=3D"polish_header" sty=
+le=3D"border-collapse: collapse;"><span style=3D"display:none;font-size:1px=
+;color:white;line-height:1px;max-height
+        :0px;max-width:0px;opacity:0;overflow:hidden;">Answer: Timothy Kirk=
+ got his point across and he got it right for what he says.=E2=80=8B.=E2=80=
+=8B.=E2=80=8B</span><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ width=3D"100%" style=3D"border-collapse: collapse; mso-table-lspace: 0; ms=
+o-table-rspace: 0;"><tbody><tr><td class=3D"polish_header_logo" style=3D"bo=
+rder-collapse: collapse; text-align: center;" align=3D"center"><a href=3D"h=
+ttps://www.quora.com/qemail/track_click?aoid&amp;aoty=3D7&amp;aty=3D4&amp;c=
+p=3D0&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc=
+2a6d0f42168&amp;source&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D=
+1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe=
+2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRx=
+q4mA41&amp;ty&amp;ty_data&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-de=
+coration: none; color: #2b6dad;"><img class=3D"header_logo_img" src=3D"http=
+s://qsf.fs.quoracdn.net/-3-images.logo.WordmarkLogo_592x200_4x.png-26-76c1a=
+82956f8c738.png" alt=3D"Quora" style=3D"outline: 0; text-decoration: none; =
+-ms-interpolation-mode: bicubic; border: 0; width: 148px; height: 50px;" wi=
+dth=3D"148" height=3D"50"><img class=3D"tracking_img" style=3D"outline: 0; =
+text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; display:=
+ none;" width=3D"1" height=3D"1" src=3D"https://www.quora.com/qemail/mark_r=
+ead?ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f=
+42168&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1=
+_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su=
+%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;uid=3D=
+3sE2gvko3ih&amp;v=3D0"></a></td></tr><tr><td class=3D"polish_header_title" =
+style=3D"border-collapse: collapse; text-align: center; font-size: 19px; fo=
+nt-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,U=
+buntu,Cantarell,'Helvetica Neue',sans-serif; color: #333; font-weight: 400;=
+ padding-bottom: 20px;" align=3D"center">Stories from your activity</td></t=
+r><tr><td style=3D"border-collapse: collapse;"><table class=3D"polish_heade=
+r_wrapper" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-tab=
+le-rspace: 0; margin-bottom: 20px; cellpadding: 0; border: 0; width: 100%;"=
+ width=3D"100%"><tbody><tr><td style=3D"border-collapse: collapse;"></td><t=
+d class=3D"polish_header_line" style=3D"border-collapse: collapse; border-b=
+ottom: 1px solid #b92b27; height: 1px; width: 198px;" width=3D"198" height=
+=3D"1"></td><td style=3D"border-collapse: collapse;"></td></tr></tbody></ta=
+ble></td></tr></tbody></table></td></tr><tr class=3D"body_container" id=3D"=
+simple-content-row"><td class=3D"body_content" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;"><table style=3D"border-collapse: collapse; mso=
+-table-lspace: 0; mso-table-rspace: 0; width: 100%;" cellpadding=3D"0" cell=
+spacing=3D"0" border=3D"0" width=3D"100%"><tbody><tr><td style=3D"border-co=
+llapse: collapse;"><table style=3D"border-collapse: collapse; mso-table-lsp=
+ace: 0; mso-table-rspace: 0; width: 100%;" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" width=3D"100%"><tbody><tr><td style=3D"border-collapse: co=
+llapse;"><div class=3D"no_para_breaks"><div data-clog-trigger=3D"impression=
+" data-clog-metadata=3D"{&quot;action_log_target&quot;: {&quot;type&quot;: =
+33, &quot;hash&quot;: &quot;0|1|1|3163117&quot;}}" data-clog-event-type=3D"=
+ActionLogImpression" id=3D"__w2_wMBgRajg22_actionable"><table class=3D"stor=
+y_wrapper" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collaps=
+e; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><=
+tbody><tr><td class=3D"story first_story" style=3D"border-collapse: collaps=
+e; padding-top: 15px; padding: 20px 0; border-bottom: 0;"><table class=3D"d=
+igest_story_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; wi=
+dth: 100%;" width=3D"100%"><tbody><tr><td class=3D"reason" style=3D"border-=
+collapse: collapse; padding-bottom: 4px;"><table class=3D"digest_reason" ce=
+llpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: co=
+llapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td valign=3D=
+"top" style=3D"border-collapse: collapse;"></td></tr></tbody></table></td><=
+/tr><tr><td style=3D"border-collapse: collapse;"><a class=3D"question_text"=
+ href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMs=
+ICJoYXNoIjogIjB8MXwxfDMxNjMxMTcifQ%3D%3D&amp;al_pri=3D1&amp;aoid=3DaL0sFK1L=
+bvq&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D1&amp;ct=3D1590879451939226&amp;et=3D=
+130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&am=
+p;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3f=
+CUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1=
+_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DmKyUr=
+ShvgmF&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; dis=
+play: block; font-size: 19px; letter-spacing: -0.5px; font-weight: bold; co=
+lor: #333; line-height: 1.4;"><span class=3D"rendered_qtext" style=3D"word-=
+break: break-word;">Which method charges cell phones faster - a wall charge=
+r or a USB charger via computer?</span></a></td></tr><tr><td style=3D"borde=
+r-collapse: collapse;"><table class=3D"item_content_wrapper" cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-=
+table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><=
+tr><td class=3D"content_header metadata" style=3D"border-collapse: collapse=
+; padding: 8px 0;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: =
+0;"><tbody><tr><td class=3D"content_header_photo" style=3D"border-collapse:=
+ collapse; vertical-align: top;" valign=3D"top"><a href=3D"https://www.quor=
+a.com/qemail/track_click?aoid=3DmbLvmSKlDYZ&amp;aoty=3D3&amp;aty=3D4&amp;cp=
+=3D1&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2=
+a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=
+=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7E=
+QQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZ=
+eRxq4mA41&amp;ty=3D1&amp;ty_data=3DmKyUrShvgmF&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; color: #2b6dad;"><div id=3D"wMBgRajg1=
+66"><div class=3D"hover_menu hidden white_bg show_nub" id=3D"__w2_wMBgRajg1=
+67_menu"><div class=3D"hover_menu_contents" id=3D"__w2_wMBgRajg167_menu_con=
+tents"> </div></div><span class=3D"photo_tooltip Photo HoverMenu IdentityPh=
+oto" id=3D"__w2_wMBgRajg167_link"><img class=3D"profile_photo_img" src=3D"h=
+ttps://qph.fs.quoracdn.net/main-thumb-12391147-50-ccpjdgiskcnpwkbqmyrleumjd=
+vjzeubr.jpeg" alt=3D"Anish Bhalerao" style=3D"outline: 0; text-decoration: =
+none; -ms-interpolation-mode: bicubic; border: 0; display: block; height: 4=
+0px; width: 40px; border-radius: 100px; border-style: none;" height=3D"40" =
+width=3D"40"></span></div></a></td><td class=3D"content_header_text" style=
+=3D"border-collapse: collapse; padding-left: 8px; color: #333;"><table cell=
+padding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td style=3D"bo=
+rder-collapse: collapse;"><a class=3D"user_link" href=3D"https://www.quora.=
+com/qemail/track_click?aoid=3DmbLvmSKlDYZ&amp;aoty=3D3&amp;aty=3D4&amp;cp=
+=3D1&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2=
+a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=
+=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7E=
+QQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZ=
+eRxq4mA41&amp;ty=3D1&amp;ty_data=3DmKyUrShvgmF&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; color: #333; font-weight: bold; font-=
+size: 15px; line-height: 1.4;">Anish Bhalerao</a><span style=3D"font-size: =
+15px; line-height: 1.4;">, works at Lava International</span></td></tr><tr>=
+<td class=3D"answer_details" style=3D"border-collapse: collapse; color: #99=
+9; font-size: 13px;"><a href=3D"https://www.quora.com/qemail/track_click?ao=
+id=3DmKyUrShvgmF&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D1&amp;ct=3D1590879451939=
+226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&a=
+mp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLM=
+iEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1=
+nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty=
+_data=3DmKyUrShvgmF&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decorati=
+on: none; color: #999;">Updated Feb 27, 2019</a></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr><tr><td class=3D"item_content" style=3D"=
+border-collapse: collapse; display: block; font-family: -apple-system,Blink=
+MacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neu=
+e',sans-serif; color: #333; font-size: 15px; line-height: 1.4;"><a href=3D"=
+https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoI=
+jogIjB8MXwxfDMxNjMxMTcifQ%3D%3D&amp;al_pri=3D0&amp;aoid=3DmKyUrShvgmF&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D1&amp;ct=3D1590879451939226&amp;et=3D130&amp;i=
+d=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15=
+90879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%=
+7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KF=
+PGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DmKyUrShvgmF&am=
+p;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #3333=
+33;"><div id=3D"wMBgRajg160"><div class=3D"truncated_q_text truncated_para_=
+breaks TruncatedQText TruncatedAnswerForDigestEmail TruncatedAnswer Truncat=
+edAnswerForEmail" id=3D"__w2_wMBgRajg161_truncated" style=3D"line-height: 1=
+.6;"><span class=3D"rendered_qtext" style=3D"word-break: break-word;">Timot=
+hy Kirk got his point across and he got it right for what he says. (A low v=
+oltage for a USB port may be caused due to many components of the computer =
+hogging more powe...</span>&nbsp;<a class=3D"read_more_blue" href=3D"https:=
+//www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB=
+8MXwxfDMxNjMxMTcifQ%3D%3D&amp;al_pri=3D8&amp;aoid=3DmKyUrShvgmF&amp;aoty=3D=
+1&amp;aty=3D4&amp;cp=3D1&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da8=
+8cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15908794=
+51945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA=
+7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C=
+1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DmKyUrShvgmF&amp;uid=
+=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #168de9;">=
+Read More&nbsp;&raquo;</a></div></div></a></td></tr></tbody></table></td></=
+tr></tbody></table></td></tr></tbody></table></div></div><div class=3D"no_p=
+ara_breaks"><div data-clog-trigger=3D"impression" data-clog-metadata=3D"{&q=
+uot;action_log_target&quot;: {&quot;type&quot;: 33, &quot;hash&quot;: &quot=
+;0|2|1|25373432&quot;}}" data-clog-event-type=3D"ActionLogImpression" id=3D=
+"__w2_wMBgRajg23_actionable"><table class=3D"polish_separator_wrapper" styl=
+e=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; c=
+ellpadding: 0; border: 0; width: 100%;" width=3D"100%"><tbody><tr><td style=
+=3D"border-collapse: collapse;"></td><td class=3D"polish_separator" style=
+=3D"border-collapse: collapse; border-bottom: 1px solid #eee; height: 1px; =
+width: 140px;" width=3D"140" height=3D"1"></td><td style=3D"border-collapse=
+: collapse;"></td></tr></tbody></table><table class=3D"story_wrapper" cells=
+pacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lsp=
+ace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td cl=
+ass=3D"story" style=3D"border-collapse: collapse; padding: 20px 0; border-b=
+ottom: 0;"><table class=3D"digest_story_wrapper" cellpadding=3D"0" cellspac=
+ing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace=
+: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=
+=3D"reason" style=3D"border-collapse: collapse; padding-bottom: 4px;"><tabl=
+e class=3D"digest_reason" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: =
+0;"><tbody><tr><td valign=3D"top" style=3D"border-collapse: collapse;"></td=
+></tr></tbody></table></td></tr><tr><td style=3D"border-collapse: collapse;=
+"><a class=3D"question_text" href=3D"https://www.quora.com/qemail/track_cli=
+ck?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxfDI1MzczNDMyIn0%3D&amp;al_p=
+ri=3D1&amp;aoid=3DaHbkFJQ994S&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D2&amp;ct=3D=
+1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp=
+;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvg=
+mF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJE=
+S741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;=
+ty=3D1&amp;ty_data=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"=
+text-decoration: none; display: block; font-size: 19px; letter-spacing: -0.=
+5px; font-weight: bold; color: #333; line-height: 1.4;"><span class=3D"rend=
+ered_qtext" style=3D"word-break: break-word;">What is the difference betwee=
+n wall charger and travel adapter?</span></a></td></tr><tr><td style=3D"bor=
+der-collapse: collapse;"><table class=3D"item_content_wrapper" cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; m=
+so-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbod=
+y><tr><td class=3D"content_header metadata" style=3D"border-collapse: colla=
+pse; padding: 8px 0;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspac=
+e: 0;"><tbody><tr><td class=3D"content_header_photo" style=3D"border-collap=
+se: collapse; vertical-align: top;" valign=3D"top"><a href=3D"https://www.q=
+uora.com/qemail/track_click?aoid=3DUpw9usU1UH&amp;aoty=3D3&amp;aty=3D4&amp;=
+cp=3D2&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1ad=
+c2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stori=
+es=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR=
+7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_=
+aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;=
+v=3D0" style=3D"text-decoration: none; color: #2b6dad;"><div id=3D"wMBgRajg=
+81"><div class=3D"hover_menu hidden white_bg show_nub" id=3D"__w2_wMBgRajg8=
+2_menu"><div class=3D"hover_menu_contents" id=3D"__w2_wMBgRajg82_menu_conte=
+nts"> </div></div><span class=3D"photo_tooltip Photo HoverMenu IdentityPhot=
+o" id=3D"__w2_wMBgRajg82_link"><img class=3D"profile_photo_img" src=3D"http=
+s://qph.fs.quoracdn.net/main-thumb-179303428-50-pkugdpegsagtclshjdjgouqyfir=
+vjksa.jpeg" alt=3D"Chandra Ganeshan" style=3D"outline: 0; text-decoration: =
+none; -ms-interpolation-mode: bicubic; border: 0; display: block; height: 4=
+0px; width: 40px; border-radius: 100px; border-style: none;" height=3D"40" =
+width=3D"40"></span></div></a></td><td class=3D"content_header_text" style=
+=3D"border-collapse: collapse; padding-left: 8px; color: #333;"><table cell=
+padding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: coll=
+apse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td style=3D"bo=
+rder-collapse: collapse;"><a class=3D"user_link" href=3D"https://www.quora.=
+com/qemail/track_click?aoid=3DUpw9usU1UH&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D=
+2&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d=
+0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D=
+1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe=
+2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRx=
+q4mA41&amp;ty=3D1&amp;ty_data=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;v=3D0=
+" style=3D"text-decoration: none; color: #333; font-weight: bold; font-size=
+: 15px; line-height: 1.4;">Chandra Ganeshan</a><span style=3D"font-size: 15=
+px; line-height: 1.4;">, Electrical and Electronics Engineer (2017-present)=
+</span></td></tr><tr><td class=3D"answer_details" style=3D"border-collapse:=
+ collapse; color: #999; font-size: 13px;"><a href=3D"https://www.quora.com/=
+qemail/track_click?aoid=3DVYxlLMiEvw4&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D2&a=
+mp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f4=
+2168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_m=
+KyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7=
+C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4m=
+A41&amp;ty=3D1&amp;ty_data=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;v=3D0" s=
+tyle=3D"text-decoration: none; color: #999;">Written Jul 19, 2016</a></td><=
+/tr></tbody></table></td></tr></tbody></table></td></tr><tr><td class=3D"it=
+em_content" style=3D"border-collapse: collapse; display: block; font-family=
+: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Can=
+tarell,'Helvetica Neue',sans-serif; color: #333; font-size: 15px; line-heig=
+ht: 1.4;"><a href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0=
+eXBlIjogMzMsICJoYXNoIjogIjB8MnwxfDI1MzczNDMyIn0%3D&amp;al_pri=3D0&amp;aoid=
+=3DVYxlLMiEvw4&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D2&amp;ct=3D159087945193922=
+6&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp=
+;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiE=
+vw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nx=
+wWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_d=
+ata=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration=
+: none; color: #333333;"><div id=3D"wMBgRajg35"><div class=3D"truncated_q_t=
+ext truncated_para_breaks TruncatedQText TruncatedAnswerForDigestEmail Trun=
+catedAnswer TruncatedAnswerForEmail" id=3D"__w2_wMBgRajg36_truncated" style=
+=3D"line-height: 1.6;"><span class=3D"rendered_qtext" style=3D"word-break: =
+break-word;"><p class=3D"qtext_para u-ltr u-text-align--start" style=3D"mar=
+gin: 1em 0; line-height: 1.6;">Wall charger is the one that is connected to=
+ the wall socket and charges your phone. The voltage, frequency and type of=
+ the electrical socket varies with different countrie...</p></span>&nbsp;<a=
+ class=3D"read_more_blue" href=3D"https://www.quora.com/qemail/track_click?=
+al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxfDI1MzczNDMyIn0%3D&amp;al_pri=
+=3D8&amp;aoid=3DVYxlLMiEvw4&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D2&amp;ct=3D15=
+90879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;s=
+ource=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF=
+%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES7=
+41Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=
+=3D1&amp;ty_data=3DVYxlLMiEvw4&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"te=
+xt-decoration: none; color: #168de9;">Read More&nbsp;&raquo;</a></div></div=
+></a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody>=
+</table></div></div><div class=3D"no_para_breaks"><div data-clog-trigger=3D=
+"impression" data-clog-metadata=3D"{&quot;action_log_target&quot;: {&quot;t=
+ype&quot;: 33, &quot;hash&quot;: &quot;0|3|1|183785682&quot;}}" data-clog-e=
+vent-type=3D"ActionLogImpression" id=3D"__w2_wMBgRajg24_actionable"><table =
+class=3D"polish_separator_wrapper" style=3D"border-collapse: collapse; mso-=
+table-lspace: 0; mso-table-rspace: 0; cellpadding: 0; border: 0; width: 100=
+%;" width=3D"100%"><tbody><tr><td style=3D"border-collapse: collapse;"></td=
+><td class=3D"polish_separator" style=3D"border-collapse: collapse; border-=
+bottom: 1px solid #eee; height: 1px; width: 140px;" width=3D"140" height=3D=
+"1"></td><td style=3D"border-collapse: collapse;"></td></tr></tbody></table=
+><table class=3D"story_wrapper" cellspacing=3D"0" border=3D"0" style=3D"bor=
+der-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 10=
+0%;" width=3D"100%"><tbody><tr><td class=3D"story" style=3D"border-collapse=
+: collapse; padding: 20px 0; border-bottom: 0;"><table class=3D"digest_stor=
+y_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border=
+-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;=
+" width=3D"100%"><tbody><tr><td class=3D"reason" style=3D"border-collapse: =
+collapse; padding-bottom: 4px;"><table class=3D"digest_reason" cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; m=
+so-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td valign=3D"top" sty=
+le=3D"border-collapse: collapse;"></td></tr></tbody></table></td></tr><tr><=
+td style=3D"border-collapse: collapse;"><a class=3D"question_text" href=3D"=
+https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoI=
+jogIjB8M3wxfDE4Mzc4NTY4MiJ9&amp;al_pri=3D1&amp;aoid=3D413JukOrky8&amp;aoty=
+=3D2&amp;aty=3D4&amp;cp=3D3&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DY3fCUXjBXDT&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; display: bloc=
+k; font-size: 19px; letter-spacing: -0.5px; font-weight: bold; color: #333;=
+ line-height: 1.4;"><span class=3D"rendered_qtext" style=3D"word-break: bre=
+ak-word;">What is the difference between a fast charger and a standard USB =
+wall adapter? Looking at their outputs, they look close to the same.</span>=
+</a></td></tr><tr><td style=3D"border-collapse: collapse;"><table class=3D"=
+item_content_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" styl=
+e=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; w=
+idth: 100%;" width=3D"100%"><tbody><tr><td class=3D"content_header metadata=
+" style=3D"border-collapse: collapse; padding: 8px 0;"><table cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; m=
+so-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td class=3D"content_h=
+eader_photo" style=3D"border-collapse: collapse; vertical-align: top;" vali=
+gn=3D"top"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3DdGy7J=
+HEd6TA&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D3&amp;ct=3D1590879451939226&amp;et=
+=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1=
+&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_=
+Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%=
+7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DY3=
+fCUXjBXDT&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; =
+color: #2b6dad;"><div id=3D"wMBgRajg88"><div class=3D"hover_menu hidden whi=
+te_bg show_nub" id=3D"__w2_wMBgRajg89_menu"><div class=3D"hover_menu_conten=
+ts" id=3D"__w2_wMBgRajg89_menu_contents"> </div></div><span class=3D"photo_=
+tooltip Photo HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg89_link"><img cla=
+ss=3D"profile_photo_img" src=3D"https://qph.fs.quoracdn.net/main-thumb-4244=
+1854-50-veyrhfwyrchgnbpqbhqouagrkcadkrnh.jpeg" alt=3D"Giulio Moro" style=3D=
+"outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; border=
+: 0; display: block; height: 40px; width: 40px; border-radius: 100px; borde=
+r-style: none;" height=3D"40" width=3D"40"></span></div></a></td><td class=
+=3D"content_header_text" style=3D"border-collapse: collapse; padding-left: =
+8px; color: #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: =
+0;"><tbody><tr><td style=3D"border-collapse: collapse;"><a class=3D"user_li=
+nk" href=3D"https://www.quora.com/qemail/track_click?aoid=3DdGy7JHEd6TA&amp=
+;aoty=3D3&amp;aty=3D4&amp;cp=3D3&amp;ct=3D1590879451939226&amp;et=3D130&amp=
+;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D=
+1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXD=
+T%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3=
+KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DY3fCUXjBXDT&=
+amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #33=
+3; font-weight: bold; font-size: 15px; line-height: 1.4;">Giulio Moro</a><s=
+pan style=3D"font-size: 15px; line-height: 1.4;">, Helping consumers and sm=
+all businesses migrate to voip.</span></td></tr><tr><td class=3D"answer_det=
+ails" style=3D"border-collapse: collapse; color: #999; font-size: 13px;"><a=
+ href=3D"https://www.quora.com/qemail/track_click?aoid=3DY3fCUXjBXDT&amp;ao=
+ty=3D1&amp;aty=3D4&amp;cp=3D3&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DY3fCUXjBXDT&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #999;"=
+>Written Dec 1</a></td></tr></tbody></table></td></tr></tbody></table></td>=
+</tr><tr><td class=3D"item_content" style=3D"border-collapse: collapse; dis=
+play: block; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Robot=
+o,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif; color: #333; fo=
+nt-size: 15px; line-height: 1.4;"><a href=3D"https://www.quora.com/qemail/t=
+rack_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxfDE4Mzc4NTY4MiJ9&am=
+p;al_pri=3D0&amp;aoid=3DY3fCUXjBXDT&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D3&amp=
+;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f421=
+68&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKy=
+UrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1=
+_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA4=
+1&amp;ty=3D1&amp;ty_data=3DY3fCUXjBXDT&amp;uid=3D3sE2gvko3ih&amp;v=3D0" sty=
+le=3D"text-decoration: none; color: #333333;"><div id=3D"wMBgRajg40"><div c=
+lass=3D"truncated_q_text truncated_para_breaks TruncatedQText TruncatedAnsw=
+erForDigestEmail TruncatedAnswer TruncatedAnswerForEmail" id=3D"__w2_wMBgRa=
+jg41_truncated" style=3D"line-height: 1.6;"><span class=3D"rendered_qtext" =
+style=3D"word-break: break-word;"><p class=3D"qtext_para u-ltr u-text-align=
+--start" style=3D"margin: 1em 0; line-height: 1.6;">Most USB ports can supp=
+ly 0.5A, 1A, 2A, 2.1A, or even 2.4A of current using the regular full size =
+USB ports. They are usually black or blue in color. The blue is the newer .=
+..</p></span>&nbsp;<a class=3D"read_more_blue" href=3D"https://www.quora.co=
+m/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxfDE4Mzc4N=
+TY4MiJ9&amp;al_pri=3D8&amp;aoid=3DY3fCUXjBXDT&amp;aoty=3D1&amp;aty=3D4&amp;=
+cp=3D3&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1ad=
+c2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stori=
+es=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR=
+7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_=
+aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DY3fCUXjBXDT&amp;uid=3D3sE2gvko3ih&amp;=
+v=3D0" style=3D"text-decoration: none; color: #168de9;">Read More&nbsp;&raq=
+uo;</a></div></div></a></td></tr></tbody></table></td></tr></tbody></table>=
+</td></tr></tbody></table></div></div><div class=3D"no_para_breaks"><div da=
+ta-clog-trigger=3D"impression" data-clog-metadata=3D"{&quot;action_log_targ=
+et&quot;: {&quot;type&quot;: 33, &quot;hash&quot;: &quot;0|4|1|79494760&quo=
+t;}}" data-clog-event-type=3D"ActionLogImpression" id=3D"__w2_wMBgRajg25_ac=
+tionable"><table class=3D"polish_separator_wrapper" style=3D"border-collaps=
+e: collapse; mso-table-lspace: 0; mso-table-rspace: 0; cellpadding: 0; bord=
+er: 0; width: 100%;" width=3D"100%"><tbody><tr><td style=3D"border-collapse=
+: collapse;"></td><td class=3D"polish_separator" style=3D"border-collapse: =
+collapse; border-bottom: 1px solid #eee; height: 1px; width: 140px;" width=
+=3D"140" height=3D"1"></td><td style=3D"border-collapse: collapse;"></td></=
+tr></tbody></table><table class=3D"story_wrapper" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-r=
+space: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"story" style=
+=3D"border-collapse: collapse; padding: 20px 0; border-bottom: 0;"><table c=
+lass=3D"digest_story_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"reason" style=
+=3D"border-collapse: collapse; padding-bottom: 4px;"><table class=3D"digest=
+_reason" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-c=
+ollapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><t=
+d valign=3D"top" style=3D"border-collapse: collapse;"></td></tr></tbody></t=
+able></td></tr><tr><td style=3D"border-collapse: collapse;"><a class=3D"que=
+stion_text" href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0e=
+XBlIjogMzMsICJoYXNoIjogIjB8NHwxfDc5NDk0NzYwIn0%3D&amp;al_pri=3D1&amp;aoid=
+=3DYVxC0tNpHRK&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D4&amp;ct=3D159087945193922=
+6&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp=
+;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiE=
+vw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nx=
+wWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_d=
+ata=3DMA7yJDjVWeU&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration=
+: none; display: block; font-size: 19px; letter-spacing: -0.5px; font-weigh=
+t: bold; color: #333; line-height: 1.4;"><span class=3D"rendered_qtext" sty=
+le=3D"word-break: break-word;">What are the differences between an adapter =
+and a charger?</span></a></td></tr><tr><td style=3D"border-collapse: collap=
+se;"><table class=3D"item_content_wrapper" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; m=
+so-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"co=
+ntent_header metadata" style=3D"border-collapse: collapse; padding: 8px 0;"=
+><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-co=
+llapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td=
+ class=3D"content_header_photo" style=3D"border-collapse: collapse; vertica=
+l-align: top;" valign=3D"top"><a href=3D"https://www.quora.com/qemail/track=
+_click?aoid=3DdmxQPrykvgy&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D4&amp;ct=3D1590=
+879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;sou=
+rce=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7=
+C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741=
+Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=
+=3D1&amp;ty_data=3DMA7yJDjVWeU&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"te=
+xt-decoration: none; color: #2b6dad;"><div id=3D"wMBgRajg95"><div class=3D"=
+hover_menu hidden white_bg show_nub" id=3D"__w2_wMBgRajg96_menu"><div class=
+=3D"hover_menu_contents" id=3D"__w2_wMBgRajg96_menu_contents"> </div></div>=
+<span class=3D"photo_tooltip Photo HoverMenu IdentityPhoto" id=3D"__w2_wMBg=
+Rajg96_link"><img class=3D"profile_photo_img" src=3D"https://qph.fs.quoracd=
+n.net/main-thumb-11758200-50-icvairsrtneqtjadvbctlmbcagbfzjad.jpeg" alt=3D"=
+Dave Haynie" style=3D"outline: 0; text-decoration: none; -ms-interpolation-=
+mode: bicubic; border: 0; display: block; height: 40px; width: 40px; border=
+-radius: 100px; border-style: none;" height=3D"40" width=3D"40"></span></di=
+v></a></td><td class=3D"content_header_text" style=3D"border-collapse: coll=
+apse; padding-left: 8px; color: #333;"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0=
+; mso-table-rspace: 0;"><tbody><tr><td style=3D"border-collapse: collapse;"=
+><a class=3D"user_link" href=3D"https://www.quora.com/qemail/track_click?ao=
+id=3DdmxQPrykvgy&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D4&amp;ct=3D1590879451939=
+226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&a=
+mp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLM=
+iEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1=
+nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty=
+_data=3DMA7yJDjVWeU&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decorati=
+on: none; color: #333; font-weight: bold; font-size: 15px; line-height: 1.4=
+;">Dave Haynie</a><span style=3D"font-size: 15px; line-height: 1.4;">, Elec=
+trical engineer and part-time mad scientist</span></td></tr><tr><td class=
+=3D"answer_details" style=3D"border-collapse: collapse; color: #999; font-s=
+ize: 13px;"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3DMA7y=
+JDjVWeU&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D4&amp;ct=3D1590879451939226&amp;e=
+t=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D=
+1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1=
+_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj=
+%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DM=
+A7yJDjVWeU&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none;=
+ color: #999;">Written Apr 12, 2018</a></td></tr></tbody></table></td></tr>=
+</tbody></table></td></tr><tr><td class=3D"item_content" style=3D"border-co=
+llapse: collapse; display: block; font-family: -apple-system,BlinkMacSystem=
+Font,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-s=
+erif; color: #333; font-size: 15px; line-height: 1.4;"><a href=3D"https://w=
+ww.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8NH=
+wxfDc5NDk0NzYwIn0%3D&amp;al_pri=3D0&amp;aoid=3DMA7yJDjVWeU&amp;aoty=3D1&amp=
+;aty=3D4&amp;cp=3D4&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9=
+bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945=
+075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDj=
+VWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA=
+4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DMA7yJDjVWeU&amp;uid=3D3sE=
+2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333333;"><div i=
+d=3D"wMBgRajg45"><div class=3D"truncated_q_text truncated_para_breaks Trunc=
+atedQText TruncatedAnswerForDigestEmail TruncatedAnswer TruncatedAnswerForE=
+mail" id=3D"__w2_wMBgRajg46_truncated" style=3D"line-height: 1.6;"><div cla=
+ss=3D"truncated_thumbnail_holder thumbnail_small thumbnail_featured_image" =
+style=3D"display: inline; float: right;"><span class=3D"rendered_qtext" sty=
+le=3D"word-break: break-word;"><div class=3D"ui_qtext_image_outer"><div cla=
+ss=3D"qtext_image_wrapper"><img class=3D"landscape qtext_image zoomable_in_=
+feed" src=3D"https://qph.fs.quoracdn.net/main-qimg-1a5161c7e44a8ff4d61e4560=
+25a44894" master_src=3D"https://qph.fs.quoracdn.net/main-qimg-1a5161c7e44a8=
+ff4d61e456025a44894" master_w=3D"300" master_h=3D"300" style=3D"outline: 0;=
+ text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; margin-=
+left: 10px; max-width: 200px; max-height: 100px; float: left; border-style:=
+ none;"></div></div></span></div><span class=3D"rendered_qtext" style=3D"wo=
+rd-break: break-word;"><p class=3D"qtext_para u-ltr u-text-align--start" st=
+yle=3D"margin: 1em 0; line-height: 1.6;">In pure technical terms, they=E2=
+=80=99re quite different. I hate to sound glib, but an adapater adapts, a c=
+harger charges. S=E2=80=99truth.</p><p class=3D"qtext_para u-ltr u-text-ali=
+gn--start" style=3D"margin: 1em 0; line-height: 1.6;">An adapter is a compo=
+nent that joins two differen...</p></span>&nbsp;<a class=3D"read_more_blue"=
+ href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMs=
+ICJoYXNoIjogIjB8NHwxfDc5NDk0NzYwIn0%3D&amp;al_pri=3D8&amp;aoid=3DMA7yJDjVWe=
+U&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D4&amp;ct=3D1590879451939226&amp;et=3D13=
+0&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;=
+st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCU=
+XjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9=
+b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DMA7yJDj=
+VWeU&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color=
+: #168de9;">Read More&nbsp;&raquo;</a></div></div></a></td></tr></tbody></t=
+able></td></tr></tbody></table></td></tr></tbody></table></div></div><div c=
+lass=3D"no_para_breaks"><div data-clog-trigger=3D"impression" data-clog-met=
+adata=3D"{&quot;action_log_target&quot;: {&quot;type&quot;: 33, &quot;hash&=
+quot;: &quot;0|5|1|38148102&quot;}}" data-clog-event-type=3D"ActionLogImpre=
+ssion" id=3D"__w2_wMBgRajg26_actionable"><table class=3D"polish_separator_w=
+rapper" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-=
+rspace: 0; cellpadding: 0; border: 0; width: 100%;" width=3D"100%"><tbody><=
+tr><td style=3D"border-collapse: collapse;"></td><td class=3D"polish_separa=
+tor" style=3D"border-collapse: collapse; border-bottom: 1px solid #eee; hei=
+ght: 1px; width: 140px;" width=3D"140" height=3D"1"></td><td style=3D"borde=
+r-collapse: collapse;"></td></tr></tbody></table><table class=3D"story_wrap=
+per" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso=
+-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody>=
+<tr><td class=3D"story" style=3D"border-collapse: collapse; padding: 20px 0=
+; border-bottom: 0;"><table class=3D"digest_story_wrapper" cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-ta=
+ble-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr=
+><td class=3D"reason" style=3D"border-collapse: collapse; padding-bottom: 4=
+px;"><table class=3D"digest_reason" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-tabl=
+e-rspace: 0;"><tbody><tr><td valign=3D"top" style=3D"border-collapse: colla=
+pse;"></td></tr></tbody></table></td></tr><tr><td style=3D"border-collapse:=
+ collapse;"><a class=3D"question_text" href=3D"https://www.quora.com/qemail=
+/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8NXwxfDM4MTQ4MTAyIn0%3=
+D&amp;al_pri=3D1&amp;aoid=3Do8SmATqrjwW&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D5=
+&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0=
+f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1=
+_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2=
+%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq=
+4mA41&amp;ty=3D1&amp;ty_data=3DBOOR7EQQe2&amp;uid=3D3sE2gvko3ih&amp;v=3D0" =
+style=3D"text-decoration: none; display: block; font-size: 19px; letter-spa=
+cing: -0.5px; font-weight: bold; color: #333; line-height: 1.4;"><span clas=
+s=3D"rendered_qtext" style=3D"word-break: break-word;">What is the differen=
+ce between an 18 watt wall charger and a 30 watt wall charger?</span></a></=
+td></tr><tr><td style=3D"border-collapse: collapse;"><table class=3D"item_c=
+ontent_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"b=
+order-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: =
+100%;" width=3D"100%"><tbody><tr><td class=3D"content_header metadata" styl=
+e=3D"border-collapse: collapse; padding: 8px 0;"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table=
+-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td class=3D"content_header_ph=
+oto" style=3D"border-collapse: collapse; vertical-align: top;" valign=3D"to=
+p"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3DdmxQPrykvgy&a=
+mp;aoty=3D3&amp;aty=3D4&amp;cp=3D5&amp;ct=3D1590879451939226&amp;et=3D130&a=
+mp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=
+=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXj=
+BXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9=
+Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DBOOR7EQQe=
+2&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #=
+2b6dad;"><div id=3D"wMBgRajg102"><div class=3D"hover_menu hidden white_bg s=
+how_nub" id=3D"__w2_wMBgRajg103_menu"><div class=3D"hover_menu_contents" id=
+=3D"__w2_wMBgRajg103_menu_contents"> </div></div><span class=3D"photo_toolt=
+ip Photo HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg103_link"><img class=
+=3D"profile_photo_img" src=3D"https://qph.fs.quoracdn.net/main-thumb-117582=
+00-50-icvairsrtneqtjadvbctlmbcagbfzjad.jpeg" alt=3D"Dave Haynie" style=3D"o=
+utline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; border: =
+0; display: block; height: 40px; width: 40px; border-radius: 100px; border-=
+style: none;" height=3D"40" width=3D"40"></span></div></a></td><td class=3D=
+"content_header_text" style=3D"border-collapse: collapse; padding-left: 8px=
+; color: #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" sty=
+le=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"=
+><tbody><tr><td style=3D"border-collapse: collapse;"><a class=3D"user_link"=
+ href=3D"https://www.quora.com/qemail/track_click?aoid=3DdmxQPrykvgy&amp;ao=
+ty=3D3&amp;aty=3D4&amp;cp=3D5&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DBOOR7EQQe2&amp;=
+uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333; f=
+ont-weight: bold; font-size: 15px; line-height: 1.4;">Dave Haynie</a><span =
+style=3D"font-size: 15px; line-height: 1.4;">, Electrical engineer and part=
+-time mad scientist</span></td></tr><tr><td class=3D"answer_details" style=
+=3D"border-collapse: collapse; color: #999; font-size: 13px;"><a href=3D"ht=
+tps://www.quora.com/qemail/track_click?aoid=3DBOOR7EQQe2&amp;aoty=3D1&amp;a=
+ty=3D4&amp;cp=3D5&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf=
+2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159087945194507=
+5&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVW=
+eU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4j=
+eQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DBOOR7EQQe2&amp;uid=3D3sE2gv=
+ko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #999;">Updated Mar =
+4, 2017</a></td></tr></tbody></table></td></tr></tbody></table></td></tr><t=
+r><td class=3D"item_content" style=3D"border-collapse: collapse; display: b=
+lock; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxyge=
+n-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif; color: #333; font-size=
+: 15px; line-height: 1.4;"><a href=3D"https://www.quora.com/qemail/track_cl=
+ick?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8NXwxfDM4MTQ4MTAyIn0%3D&amp;al_=
+pri=3D0&amp;aoid=3DBOOR7EQQe2&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D5&amp;ct=3D=
+1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp=
+;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvg=
+mF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJE=
+S741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;=
+ty=3D1&amp;ty_data=3DBOOR7EQQe2&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"t=
+ext-decoration: none; color: #333333;"><div id=3D"wMBgRajg50"><div class=3D=
+"truncated_q_text truncated_para_breaks TruncatedQText TruncatedAnswerForDi=
+gestEmail TruncatedAnswer TruncatedAnswerForEmail" id=3D"__w2_wMBgRajg51_tr=
+uncated" style=3D"line-height: 1.6;"><div class=3D"truncated_thumbnail_hold=
+er thumbnail_small thumbnail_featured_image" style=3D"display: inline; floa=
+t: right;"><span class=3D"rendered_qtext" style=3D"word-break: break-word;"=
+><div class=3D"ui_qtext_image_outer"><div class=3D"qtext_image_wrapper"><im=
+g class=3D"landscape qtext_image zoomable_in zoomable_in_feed" src=3D"https=
+://qph.fs.quoracdn.net/main-qimg-a18bb8c300f386f911fb667a26c693a7" master_s=
+rc=3D"https://qph.fs.quoracdn.net/main-qimg-2ca9dbb8d68e01bb86a017d2a3c287c=
+5-c" master_w=3D"1000" master_h=3D"1000" style=3D"outline: 0; text-decorati=
+on: none; -ms-interpolation-mode: bicubic; border: 0; margin-left: 10px; ma=
+x-width: 200px; max-height: 100px; float: left; border-style: none;"></div>=
+</div></span></div><span class=3D"rendered_qtext" style=3D"word-break: brea=
+k-word;"><p class=3D"qtext_para u-ltr u-text-align--start" style=3D"margin:=
+ 1em 0; line-height: 1.6;">Both the Quick Charge 2.0 and Quick Charge 3.0 s=
+pecifications support a maximum power of 18W over the USB cable and into yo=
+ur phone&#039;s charger. Quick Charge 2.0 is limited t...</p></span>&nbsp;<=
+a class=3D"read_more_blue" href=3D"https://www.quora.com/qemail/track_click=
+?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8NXwxfDM4MTQ4MTAyIn0%3D&amp;al_pri=
+=3D8&amp;aoid=3DBOOR7EQQe2&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D5&amp;ct=3D159=
+0879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;so=
+urce=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%=
+7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES74=
+1Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=
+=3D1&amp;ty_data=3DBOOR7EQQe2&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"tex=
+t-decoration: none; color: #168de9;">Read More&nbsp;&raquo;</a></div></div>=
+</a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></div></div><div class=3D"no_para_breaks"><div data-clog-trigger=3D"=
+impression" data-clog-metadata=3D"{&quot;action_log_target&quot;: {&quot;ty=
+pe&quot;: 33, &quot;hash&quot;: &quot;0|6|1|100562971&quot;}}" data-clog-ev=
+ent-type=3D"ActionLogImpression" id=3D"__w2_wMBgRajg27_actionable"><table c=
+lass=3D"polish_separator_wrapper" style=3D"border-collapse: collapse; mso-t=
+able-lspace: 0; mso-table-rspace: 0; cellpadding: 0; border: 0; width: 100%=
+;" width=3D"100%"><tbody><tr><td style=3D"border-collapse: collapse;"></td>=
+<td class=3D"polish_separator" style=3D"border-collapse: collapse; border-b=
+ottom: 1px solid #eee; height: 1px; width: 140px;" width=3D"140" height=3D"=
+1"></td><td style=3D"border-collapse: collapse;"></td></tr></tbody></table>=
+<table class=3D"story_wrapper" cellspacing=3D"0" border=3D"0" style=3D"bord=
+er-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100=
+%;" width=3D"100%"><tbody><tr><td class=3D"story" style=3D"border-collapse:=
+ collapse; padding: 20px 0; border-bottom: 0;"><table class=3D"digest_story=
+_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-=
+collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;"=
+ width=3D"100%"><tbody><tr><td class=3D"reason" style=3D"border-collapse: c=
+ollapse; padding-bottom: 4px;"><table class=3D"digest_reason" cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; m=
+so-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td valign=3D"top" sty=
+le=3D"border-collapse: collapse;"></td></tr></tbody></table></td></tr><tr><=
+td style=3D"border-collapse: collapse;"><a class=3D"question_text" href=3D"=
+https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoI=
+jogIjB8NnwxfDEwMDU2Mjk3MSJ9&amp;al_pri=3D1&amp;aoid=3DzUJ2tv3As5y&amp;aoty=
+=3D2&amp;aty=3D4&amp;cp=3D6&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DjKqJES741Su&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; display: bloc=
+k; font-size: 19px; letter-spacing: -0.5px; font-weight: bold; color: #333;=
+ line-height: 1.4;"><span class=3D"rendered_qtext" style=3D"word-break: bre=
+ak-word;">Does a phone charge faster when plugged directly into the wall ou=
+tlet or when it is plugged into a computer via USB?</span></a></td></tr><tr=
+><td style=3D"border-collapse: collapse;"><table class=3D"item_content_wrap=
+per" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-colla=
+pse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" widt=
+h=3D"100%"><tbody><tr><td class=3D"content_header metadata" style=3D"border=
+-collapse: collapse; padding: 8px 0;"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0=
+; mso-table-rspace: 0;"><tbody><tr><td class=3D"content_header_photo" style=
+=3D"border-collapse: collapse; vertical-align: top;" valign=3D"top"><a href=
+=3D"https://www.quora.com/qemail/track_click?aoid=3DVUbcsxiyamh&amp;aoty=3D=
+3&amp;aty=3D4&amp;cp=3D6&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da8=
+8cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15908794=
+51945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA=
+7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C=
+1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DjKqJES741Su&amp;uid=
+=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #2b6dad;">=
+<div id=3D"wMBgRajg110"><div class=3D"hover_menu hidden white_bg show_nub" =
+id=3D"__w2_wMBgRajg111_menu"><div class=3D"hover_menu_contents" id=3D"__w2_=
+wMBgRajg111_menu_contents"> </div></div><span class=3D"photo_tooltip Photo =
+HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg111_link"><img class=3D"profile=
+_photo_img" src=3D"https://qph.fs.quoracdn.net/main-thumb-153585145-50-ciiv=
+zuazpkqoxotubbatitvlnxobfneb.jpeg" alt=3D"Chad Courtney" style=3D"outline: =
+0; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; displ=
+ay: block; height: 40px; width: 40px; border-radius: 100px; border-style: n=
+one;" height=3D"40" width=3D"40"></span></div></a></td><td class=3D"content=
+_header_text" style=3D"border-collapse: collapse; padding-left: 8px; color:=
+ #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"bo=
+rder-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody>=
+<tr><td style=3D"border-collapse: collapse;"><a class=3D"user_link" href=3D=
+"https://www.quora.com/qemail/track_click?aoid=3DVUbcsxiyamh&amp;aoty=3D3&a=
+mp;aty=3D4&amp;cp=3D6&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88ce=
+a9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15908794519=
+45075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJ=
+DjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_F=
+YA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DjKqJES741Su&amp;uid=3D3=
+sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333; font-wei=
+ght: bold; font-size: 15px; line-height: 1.4;">Chad Courtney</a><span style=
+=3D"font-size: 15px; line-height: 1.4;">, works at Intel</span></td></tr><t=
+r><td class=3D"answer_details" style=3D"border-collapse: collapse; color: #=
+999; font-size: 13px;"><a href=3D"https://www.quora.com/qemail/track_click?=
+aoid=3DjKqJES741Su&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D6&amp;ct=3D15908794519=
+39226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7=
+&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxl=
+LMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_=
+V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;=
+ty_data=3DjKqJES741Su&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decora=
+tion: none; color: #999;">Written Sep 21, 2018</a></td></tr></tbody></table=
+></td></tr></tbody></table></td></tr><tr><td class=3D"item_content" style=
+=3D"border-collapse: collapse; display: block; font-family: -apple-system,B=
+linkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica=
+ Neue',sans-serif; color: #333; font-size: 15px; line-height: 1.4;"><a href=
+=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoY=
+XNoIjogIjB8NnwxfDEwMDU2Mjk3MSJ9&amp;al_pri=3D0&amp;aoid=3DjKqJES741Su&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D6&amp;ct=3D1590879451939226&amp;et=3D130&amp;i=
+d=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15=
+90879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%=
+7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KF=
+PGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DjKqJES741Su&am=
+p;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #3333=
+33;"><div id=3D"wMBgRajg55"><div class=3D"truncated_q_text truncated_para_b=
+reaks TruncatedQText TruncatedAnswerForDigestEmail TruncatedAnswer Truncate=
+dAnswerForEmail" id=3D"__w2_wMBgRajg56_truncated" style=3D"line-height: 1.6=
+;"><span class=3D"rendered_qtext" style=3D"word-break: break-word;"><p clas=
+s=3D"qtext_para u-ltr u-text-align--start" style=3D"margin: 1em 0; line-hei=
+ght: 1.6;">It=E2=80=99s really depend on the spec=E2=80=99s of the wall cha=
+rger, and the USB port.</p><p class=3D"qtext_para u-ltr u-text-align--start=
+" style=3D"margin: 1em 0; line-height: 1.6;">Wall chargers will output 5V b=
+ut max current of 0.5A, 1.0A, 2.1A, (and higher charging rates if has a...<=
+/p></span>&nbsp;<a class=3D"read_more_blue" href=3D"https://www.quora.com/q=
+email/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8NnwxfDEwMDU2Mjk3=
+MSJ9&amp;al_pri=3D8&amp;aoid=3DjKqJES741Su&amp;aoty=3D1&amp;aty=3D4&amp;cp=
+=3D6&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2=
+a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=
+=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7E=
+QQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZ=
+eRxq4mA41&amp;ty=3D1&amp;ty_data=3DjKqJES741Su&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; color: #168de9;">Read More&nbsp;&raqu=
+o;</a></div></div></a></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table></div></div><div class=3D"no_para_breaks"><div dat=
+a-clog-trigger=3D"impression" data-clog-metadata=3D"{&quot;action_log_targe=
+t&quot;: {&quot;type&quot;: 33, &quot;hash&quot;: &quot;0|7|1|13306615&quot=
+;}}" data-clog-event-type=3D"ActionLogImpression" id=3D"__w2_wMBgRajg28_act=
+ionable"><table class=3D"polish_separator_wrapper" style=3D"border-collapse=
+: collapse; mso-table-lspace: 0; mso-table-rspace: 0; cellpadding: 0; borde=
+r: 0; width: 100%;" width=3D"100%"><tbody><tr><td style=3D"border-collapse:=
+ collapse;"></td><td class=3D"polish_separator" style=3D"border-collapse: c=
+ollapse; border-bottom: 1px solid #eee; height: 1px; width: 140px;" width=
+=3D"140" height=3D"1"></td><td style=3D"border-collapse: collapse;"></td></=
+tr></tbody></table><table class=3D"story_wrapper" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-r=
+space: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"story" style=
+=3D"border-collapse: collapse; padding: 20px 0; border-bottom: 0;"><table c=
+lass=3D"digest_story_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"reason" style=
+=3D"border-collapse: collapse; padding-bottom: 4px;"><table class=3D"digest=
+_reason" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-c=
+ollapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><t=
+d valign=3D"top" style=3D"border-collapse: collapse;"></td></tr></tbody></t=
+able></td></tr><tr><td style=3D"border-collapse: collapse;"><a class=3D"que=
+stion_text" href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0e=
+XBlIjogMzMsICJoYXNoIjogIjB8N3wxfDEzMzA2NjE1In0%3D&amp;al_pri=3D1&amp;aoid=
+=3DdAnj6Ttrfz4&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D7&amp;ct=3D159087945193922=
+6&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp=
+;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiE=
+vw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nx=
+wWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_d=
+ata=3DV1nxwWA1Ebj&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration=
+: none; display: block; font-size: 19px; letter-spacing: -0.5px; font-weigh=
+t: bold; color: #333; line-height: 1.4;"><span class=3D"rendered_qtext" sty=
+le=3D"word-break: break-word;">How does a USB charger cable work?</span></a=
+></td></tr><tr><td style=3D"border-collapse: collapse;"><table class=3D"ite=
+m_content_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; wi=
+dth: 100%;" width=3D"100%"><tbody><tr><td class=3D"content_header metadata"=
+ style=3D"border-collapse: collapse; padding: 8px 0;"><table cellpadding=3D=
+"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-=
+table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td class=3D"content_head=
+er_photo" style=3D"border-collapse: collapse; vertical-align: top;" valign=
+=3D"top"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3Dm1FzFhM=
+7vuZ&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D7&amp;ct=3D1590879451939226&amp;et=
+=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1=
+&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_=
+Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%=
+7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DV1=
+nxwWA1Ebj&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; =
+color: #2b6dad;"><div id=3D"wMBgRajg117"><div class=3D"hover_menu hidden wh=
+ite_bg show_nub" id=3D"__w2_wMBgRajg118_menu"><div class=3D"hover_menu_cont=
+ents" id=3D"__w2_wMBgRajg118_menu_contents"> </div></div><span class=3D"pho=
+to_tooltip Photo HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg118_link"><img=
+ class=3D"profile_photo_img" src=3D"https://qph.fs.quoracdn.net/main-thumb-=
+68696299-50-fnogsdihdufqfrpeaxnkmtrbpnfmxtwr.jpeg" alt=3D"Ajaya Gupta" styl=
+e=3D"outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; bo=
+rder: 0; display: block; height: 40px; width: 40px; border-radius: 100px; b=
+order-style: none;" height=3D"40" width=3D"40"></span></div></a></td><td cl=
+ass=3D"content_header_text" style=3D"border-collapse: collapse; padding-lef=
+t: 8px; color: #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspac=
+e: 0;"><tbody><tr><td style=3D"border-collapse: collapse;"><a class=3D"user=
+_link" href=3D"https://www.quora.com/qemail/track_click?aoid=3Dm1FzFhM7vuZ&=
+amp;aoty=3D3&amp;aty=3D4&amp;cp=3D7&amp;ct=3D1590879451939226&amp;et=3D130&=
+amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=
+=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXj=
+BXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9=
+Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DV1nxwWA1E=
+bj&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: =
+#333; font-weight: bold; font-size: 15px; line-height: 1.4;">Ajaya Gupta</a=
+><span style=3D"font-size: 15px; line-height: 1.4;">, works at Doordarshan =
+Network</span></td></tr><tr><td class=3D"answer_details" style=3D"border-co=
+llapse: collapse; color: #999; font-size: 13px;"><a href=3D"https://www.quo=
+ra.com/qemail/track_click?aoid=3DV1nxwWA1Ebj&amp;aoty=3D1&amp;aty=3D4&amp;c=
+p=3D7&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc=
+2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;storie=
+s=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7=
+EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_a=
+ZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DV1nxwWA1Ebj&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; color: #999;">Written Jun 15, 2015</a=
+></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td clas=
+s=3D"item_content" style=3D"border-collapse: collapse; display: block; font=
+-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubu=
+ntu,Cantarell,'Helvetica Neue',sans-serif; color: #333; font-size: 15px; li=
+ne-height: 1.4;"><a href=3D"https://www.quora.com/qemail/track_click?al_imp=
+=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8N3wxfDEzMzA2NjE1In0%3D&amp;al_pri=3D0&am=
+p;aoid=3DV1nxwWA1Ebj&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D7&amp;ct=3D159087945=
+1939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=
+=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_=
+VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%=
+7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&=
+amp;ty_data=3DV1nxwWA1Ebj&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-de=
+coration: none; color: #333333;"><div id=3D"wMBgRajg60"><div class=3D"trunc=
+ated_q_text truncated_para_breaks TruncatedQText TruncatedAnswerForDigestEm=
+ail TruncatedAnswer TruncatedAnswerForEmail" id=3D"__w2_wMBgRajg61_truncate=
+d" style=3D"line-height: 1.6;"><div class=3D"truncated_thumbnail_holder thu=
+mbnail_small thumbnail_featured_image" style=3D"display: inline; float: rig=
+ht;"><span class=3D"rendered_qtext" style=3D"word-break: break-word;"><div =
+class=3D"ui_qtext_image_outer"><div class=3D"qtext_image_wrapper"><img clas=
+s=3D"landscape qtext_image zoomable_in_feed" src=3D"https://qph.fs.quoracdn=
+.net/main-qimg-b9b4b634d9a3424b82d49b23213270c2-c" master_src=3D"https://qp=
+h.fs.quoracdn.net/main-qimg-b9b4b634d9a3424b82d49b23213270c2-c" master_w=3D=
+"103" master_h=3D"73" style=3D"outline: 0; text-decoration: none; -ms-inter=
+polation-mode: bicubic; border: 0; margin-left: 10px; max-width: 200px; max=
+-height: 100px; float: left; border-style: none;"></div></div></span></div>=
+<span class=3D"rendered_qtext" style=3D"word-break: break-word;">=E2=80=8B =
+ A USB cable has 4 connecting wires. 2 for data communication between mobil=
+e and laptop/computer....</span>&nbsp;<a class=3D"read_more_blue" href=3D"h=
+ttps://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIj=
+ogIjB8N3wxfDEzMzA2NjE1In0%3D&amp;al_pri=3D8&amp;aoid=3DV1nxwWA1Ebj&amp;aoty=
+=3D1&amp;aty=3D4&amp;cp=3D7&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DV1nxwWA1Ebj&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #168de=
+9;">Read More&nbsp;&raquo;</a></div></div></a></td></tr></tbody></table></t=
+d></tr></tbody></table></td></tr></tbody></table></div></div><div class=3D"=
+no_para_breaks"><div data-clog-trigger=3D"impression" data-clog-metadata=3D=
+"{&quot;action_log_target&quot;: {&quot;type&quot;: 33, &quot;hash&quot;: &=
+quot;0|8|1|27696979&quot;}}" data-clog-event-type=3D"ActionLogImpression" i=
+d=3D"__w2_wMBgRajg29_actionable"><table class=3D"polish_separator_wrapper" =
+style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: =
+0; cellpadding: 0; border: 0; width: 100%;" width=3D"100%"><tbody><tr><td s=
+tyle=3D"border-collapse: collapse;"></td><td class=3D"polish_separator" sty=
+le=3D"border-collapse: collapse; border-bottom: 1px solid #eee; height: 1px=
+; width: 140px;" width=3D"140" height=3D"1"></td><td style=3D"border-collap=
+se: collapse;"></td></tr></tbody></table><table class=3D"story_wrapper" cel=
+lspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-l=
+space: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td =
+class=3D"story" style=3D"border-collapse: collapse; padding: 20px 0; border=
+-bottom: 0;"><table class=3D"digest_story_wrapper" cellpadding=3D"0" cellsp=
+acing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspa=
+ce: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td cla=
+ss=3D"reason" style=3D"border-collapse: collapse; padding-bottom: 4px;"><ta=
+ble class=3D"digest_reason" cellpadding=3D"0" cellspacing=3D"0" border=3D"0=
+" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace=
+: 0;"><tbody><tr><td valign=3D"top" style=3D"border-collapse: collapse;"></=
+td></tr></tbody></table></td></tr><tr><td style=3D"border-collapse: collaps=
+e;"><a class=3D"question_text" href=3D"https://www.quora.com/qemail/track_c=
+lick?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8OHwxfDI3Njk2OTc5In0%3D&amp;al=
+_pri=3D1&amp;aoid=3DqHvWpj3AFWm&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D8&amp;ct=
+=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&=
+amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrS=
+hvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jK=
+qJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&a=
+mp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=
+=3D"text-decoration: none; display: block; font-size: 19px; letter-spacing:=
+ -0.5px; font-weight: bold; color: #333; line-height: 1.4;"><span class=3D"=
+rendered_qtext" style=3D"word-break: break-word;">Why would I buy a 1-amp U=
+SB charger instead of a 2.1-amp charger?</span></a></td></tr><tr><td style=
+=3D"border-collapse: collapse;"><table class=3D"item_content_wrapper" cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: colla=
+pse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"=
+><tbody><tr><td class=3D"content_header metadata" style=3D"border-collapse:=
+ collapse; padding: 8px 0;"><table cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0;"><tbody><tr><td class=3D"content_header_photo" style=3D"border-=
+collapse: collapse; vertical-align: top;" valign=3D"top"><a href=3D"https:/=
+/www.quora.com/qemail/track_click?aoid=3DRpRYliZ2m0d&amp;aoty=3D3&amp;aty=
+=3D4&amp;cp=3D8&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2c=
+e4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&=
+amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU=
+%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQ=
+mVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&amp;uid=3D3sE2gvk=
+o3ih&amp;v=3D0" style=3D"text-decoration: none; color: #2b6dad;"><div id=3D=
+"wMBgRajg124"><div class=3D"hover_menu hidden white_bg show_nub" id=3D"__w2=
+_wMBgRajg125_menu"><div class=3D"hover_menu_contents" id=3D"__w2_wMBgRajg12=
+5_menu_contents"> </div></div><span class=3D"photo_tooltip Photo HoverMenu =
+IdentityPhoto" id=3D"__w2_wMBgRajg125_link"><img class=3D"profile_photo_img=
+" src=3D"https://qph.fs.quoracdn.net/main-thumb-65017011-50-yvrbnmwlrcarnxe=
+hnnxaztwzqindyxja.jpeg" alt=3D"S=C3=A9bastien Janiszewski" style=3D"outline=
+: 0; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; dis=
+play: block; height: 40px; width: 40px; border-radius: 100px; border-style:=
+ none;" height=3D"40" width=3D"40"></span></div></a></td><td class=3D"conte=
+nt_header_text" style=3D"border-collapse: collapse; padding-left: 8px; colo=
+r: #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"=
+border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"><tbod=
+y><tr><td style=3D"border-collapse: collapse;"><a class=3D"user_link" href=
+=3D"https://www.quora.com/qemail/track_click?aoid=3DRpRYliZ2m0d&amp;aoty=3D=
+3&amp;aty=3D4&amp;cp=3D8&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da8=
+8cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15908794=
+51945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA=
+7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C=
+1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&amp;uid=
+=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333; font=
+-weight: bold; font-size: 15px; line-height: 1.4;">S=C3=A9bastien Janiszews=
+ki</a><span style=3D"font-size: 15px; line-height: 1.4;">, Cyber Intel at C=
+omputer Security (2018-present)</span></td></tr><tr><td class=3D"answer_det=
+ails" style=3D"border-collapse: collapse; color: #999; font-size: 13px;"><a=
+ href=3D"https://www.quora.com/qemail/track_click?aoid=3D9b9Pf3KFPGy&amp;ao=
+ty=3D1&amp;aty=3D4&amp;cp=3D8&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #999;"=
+>Written Sep 11, 2016</a></td></tr></tbody></table></td></tr></tbody></tabl=
+e></td></tr><tr><td class=3D"item_content" style=3D"border-collapse: collap=
+se; display: block; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI=
+',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif; color: #=
+333; font-size: 15px; line-height: 1.4;"><a href=3D"https://www.quora.com/q=
+email/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8OHwxfDI3Njk2OTc5=
+In0%3D&amp;al_pri=3D0&amp;aoid=3D9b9Pf3KFPGy&amp;aoty=3D1&amp;aty=3D4&amp;c=
+p=3D8&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc=
+2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;storie=
+s=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7=
+EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_a=
+ZeRxq4mA41&amp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; color: #333333;"><div id=3D"wMBgRajg6=
+5"><div class=3D"truncated_q_text truncated_para_breaks TruncatedQText Trun=
+catedAnswerForDigestEmail TruncatedAnswer TruncatedAnswerForEmail" id=3D"__=
+w2_wMBgRajg66_truncated" style=3D"line-height: 1.6;"><div class=3D"truncate=
+d_thumbnail_holder thumbnail_small thumbnail_featured_image" style=3D"displ=
+ay: inline; float: right;"><span class=3D"rendered_qtext" style=3D"word-bre=
+ak: break-word;"><div class=3D"ui_qtext_image_outer"><div class=3D"qtext_im=
+age_wrapper"><img class=3D"landscape qtext_image zoomable_in_feed" src=3D"h=
+ttps://qph.fs.quoracdn.net/main-qimg-00cc2fc097f76ac27fb029d43c8de7f3-c" ma=
+ster_src=3D"https://qph.fs.quoracdn.net/main-qimg-00cc2fc097f76ac27fb029d43=
+c8de7f3-c" master_w=3D"590" master_h=3D"453" style=3D"outline: 0; text-deco=
+ration: none; -ms-interpolation-mode: bicubic; border: 0; margin-left: 10px=
+; max-width: 200px; max-height: 100px; float: left; border-style: none;"></=
+div></div></span></div><span class=3D"rendered_qtext" style=3D"word-break: =
+break-word;"><p class=3D"qtext_para u-ltr u-text-align--start" style=3D"mar=
+gin: 1em 0; line-height: 1.6;">Your understanding is good. USB voltage is a=
+lways 5V so only current (amps) matter while charging your USB device.</p><=
+p class=3D"qtext_para u-ltr u-text-align--start" style=3D"margin: 1em 0; li=
+ne-height: 1.6;">In short, with more amps, the charge will be quicker.</p><=
+p class=3D"qtext_para u-ltr u-text-align--start" style=3D"margin: 1em 0; li=
+ne-height: 1.6;">Howev...</p></span>&nbsp;<a class=3D"read_more_blue" href=
+=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoY=
+XNoIjogIjB8OHwxfDI3Njk2OTc5In0%3D&amp;al_pri=3D8&amp;aoid=3D9b9Pf3KFPGy&amp=
+;aoty=3D1&amp;aty=3D4&amp;cp=3D8&amp;ct=3D1590879451939226&amp;et=3D130&amp=
+;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D=
+1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXD=
+T%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3=
+KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3D9b9Pf3KFPGy&=
+amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #16=
+8de9;">Read More&nbsp;&raquo;</a></div></div></a></td></tr></tbody></table>=
+</td></tr></tbody></table></td></tr></tbody></table></div></div><div class=
+=3D"no_para_breaks"><div data-clog-trigger=3D"impression" data-clog-metadat=
+a=3D"{&quot;action_log_target&quot;: {&quot;type&quot;: 33, &quot;hash&quot=
+;: &quot;0|9|1|32241713&quot;}}" data-clog-event-type=3D"ActionLogImpressio=
+n" id=3D"__w2_wMBgRajg30_actionable"><table class=3D"polish_separator_wrapp=
+er" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspa=
+ce: 0; cellpadding: 0; border: 0; width: 100%;" width=3D"100%"><tbody><tr><=
+td style=3D"border-collapse: collapse;"></td><td class=3D"polish_separator"=
+ style=3D"border-collapse: collapse; border-bottom: 1px solid #eee; height:=
+ 1px; width: 140px;" width=3D"140" height=3D"1"></td><td style=3D"border-co=
+llapse: collapse;"></td></tr></tbody></table><table class=3D"story_wrapper"=
+ cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-tab=
+le-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr>=
+<td class=3D"story" style=3D"border-collapse: collapse; padding: 20px 0; bo=
+rder-bottom: 0;"><table class=3D"digest_story_wrapper" cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-=
+lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbody><tr><td=
+ class=3D"reason" style=3D"border-collapse: collapse; padding-bottom: 4px;"=
+><table class=3D"digest_reason" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-r=
+space: 0;"><tbody><tr><td valign=3D"top" style=3D"border-collapse: collapse=
+;"></td></tr></tbody></table></td></tr><tr><td style=3D"border-collapse: co=
+llapse;"><a class=3D"question_text" href=3D"https://www.quora.com/qemail/tr=
+ack_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8OXwxfDMyMjQxNzEzIn0%3D&a=
+mp;al_pri=3D1&amp;aoid=3DmduKfzAikz7&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D9&am=
+p;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42=
+168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mK=
+yUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C=
+1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA=
+41&amp;ty=3D1&amp;ty_data=3DFYA4jeQmVly&amp;uid=3D3sE2gvko3ih&amp;v=3D0" st=
+yle=3D"text-decoration: none; display: block; font-size: 19px; letter-spaci=
+ng: -0.5px; font-weight: bold; color: #333; line-height: 1.4;"><span class=
+=3D"rendered_qtext" style=3D"word-break: break-word;">Can I plug USB speake=
+rs into a USB cell phone wall charger for power?</span></a></td></tr><tr><t=
+d style=3D"border-collapse: collapse;"><table class=3D"item_content_wrapper=
+" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse=
+: collapse; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=
+=3D"100%"><tbody><tr><td class=3D"content_header metadata" style=3D"border-=
+collapse: collapse; padding: 8px 0;"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0=
+; mso-table-rspace: 0;"><tbody><tr><td class=3D"content_header_photo" style=
+=3D"border-collapse: collapse; vertical-align: top;" valign=3D"top"><a href=
+=3D"https://www.quora.com/qemail/track_click?aoid=3DmGTtj8kalSH&amp;aoty=3D=
+3&amp;aty=3D4&amp;cp=3D9&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da8=
+8cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15908794=
+51945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA=
+7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C=
+1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DFYA4jeQmVly&amp;uid=
+=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #2b6dad;">=
+<div id=3D"wMBgRajg131"><div class=3D"hover_menu hidden white_bg show_nub" =
+id=3D"__w2_wMBgRajg132_menu"><div class=3D"hover_menu_contents" id=3D"__w2_=
+wMBgRajg132_menu_contents"> </div></div><span class=3D"photo_tooltip Photo =
+HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg132_link"><img class=3D"profile=
+_photo_img" src=3D"https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_d=
+efault.png-26-7c13a5749b21f349.png" alt=3D"Nagendra Subramhanya" style=3D"o=
+utline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; border: =
+0; display: block; height: 40px; width: 40px; border-radius: 100px; border-=
+style: none;" height=3D"40" width=3D"40"></span></div></a></td><td class=3D=
+"content_header_text" style=3D"border-collapse: collapse; padding-left: 8px=
+; color: #333;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" sty=
+le=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: 0;"=
+><tbody><tr><td style=3D"border-collapse: collapse;"><a class=3D"user_link"=
+ href=3D"https://www.quora.com/qemail/track_click?aoid=3DmGTtj8kalSH&amp;ao=
+ty=3D3&amp;aty=3D4&amp;cp=3D9&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159=
+0879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7=
+C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFP=
+Gy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DFYA4jeQmVly&amp=
+;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333; =
+font-weight: bold; font-size: 15px; line-height: 1.4;">Nagendra Subramhanya=
+</a><span style=3D"font-size: 15px; line-height: 1.4;">, Engineering Manage=
+r, Embedded Software / Firmware.</span></td></tr><tr><td class=3D"answer_de=
+tails" style=3D"border-collapse: collapse; color: #999; font-size: 13px;"><=
+a href=3D"https://www.quora.com/qemail/track_click?aoid=3DFYA4jeQmVly&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D9&amp;ct=3D1590879451939226&amp;et=3D130&amp;i=
+d=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D15=
+90879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%=
+7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KF=
+PGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DFYA4jeQmVly&am=
+p;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #999;=
+">Written Dec 11, 2016</a></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr><tr><td class=3D"item_content" style=3D"border-collapse: colla=
+pse; display: block; font-family: -apple-system,BlinkMacSystemFont,'Segoe U=
+I',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif; color: =
+#333; font-size: 15px; line-height: 1.4;"><a href=3D"https://www.quora.com/=
+qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8OXwxfDMyMjQxNzE=
+zIn0%3D&amp;al_pri=3D0&amp;aoid=3DFYA4jeQmVly&amp;aoty=3D1&amp;aty=3D4&amp;=
+cp=3D9&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1ad=
+c2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stori=
+es=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR=
+7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_=
+aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DFYA4jeQmVly&amp;uid=3D3sE2gvko3ih&amp;=
+v=3D0" style=3D"text-decoration: none; color: #333333;"><div id=3D"wMBgRajg=
+70"><div class=3D"truncated_q_text truncated_para_breaks TruncatedQText Tru=
+ncatedAnswerForDigestEmail TruncatedAnswer TruncatedAnswerForEmail" id=3D"_=
+_w2_wMBgRajg71_truncated" style=3D"line-height: 1.6;"><span class=3D"render=
+ed_qtext" style=3D"word-break: break-word;"><p class=3D"qtext_para u-ltr u-=
+text-align--start" style=3D"margin: 1em 0; line-height: 1.6;">Short answer =
+is YES, but you should check the input voltage and current consumption of t=
+he speaker and the output voltage of the adapter.</p><p class=3D"qtext_para=
+ u-ltr u-text-align--start" style=3D"margin: 1em 0; line-height: 1.6;">More=
+ specific answer can be given i...</p></span>&nbsp;<a class=3D"read_more_bl=
+ue" href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogM=
+zMsICJoYXNoIjogIjB8OXwxfDMyMjQxNzEzIn0%3D&amp;al_pri=3D8&amp;aoid=3DFYA4jeQ=
+mVly&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D9&amp;ct=3D1590879451939226&amp;et=
+=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1=
+&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_=
+Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%=
+7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DFY=
+A4jeQmVly&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; =
+color: #168de9;">Read More&nbsp;&raquo;</a></div></div></a></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table></div></div><=
+div class=3D"no_para_breaks"><div data-clog-trigger=3D"impression" data-clo=
+g-metadata=3D"{&quot;action_log_target&quot;: {&quot;type&quot;: 33, &quot;=
+hash&quot;: &quot;0|10|1|10651490&quot;}}" data-clog-event-type=3D"ActionLo=
+gImpression" id=3D"__w2_wMBgRajg31_actionable"><table class=3D"polish_separ=
+ator_wrapper" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-=
+table-rspace: 0; cellpadding: 0; border: 0; width: 100%;" width=3D"100%"><t=
+body><tr><td style=3D"border-collapse: collapse;"></td><td class=3D"polish_=
+separator" style=3D"border-collapse: collapse; border-bottom: 1px solid #ee=
+e; height: 1px; width: 140px;" width=3D"140" height=3D"1"></td><td style=3D=
+"border-collapse: collapse;"></td></tr></tbody></table><table class=3D"stor=
+y_wrapper" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collaps=
+e; mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><=
+tbody><tr><td class=3D"story" style=3D"border-collapse: collapse; padding: =
+20px 0; border-bottom: 0;"><table class=3D"digest_story_wrapper" cellpaddin=
+g=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; =
+mso-table-lspace: 0; mso-table-rspace: 0; width: 100%;" width=3D"100%"><tbo=
+dy><tr><td class=3D"reason" style=3D"border-collapse: collapse; padding-bot=
+tom: 4px;"><table class=3D"digest_reason" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; ms=
+o-table-rspace: 0;"><tbody><tr><td valign=3D"top" style=3D"border-collapse:=
+ collapse;"></td></tr></tbody></table></td></tr><tr><td style=3D"border-col=
+lapse: collapse;"><a class=3D"question_text" href=3D"https://www.quora.com/=
+qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MTB8MXwxMDY1MTQ=
+5MCJ9&amp;al_pri=3D1&amp;aoid=3D4BXrtekS8Lr&amp;aoty=3D2&amp;aty=3D4&amp;cp=
+=3D10&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc=
+2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;storie=
+s=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7=
+EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_a=
+ZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DaZeRxq4mA41&amp;uid=3D3sE2gvko3ih&amp;v=
+=3D0" style=3D"text-decoration: none; display: block; font-size: 19px; lett=
+er-spacing: -0.5px; font-weight: bold; color: #333; line-height: 1.4;"><spa=
+n class=3D"rendered_qtext" style=3D"word-break: break-word;">Is there any d=
+ifference between using a USB cable to charge and using mobile chargers?</s=
+pan></a></td></tr><tr><td style=3D"border-collapse: collapse;"><table class=
+=3D"item_content_wrapper" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-table-rspace: =
+0; width: 100%;" width=3D"100%"><tbody><tr><td class=3D"content_header meta=
+data" style=3D"border-collapse: collapse; padding: 8px 0;"><table cellpaddi=
+ng=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse;=
+ mso-table-lspace: 0; mso-table-rspace: 0;"><tbody><tr><td class=3D"content=
+_header_photo" style=3D"border-collapse: collapse; vertical-align: top;" va=
+lign=3D"top"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3DjAc=
+KI3qNTy1&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D10&amp;ct=3D1590879451939226&amp=
+;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=
+=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%=
+7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1=
+Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=
+=3DaZeRxq4mA41&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: n=
+one; color: #2b6dad;"><div id=3D"wMBgRajg138"><div class=3D"hover_menu hidd=
+en white_bg show_nub" id=3D"__w2_wMBgRajg139_menu"><div class=3D"hover_menu=
+_contents" id=3D"__w2_wMBgRajg139_menu_contents"> </div></div><span class=
+=3D"photo_tooltip Photo HoverMenu IdentityPhoto" id=3D"__w2_wMBgRajg139_lin=
+k"><img class=3D"profile_photo_img" src=3D"https://qph.fs.quoracdn.net/main=
+-thumb-55668759-50-fzggivzsxyhlfbmmjhqwmwgsjbvbmkwp.jpeg" alt=3D"Matthew La=
+i" style=3D"outline: 0; text-decoration: none; -ms-interpolation-mode: bicu=
+bic; border: 0; display: block; height: 40px; width: 40px; border-radius: 1=
+00px; border-style: none;" height=3D"40" width=3D"40"></span></div></a></td=
+><td class=3D"content_header_text" style=3D"border-collapse: collapse; padd=
+ing-left: 8px; color: #333;"><table cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" style=3D"border-collapse: collapse; mso-table-lspace: 0; mso-tabl=
+e-rspace: 0;"><tbody><tr><td style=3D"border-collapse: collapse;"><a class=
+=3D"user_link" href=3D"https://www.quora.com/qemail/track_click?aoid=3DjAcK=
+I3qNTy1&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D10&amp;ct=3D1590879451939226&amp;=
+et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=
+=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%=
+7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1=
+Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=
+=3DaZeRxq4mA41&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: n=
+one; color: #333; font-weight: bold; font-size: 15px; line-height: 1.4;">Ma=
+tthew Lai</a><span style=3D"font-size: 15px; line-height: 1.4;">, Research =
+Engineer at Google DeepMind (2015-present)</span></td></tr><tr><td class=3D=
+"answer_details" style=3D"border-collapse: collapse; color: #999; font-size=
+: 13px;"><a href=3D"https://www.quora.com/qemail/track_click?aoid=3DaZeRxq4=
+mA41&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D10&amp;ct=3D1590879451939226&amp;et=
+=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1=
+&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_=
+Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%=
+7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DaZ=
+eRxq4mA41&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-decoration: none; =
+color: #999;">Written Mar 19, 2015</a></td></tr></tbody></table></td></tr><=
+/tbody></table></td></tr><tr><td class=3D"item_content" style=3D"border-col=
+lapse: collapse; display: block; font-family: -apple-system,BlinkMacSystemF=
+ont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-se=
+rif; color: #333; font-size: 15px; line-height: 1.4;"><a href=3D"https://ww=
+w.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MTB=
+8MXwxMDY1MTQ5MCJ9&amp;al_pri=3D0&amp;aoid=3DaZeRxq4mA41&amp;aoty=3D1&amp;at=
+y=3D4&amp;cp=3D10&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=3Da88cea9bf=
+2ce4621a1adc2a6d0f42168&amp;source=3D7&amp;src=3D1&amp;st=3D159087945194507=
+5&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVW=
+eU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4j=
+eQmVly%7C1_aZeRxq4mA41&amp;ty=3D1&amp;ty_data=3DaZeRxq4mA41&amp;uid=3D3sE2g=
+vko3ih&amp;v=3D0" style=3D"text-decoration: none; color: #333333;"><div id=
+=3D"wMBgRajg75"><div class=3D"truncated_q_text truncated_para_breaks Trunca=
+tedQText TruncatedAnswerForDigestEmail TruncatedAnswer TruncatedAnswerForEm=
+ail" id=3D"__w2_wMBgRajg76_truncated" style=3D"line-height: 1.6;"><span cla=
+ss=3D"rendered_qtext" style=3D"word-break: break-word;">Yes.  When USB was =
+first designed, it was for things like mice and keyboard, not for charging =
+cellphones (cellphones in 1998 did not have USB ports). ...</span>&nbsp;<a =
+class=3D"read_more_blue" href=3D"https://www.quora.com/qemail/track_click?a=
+l_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MTB8MXwxMDY1MTQ5MCJ9&amp;al_pri=3D8=
+&amp;aoid=3DaZeRxq4mA41&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D10&amp;ct=3D15908=
+79451939226&amp;et=3D130&amp;id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;sour=
+ce=3D7&amp;src=3D1&amp;st=3D1590879451945075&amp;stories=3D1_mKyUrShvgmF%7C=
+1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_MA7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741S=
+u%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty=3D=
+1&amp;ty_data=3DaZeRxq4mA41&amp;uid=3D3sE2gvko3ih&amp;v=3D0" style=3D"text-=
+decoration: none; color: #168de9;">Read More&nbsp;&raquo;</a></div></div></=
+a></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></t=
+able></div></div></td></tr></tbody></table></td><td class=3D"w30" style=3D"=
+border-collapse: collapse;">&nbsp;</td></tr></tbody></table></td></tr><tr><=
+td style=3D"border-collapse: collapse;"><div class=3D"polish_button_wrapper=
+" style=3D"text-align: center; margin-bottom: 25px;"><a class=3D"polish_act=
+ion_button" href=3D"https://www.quora.com/qemail/track_click?aoid&amp;aoty=
+=3D7&amp;aty=3D4&amp;cp=3D0&amp;ct=3D1590879451939226&amp;et=3D130&amp;id=
+=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;source&amp;src=3D1&amp;st=3D1590879=
+451945075&amp;stories=3D1_mKyUrShvgmF%7C1_VYxlLMiEvw4%7C1_Y3fCUXjBXDT%7C1_M=
+A7yJDjVWeU%7C1_BOOR7EQQe2%7C1_jKqJES741Su%7C1_V1nxwWA1Ebj%7C1_9b9Pf3KFPGy%7=
+C1_FYA4jeQmVly%7C1_aZeRxq4mA41&amp;ty&amp;ty_data&amp;uid=3D3sE2gvko3ih&amp=
+;v=3D0" style=3D"font-size: 15px; line-height: 1.4; border-radius: 3px; box=
+-shadow: 0 1px 1px 0 rgba(200,200,200,0.2); display: inline-block; outline:=
+ 0; padding: 15px 20px; text-align: center; text-decoration: none; cursor: =
+pointer; background-color: #168de9; color: #fff; padding: 15px 25px;">Searc=
+h More on Quora</a></div></td></tr><tr><td style=3D"border-collapse: collap=
+se;"></td></tr></tbody></table></td></tr><tr><td class=3D"polish_footer_sec=
+tion footer_container_wrapper" align=3D"center" style=3D"border-collapse: c=
+ollapse; max-width: 525px; margin-top: 16px;"><table class=3D"footer_contai=
+ner" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-colla=
+pse: collapse; mso-table-lspace: 0; mso-table-rspace: 0; font-size: 11px; c=
+olor: #999; padding-top: 16px; width: 100%; text-align: center;" width=3D"1=
+00%" align=3D"center"><tr><td style=3D"border-collapse: collapse;"><div cla=
+ss=3D"footer_text_wrapper" style=3D"padding: 25px 20px;"><div><span style=
+=3D"display: block; padding-bottom: 8px; color: #999;">This email was sent =
+by Quora (650 Castro Street #450, Mountain View, CA 94041). </span><span st=
+yle=3D"display: block; padding-bottom: 8px; color: #999;">If you don&#039;t=
+ want to receive this type of email in the future, please <a class=3D"unsub=
+scribe_link" href=3D"https://www.quora.com/email_optout/qemail_unsubscribe?=
+email_track_id=3Da88cea9bf2ce4621a1adc2a6d0f42168&amp;t=3D1590879452138445&=
+amp;token=3D8ea13547abdd520d19197e1d62f4098242d311c6891510fdb567ab14e3a49a9=
+8b2033e89d80003a21b8b4d11c27008669186ed26cdba1b350f49d85f3a5a3156&amp;type=
+=3D130&amp;uid=3D865920808" style=3D"color: #999; text-decoration: underlin=
+e;">unsubscribe</a>.</span><span style=3D"display: block; padding-bottom: 8=
+px; color: #999;"><a href=3D"https://www.quora.com/" style=3D"color: #999; =
+text-decoration: underline;">https://www.quora.com/</a></span></div></div><=
+/td></tr></table></td></tr></tbody></table></td></tr></tbody></table></div>=
+</body></html>
+--===============0678255373034764122==--

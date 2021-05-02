@@ -1,0 +1,426 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:5f96:0:0:0:0:0 with SMTP id b22csp3864269uaj;
+        Tue, 14 Apr 2020 13:16:13 -0700 (PDT)
+X-Google-Smtp-Source: APiQypKjxfdMUwU72rqecXfs0xYcu9reK1iTo3DGzAmcxghsdqqwP/0cgT+eMefiAJtKdUSPoABa
+X-Received: by 2002:a17:907:4420:: with SMTP id om24mr1705047ejb.99.1586895373072;
+        Tue, 14 Apr 2020 13:16:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1586895373; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xp/v0Dia/O4G/4Pk7lR8AYRHm1Q2YnYt4RObEvWMKzyssDUbKCRfEBEVihsK8yUIrS
+         Ob/SJyrfrp2InHdC62cUc3Qn+ttlM+3GGGmfSHAhNaMG0rKRvVnC7s/d+EC19qk3m8e4
+         5RiKJvbImTk2rlSqmEDu3G1eZ2NEyfAItaJ3vmmv0cQtVXFoXOJP57sqKWlJ7wbdwS3a
+         cl/27ICBsgZTq6CiljI8Qp6Ct42aOfHql5a7NH4LOSHeGMB43O29AJP4MM989GyNc6cI
+         hrqYv+9aGqhRWvcT1c5/pRmVJixjInDrT8hkeMKkg5/kQjbvQM+kq+A+Ch7F73xHResx
+         D7dA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:subject:message-id:to:reply-to:mime-version:from
+         :date:dkim-signature:dkim-signature;
+        bh=nCPEF4GWtiw11YZ81dF8711Q9TXIOCVlA1SI7sN+PEw=;
+        b=rCVr51ZRsFxypjQIcU2kQQ6cUXHYa/pygJ15OQ5//lSnOx6Eo4tva6v/Ou2HWfkAer
+         2Y83C5MTjHf7NIEP1pFSItYGQljCKTGSN9WUh540BSoG+g2mGRemnDOuPc3ymxxvF9Qu
+         k4nirY61KO8jhWObOC1azIH3IYhHYlHVM0ZESoH3eto744humIyukGjF0NdeNCXAts8p
+         c9PhvhA0GojBQTYvz7TMEw5zOyGfpfPfRNJh4CXKnqVzkaIylOI0HB++yn0DkBabdI/p
+         DUIIpPY9m4Nf10il8uxBHx7Itqz+NA5SR3sWKOcv4gdUgwoxO7FJdJ0wHGzsqCM6Gsbc
+         /g0w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=s20150108 header.b=iJtjNJeL;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=JVQXFzlF;
+       spf=pass (google.com: domain of bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com designates 192.254.112.98 as permitted sender) smtp.mailfrom="bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+Return-Path: <bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com>
+Received: from o3.sgmail.github.com (o3.sgmail.github.com. [192.254.112.98])
+        by mx.google.com with ESMTPS id h7si9945134edq.27.2020.04.14.13.16.11
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Apr 2020 13:16:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com designates 192.254.112.98 as permitted sender) client-ip=192.254.112.98;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=s20150108 header.b=iJtjNJeL;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=JVQXFzlF;
+       spf=pass (google.com: domain of bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com designates 192.254.112.98 as permitted sender) smtp.mailfrom="bounces+15762298-a7a4-miphilipk=gmail.com@sgmail.github.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com; 
+	h=content-type:from:mime-version:reply-to:to:subject:list-unsubscribe; 
+	s=s20150108; bh=nCPEF4GWtiw11YZ81dF8711Q9TXIOCVlA1SI7sN+PEw=; b=
+	iJtjNJeLHbG5B5qEAxwU5OtQueGYuVXzr/P0tlsTVI1XWbHx4f4q28BJ3wOIMaTw
+	dJx/0jYRcVbCNQq4UlEKD+rnrIrVVyKm2BKubHYO3LPd2nyboHeU9xBI/A78aBfw
+	ArpXFN3o8lGm2kXfSPKu/KW2x1NJAnnYGWcKjnnlc4o=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; 
+	d=sendgrid.info; 
+	h=content-type:from:mime-version:reply-to:to:subject:list-unsubscribe:x-feedback-id; 
+	s=smtpapi; bh=nCPEF4GWtiw11YZ81dF8711Q9TXIOCVlA1SI7sN+PEw=; b=JV
+	QXFzlFuPsYXpVwzD4E6e+1dkvQVUsBoNb+V7+7lrigJaL65qipwThqoXk81VyXrL
+	ZeEMOxuPI0GM69iXR3NZK9xNSVVEZwUaux32etsb79WY8hTVS0ZiByq1swgVsNEM
+	4gkcEh0C2sKHGT886uiZSBYIqpIrUKeThUGM4iKAs=
+Received: by filter0239p1iad2.sendgrid.net with SMTP id filter0239p1iad2-8887-5E9619F6-3
+        2020-04-14 20:15:50.007309253 +0000 UTC m=+122571.208725862
+Received: from MTU3NjIyOTg (unknown)
+	by ismtpd0008p1iad2.sendgrid.net (SG) with HTTP id go5MPIBERYCToMD0aG1L3w
+	Tue, 14 Apr 2020 20:15:50.042 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=3ddc7be06478067e29cdc9d985469b8a8d6aacced8daf151a0c86e619065
+Date: Tue, 14 Apr 2020 20:15:52 +0000 (UTC)
+From: "GitHub" <no-reply@github.com>
+Mime-Version: 1.0
+Reply-To: no-reply@github.com
+To: miphilipk@gmail.com
+Message-ID: <go5MPIBERYCToMD0aG1L3w@ismtpd0008p1iad2.sendgrid.net>
+Subject: You now have unlimited collaborators in private repositories
+List-Unsubscribe: <mailto:unsubscribe@sgmail.github.com?subject=https://u15762298.ct.sendgrid.net/wf/unsubscribe*q*upn=HhmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnPCg9F5uIX5-2FhrGH4DWaOxHrTvJT8PHA65FzoGt-2FnX702bFfgrxL-2BW5ksgE6GZz68zFN6F1oB1zyWAZpELgWMzqwGpOkDlIVHxtvAMgTPprxbAbwUwF3BUC9d6kRA6PyO-2FM-2BHYOT4WB8qVdCLnc34OPU2C2cETzhpLEemlvcN-2FMcDYNZZPbAU1S-2B9fazPjVL-2F-2BYud4t-2FGrQwN4WZZQ0rorWmCVRL8qyWP4QUKTsZkak-2BkyTN2TEWSydBowZdG3EqbUEshvJFq5SOOH9pAYOGk9fwTyIVX29n71-2FudgpighpTGzWdvhK47C16CJApQM6nK21qGyGUzrs5RkQHpTpCvAmjQhoOQ09bZvOrvFD4r0VxPIKqdwd6ixCEJQ-2Bl3zX70UeYkMGnOzgqCez1UwkdETQsShTqQ7UqHquHoNgjmDNy099dGJrCx1leVCYWY7PaMzIh7V1Qpe-2FxBEWGWSeqt1V1cU2nBNy83ZVrYQDMX0MTHJoiTf7prnzT8NR1wtdWEZSObmbEN4nb55Q0M0imChSTCJ3dgpPAhJOvU6UFvNUi-2BQpE2T1FaMWgoPRdfMHp0noIsw1aeyXb-2FIzBmeYCw8li4-2FigeybvUtvetmms69d5Ye2NVAHEnNVAgzF8FxQnzA-3D>
+X-SG-EID: 812ECH3peFc5YZPJCZBZPJypFmDO0RxRs9TkuWEbRrvyUtirlvW3VC7URTTh5IXkmLgFM9nkd2WuJS
+ m7AUbO0ZeWbav8DRVbWNQRbkMTFHFM1DJLUG4edYjWns7ChWFeCj70aMiBeekaARbs8fIJkOjI1mYf
+ OtCRitdfmI82ffHvccxiLyhnmMvCHKwoitnZcnDQRl8GmeIIXsCEl+R8BA==
+X-SG-ID: mcTyqcYTtmn56LU3ATD1f1v7Dgybe0/TbF1dlKl/jMdZ34kvgsRfkcpYLD14SwLMZNybEuF+CNtGVP
+ FfMSfFFRPgTW4Dz3DqeNDly0rNUeJimlea51++/N5uI4Gn1I8vwqXn9juKEv2DF/w6gt6BA+JoP0YQ
+ 9FRx5AU/u9rLLnUXJfcwcyYRhiQCg8NeLRwGtsv8zLpKwQUx6y27bTd6GUqsV+cpzX59mWr7i0HQzC
+ SBY7ivElL2LGzQTYWE80xKOsxadOLTBBxGIvUG5R4nAROeHvVS7nnw42aUoNA2K8AptedxdPgkLgVn
+ ZVbRrQmw1k6rNInF+j4SXsMcDPz/7jyDnzroNOA5MtmycMxe43b08QG77Ea85UnoCEQICPxwDZb4NK
+ YpvObB2TKcFIEVaOqmI1JQXn14lIVjUhcnndvu80px6JqH8eBwWuJWz4KUdJclxkrahk9oQQMOLIku
+ ig==
+X-Feedback-ID: 15762298:noaoQA0/HZjQuRSGi3KlDTeAj6AC4y3oBxv1HDomiwU=:noaoQA0/HZjQuRSGi3KlDTeAj6AC4y3oBxv1HDomiwU=:SG
+X-TUID: vzjcJkfi2iEb
+
+--3ddc7be06478067e29cdc9d985469b8a8d6aacced8daf151a0c86e619065
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+We introduced a few changes to make all of the core GitHub features free fo=
+r everyone. Private repositories with unlimited collaborators are now avail=
+able for all GitHub accounts, and we=E2=80=99re reducing prices for some of=
+ our paid plans.
+
+The details
+-----------
+
+* We introduced a new GitHub Free plan for teams with unlimited collaborato=
+rs in private repositories, 2,000 GitHub Actions minutes/month, and GitHub =
+Community Support.
+* You now have unlimited collaborators in private repositories as part of y=
+our GitHub Free plan.
+* Monthly pricing for our Pro plan has been reduced from $7/month to $4/mon=
+th.
+* Monthly pricing for our paid Team plan has been reduced from $9/user to $=
+4/user.
+* Actions minutes and Packages storage will continue to be free for all pub=
+lic repositories.
+
+Learn more
+----------
+
+Take a look at our FAQ or compare plans ( https://github.com/pricing?utm_so=
+urce=3Dannouncement&utm_medium=3Demail&utm_campaign=3Dmnch-free ) on our pr=
+icing page for more information on these changes.
+
+Learn more in our FAQ ( https://help.github.com/github/getting-started-with=
+-github/faq-about-changes-to-githubs-plans?utm_source=3Dannouncement&utm_me=
+dium=3Demail&utm_campaign=3Dmnch-free )
+
+Unsubscribe (  https://u15762298.ct.sendgrid.net/wf/unsubscribe?upn=3DHhmRE=
+xLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnPCg9F5uIX5-2FhrGH4DWaOxHrTvJT8PHA65Fzo=
+Gt-2FnX702bFfgrxL-2BW5ksgE6GZz68zFN6F1oB1zyWAZpELgWMzqwGpOkDlIVHxtvAMgTPprx=
+bAbwUwF3BUC9d6kRA6PyO-2FM-2BHYOT4WB8qVdCLnc34OPU2C2cETzhpLEemlvcN-2FMcDYNZZ=
+PbAU1S-2B9fazPjVL-2F-2BYud4t-2FGrQwN4WZZQ0rorWmCVRL8qyWP4QUKTsZkak-2BkyTN2T=
+EWSydBowZdG3EqbUEshvJFq5SOOH9pAYOGk9fwTyIVX29n71-2FudgpighpTGzWdvhK47C16CJA=
+pQM6nK21qGyGUzrs5RkQHpTpCvAmjQhoOQ09bZvOrvFD4r0VxPIKqdwd6ixCEJQ-2Bl3zX70UeY=
+kMGnOzgqCez1UwkdETQsShTqQ7UqHquHoNgjmDNy099dGJrCx1leVCYWY7PaMzIh7V1Qpe-2FxB=
+EWGWSeqt1VzSxODJB23InqCMhY3UrZ2gw15Z0kp8DXEw1TEakRI1hzEUH5aE5JGcIBxmjOB9oYZ=
+j2tQXr19A9Xc0YdMjCNgZyolcLj-2ByK54Meh-2FoNlQWpq1-2BaD5BafdSXzoPYCA2GTeR0ht6=
+EqNgGlfOZ-2BtJKKDin4kp8Rq8bsUiWanB74f-2FI-3D  ) =C2=B7 Email preferences ( =
+https://github.com/settings/emails ) =C2=B7 Terms ( https://help.github.com=
+/articles/github-terms-of-service/ ) =C2=B7 Privacy ( https://help.github.c=
+om/articles/github-privacy-statement/ ) =C2=B7 Sign in to GitHub ( https://=
+github.com/login )
+
+GitHub, Inc.
+88 Colin P Kelly Jr St.
+San Francisco, CA 94107=
+
+--3ddc7be06478067e29cdc9d985469b8a8d6aacced8daf151a0c86e619065
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+<!doctype html>
+<html>
+<head>
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<title>You now have unlimited collaborators in private repositories</title>
+<style media=3D"all" type=3D"text/css">
+@media only screen and (max-width: 600px) {
+  .onboarding-icon {
+    margin: 0 auto 10px auto;
+  }
+  .onboarding-section td {
+    display: block;
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .icon-row {
+    margin: 0 auto 10px auto;
+  }
+  .icon-row td {
+    display: block;
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 620px) {
+  table[class=3Dbody] h1,
+  table[class=3Dbody] h2,
+  table[class=3Dbody] h3,
+  table[class=3Dbody] h4 {
+    font-weight: 600 !important;
+  }
+  table[class=3Dbody] h1 {
+    font-size: 24px !important;
+  }
+  table[class=3Dbody] h2 {
+    font-size: 20px !important;
+  }
+  table[class=3Dbody] h3 {
+    font-size: 16px !important;
+  }
+  table[class=3Dbody] .lead {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+  table[class=3Dbody] .container {
+    padding: 20px !important;
+    width: 100% !important;
+  }
+  table[class=3Dbody] .btn table {
+    width: 100% !important;
+  }
+  table[class=3Dbody] .btn a {
+    display: block !important;
+  }
+  table[class=3Dbody] .header-padded,
+  table[class=3Dbody] .body-padded {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+</style>
+</head>
+
+<body style=3D"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', =
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe=
+ UI Symbol'; font-size: 16px; height: 100% !important; line-height: 1.5; ma=
+rgin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: =
+100%; width: 100% !important; background-color: #fff;">
+
+<table class=3D"body" style=3D"box-sizing: border-box; border-collapse: sep=
+arate !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%=
+; background-color: #fff;" width=3D"100%" bgcolor=3D"#fff">
+	<tr>
+		<td style=3D"box-sizing: border-box; font-family: -apple-system, BlinkMac=
+SystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', =
+'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; vertical-align: top;"=
+ valign=3D"top"></td>
+		<td class=3D"container" style=3D"box-sizing: border-box; font-family: -ap=
+ple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, '=
+Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; v=
+ertical-align: top; display: block; margin: 0 auto !important; max-width: 5=
+80px; padding: 30px 30px 0px 30px; width: 580px;" width=3D"580" valign=3D"t=
+op">
+			<div class=3D"content" style=3D"box-sizing: border-box; display: block; =
+margin: 0 auto; max-width: 580px;">
+=09=09=09=09
+
+<span class=3D"preheader" style=3D"color: transparent; display: none; heigh=
+t: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: =
+all; visibility: hidden; width: 0;">We introduced a few changes to make all=
+ of the core GitHub features free for everyone.
+</span>
+<div class=3D"header" style=3D"box-sizing: border-box; width: 100%; padding=
+-top: 10px; padding-bottom: 10px; margin-bottom: 20px; border-bottom: 1px s=
+olid #eee;">
+  <table style=3D"box-sizing: border-box; border-collapse: separate !import=
+ant; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width=3D"1=
+00%">
+    <tr>
+      <td style=3D"box-sizing: border-box; font-family: -apple-system, Blin=
+kMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoj=
+i', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; vertical-align: t=
+op;" valign=3D"top">
+        <a href=3D"https://github.com?utm_source=3Dannouncement&utm_medium=
+=3Demail&utm_campaign=3Dmnch-free" clicktracking=3D"off" style=3D"box-sizin=
+g: border-box; color: #0366d6; text-decoration: underline;">
+          <img src=3D"https://gallery.mailchimp.com/9d7ced8c4bbd6c2f238673f=
+0f/images/d66ffcf7-c0a2-48ab-8fe9-e5130cc1293b.png" width=3D"102" height=3D=
+"28" alt=3D"GitHub" style=3D"-ms-interpolation-mode: bicubic; max-width: 10=
+0%;">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<p style=3D"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Hel=
+vetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI=
+ Symbol'; font-size: 16px; font-weight: normal; line-height: 1.5; margin: 0=
+; margin-bottom: 15px;">We introduced a few changes to make all of the core=
+ GitHub features free for everyone. Private repositories with unlimited col=
+laborators are now available for all GitHub accounts, and we=E2=80=99re red=
+ucing prices for some of our paid plans.
+</p>
+
+<h3 style=3D"color: #111111 !important; font-family: -apple-system, BlinkMa=
+cSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 500; line-height: 1.25; =
+margin: 0 0 12px; font-size: 20px;">The details</h3>
+<ul style=3D"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', He=
+lvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe U=
+I Symbol'; font-size: 16px; font-weight: normal; line-height: 1.5; margin: =
+0; margin-bottom: 15px; padding-left: 30px;">
+<li style=3D"list-style-position: outside; line-height: 1.5; margin-right: =
+20px; margin-bottom: 6px;">We introduced a new GitHub Free plan for teams w=
+ith unlimited collaborators in private repositories, 2,000 GitHub Actions m=
+inutes/month, and GitHub Community Support.</li>
+<li style=3D"list-style-position: outside; line-height: 1.5; margin-right: =
+20px; margin-bottom: 6px;">You now have unlimited collaborators in private =
+repositories as part of your GitHub Free plan.</li>
+<li style=3D"list-style-position: outside; line-height: 1.5; margin-right: =
+20px; margin-bottom: 6px;">Monthly pricing for our Pro plan has been reduce=
+d from $7/month to $4/month.</li>
+<li style=3D"list-style-position: outside; line-height: 1.5; margin-right: =
+20px; margin-bottom: 6px;">Monthly pricing for our paid Team plan has been =
+reduced from $9/user to $4/user.
+</li>
+<li style=3D"list-style-position: outside; line-height: 1.5; margin-right: =
+20px; margin-bottom: 6px;">Actions minutes and Packages storage will contin=
+ue to be free for all public repositories.</li>
+</ul>
+
+
+<h3 style=3D"color: #111111 !important; font-family: -apple-system, BlinkMa=
+cSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',=
+ 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: 500; line-height: 1.25; =
+margin: 0 0 12px; font-size: 20px;">Learn more</h3>
+<p style=3D"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Hel=
+vetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI=
+ Symbol'; font-size: 16px; font-weight: normal; line-height: 1.5; margin: 0=
+; margin-bottom: 15px;">Take a look at our FAQ or <a href=3D"https://github=
+.com/pricing?utm_source=3Dannouncement&utm_medium=3Demail&utm_campaign=3Dmn=
+ch-free" clicktracking=3D"off" style=3D"box-sizing: border-box; color: #036=
+6d6; text-decoration: underline;">compare plans</a> on our pricing page for=
+ more information on these changes.
+</p>
+
+
+<table class=3D"btn btn-primary" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"box-sizing: border-box; border-collapse: separate !important; mso-table=
+-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width=3D"100%">
+  <tr>
+    <td align=3D"" style=3D"box-sizing: border-box; font-family: -apple-sys=
+tem, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple C=
+olor Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; vertical=
+-align: top;" valign=3D"top">
+      <table cellpadding=3D"0" cellspacing=3D"0" style=3D"box-sizing: borde=
+r-box; border-collapse: separate !important; mso-table-lspace: 0pt; mso-tab=
+le-rspace: 0pt; width: auto;">
+        <tr>
+          <td style=3D"box-sizing: border-box; font-family: -apple-system, =
+BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color =
+Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; vertical-alig=
+n: top; background-color: #0366d6; border-radius: 5px; text-align: center;"=
+ valign=3D"top" bgcolor=3D"#0366d6" align=3D"center">
+            <a href=3D"https://help.github.com/github/getting-started-with-=
+github/faq-about-changes-to-githubs-plans?utm_source=3Dannouncement&utm_med=
+ium=3Demail&utm_campaign=3Dmnch-free" clicktracking=3D"off" style=3D"box-si=
+zing: border-box; color: #ffffff; text-decoration: none; background-color: =
+#0366d6; border: solid 1px #0366d6; border-radius: 5px; cursor: pointer; di=
+splay: inline-block; font-size: 16px; font-weight: bold; margin: 0; padding=
+: 10px 20px; border-color: #0366d6;">Learn more in our FAQ</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+=09
+	<div class=3D"footer" style=3D"box-sizing: border-box; clear: both; width:=
+ 100%;">
+					<hr class=3D"footer-hr" style=3D"height: 0; overflow: visible; margin-=
+top: 30px; border: 0; border-top: 1px solid #eee; color: #999999; font-size=
+: 12px; line-height: 18px; margin-bottom: 30px;">
+		      <div class=3D"footer-links" style=3D"box-sizing: border-box; color:=
+ #999999; font-size: 12px; line-height: 18px;">
+		        <p class=3D"footer-text" style=3D"font-family: -apple-system, Bli=
+nkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emo=
+ji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: normal; margin: 0; m=
+argin-bottom: 15px; color: #999999; font-size: 12px; line-height: 18px;">
+							<a href=3D" https://u15762298.ct.sendgrid.net/wf/unsubscribe?upn=3DH=
+hmRExLflmI6pwiWhENr66Da8eRAPUHESkCYpaaeZnPCg9F5uIX5-2FhrGH4DWaOxHrTvJT8PHA6=
+5FzoGt-2FnX702bFfgrxL-2BW5ksgE6GZz68zFN6F1oB1zyWAZpELgWMzqwGpOkDlIVHxtvAMgT=
+PprxbAbwUwF3BUC9d6kRA6PyO-2FM-2BHYOT4WB8qVdCLnc34OPU2C2cETzhpLEemlvcN-2FMcD=
+YNZZPbAU1S-2B9fazPjVL-2F-2BYud4t-2FGrQwN4WZZQ0rorWmCVRL8qyWP4QUKTsZkak-2Bky=
+TN2TEWSydBowZdG3EqbUEshvJFq5SOOH9pAYOGk9fwTyIVX29n71-2FudgpighpTGzWdvhK47C1=
+6CJApQM6nK21qGyGUzrs5RkQHpTpCvAmjQhoOQ09bZvOrvFD4r0VxPIKqdwd6ixCEJQ-2Bl3zX7=
+0UeYkMGnOzgqCez1UwkdETQsShTqQ7UqHquHoNgjmDNy099dGJrCx1leVCYWY7PaMzIh7V1Qpe-=
+2FxBEWGWSeqt1VNc1rFCcEjSkYkLr0hVrcSsKIRwbasi11yCXL8rQFH4ubq3RG7OCCssVPcPdyA=
+JLweb9i42ROdQMVgGloNqgnz5IyJltuRw88TXwsGbFRdIROJ2heqEs5IriUq44U8PBGhIVXp1Uw=
+ZSIBZOpsYK0vH4YIagMV6040XCOfbkwAS2I-3D " style=3D"box-sizing: border-box; c=
+olor: #999999; font-size: 12px; line-height: 18px; text-decoration: none;">=
+<unsubscribe style=3D"color: #999999; font-size: 12px; line-height: 18px;">=
+Unsubscribe</unsubscribe></a> &middot;
+							<a href=3D"https://github.com/settings/emails" clicktracking=3D"off"=
+ style=3D"box-sizing: border-box; color: #999999; font-size: 12px; line-hei=
+ght: 18px; text-decoration: none;">Email preferences</a> &middot;
+							<a href=3D"https://help.github.com/articles/github-terms-of-service/=
+" clicktracking=3D"off" style=3D"box-sizing: border-box; color: #999999; fo=
+nt-size: 12px; line-height: 18px; text-decoration: none;">Terms</a> &middot;
+							<a href=3D"https://help.github.com/articles/github-privacy-statement=
+/" clicktracking=3D"off" style=3D"box-sizing: border-box; color: #999999; f=
+ont-size: 12px; line-height: 18px; text-decoration: none;">Privacy</a> &mid=
+dot;
+							<a href=3D"https://github.com/login" clicktracking=3D"off" style=3D"=
+box-sizing: border-box; color: #999999; font-size: 12px; line-height: 18px;=
+ text-decoration: none;">Sign in to GitHub</a>
+						</p>
+		      </div>
+		      <p class=3D"footer-text" style=3D"font-family: -apple-system, Blink=
+MacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji=
+', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-weight: normal; margin: 0; mar=
+gin-bottom: 15px; color: #999999; font-size: 12px; line-height: 18px;">GitH=
+ub, Inc.<br style=3D"color: #999999; font-size: 12px; line-height: 18px;"> =
+88 Colin P Kelly Jr St.<br style=3D"color: #999999; font-size: 12px; line-h=
+eight: 18px;"> San Francisco, CA 94107</p>
+				</div>
+			</div>
+
+		</td>
+		<td style=3D"box-sizing: border-box; font-family: -apple-system, BlinkMac=
+SystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', =
+'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 16px; vertical-align: top;"=
+ valign=3D"top"></td>
+	</tr>
+</table>
+
+
+<img src=3D"https://u15762298.ct.sendgrid.net/wf/open?upn=3DHhmRExLflmI6pwi=
+WhENr66Da8eRAPUHESkCYpaaeZnPCg9F5uIX5-2FhrGH4DWaOxHrTvJT8PHA65FzoGt-2FnX702=
+bFfgrxL-2BW5ksgE6GZz68zFN6F1oB1zyWAZpELgWMzqwGpOkDlIVHxtvAMgTPprxbAbwUwF3BU=
+C9d6kRA6PyO-2FM-2BHYOT4WB8qVdCLnc34OPU2C2cETzhpLEemlvcN-2FMcDYNZZPbAU1S-2B9=
+fazPjVL-2F-2BYud4t-2FGrQwN4WZZQ0rorWmCVRL8qyWP4QUKTsZkak-2BkyTN2TEWSydBowZd=
+G3EqbUEshvJFq5SOOH9pAYOGk9fwTyIVX29n71-2FudgpighpTGzWdvhK47C16CJApQM6nK21qG=
+yGUzrs5RkQHpTpCvAmjQhoOQ09bZvOrvFD4r0VxPIKqdwd6ixCEJQ-2Bl3zX70UeYkMGnOzgqCe=
+z1UwkdETQsShTqQ7UqHquHoNgjmDNy099dGJrCx1leVCYWY7PaMzIh7V1Qpe-2FxBEWGWSeqt1V=
+DBc59AfaELU14cbxuZBJ8yNFQoZC6wHlxJg0tKCFUGEUlZFuHYJ6EpRjom2bRnnI0jdsGijL7o6=
+AZrDYo1eT7EJ-2BugRMvsPlh0wGsSia6VsErGHN4o5bghuF4v0-2Bao8W7g-2FEAAkKXVEJCOSu=
+J6Fxs8R0zv6-2B507PXUNvLOm7zi4-3D" alt=3D"" width=3D"1" height=3D"1" border=
+=3D"0" style=3D"height:1px !important;width:1px !important;border-width:0 !=
+important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0=
+ !important;margin-left:0 !important;padding-top:0 !important;padding-botto=
+m:0 !important;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+</html>
+
+
+--3ddc7be06478067e29cdc9d985469b8a8d6aacced8daf151a0c86e619065--

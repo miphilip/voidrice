@@ -1,0 +1,1101 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:1845:0:0:0:0:0 with SMTP id j5csp3598902uag;
+        Mon, 15 Feb 2021 11:59:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxDbfs9TzGJScHjB+CfcPCi39wVeu2g6kEQsBCNNcB85tS0hgz5DK4XqbORObyfmoijjrJX
+X-Received: by 2002:a37:9d4b:: with SMTP id g72mr15551076qke.71.1613419139851;
+        Mon, 15 Feb 2021 11:58:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1613419139; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zgKsbkCljsta/WvPUbfQ9YTVxd+1a8VYi94HI49wnCu2zg05wO0kMM4ubBtKhwemiX
+         ZlApswORBSELNQXqA/vBWxh1EhYCUBremu2VB0y3J7qrM1SnGjMP2C8E5VkLaKDmL4r4
+         GUiuhhiqLCgysfyYYEvWcaTf1YJ8vznBhATBC0v3Gx+CqmtkbyPPkCSZqLV74WO43rNF
+         xYAeY8/G8144hfmNFSBRaduDNQ5RsvU1kL6qM43v6yIcz3Z/PlQk0KhS4fto08EbZyrM
+         N5r44nuk4R/N5HJoAvVyUoiFfagzyQMszjHB0u48QD/DW7nqGOvtBUp7z5dICYAZxUU/
+         tIow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:message-id:content-transfer-encoding:mime-version
+         :subject:to:from:dkim-signature:dkim-signature;
+        bh=n0bsF7M+coPTyKmLROJsF6HncXf9lFAfs3v0dGhL7nU=;
+        b=jRlKLDTxqhtcccCCtRpw/7/+4CRaToQvkXlHuSTQK2s0ULDdQ7bq6nXSJDdfPFwvOZ
+         FFkmUM+SWHGgNWrxzm7sx60sMJK1iaKaPxMF6GudvBh9rcD0lVHoJ1DJPaEmt9zzmjH8
+         ESdS2GMPTAdEy2erV/vwYNXEcfZayiyhht8hKbA446bwIMMROpUwAqAIITVNpejHU+/z
+         5UNq8bOZzjQJWUoxgql8Q01z89s56gRpnkoIg4vQJXq1TCUJNvY9Zzqnh9k5v81lnyjO
+         LN5tgVCJhoB6hYCCDUsInJFYpYgE8NTFdXLyGQPROrFEo/eSmQ92FJqrR0JoKoddr3D1
+         X5iA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@redditmail.com header.s=xilmjaesmk3m6dhldmzc75r7654i2ch4 header.b=gWUIJajl;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=ZLUNBoAF;
+       spf=pass (google.com: domain of 01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com designates 23.251.231.187 as permitted sender) smtp.mailfrom=01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=redditmail.com
+Return-Path: <01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com>
+Received: from e231-187.smtp-out.amazonses.com (e231-187.smtp-out.amazonses.com. [23.251.231.187])
+        by mx.google.com with ESMTPS id h11si9289070qtn.249.2021.02.15.11.58.59
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Mon, 15 Feb 2021 11:58:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of 01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com designates 23.251.231.187 as permitted sender) client-ip=23.251.231.187;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@redditmail.com header.s=xilmjaesmk3m6dhldmzc75r7654i2ch4 header.b=gWUIJajl;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=ZLUNBoAF;
+       spf=pass (google.com: domain of 01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com designates 23.251.231.187 as permitted sender) smtp.mailfrom=01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@amazonses.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=redditmail.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=xilmjaesmk3m6dhldmzc75r7654i2ch4; d=redditmail.com; t=1613419139;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date;
+	bh=PRKQBPcpxnvevhJE9jPfbi5imbn3yn6VgWW7i6fIy5w=;
+	b=gWUIJajl9gAYuDMN5ES8Xsbneydjm68AcRaS/yu0eqlLBL2DBtwvLMsLEo7FJdpu
+	tC6CON7ULIwBepoueL+8he6rnOXrKxLxKZrBEfipbxhAitXsb+bSe8X024ttNNi28YK
+	6aZqPUX5Vn4yST71LLo7sb4D2vzfpjy9Ti9qeZcw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1613419139;
+	h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-ID:Date:Feedback-ID;
+	bh=PRKQBPcpxnvevhJE9jPfbi5imbn3yn6VgWW7i6fIy5w=;
+	b=ZLUNBoAF6+20rBLXXdgnzt0h7mRRP3I9cvTBno+kAsSaVQN242GsGH4MZiKqPKha
+	QGAzO1pR1/JWtWX1nxZb8Sj53LRqzvK/Tp53MI/UQPhBEtVdkMdf/JZnBLJRIWagoD+
+	zPG6337TENyp70PGa3MDyqxA9E/zWF27bMT5lfp8=
+From: Reddit <noreply@redditmail.com>
+To: miphilipk@gmail.com
+Subject: Syntax error in rc.lua
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Message-ID: <01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000@email.amazonses.com>
+Date: Mon, 15 Feb 2021 19:58:58 +0000
+X-SES-Outgoing: 2021.02.15-23.251.231.187
+Feedback-ID: 1.us-east-1.UqlFplRllIQtiw+Kq2b87y7uRSu9p66fMici2AQNsMU=:AmazonSES
+X-TUID: /s4LqYxkTAf2
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" xml:lang="en" style="width: 100%;">
+
+<head>
+  <!-- MonitorCampaignID: email_digest -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--[if !mso><!-- -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--<![endif-->
+<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;" name="viewport">
+<meta name="viewport" content="width=device-width">
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta name="x-apple-disable-message-reformatting">
+
+<title>Reddit</title>
+
+<style type="text/css">
+.ExternalClass { width:100%; }
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+table td { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+h1, h2, h3, h4, h5, h6 { font-size: inherit; padding: 0; margin: 0; color: black; line-height: 100%; }
+.applelinks a { text-decoration: none; color: inherit !important; }
+a { color: black; text-decoration: none; }
+a, a:link, a:visited { color: inherit; text-decoration: none; }
+span.MsoHyperlink { mso-style-priority: 99; color: inherit; }
+span.MsoHyperlinkFollowed { mso-style-priority: 99; color: inherit; }
+img { border: 0px !important; }
+
+body {
+  font-family: Segoe UI, Arial, sans-serif;
+  font-size: 14px;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  width: 100% !important;
+}
+
+.button:hover { background-color: red !important; }
+.opacity:hover { opacity: 0.8 !important; }
+.headline { color: #0079D3 !important;}
+
+@media all {
+.ow100 { width: 100% !important;}
+}
+
+
+@media only screen and (max-width: 480px) {
+.w100m, .column50, .column33, .column25, .column75, .column66 { width: 100% !important; }
+.w90m { width: 90% !important;}
+.expandm { width: 100% !important; display: block !important; }
+.resizem { width: 100% !important; height: auto !important; }
+.hidem { display: none !important; }
+.h1m { font-size: 20px !important;}
+.h2m { font-size: 18px !important;}
+.h22m { font-size: 15px !important;}
+.h3m { font-size: 14px !important;}
+.tcenterm { text-align: center !important; }
+.tleftm { text-align: left !important; }
+.col25m { width: 25% !important;}
+.col75m { width: 75% !important;}
+
+.mobile-position { background-position: 0% 100% !important;}
+
+.hero-size { background-size: auto 100% !important;}
+.logo { width: 100px !important; height: auto !important; }
+.padt0m { padding-top: 0px !important; }
+.padl5m { padding-left: 5px !important; }
+.padt5m { padding-top: 5px !important; }
+.padt10m { padding-top: 10px !important; }
+.padt20m { padding-top: 20px !important; }
+.padt30m { padding-top: 30px !important; }
+.padb5m { padding-bottom: 5px !important;}
+.padb10m { padding-bottom: 10px !important;}
+.padb20m { padding-bottom: 20px !important;}
+.padb30m { padding-bottom: 30px !important;}
+
+.author { display: block !important; }
+}
+
+
+@media only screen and (max-width: 711px) {
+.ow100 { width: 100% !important;}
+.w100 { width: 100% !important;}
+.w90 { width: 90% !important;}
+.hide { display: none !important; }
+.resize { width: 100% !important; height: auto !important; }
+.resize img { width: 100% !important; height: auto !important; }
+.expand { width: 100% !important; display: block !important; }
+.height0 { height: 0 !important; }
+.column50 { width: 50%; }
+.column50a { width: 50%; }
+.column33 { width: 33.33%; }
+.column25 { width: 25%; }
+.column75 { width: 75%; }
+.column66 { width: 66%; }
+.tcenter { text-align: center !important; }
+.w70 { width: 70% !important;}
+
+.bannerpop { background-size: cover !important; }
+.overlay { background: -moz-linear-gradient(-45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */ }
+.padlr0m { padding-left: 0px !important; padding-right: 0px !important;}
+
+.padt0 { padding-top: 0px !important; }
+.padt5 { padding-top: 5px !important; }
+.padt10 { padding-top: 10px !important; }
+.padt20 { padding-top: 20px !important; }
+.padt30 { padding-top: 30px !important; }
+.padb5 { padding-bottom: 5px !important;}
+.padb10 { padding-bottom: 10px !important;}
+.padb20 { padding-bottom: 20px !important;}
+.padb30 { padding-bottom: 30px !important;}
+
+.hide-subreddit { width: 100% !important; text-align: left !important; margin-top: -10px !important; }
+}
+
+.image-container { height: 0; overflow: hidden; padding-top: 56.25%; position: relative; }
+.image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+</style>
+
+<!--[if mso>
+<style type="text/css">
+body {
+margin: 0 !important;
+padding: 0 !important;
+font-family: Segoe UI, Arial, sans-serif;
+}
+
+table, td, div, p {
+font-family: Segoe UI, Arial, sans-serif;
+line-height: normal;
+}
+</style>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif-->
+
+
+
+</head>
+
+<body class="tli" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none; margin: 0; padding: 0; width: 100%; background-color: white;">
+
+<span class="preview-text" style="display: none !important; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">r/awesomewm: Syntax error in rc.lua I&#39;m trying to desperately install [this](https://github.com/Purhan/dotfiles/tree/old) theme (werewolf edition) for my awesome wm, but it hasn&#39;t applied at all. I&#39;ve gone through the &#34;Usage&#34; list as we... </span>
+
+
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%;">
+    <tr>
+      <td align="center">
+        <table class="w100" width="711" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+
+
+
+          <!-- /// REDDIT LOGO NO TEXT START -->
+          <tr>
+
+            <!-- Image Start -->
+            <!-- 126x83 -->
+            <td class="padt10m" align="center" style="padding-top: 20px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=header/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/DMhDH0iLejvoz08JLHSmCn98EBhS76h6tXHEFCEx7GU=180"><img src="https://www.redditstatic.com/emaildigest/logo@2x.png" width="126" alt="reddit" style="display: block; border: 0; color: black; font-size: 25px; font-weight: bold; font-family: sans-serif;"/></a></td>
+            <!-- Image End -->
+
+          </tr>
+          <!-- REDDIT LOGO NO TEXT END ///-->
+
+
+          <tr>
+            <td align="center">
+              <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+              <!-- ADD MODULES HERE START -->
+
+                
+                  <!--/// COMMUNITY POST WITH SUBCOPY START -->
+                  <tr>
+                    <td align="center" style="padding-top: 10px;">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td valign="top">
+                          <table class="w100" width="515" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td>
+                                <table class="w100m" width="90%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="left" style="padding-top: 20px;">
+                                      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+
+                                          <!-- 24x24 Width Image Start -->
+                                          <td width="24" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/IZuaqmyDUiC0wzK987W2LCaOQp9xnGPb3SEbpdvZ190=180"><img src="https://www.redditstatic.com/emaildigest/reddit_community.png" width="24" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 10px; text-align: left;">
+                                            <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/c9Hl2jFv7PPwLvjK9qqM8Vt8SrjT30dm470XpLPWU94=180" style="color: #888888; text-decoration: none;">
+                                              <span style="font-size: 15px; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: bold; width: 1px; white-space: nowrap;">r/awesomewm<span>
+                                            </a>
+                                            <span class="hidem">&#183;</span>
+                                            <span class="author" style="display: inline-block;">
+                                              <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_author/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/MSpHury4psWx1w7-DRT9hiDiEbBaEHiPpEhFhUeKlqw=180" style="color: #999999; text-decoration: none;">Posted by u/Huhheijaa</a>&nbsp;<a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_timestamp/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/eIT5iPG-cpe4LbUmvn2Wz6CuRcnskFre3XNGSVZMmxk=180" style="color: #999999; text-decoration: none;">9h ago</a>
+                                            </span>
+                                          </td>
+                                          <!-- Copy End -->
+
+
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td style="padding-top: 10px; text-align: left; font-size: 16px; line-height: 1.2em; color: black; font-family: Helvetica, Arial, sans-serif; font-weight: bold;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_title/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/7inSBCD8gU_XVQmsd069cbL8yHoSkGGtoaWke6NeAN8=180" style="color: black; text-decoration: none;"><span class="headline">Syntax error in rc.lua</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td class="hidem" style="padding-top: 10px; text-align: left; font-size: 14px; line-height: 1.4em; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_body/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/dDhNrmqSfnZ_SFxMEy-0iANspzq72d9LC0SYpD-bAZ4=180" style="color: #999999; text-decoration: none;">I&#39;m trying to desperately install [this](https://github.com/Purhan/dotfiles/tree/old) theme (werewolf edition) for my awesome wm, but it hasn&#39;t applied at all. I&#39;ve gone through the &#34;Usage&#34; list as we... <span style="color: #0079DA;">Read&nbsp;More</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+
+                                  <!-- / META DATA START / -->
+                                  <tr>
+                                    <td class="padt10m" style="padding-top: 15px;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+                                          <td align="left">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 15 Image Start -->
+                                                <td width="15" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/fkGZXIhLb6epIKipf13N5ZR4XNNRXWCyi8HVwK_aR7w=180"><img src="https://www.redditstatic.com/emaildigest/upvote.png" width="15" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #999999; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/gkcplzvKegr5GPhj38WGSQuf_6SSOlIqPeLVsDmW5Rs=180" style="color: #999999; text-decoration: none;">3<span class="hidem">&nbsp;Votes</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                          <td align="left" style="padding-left: 15px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 13w Image Start -->
+                                                <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/YYNj7XOzx6UXDvQ77fZYVxL2gerXIb8UIcaQVYmbgyY=180"><img src="https://www.redditstatic.com/emaildigest/reddit_comment.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/aGppKLa8duh7jJUbfOWT9bMRk-vFJBZArkVJkr_5_cY=180" style="color: #999999; text-decoration: none;">6<span class="hidem" style="color: #999999; text-decoration: none;">&nbsp;Comments</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <!-- / META DATA END / -->
+
+
+
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+
+                          <!--[if mso]></td><td valign="top"><![endif]-->
+                          <table class="w100" width="120" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td class="padt20" style="padding-top: 35px;">
+                                <table class="w100m" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <!-- PREVIEW OBJECT BACKGROUND-IMAGE - Note: Apply link to both TD and MSO code -->
+                                    <td background="https://external-preview.redd.it/P1vvmDRZDG-mY3cQu8t4v-qMRbxKEPR5fp1MULov7LU.png?width=320&amp;crop=smart&amp;auto=webp&amp;s=6461601af12743184675b8da64c98491f79283c6" align="center" style="background-size: cover; background-position: left center; background-repeat: no-repeat; border: 1px solid #eeeeee;">
+                                      <!--[if gte mso 9]>
+                                          <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 120px; height: 100px;" src="https://www.redditstatic.com/emaildigest/reddit_post_image1_mobile.jpg" />
+                                          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 120px; height: 100px;">
+                                          <v:fill  opacity="0%" color="#ffffff"/>
+                                          <v:textbox inset="0,0,0,0">
+                                      <![endif]-->
+                                      <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_image/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/b8ymkT_htB6C4Q-HSIL23z0eX4fo_SQJSiL4EyZHi40=180" style="display: block; border: 0;">
+                                        <div class="image-container">
+
+                                          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td class="image" height="100" align="center">&nbsp;</td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </a>
+                                      <!--[if gte mso 9]>
+                                          </v:textbox>
+                                          </v:fill>
+                                          </v:rect>
+                                          </v:image> -->
+                                      <!--<![endif]-->
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 100%; padding-top: 20px; text-align: right; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal; max-width: 120px; overflow-wrap: break-word; word-wrap: break-word;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="right" class="hide-subreddit">
+                                        <tr>
+
+                                          <!-- 13w Image Start -->
+                                          <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fawesomewm%2Fcomments%2Flkbayi%2Fsyntax_error_in_rclua%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkbayi%26post_index=1%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/3/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/8yZlOJl-MzPNOVAW4XviK7Fr7bDkwKQAhnnmJ_r4BXI=180"><img src="https://www.redditstatic.com/emaildigest/hide.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Fnotification_off%2Fa05nmynn%2F2s8kq%2F3197eeb485dac3e2631a49b72eef30fabd3431df2011aa44ed4d996ef909cf50%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_hide_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/plWmvSajr5wkVl1lYfZ7qFiThUKrWjFFbRIkAvJ0WpM=180" style="color: #999999; text-decoration: none;">Hide r/awesomewm</a></td>
+                                          <!-- Copy End -->
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                  <!-- COMMUNITY POST WITH SUBCOPY END /// -->
+
+                  <!--/// DIVIDER START-->
+                  <tr>
+                    <td align="center" style="padding-top: 30px;">
+                      <table class="w90m" width="50%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td style="border-top: 1px solid #E4E4E4;"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- DIVIDER END ///-->
+                  
+                  <!--/// COMMUNITY POST WITH NO IMAGE START -->
+                  <tr>
+                    <td align="center" style="padding-top: 10px;">
+                      <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td align="left" style="padding-top: 20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                            <tr>
+
+                              <!-- 24x24 Width Image Start -->
+                              <td width="24" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/ENXkhorAFgy8r1TfZ59Q0roahxHWYXOiSITwltRkaAg=180"><img src="https://www.redditstatic.com/emaildigest/reddit_community.png" width="24" alt="" style="display: block; border: 0;"/></a></td>
+                              <!-- Image End -->
+
+
+                              <!-- Copy Start -->
+                              <td style="padding-left: 10px; text-align: left;">
+                                <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/lrbzS9-Bl-exokpYMEDtFVRAXZSceZzklCv13ew1S84=180" style="color: #888888; text-decoration: none;">
+                                  <span style="font-size: 15px; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: bold; width: 1px; white-space: nowrap;">r/TOR<span>
+                                </a>
+                                <span class="hidem">&#183;</span>
+                                <span class="author" style="display: inline-block;">
+                                  <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_author/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/QcxeAcpmqwLu1DUVyEX4oRy9We5__D9qT0s9wx7P3A8=180" style="color: #999999; text-decoration: none;">Posted by u/vance_99</a>&nbsp;<a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_timestamp/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/1LVAbZLQBfkHAv5F_NgpfQ5vtFnMAwT4ixRJQWFQBq0=180" style="color: #999999; text-decoration: none;">6h ago</a>
+                                </span>
+                              </td>
+                              <!-- Copy End -->
+
+                            </tr>
+                          </table>
+                        </td>
+                        </tr>
+
+                        <tr>
+
+                          <!-- Copy Start -->
+                          <td style="padding-top: 10px; text-align: left; font-size: 16px; line-height: 1.2em; color: black; font-family: Helvetica, Arial, sans-serif; font-weight: bold;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_title/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/6Xi8u8j4ba8I-N73PLHUASPUt9G1TE4GjpkjlTVoc2c=180" style="color: black; text-decoration: none;"><span class="headline">I live in a country that is actively trying to censor its citizens even with the threat of arrest. because of this, I have a goal of reaching maximum anonymity online.</span></a></td>
+                          <!-- Copy End -->
+
+                        </tr>
+
+                        <tr>
+
+                            <!-- Copy Start -->
+                            <td style="padding-top: 10px; text-align: left; font-size: 14px; line-height: 1.4em; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_body/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/opSH6QgNqhpOm9lM596FWUMFWLusppZicoH0fH6F4_4=180" style="color: #999999; text-decoration: none;">I have looked into browsers like tor, but I am skeptical as to how safe it is because of how old it is. I have also heard that is was even made by the federal government. I know a lot of people still ... <span style="color: #0079DA;">Read&nbsp;More</span></a></td>
+                            <!-- Copy End -->
+
+                        </tr>
+
+                        <!-- / META DATA START / -->
+                        <tr>
+                          <td class="padt10m" style="padding-top: 15px;">
+                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                              <tr>
+                                <td align="left">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                    <tr>
+
+                                      <!-- 15w Image Start -->
+                                      <td width="15" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/4sRsRCWUmv76dgW8qt1ef7ExNX0Aw_fkr3CECBR8Dn0=180"><img src="https://www.redditstatic.com/emaildigest/upvote.png" width="15" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #999999; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/lultE0EXEFhEZDz4FgLV1rBjOv0f1FdKSjF0RriHhsY=180" style="color: #999999; text-decoration: none;">31<span class="hidem">&nbsp;Votes</span></a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td align="left" style="padding-left: 15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                    <tr>
+
+                                      <!-- 13w Image Start -->
+                                      <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/gaZaAv3xsLT0r83_Rrs80T48Te8CAW471ez0UmaVIL8=180"><img src="https://www.redditstatic.com/emaildigest/reddit_comment.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/Qd9Pf3ARK90AmSeNZ9NvdADEt9-B5-O729G4wWoXf68=180" style="color: #999999; text-decoration: none;">12<span class="hidem" style="color: #999999; text-decoration: none;">&nbsp;Comments</span></a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td style="width: 100%; text-align: right; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="right">
+                                    <tr>
+
+                                      <!-- 13w Image Start -->
+                                      <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FTOR%2Fcomments%2Flke1c6%2Fi_live_in_a_country_that_is_actively_trying_to%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lke1c6%26post_index=2%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/3/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/HUaWnE_wajP12EIrGjrOSmtVu_hlj1krhJMfxGuMfSo=180"><img src="https://www.redditstatic.com/emaildigest/hide.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Fnotification_off%2Fa05nmynn%2F2r36m%2F0ddef021496f20029ca2e0ace1dca53c7aa802910dbbba4c8c69ef2e5f17c8e2%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_hide_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/KPUYFWIvaIqnSj3d6v4LGlucSRn608xWTwnHvRGUMAw=180" style="color: #999999; text-decoration: none;">Hide r/TOR</a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- / META DATA END / -->
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- COMMUNITY POST WITH NO IMAGE START END -->
+
+                  <!--/// DIVIDER START-->
+                  <tr>
+                    <td align="center" style="padding-top: 30px;">
+                      <table class="w90m" width="50%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td style="border-top: 1px solid #E4E4E4;"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- DIVIDER END ///-->
+                  
+                  <!--/// COMMUNITY POST WITH SUBCOPY START -->
+                  <tr>
+                    <td align="center" style="padding-top: 10px;">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td valign="top">
+                          <table class="w100" width="515" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td>
+                                <table class="w100m" width="90%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="left" style="padding-top: 20px;">
+                                      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+
+                                          <!-- 24x24 Width Image Start -->
+                                          <td width="24" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/EcOVMKbe4u7OhUCn2K6BG0-4OBHALDpDtErPqHPpN7g=180"><img src="https://styles.redditmedia.com/t5_h6drn/styles/communityIcon_dp8h7hii8dz11.png" width="24" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 10px; text-align: left;">
+                                            <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/jvoijgT_ch59yvQq-qexXb_3GKmUYr0XZtcKeOLpnN8=180" style="color: #888888; text-decoration: none;">
+                                              <span style="font-size: 15px; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: bold; width: 1px; white-space: nowrap;">r/brave_browser<span>
+                                            </a>
+                                            <span class="hidem">&#183;</span>
+                                            <span class="author" style="display: inline-block;">
+                                              <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_author/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/R_GV7eMfySBDJsup_tBGinQ4waY0_1ICwgTxh8K2Ats=180" style="color: #999999; text-decoration: none;">Posted by u/ShaggyNick41</a>&nbsp;<a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_timestamp/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/-MLSSLMh-y-OlUZOWP-g4sr0_WL3Dh99a87WoFr-hk0=180" style="color: #999999; text-decoration: none;">2h ago</a>
+                                            </span>
+                                          </td>
+                                          <!-- Copy End -->
+
+
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td style="padding-top: 10px; text-align: left; font-size: 16px; line-height: 1.2em; color: black; font-family: Helvetica, Arial, sans-serif; font-weight: bold;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_title/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/lN-6HmUryDcpLWiu1o9rYTpyMwLwJZO5ASExE0cLBQQ=180" style="color: black; text-decoration: none;"><span class="headline">100k Ads Blocked!</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td class="hidem" style="padding-top: 10px; text-align: left; font-size: 14px; line-height: 1.4em; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_body/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/MwBViF53Ht7bklcZQ3TKRRu7XsbmREMnHESo_WOxGzE=180" style="color: #999999; text-decoration: none;"><span style="color: #0079DA;">Read&nbsp;More</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+
+                                  <!-- / META DATA START / -->
+                                  <tr>
+                                    <td class="padt10m" style="padding-top: 15px;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+                                          <td align="left">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 15 Image Start -->
+                                                <td width="15" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/DGO3hJ9fHL8ac81vw6GpdZhITmROe8aQvvFS3fsCI_o=180"><img src="https://www.redditstatic.com/emaildigest/upvote.png" width="15" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #999999; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/n9NQFHy6k1eZVJaQknyEoE6hqApYkMP5y3ZBLvAXv5E=180" style="color: #999999; text-decoration: none;">64<span class="hidem">&nbsp;Votes</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                          <td align="left" style="padding-left: 15px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 13w Image Start -->
+                                                <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/7zl-V4T3d0IbZsWZn1uae1Madm0nc8qay3XFjFXQCpE=180"><img src="https://www.redditstatic.com/emaildigest/reddit_comment.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/-2EaG-1QR622Y8CG483u9EL-5cVmpSMF6wIXFvuhb-Y=180" style="color: #999999; text-decoration: none;">26<span class="hidem" style="color: #999999; text-decoration: none;">&nbsp;Comments</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <!-- / META DATA END / -->
+
+
+
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+
+                          <!--[if mso]></td><td valign="top"><![endif]-->
+                          <table class="w100" width="120" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td class="padt20" style="padding-top: 35px;">
+                                <table class="w100m" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <!-- PREVIEW OBJECT BACKGROUND-IMAGE - Note: Apply link to both TD and MSO code -->
+                                    <td background="https://preview.redd.it/pzfzcxvs9oh61.png?width=320&amp;crop=smart&amp;auto=webp&amp;s=98fb03502de9801d52b94f3e69af0e928245754c" align="center" style="background-size: cover; background-position: left center; background-repeat: no-repeat; border: 1px solid #eeeeee;">
+                                      <!--[if gte mso 9]>
+                                          <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 120px; height: 100px;" src="https://www.redditstatic.com/emaildigest/reddit_post_image1_mobile.jpg" />
+                                          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 120px; height: 100px;">
+                                          <v:fill  opacity="0%" color="#ffffff"/>
+                                          <v:textbox inset="0,0,0,0">
+                                      <![endif]-->
+                                      <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_image/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/R7mQ5m0YwMhnWbGrxyiaSofo71ipvVS5QoZrneL_hGE=180" style="display: block; border: 0;">
+                                        <div class="image-container">
+
+                                          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td class="image" height="100" align="center">&nbsp;</td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </a>
+                                      <!--[if gte mso 9]>
+                                          </v:textbox>
+                                          </v:fill>
+                                          </v:rect>
+                                          </v:image> -->
+                                      <!--<![endif]-->
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 100%; padding-top: 20px; text-align: right; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal; max-width: 120px; overflow-wrap: break-word; word-wrap: break-word;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="right" class="hide-subreddit">
+                                        <tr>
+
+                                          <!-- 13w Image Start -->
+                                          <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fbrave_browser%2Fcomments%2Flkhqv5%2F100k_ads_blocked%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkhqv5%26post_index=3%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/3/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/CBFM7NNtXtVeI4Xr-weMvXkL352_edjIwyuY4c1srRw=180"><img src="https://www.redditstatic.com/emaildigest/hide.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Fnotification_off%2Fa05nmynn%2Fh6drn%2Ff0307612f05e4137c861800166e4792ddbbb7713b7a7fb83df4cb9bfcf655242%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_hide_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/ZVx6WQ_3Dk2-m8kqQS9zi4cO__dLX7aP2udIrBTDE5U=180" style="color: #999999; text-decoration: none;">Hide r/brave_browser</a></td>
+                                          <!-- Copy End -->
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                  <!-- COMMUNITY POST WITH SUBCOPY END /// -->
+
+                  <!--/// DIVIDER START-->
+                  <tr>
+                    <td align="center" style="padding-top: 30px;">
+                      <table class="w90m" width="50%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td style="border-top: 1px solid #E4E4E4;"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- DIVIDER END ///-->
+                  
+                  <!--/// COMMUNITY POST WITH NO IMAGE START -->
+                  <tr>
+                    <td align="center" style="padding-top: 10px;">
+                      <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td align="left" style="padding-top: 20px;">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                            <tr>
+
+                              <!-- 24x24 Width Image Start -->
+                              <td width="24" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/vItGCe615SQuAAfTSer57sWXkMcCRL5A7X-LRykTj3c=180"><img src="https://styles.redditmedia.com/t5_2r552/styles/communityIcon_s9xhoj7em9941.png" width="24" alt="" style="display: block; border: 0;"/></a></td>
+                              <!-- Image End -->
+
+
+                              <!-- Copy Start -->
+                              <td style="padding-left: 10px; text-align: left;">
+                                <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/2aaImZqZXRysAE3pa_9ruLEbgM6s0TW3I-5vMuJw3rU=180" style="color: #888888; text-decoration: none;">
+                                  <span style="font-size: 15px; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: bold; width: 1px; white-space: nowrap;">r/onions<span>
+                                </a>
+                                <span class="hidem">&#183;</span>
+                                <span class="author" style="display: inline-block;">
+                                  <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_author/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/qTYAerXpbq41Ea9EHQFJzexR1Z3meIZAuMQmHdq2Q1Y=180" style="color: #999999; text-decoration: none;">Posted by u/minotorusuis</a>&nbsp;<a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_timestamp/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/DIUZIlwUaHd2gTDzc8LboWJdWB7hb8ApIBLJ_WUEBlY=180" style="color: #999999; text-decoration: none;">5h ago</a>
+                                </span>
+                              </td>
+                              <!-- Copy End -->
+
+                            </tr>
+                          </table>
+                        </td>
+                        </tr>
+
+                        <tr>
+
+                          <!-- Copy Start -->
+                          <td style="padding-top: 10px; text-align: left; font-size: 16px; line-height: 1.2em; color: black; font-family: Helvetica, Arial, sans-serif; font-weight: bold;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_title/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/Eqh2_oe--AHC6giLkBn7L-nYKn5yhkvc3rt2cgVxyj4=180" style="color: black; text-decoration: none;"><span class="headline">How does the CIA protect its dw website against ddos?</span></a></td>
+                          <!-- Copy End -->
+
+                        </tr>
+
+                        <tr>
+
+                            <!-- Copy Start -->
+                            <td style="padding-top: 10px; text-align: left; font-size: 14px; line-height: 1.4em; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_body/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/iIwmBYjjvbqLu-M61vyjcyN_Z3hLt3DNz1rmGVUi5tk=180" style="color: #999999; text-decoration: none;">I was having a look at the official CIA onion website from which I had found the link scrolling through [dark.fail](https://dark.fail) and I found it surprising that they had absolutely no captcha or ... <span style="color: #0079DA;">Read&nbsp;More</span></a></td>
+                            <!-- Copy End -->
+
+                        </tr>
+
+                        <!-- / META DATA START / -->
+                        <tr>
+                          <td class="padt10m" style="padding-top: 15px;">
+                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                              <tr>
+                                <td align="left">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                    <tr>
+
+                                      <!-- 15w Image Start -->
+                                      <td width="15" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/3aajrGah28RYDa9xBqUJmPp8LwDgCops_Ae5Ffv2uPg=180"><img src="https://www.redditstatic.com/emaildigest/upvote.png" width="15" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #999999; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/HiCzIP-g1Nz1Q5E28DDaqxXrJ_rJNgljRNKPJ8FWo9k=180" style="color: #999999; text-decoration: none;">41<span class="hidem">&nbsp;Votes</span></a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td align="left" style="padding-left: 15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                    <tr>
+
+                                      <!-- 13w Image Start -->
+                                      <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/ZrJrUooinRIHskcTgY4QMXEM9G6198t73jyfA5WJXMw=180"><img src="https://www.redditstatic.com/emaildigest/reddit_comment.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/xCN_KSNy9DVl-2CFckzCrCTL10Ld_Zd7qfzBOGTdCoc=180" style="color: #999999; text-decoration: none;">38<span class="hidem" style="color: #999999; text-decoration: none;">&nbsp;Comments</span></a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td style="width: 100%; text-align: right; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;">
+                                  <table border="0" cellpadding="0" cellspacing="0" align="right">
+                                    <tr>
+
+                                      <!-- 13w Image Start -->
+                                      <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2Fonions%2Fcomments%2Flkeg9w%2Fhow_does_the_cia_protect_its_dw_website_against%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkeg9w%26post_index=4%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/3/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/2btBQ6HCr2731riKptrvHgmIY9pN_eHM0WhQgDr0Yo4=180"><img src="https://www.redditstatic.com/emaildigest/hide.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                      <!-- Image End -->
+
+                                      <!-- Copy Start -->
+                                      <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Fnotification_off%2Fa05nmynn%2F2r552%2F3f3069ad7f4a935afcd525606469b31f1dc4b9f71fe04c8eb4604bd6e1b3ba10%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_hide_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/pxyTKkqhvbDUuSaFycKfLXRlitjVoEUE84zn-47rN0Q=180" style="color: #999999; text-decoration: none;">Hide r/onions</a></td>
+                                      <!-- Copy End -->
+
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- / META DATA END / -->
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- COMMUNITY POST WITH NO IMAGE START END -->
+
+                  <!--/// DIVIDER START-->
+                  <tr>
+                    <td align="center" style="padding-top: 30px;">
+                      <table class="w90m" width="50%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td style="border-top: 1px solid #E4E4E4;"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- DIVIDER END ///-->
+                  
+                  <!--/// COMMUNITY POST WITH SUBCOPY START -->
+                  <tr>
+                    <td align="center" style="padding-top: 10px;">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td valign="top">
+                          <table class="w100" width="515" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td>
+                                <table class="w100m" width="90%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="left" style="padding-top: 20px;">
+                                      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+
+                                          <!-- 24x24 Width Image Start -->
+                                          <td width="24" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/cHs8df4ba_Lib4scdmT24gjvvz7cDdtucKh4FFNWNr8=180"><img src="https://styles.redditmedia.com/t5_2u6vg/styles/communityIcon_534vhvmwg2w51.png" width="24" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 10px; text-align: left;">
+                                            <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_subreddit/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/frQYi3zc5xQKJhTbayLvzFOlAFX3k9Kbkji5H2YQQyU=180" style="color: #888888; text-decoration: none;">
+                                              <span style="font-size: 15px; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: bold; width: 1px; white-space: nowrap;">r/GME<span>
+                                            </a>
+                                            <span class="hidem">&#183;</span>
+                                            <span class="author" style="display: inline-block;">
+                                              <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_author/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/4ioLbQ5cLcolPgebdESvCf5dXYnMMljvE0AXYRLNygE=180" style="color: #999999; text-decoration: none;">Posted by u/draconic86</a>&nbsp;<a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_timestamp/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/L2X4UyuAhU22eG6DAT9K0Om5KKc9H7nZvxf3eIU_uBM=180" style="color: #999999; text-decoration: none;">3h ago</a>
+                                            </span>
+                                          </td>
+                                          <!-- Copy End -->
+
+
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td style="padding-top: 10px; text-align: left; font-size: 16px; line-height: 1.2em; color: black; font-family: Helvetica, Arial, sans-serif; font-weight: bold;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_title/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/nqd3yEPO8fbiR9QuRFFdYS6dWIqD5l0uWb1XINz20M4=180" style="color: black; text-decoration: none;"><span class="headline">XRT Shorts mapped to GME&#39;s chart</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+                                  <tr>
+
+                                    <!-- Copy Start -->
+                                    <td class="hidem" style="padding-top: 10px; text-align: left; font-size: 14px; line-height: 1.4em; color: #888888; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_body/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/OkYLFrFdNPBpBAuJRj_QFhl7TGflkJonagz2XLpCzk8=180" style="color: #999999; text-decoration: none;"><span style="color: #0079DA;">Read&nbsp;More</span></a></td>
+                                    <!-- Copy End -->
+
+                                  </tr>
+
+                                  <!-- / META DATA START / -->
+                                  <tr>
+                                    <td class="padt10m" style="padding-top: 15px;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                        <tr>
+                                          <td align="left">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 15 Image Start -->
+                                                <td width="15" align="left"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/L3KxVdepJN7se3JCxuV-ub0J5tvm2l5_GhMt88uc1wA=180"><img src="https://www.redditstatic.com/emaildigest/upvote.png" width="15" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #999999; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_karma/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/QQw9HyvQ8vmWtvEl5x-7anvmRERsvsc_zUbpfxKocIQ=180" style="color: #999999; text-decoration: none;">356<span class="hidem">&nbsp;Votes</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                          <td align="left" style="padding-left: 15px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" align="left">
+                                              <tr>
+
+                                                <!-- 13w Image Start -->
+                                                <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/sYjz4PfIzNW7BNuYcBGD8Xe_yfHmUOUpjNOAbSVfDE8=180"><img src="https://www.redditstatic.com/emaildigest/reddit_comment.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                                <!-- Image End -->
+
+                                                <!-- Copy Start -->
+                                                <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/QF5JafJFr39We15ZShQIJqlEb-A8F2nYwjkIkv9iZQE=180" style="color: #999999; text-decoration: none;">105<span class="hidem" style="color: #999999; text-decoration: none;">&nbsp;Comments</span></a></td>
+                                                <!-- Copy End -->
+
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                  <!-- / META DATA END / -->
+
+
+
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+
+                          <!--[if mso]></td><td valign="top"><![endif]-->
+                          <table class="w100" width="120" border="0" align="left" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td class="padt20" style="padding-top: 35px;">
+                                <table class="w100m" width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <!-- PREVIEW OBJECT BACKGROUND-IMAGE - Note: Apply link to both TD and MSO code -->
+                                    <td background="https://preview.redd.it/qlws6xqb1oh61.png?width=1080&amp;crop=smart&amp;auto=webp&amp;s=302f26028c4e145143bc2250d1a9f954a92d94b3" align="center" style="background-size: cover; background-position: left center; background-repeat: no-repeat; border: 1px solid #eeeeee;">
+                                      <!--[if gte mso 9]>
+                                          <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 120px; height: 100px;" src="https://www.redditstatic.com/emaildigest/reddit_post_image1_mobile.jpg" />
+                                          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 120px; height: 100px;">
+                                          <v:fill  opacity="0%" color="#ffffff"/>
+                                          <v:textbox inset="0,0,0,0">
+                                      <![endif]-->
+                                      <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_image/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/4gc5aqsoQYl481b4wBHqC3bo7rUY0j7F4Pnbqs64ao4=180" style="display: block; border: 0;">
+                                        <div class="image-container">
+
+                                          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td class="image" height="100" align="center">&nbsp;</td>
+                                            </tr>
+                                          </table>
+                                        </div>
+                                      </a>
+                                      <!--[if gte mso 9]>
+                                          </v:textbox>
+                                          </v:fill>
+                                          </v:rect>
+                                          </v:image> -->
+                                      <!--<![endif]-->
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="width: 100%; padding-top: 20px; text-align: right; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal; max-width: 120px; overflow-wrap: break-word; word-wrap: break-word;">
+                                      <table border="0" cellpadding="0" cellspacing="0" align="right" class="hide-subreddit">
+                                        <tr>
+
+                                          <!-- 13w Image Start -->
+                                          <td width="13" align="left" style="line-height: 0px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fr%2FGME%2Fcomments%2Flkgrhe%2Fxrt_shorts_mapped_to_gmes_chart%2F%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26post_fullname=t3_lkgrhe%26post_index=5%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_comments/3/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/Pk_M3j-13E017MfvDg3d2lpsyms6BE56E2h8y20iJpA=180"><img src="https://www.redditstatic.com/emaildigest/hide.png" width="13" alt="" style="display: block; border: 0;"/></a></td>
+                                          <!-- Image End -->
+
+                                          <!-- Copy Start -->
+                                          <td style="padding-left: 5px; text-align: left; font-size: 14px; color: #0079D3; font-family: Helvetica, Arial, sans-serif; font-weight:normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Fnotification_off%2Fa05nmynn%2F2u6vg%2F8dbd4e11bec7b48f7f682d5e41495f8e7598233131c25e4a355a02b686ecb5dd%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=post_hide_subreddit/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/DQi7x3EElJk7iSESHjjTP4VZb_JJql1UZ7Uv0-DBuAo=180" style="color: #999999; text-decoration: none;">Hide r/GME</a></td>
+                                          <!-- Copy End -->
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                  <!-- COMMUNITY POST WITH SUBCOPY END /// -->
+
+                  <!--/// DIVIDER START-->
+                  <tr>
+                    <td align="center" style="padding-top: 30px;">
+                      <table class="w90m" width="50%" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td style="border-top: 1px solid #E4E4E4;"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- DIVIDER END ///-->
+                  
+
+                <!--/// STANDARD BUTTON START -->
+                <tr>
+              <td align="center" style="padding-top: 20px;">
+                <table border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="background-color: #0079D3; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; overflow: hidden;">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+
+                          <!-- Copy Start -->
+                          <td class="opensans" align="center" height="35" style="padding-left: 35px; padding-right: 35px; font-size: 13px; color: white; font-family: Arial, sans-serif; text-align: center; font-weight: normal;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=view_more/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/u_0f7RRmYZ1VgNNNMA4c9zw8xrglDPpgfdMucOmPDdQ=180" style="color: white; text-decoration: none;"><span class="opacity" style="display: block; width: 100%; padding-top: 10px; padding-bottom: 10px; color: white;">VIEW MORE&nbsp;POSTS</span></a></td>
+                          <!-- Copy End -->
+
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+                </tr>
+                <!--  STANDARD BUTTON END ///-->
+
+              <!-- ADD MODULES HERE END -->
+
+              </table>
+            </td>
+          </tr>
+
+          <!--/// FOOOTER START  -->
+          <tr>
+            <td align="center" style="padding-top: 20px;">
+              <table align="center" width="90%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="background-color: #E8F2F9; padding-top: 30px;">
+                    <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td align="center">
+                          <table width="85%" align="center" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+
+                              <!-- 100w Image Start -->
+                              <td align="center"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=footer/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/K7D2oJH73SvKr3afQBgio6TwdYMABTKkwFv1ObyzSQ8=180"><img src="https://www.redditstatic.com/emaildigest/logo@2x.png" width="100" alt="" style="display: block; border: 0;"/></a></td>
+                              <!-- Image End -->
+
+                            </tr>
+                            <tr>
+                              <td align="center" style="padding-top: 20px;">
+                                <table align="center" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+
+                                    <!-- 131x46 Image Start -->
+                                    <td align="center" style="padding-right: 5px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Freddit.app.link%2F%3Faction=click%26publisher_id=293679%26site_id=122129%26site_id_ios=121809%26utm_content=install_app/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/ADaFjECrHua9zp-9odLWMi-P1Y_ZTp2C_-VNfJSDAdY=180"><img src="https://www.redditstatic.com/emaildigest/button_applestore.png" width="131" alt="Download on the App Store" style="display: block; border: 0; color: black; font-size: 15px; font-weight: bold; font-family: sans-serif; max-width: 100%;" class="opacity"/></a></td>
+                                    <!-- Image End -->
+
+                                    <!-- 131x46 Image Start -->
+                                    <td align="center"  style="padding-left: 5px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Freddit.app.link%2F%3Faction=click%26publisher_id=293679%26site_id=122129%26site_id_ios=121809%26utm_content=install_app/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/nbF3o-DFdA5EhT5drOZG8qxKPvwVRTpMqKt1WpFBKyY=180"><img src="https://www.redditstatic.com/emaildigest/button_googleplay.png" width="131" alt="Get it on Google Play" style="display: block; border: 0; color: black; font-size: 15px; font-weight: bold; font-family: sans-serif; max-width: 100%;" class="opacity"/></a></td>
+                                    <!-- Image End -->
+
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+
+                        <!-- Copy Start -->
+                              <td style="padding-top: 30px; text-align: center; font-size: 13px; line-height: 1.4em; color: #808080; font-family: Helvetica, Arial, sans-serif; font-weight: bold;">548 MARKET ST. #1<span></span>6<span></span>09<span></span>3,<span class="expandm">SAN FRANCISCO, CA&nbsp;94<span></span>10<span></span>4&ndash;54<span></span>01</span></td>
+                        <!-- Copy End -->
+
+                            </tr>
+                            <tr>
+
+                        <!-- Copy Start -->
+                        <td style="padding-top: 20px; text-align: center; font-size: 13px; line-height: 1.4em; color: #808080; font-family: Helvetica, Arial, sans-serif; font-weight: normal;"> This email was intended for u/miphilip. <a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%2Fmail%2Funsubscribe%2Fa05nmynn%2F2%2Fe6ee20bd845b6b5707cb145ae17d1c1adac21694a843d156aac18bdf1acd2b46%3F$web_only=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=unsubscribe/1/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/iratjq7R_QaJWINSxDuq_HSu0H8jFJqQv3i8fPjsVEU=180" target="_blank" class="link c-blue" style="text-decoration:none; color:#006cbf;"><span class="link c-blue" style="text-decoration:none; color:#006cbf;">Unsubscribe</span></a> from daily digest messages, or visit your settings to manage what emails Reddit sends you.</td>
+                        <!-- Copy End -->
+
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <!-- 640x200 Image Start -->
+                        <td align="center" style="padding-top: 20px;"><a href="https://click.redditmail.com/CL0/https:%2F%2Fwww.reddit.com%3F$deep_link=true%26correlation_id=4158c269-8a59-4d4d-8e5d-c9b82d7cc1e9%26ref=email_digest%26ref_campaign=email_digest%26ref_source=email%26utm_content=footer/2/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/0aCJXl1kr5mVlXpSZ-rbl85jU2XOIlwNZcJIkUWkqjE=180"><img src="https://www.redditstatic.com/emaildigest/bottom_img.png" width="640" alt="" style="display: block; border: 0; background-color: none; color: white; font-size: 20px; font-weight: bold; font-family: sans-serif; max-width: 100%;" class="resizem"/></a></td>
+                        <!-- Image End -->
+
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- FOOTER END  ///-->
+        </table>
+      </td>
+    </tr>
+  </table>
+<img alt="" src="http://click.redditmail.com/CI0/01000177a7464fa4-c8adcb99-c14f-4ca0-b97f-146b42220a4f-000000/1-Af9tQd-Mg5pD1WJbGd3lTgyhw1uubm-8g_V-sqYvI=180" style="display: none; width: 1px; height: 1px;">
+</body>
+</html>

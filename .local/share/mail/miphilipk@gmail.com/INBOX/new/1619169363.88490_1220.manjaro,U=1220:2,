@@ -1,0 +1,885 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:45d3:0:0:0:0:0 with SMTP id u77csp2264281uau;
+        Sat, 14 Nov 2020 09:20:38 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx1lkZ6/fKQe368swLzWd7hINCBsLzmjh7rxJNg3C5Ljw/svGI+RnnnvcnoN6NUP/RdY+fw
+X-Received: by 2002:ac8:5253:: with SMTP id y19mr7031722qtn.260.1605374438778;
+        Sat, 14 Nov 2020 09:20:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1605374438; cv=none;
+        d=google.com; s=arc-20160816;
+        b=q1BrXvlB4v7dZEIBQoSbHEZsnYxnd4x4WMoqxGdduX8QlUQtQUbJ3PTt5aqRwQSvCJ
+         K+B8qJdq7wcgwQFNSBibI6B2eeOSX5D2G1/UqqRXC12pvyp0fJVysgyNRIguRH/SnsR8
+         mL9m9adPBApn36u5gkZqYccEaCG+L5d8Nu0ioPamF2uP7mW49xqp1NNKDUh6WwK3EVZ8
+         nl13A9Pr2iU1JG25uxamWcgk/REgqNIdr9ymOQ/AIoxDKo4xS2mV9zSRBQHy3V0Dm02n
+         BoAovNwLYXB5tGqxqsgE6P2bftvRWbpR+OR6cRYu4g48U6ME3J/ko9zrX0Ucv2vXzLF0
+         rDbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:content-transfer-encoding:mime-version:list-unsubscribe
+         :message-id:subject:reply-to:from:to:date:dkim-signature
+         :dkim-signature;
+        bh=LH6qzDD8DebtLDxAF9CBordtRJ3+MFSn8iX44ELAYnA=;
+        b=SsnBXBQMt5LmV3iQNahqoTvAc9hnLNxsCVgDvuMxEz6V2bVZ1C55eFTF1O3EA39Z7X
+         pdzg6AZxJYgwtc7HqElmsv3fWsX3q16HAbi7vF3plvmvBLXN7xJJ4R14gL4CN7OSHE9X
+         hSPcmRBm9i2L/CpLdOYNFe1uHYTx9d8VqhkklEkYDfLbzQw36ic3EtSMqr7ACe4hoWie
+         wlLsp4Pm3VTOA6upRQzeo3T6g07AN7SKuhcYfOcSlII1D0m+iGEEoSR1D2syvNBB0Akh
+         iM2kt8CE2WSk8RAGqCVbuP9fSinYw+Q6MpyC+mJsLjYA/7xGADrYetNM3vdkNERI6LKW
+         CXew==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@hackersploit.org header.s=pvfhtkhs55sq76szojp3svi6bwbaxnbe header.b=JZkc7lHp;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=VUK37EsQ;
+       spf=pass (google.com: domain of 01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com designates 54.240.8.237 as permitted sender) smtp.mailfrom=01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com
+Return-Path: <01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com>
+Received: from a8-237.smtp-out.amazonses.com (a8-237.smtp-out.amazonses.com. [54.240.8.237])
+        by mx.google.com with ESMTPS id j2si6305341qth.97.2020.11.14.09.20.38
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Sat, 14 Nov 2020 09:20:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of 01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com designates 54.240.8.237 as permitted sender) client-ip=54.240.8.237;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hackersploit.org header.s=pvfhtkhs55sq76szojp3svi6bwbaxnbe header.b=JZkc7lHp;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=VUK37EsQ;
+       spf=pass (google.com: domain of 01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com designates 54.240.8.237 as permitted sender) smtp.mailfrom=01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=pvfhtkhs55sq76szojp3svi6bwbaxnbe; d=hackersploit.org;
+	t=1605374438;
+	h=Date:To:From:Reply-To:Subject:Message-ID:List-Unsubscribe:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	bh=UAyzHvjY6x5GCAxssFu7nHp4ChV618IIEN0wI+Qjx5I=;
+	b=JZkc7lHpxLCJHGk2iyjBSDzTE0LR+j7N4piJM02NKbsNwWHXwFpZinPc3WEOx1DM
+	rKfA6kTIe4gZpi90ztCQskbXWlsPAP9QEjmXYRQxjp0Q8bQ1KlPpfIo4MJQ8HoACRvS
+	CSFPomiM7BkGqVpbYfI77WLZ4VtR1qzUYW/S1q2U=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1605374438;
+	h=Date:To:From:Reply-To:Subject:Message-ID:List-Unsubscribe:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=UAyzHvjY6x5GCAxssFu7nHp4ChV618IIEN0wI+Qjx5I=;
+	b=VUK37EsQzTXp0SGhPDn6SjOLuaun0oiVit3DowuiVfS2a6tCmmrKfsS9yECGkALq
+	ysTcoyiR1Jcd8HUh34cMAiNbtGtv9ICqjhw36MhPr1w8tcGvw76Z3bM2hmqVX7jluxX
+	qV8rrOE6pa2M6zY30uE4XNmJ+M45l1BJDvIp7kPo=
+Date: Sat, 14 Nov 2020 17:20:38 +0000
+To: miphilipk@gmail.com
+From: HackerSploit <newsletter@hackersploit.org>
+Reply-To: HackerSploit <newsletter@hackersploit.org>
+Subject: [NOW AVAILABLE] HackerSploit Linux Security Series
+Message-ID: <01000175c7c5ea75-b7b07788-6623-4365-a772-87e9e64f24bd-000000@email.amazonses.com>
+X-Mailer: Sendy (https://sendy.co)
+List-Unsubscribe: <https://marketing.hsploit.com/unsubscribe/wRJ2aD763vtvb5GMrWK8tzC95obLMuU5NBGB6AzoRuiKc/m892HdyQmV892rgOgUMKHcOk2Q/lxmV507bkFEvoRFlr4o3892A>
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SES-Outgoing: 2020.11.14-54.240.8.237
+Feedback-ID: 1.us-east-1.OVCTXAQXjWNUfneZAD24TLsdRZDMZ3A2zoXrjYJUN4g=:AmazonSES
+X-TUID: /6ui3/D2eyj8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style=3D"width:100%;font-family:'open sans', 'helvetica neue', helvet=
+ica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:1=
+00%;padding:0;Margin:0" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:o=3D"u=
+rn:schemas-microsoft-com:office:office">
+<head><meta charset=3D"UTF-8"><meta content=3D"width=3Ddevice-width, initia=
+l-scale=3D1" name=3D"viewport"><meta name=3D"x-apple-disable-message-reform=
+atting"><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"><meta co=
+ntent=3D"telephone=3Dno" name=3D"format-detection">
+=09<title>NOW AVAILABLE - HackerSploit Linux Security Series</title>
+=09<!--[if (mso 16)]><style type=3D"text/css">     a {text-decoration: none=
+;}     </style><![endif]--><!--[if gte mso 9]><style>sup { font-size: 100% =
+!important; }</style><![endif]--><!--[if gte mso 9]><xml> <o:OfficeDocument=
+Settings> <o:AllowPNG>
+</o:AllowPNG> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSetti=
+ngs> </xml><![endif]--><!--[if !mso]><!-- -->
+=09<link href=3D"https://fonts.googleapis.com/css?family=3DOpen+Sans:400,40=
+0i,700,700i" rel=3D"stylesheet" /><!--<![endif]-->
+=09<style type=3D"text/css">#outlook a {=09padding:0;}.ExternalClass {=09wi=
+dth:100%;}.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClas=
+s font,.ExternalClass td,.ExternalClass div {=09line-height:100%;}.es-butto=
+n {=09mso-style-priority:100!important;=09text-decoration:none!important;}a=
+[x-apple-data-detectors] {=09color:inherit!important;=09text-decoration:non=
+e!important;=09font-size:inherit!important;=09font-family:inherit!important=
+;=09font-weight:inherit!important;=09line-height:inherit!important;}.es-des=
+k-hidden {=09display:none;=09float:left;=09overflow:hidden;=09width:0;=09ma=
+x-height:0;=09line-height:0;=09mso-hide:all;}@media only screen and (max-wi=
+dth:600px) {p, ul li, ol li, a { font-size:16px!important; line-height:150%=
+!important } h1 { font-size:30px!important; text-align:center; line-height:=
+120%!important } h2 { font-size:26px!important; text-align:center; line-hei=
+ght:120%!important } h3 { font-size:20px!important; text-align:center; line=
+-height:120%!important } h1 a {=20
+font-size:30px!important } h2 a { font-size:26px!important } h3 a { font-si=
+ze:20px!important } .es-menu td a { font-size:16px!important } .es-header-b=
+ody p, .es-header-body ul li, .es-header-body ol li, .es-header-body a { fo=
+nt-size:16px!important } .es-footer-body p, .es-footer-body ul li, .es-foot=
+er-body ol li, .es-footer-body a { font-size:16px!important } .es-infoblock=
+ p, .es-infoblock ul li, .es-infoblock ol li, .es-infoblock a { font-size:1=
+2px!important } *[class=3D"gmail-fix"] { display:none!important } .es-m-txt=
+-c, .es-m-txt-c h1, .es-m-txt-c h2, .es-m-txt-c h3 { text-align:center!impo=
+rtant } .es-m-txt-r, .es-m-txt-r h1, .es-m-txt-r h2, .es-m-txt-r h3 { text-=
+align:right!important } .es-m-txt-l, .es-m-txt-l h1, .es-m-txt-l h2, .es-m-=
+txt-l h3 { text-align:left!important } .es-m-txt-r img, .es-m-txt-c img, .e=
+s-m-txt-l img { display:inline!important } .es-button-border { display:bloc=
+k!important } a.es-button {=20
+font-size:20px!important; display:block!important; border-left-width:0px!im=
+portant; border-right-width:0px!important } .es-btn-fw { border-width:10px =
+0px!important; text-align:center!important } .es-adaptive table, .es-btn-fw=
+, .es-btn-fw-brdr, .es-left, .es-right { width:100%!important } .es-content=
+ table, .es-header table, .es-footer table, .es-content, .es-footer, .es-he=
+ader { width:100%!important; max-width:600px!important } .es-adapt-td { dis=
+play:block!important; width:100%!important } .adapt-img { width:100%!import=
+ant; height:auto!important } .es-m-p0 { padding:0px!important } .es-m-p0r {=
+ padding-right:0px!important } .es-m-p0l { padding-left:0px!important } .es=
+-m-p0t { padding-top:0px!important } .es-m-p0b { padding-bottom:0!important=
+ } .es-m-p20b { padding-bottom:20px!important } .es-mobile-hidden, .es-hidd=
+en { display:none!important } tr.es-desk-hidden, td.es-desk-hidden, table.e=
+s-desk-hidden { width:auto!important;=20
+overflow:visible!important; float:none!important; max-height:inherit!import=
+ant; line-height:inherit!important } tr.es-desk-hidden { display:table-row!=
+important } table.es-desk-hidden { display:table!important } td.es-desk-men=
+u-hidden { display:table-cell!important } .es-menu td { width:1%!important =
+} table.es-table-not-adapt, .esd-block-html table { width:auto!important } =
+table.es-social { display:inline-block!important } table.es-social td { dis=
+play:inline-block!important } }
+=09</style>
+</head>
+<body style=3D"width:100%;font-family:'open sans', 'helvetica neue', helvet=
+ica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:1=
+00%;padding:0;Margin:0">
+<div class=3D"es-wrapper-color" style=3D"background-color:#F7F7F7"><!--[if =
+gte mso 9]><v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"=
+t"> <v:fill type=3D"tile" color=3D"#f7f7f7"></v:fill> </v:background><![end=
+if]-->
+<table cellpadding=3D"0" cellspacing=3D"0" class=3D"es-wrapper" style=3D"ms=
+o-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spa=
+cing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat=
+;background-position:center top" width=3D"100%">
+=09<tbody>
+=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09<td style=3D"padding:0;Margin:0" valign=3D"top">
+=09=09=09<table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"es-header" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-co=
+llapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%=
+;background-color:transparent;background-repeat:repeat;background-position:=
+center top">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09<td align=3D"center" bgcolor=3D"transparent" style=3D"pad=
+ding:0;Margin:0;background-size:cover;background-color:transparent">
+=09=09=09=09=09=09<table align=3D"center" bgcolor=3D"#ffffff" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"es-header-body" style=3D"mso-table-lspace=
+:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;backg=
+round-color:#FFFFFF;width:650px">
+=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09<td align=3D"left" bgcolor=3D"#ffffff" style=3D"=
+Margin:0;padding-top:15px;padding-bottom:15px;padding-left:20px;padding-rig=
+ht:20px;background-color:#FFFFFF"><!--[if mso]><table style=3D"width:610px"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td style=3D"width:295px" valign=
+=3D"top"><![endif]-->
+=09=09=09=09=09=09=09=09=09<table align=3D"left" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"es-left" style=3D"mso-table-lspace:0pt;mso-table-rspace:=
+0pt;border-collapse:collapse;border-spacing:0px;float:left">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"es-m-p20b" =
+style=3D"padding:0;Margin:0;width:295px">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" class=3D"=
+es-m-txt-c" style=3D"padding:0;Margin:0;padding-top:5px;font-size:0px"><a h=
+ref=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/c9YkDuJebKM0l=
+13hARNJWw/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;=
+-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sa=
+ns', 'helvetica neue', helvetica, arial, sans-serif;font-size:20px;text-dec=
+oration:none;color:#B7BDC9" target=3D"_blank"><img alt=3D"" src=3D"https://=
+waboi.stripocdn.email/content/guids/CABINET_0cfb6968a51fd09acbc46b7ccdd9810=
+2/images/53721593470375146.png" style=3D"display:block;border:0;outline:non=
+e;text-decoration:none;-ms-interpolation-mode:bicubic" width=3D"295" /></a>=
+</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09<!--[if mso]></td>
+<td style=3D"width:20px"></td><td style=3D"width:295px" valign=3D"top"><![e=
+ndif]-->
+
+=09=09=09=09=09=09=09=09=09<table align=3D"right" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"es-right" style=3D"mso-table-lspace:0pt;mso-table-rspac=
+e:0pt;border-collapse:collapse;border-spacing:0px;float:right">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"padding:0;M=
+argin:0;width:295px">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"right" style=3D"p=
+adding:0;Margin:0;padding-left:40px"><span class=3D"es-button-border" style=
+=3D"border-style:solid;border-color:#75B6C9;background:#CC0000;border-width=
+:1px;display:inline-block;border-radius:28px;width:auto"><a class=3D"es-but=
+ton" href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/JSCwGIp=
+edMVvmwXuLJN0QQ/lxmV507bkFEvoRFlr4o3892A" style=3D"mso-style-priority:100 !=
+important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-=
+adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetic=
+a neue', helvetica, arial, sans-serif;font-size:18px;color:#FFFFFF;border-s=
+tyle:solid;border-color:#CC0000;border-width:15px 25px;display:inline-block=
+;background:#CC0000;border-radius:28px;font-weight:normal;font-style:normal=
+;line-height:22px;width:auto;text-align:center" target=3D"_blank">Our Cours=
+es</a></span></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09<!--[if mso]></td></tr></table><![endif]--></td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"padding:0;Margin:0;p=
+adding-top:10px;padding-left:20px;padding-right:20px">
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bord=
+er-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0=
+;Margin:0;width:610px" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;font-size:0px"><img alt=3D"" class=3D"adapt-img" src=3D"=
+https://waboi.stripocdn.email/content/guids/CABINET_0cfb6968a51fd09acbc46b7=
+ccdd98102/images/38221598445961683.png" style=3D"display:block;border:0;out=
+line:none;text-decoration:none;-ms-interpolation-mode:bicubic" width=3D"100=
+" /></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:20px;padding-top:25px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h1 style=3D"Margin:0;line-hei=
+ght:48px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', =
+helvetica, sans-serif;font-size:40px;font-style:normal;font-weight:bold;col=
+or:#000000">Linux Server Security Series</h1>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<span style=3D"color:#B22222;f=
+ont-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:18px"><=
+strong>How to setup, secure and audit Linux servers</strong></span></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:20px;Margin:0;font-size:0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" height=3D"100%" role=3D"presentation" style=3D"ms=
+o-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spa=
+cing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-coll=
+apse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"padding:=
+0;Margin:0;border-bottom:1px solid #CCCCCC;background:none;height:1px;width=
+:100%;margin:0px">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;font-size:0px"><a href=3D"https://marketing.hsploit.com/=
+l/ma1syIaQYs3XtlxV5hGMdg/lxmV507bkFEvoRFlr4o3892A/lxmV507bkFEvoRFlr4o3892A"=
+ style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-=
+height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, a=
+rial, sans-serif;font-size:20px;text-decoration:none;color:#B7BDC9" target=
+=3D"_blank"><img alt=3D"" class=3D"adapt-img" src=3D"https://waboi.stripocd=
+n.email/content/guids/CABINET_0cfb6968a51fd09acbc46b7ccdd98102/images/96901=
+605372766807.png" style=3D"display:block;border:0;outline:none;text-decorat=
+ion:none;-ms-interpolation-mode:bicubic" width=3D"610" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"pa=
+dding:0;Margin:0;padding-top:20px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:20px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:30px;color:#333333"><span style=3D"font-size:18px;=
+color:#000000">Our 12-episode Linux Security Series with Linode is now avai=
+lable to stream! In this series, you&rsquo;ll learn everything from securin=
+g Nginx and Apache2 to utilizing tools such as Fail2ban and Lynis. If you&r=
+squo;re unfamiliar with HackerSploit, check out his&nbsp;<a href=3D"https:/=
+/marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/lzcUz7fTnsF9jPblEgRTmw/lxmV=
+507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-size-=
+adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helvetic=
+a neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:none;c=
+olor:#FF0000" target=3D"_blank">YouTube channel</a>&nbsp;where over 500K su=
+bscribers follow him for education and training in ethical hacking, penetra=
+tion testing, Linux, and all things cybersecurity. Check out all episodes o=
+f our series below.</span><span style=3D"color:#000000">&nbsp;</span><br />
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09&nbsp;</p>
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:27px;color:#000000;text-align:center">Make sure to=
+ register via On24 here: <a href=3D"https://marketing.hsploit.com/l/ma1syIa=
+QYs3XtlxV5hGMdg/8pZisqSrEO892DVGjEqZodYw/lxmV507bkFEvoRFlr4o3892A" style=3D=
+"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-ru=
+le:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;font-size:18px;text-decoration:none;color:#FF0000" target=3D"_blank=
+">https://bit.ly/3kvVt6f</a></p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:20px;Margin:0;font-size:0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" height=3D"100%" role=3D"presentation" style=3D"ms=
+o-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spa=
+cing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-coll=
+apse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"padding:=
+0;Margin:0;border-bottom:1px solid #CCCCCC;background:none;height:1px;width=
+:100%;margin:0px">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:20px;padding-top:25px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h1 style=3D"Margin:0;line-hei=
+ght:48px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', =
+helvetica, sans-serif;font-size:40px;font-style:normal;font-weight:bold;col=
+or:#000000">Part 1</h1>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-top:20px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h1 style=3D"Margin:0;line-hei=
+ght:48px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica n=
+eue', helvetica, arial, sans-serif;font-size:40px;font-style:normal;font-we=
+ight:bold;color:#333333;text-align:center"><a href=3D"https://marketing.hsp=
+loit.com/l/ma1syIaQYs3XtlxV5hGMdg/2skvHzNXC4rkai4IzPCIBA/lxmV507bkFEvoRFlr4=
+o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;ms=
+o-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helve=
+tica, arial, sans-serif;font-size:20px;text-decoration:none;color:#000000" =
+target=3D"_blank">Ep. 1&ndash;5: YouTube Series</a></h1>
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:27px;color:#000000;text-align:center">Get started =
+with the fundamentals in&nbsp;<a href=3D"https://marketing.hsploit.com/l/ma=
+1syIaQYs3XtlxV5hGMdg/2skvHzNXC4rkai4IzPCIBA/lxmV507bkFEvoRFlr4o3892A" style=
+=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height=
+-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, =
+sans-serif;font-size:18px;text-decoration:none;color:#000000" target=3D"_bl=
+ank">episodes 1&ndash;5</a>. HackerSploit goes over SSH Security Essentials=
+, Configuring SUDO Access, Securing Apache2, Securing Nginx, plus he presen=
+ts a complete guide to UFW.<br />
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<br />
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09New to the series?&nbsp;<a hre=
+f=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/2skvHzNXC4rkai4=
+IzPCIBA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-m=
+s-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans=
+', 'helvetica neue', helvetica, arial, sans-serif;font-size:18px;text-decor=
+ation:none;color:#FF0000" target=3D"_blank">Start here</a>.&nbsp;</p>
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:27px;color:#000000">&nbsp;</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"Margin:0;padding-bot=
+tom:10px;padding-top:20px;padding-left:20px;padding-right:20px"><!--[if mso=
+]><table style=3D"width:610px" cellpadding=3D"0" cellspacing=3D"0"><tr><td =
+style=3D"width:214px"><![endif]-->
+=09=09=09=09=09=09=09=09=09<table align=3D"left" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"es-left" style=3D"mso-table-lspace:0pt;mso-table-rspace:=
+0pt;border-collapse:collapse;border-spacing:0px;float:left">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"es-m-p20b" =
+style=3D"padding:0;Margin:0;width:194px">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;font-size:0px"><a href=3D"https://marketing.hsploit.com/=
+l/ma1syIaQYs3XtlxV5hGMdg/vnC089290l7XipwoGLGYyz3w/lxmV507bkFEvoRFlr4o3892A"=
+ style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-=
+height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, a=
+rial, sans-serif;font-size:20px;text-decoration:none;color:#B7BDC9" target=
+=3D"_blank"><img alt=3D"Icon" src=3D"https://waboi.stripocdn.email/content/=
+guids/CABINET_0cfb6968a51fd09acbc46b7ccdd98102/images/1171601931172378.png"=
+ style=3D"display:block;border:0;outline:none;text-decoration:none;-ms-inte=
+rpolation-mode:bicubic" title=3D"Icon" width=3D"194" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:10px;padding-top:20px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h3 style=3D"Margin:0;line-hei=
+ght:22px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica n=
+eue', helvetica, arial, sans-serif;font-size:18px;font-style:normal;font-we=
+ight:bold;color:#444444">SSH Security Essentials</h3>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"es-hidden" style=3D"paddin=
+g:0;Margin:0;width:20px">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09<!--[if mso]></td><td style=3D"width:188px"><![e=
+ndif]-->
+
+=09=09=09=09=09=09=09=09=09<table align=3D"left" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"es-left" style=3D"mso-table-lspace:0pt;mso-table-rspace:=
+0pt;border-collapse:collapse;border-spacing:0px;float:left">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"es-m-p20b" =
+style=3D"padding:0;Margin:0;width:188px">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;font-size:0px"><a href=3D"https://marketing.hsploit.com/=
+l/ma1syIaQYs3XtlxV5hGMdg/763yxmQZgrS85fe10y6ic6nQ/lxmV507bkFEvoRFlr4o3892A"=
+ style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-=
+height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, a=
+rial, sans-serif;font-size:20px;text-decoration:none;color:#B7BDC9" target=
+=3D"_blank"><img alt=3D"Icon" src=3D"https://waboi.stripocdn.email/content/=
+guids/CABINET_0cfb6968a51fd09acbc46b7ccdd98102/images/26521601931226907.png=
+" style=3D"display:block;border:0;outline:none;text-decoration:none;-ms-int=
+erpolation-mode:bicubic" title=3D"Icon" width=3D"188" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:10px;padding-top:20px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h3 style=3D"Margin:0;line-hei=
+ght:22px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica n=
+eue', helvetica, arial, sans-serif;font-size:18px;font-style:normal;font-we=
+ight:bold;color:#444444">Securing Apache2</h3>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09<!--[if mso]></td>
+<td style=3D"width:20px"></td><td style=3D"width:188px"><![endif]-->
+
+=09=09=09=09=09=09=09=09=09<table align=3D"right" cellpadding=3D"0" cellspa=
+cing=3D"0" class=3D"es-right" style=3D"mso-table-lspace:0pt;mso-table-rspac=
+e:0pt;border-collapse:collapse;border-spacing:0px;float:right">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"es-m-p20b" =
+style=3D"padding:0;Margin:0;width:188px">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;font-size:0px"><a href=3D"https://marketing.hsploit.com/=
+l/ma1syIaQYs3XtlxV5hGMdg/1892m5vIZQZX5ws83OGlYIZA/lxmV507bkFEvoRFlr4o3892A"=
+ style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-=
+height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, a=
+rial, sans-serif;font-size:20px;text-decoration:none;color:#B7BDC9" target=
+=3D"_blank"><img alt=3D"Icon" src=3D"https://waboi.stripocdn.email/content/=
+guids/CABINET_0cfb6968a51fd09acbc46b7ccdd98102/images/3311601931273013.png"=
+ style=3D"display:block;border:0;outline:none;text-decoration:none;-ms-inte=
+rpolation-mode:bicubic" title=3D"Icon" width=3D"188" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:10px;padding-top:20px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h3 style=3D"Margin:0;line-hei=
+ght:22px;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica n=
+eue', helvetica, arial, sans-serif;font-size:18px;font-style:normal;font-we=
+ight:bold;color:#444444">UFW - Complete Guide</h3>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09<!--[if mso]></td></tr></table><![endif]--></td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"padding:0;Margin:0">
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bord=
+er-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0=
+;Margin:0;width:650px" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:20px;Margin:0;font-size:0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" height=3D"100%" role=3D"presentation" style=3D"ms=
+o-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spa=
+cing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-coll=
+apse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"padding:=
+0;Margin:0;border-bottom:1px solid #CCCCCC;background:none;height:1px;width=
+:100%;margin:0px">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-bottom:20px;padding-top:25px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<h1 style=3D"Margin:0;line-hei=
+ght:48px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', =
+helvetica, sans-serif;font-size:40px;font-style:normal;font-weight:bold;col=
+or:#000000">Part 2</h1>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" style=3D"pa=
+dding:0;Margin:0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<ul>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 6: SSH Brute-force protection with =
+Fail2Ban</a><span style=3D"color:#FF0000">:&nbsp;</span><span style=3D"colo=
+r:#000000"> Learn how to secure SSH from brute-force attacks with Fail2Ban.=
+&nbsp;<a href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxi=
+h1PWAyt0CPYk1Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-=
+adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-fam=
+ily:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:1=
+8px;text-decoration:none;color:#FF0000" target=3D"_blank">Stream now</a></s=
+pan></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 7: IPtables &ndash; Complete Guide<=
+/a><span style=3D"color:#FF0000">:</span>&nbsp;<span style=3D"color:#000000=
+">Learn how to configure IPtables to allow/block connections to your server=
+.&nbsp;<a href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dx=
+ih1PWAyt0CPYk1Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size=
+-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-fa=
+mily:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:=
+18px;text-decoration:none;color:#FF0000" target=3D"_blank">Stream now</a></=
+span></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 8: Configuring Automated Security U=
+pdates</a><span style=3D"color:#FF0000">:&nbsp;</span><span style=3D"color:=
+#000000">Learn how to configure automated and unattended security updates o=
+n your server.&nbsp;<a href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3X=
+tlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-web=
+kit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:ex=
+actly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-ser=
+if;font-size:18px;text-decoration:none;color:#FF0000" target=3D"_blank">Str=
+eam now</a></span></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 9: WordPress Security Guide</a><spa=
+n style=3D"color:#FF0000">:</span>&nbsp;<span style=3D"color:#000000"> Lear=
+n how to set up and secure WordPress from the ground up.&nbsp;<a href=3D"ht=
+tps://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763m=
+sA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-tex=
+t-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'h=
+elvetica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration=
+:none;color:#FF0000" target=3D"_blank">Stream now</a></span></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 10: AV &amp; Rootkit Detection</a><=
+span style=3D"color:#FF0000">:</span>&nbsp;<span style=3D"color:#000000">Le=
+arn how to scan for and protect your Linux systems from malware and rootkit=
+s.&nbsp;<a href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/D=
+xih1PWAyt0CPYk1Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-siz=
+e-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-f=
+amily:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size=
+:18px;text-decoration:none;color:#FF0000" target=3D"_blank">Stream now</a><=
+/span></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 11: Logging &amp; System Monitoring=
+</a><span style=3D"color:#FF0000">:</span>&nbsp;<span style=3D"color:#00000=
+0">Learn how to monitor and analyze Linux system logs for security events.&=
+nbsp;<a href=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih=
+1PWAyt0CPYk1Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-a=
+djust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-fami=
+ly:'open sans', 'helvetica neue', helvetica, arial, sans-serif;font-size:18=
+px;text-decoration:none;color:#FF0000" target=3D"_blank">Stream now</a></sp=
+an></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<li style=3D"-webkit-text-s=
+ize-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font=
+-size:18px;font-family:'open sans', 'helvetica neue', helvetica, arial, san=
+s-serif;line-height:27px;Margin-bottom:15px;color:#B7BDC9"><a href=3D"https=
+://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1Ye763msA/=
+lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-s=
+ize-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'helv=
+etica neue', helvetica, arial, sans-serif;font-size:18px;text-decoration:no=
+ne;color:#FF0000" target=3D"_blank">Ep. 12: Security Auditing with Lynis</a=
+><span style=3D"color:#FF0000">:&nbsp;</span><span style=3D"color:#000000">=
+ Learn how to audit and secure your Linux systems with Lynis.&nbsp;<a href=
+=3D"https://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/Dxih1PWAyt0CPYk1=
+Ye763msA/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-=
+ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'open san=
+s', 'helvetica neue', helvetica, arial, sans-serif;font-size:18px;text-deco=
+ration:none;color:#FF0000" target=3D"_blank">Stream now</a></span></li>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</ul>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09=09</td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+
+=09=09=09<table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"es-content" style=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-c=
+ollapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100=
+%">
+=09=09=09=09<tbody>
+=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0;Margin:0">
+=09=09=09=09=09=09<table align=3D"center" bgcolor=3D"#ffffff" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"es-content-body" style=3D"mso-table-lspac=
+e:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;back=
+ground-color:#FFFFFF;width:650px">
+=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09<td align=3D"left" bgcolor=3D"#252424" style=3D"=
+Margin:0;padding-top:20px;padding-bottom:20px;padding-left:40px;padding-rig=
+ht:40px;background-color:#252424">
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;bord=
+er-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"padding:0=
+;Margin:0;width:570px" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"mso-table-lspace:0pt;mso-table-rspace:0p=
+t;border-collapse:collapse;border-spacing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:0;Margin:0;padding-top:20px;font-size:0px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cells=
+pacing=3D"0" class=3D"es-table-not-adapt es-social" role=3D"presentation" s=
+tyle=3D"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;=
+border-spacing:0px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-coll=
+apse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" =
+style=3D"padding:0;Margin:0;padding-right:35px" valign=3D"top"><a href=3D"h=
+ttps://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/X763mGDt4mlAZk4zlQ8sg=
+puw/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-te=
+xt-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', '=
+helvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoratio=
+n:none;color:#75B6C9" target=3D"_blank"><img alt=3D"Tw" height=3D"64" src=
+=3D"https://waboi.stripocdn.email/content/assets/img/social-icons/square-gr=
+ay-bordered/twitter-square-gray-bordered.png" style=3D"display:block;border=
+:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" title=
+=3D"Twitter" width=3D"64" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" =
+style=3D"padding:0;Margin:0;padding-right:35px" valign=3D"top"><a href=3D"h=
+ttps://marketing.hsploit.com/l/ma1syIaQYs3XtlxV5hGMdg/e7be5I1rrgONgO4ogdZSl=
+w/lxmV507bkFEvoRFlr4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text=
+-size-adjust:none;mso-line-height-rule:exactly;font-family:'open sans', 'he=
+lvetica neue', helvetica, arial, sans-serif;font-size:16px;text-decoration:=
+none;color:#75B6C9" target=3D"_blank"><img alt=3D"Yt" height=3D"64" src=3D"=
+https://waboi.stripocdn.email/content/assets/img/social-icons/square-gray-b=
+ordered/youtube-square-gray-bordered.png" style=3D"display:block;border:0;o=
+utline:none;text-decoration:none;-ms-interpolation-mode:bicubic" title=3D"Y=
+outube" width=3D"64" /></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" =
+style=3D"padding:0;Margin:0" valign=3D"top"><a href=3D"https://marketing.hs=
+ploit.com/l/ma1syIaQYs3XtlxV5hGMdg/H6g6Htpa2KBiiJHeLXVwyQ/lxmV507bkFEvoRFlr=
+4o3892A" style=3D"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;m=
+so-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helv=
+etica, arial, sans-serif;font-size:16px;text-decoration:none;color:#75B6C9"=
+ target=3D"_blank"><img alt=3D"World" height=3D"64" src=3D"https://waboi.st=
+ripocdn.email/content/assets/img/other-icons/square-gray-bordered/globe-squ=
+are-gray-bordered.png" style=3D"display:block;border:0;outline:none;text-de=
+coration:none;-ms-interpolation-mode:bicubic" title=3D"World" width=3D"64" =
+/></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" style=3D"=
+padding:20px;Margin:0;font-size:0">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" height=3D"100%" role=3D"presentation" style=3D"ms=
+o-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spa=
+cing:0px" width=3D"100%">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-coll=
+apse:collapse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td style=3D"padding:=
+0;Margin:0;border-bottom:1px solid #CCCCCC;background:none;height:1px;width=
+:100%;margin:0px">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" class=3D"=
+es-m-txt-c" style=3D"padding:0;Margin:0;padding-top:10px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:14px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:21px;color:#FFFFFF">Copyright @ 2020 HackerSploit,=
+ All rights reserved.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<tr style=3D"border-collapse:coll=
+apse">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" class=3D"=
+es-m-txt-c" style=3D"padding:0;Margin:0;padding-top:10px">
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:16px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:24px;color:#999999"><span style=3D"color:#FFFFFF;f=
+ont-size:14px">Want to change your subscription preferences?</span></p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"https://marketing.h=
+sploit.com/unsubscribe/wRJ2aD763vtvb5GMrWK8tzC95obLMuU5NBGB6AzoRuiKc/m892Hd=
+yQmV892rgOgUMKHcOk2Q/lxmV507bkFEvoRFlr4o3892A" >Unsubscribe here</a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"Margin:0;-webkit-t=
+ext-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly=
+;font-size:16px;font-family:'open sans', 'helvetica neue', helvetica, arial=
+, sans-serif;line-height:24px;color:#999999">&nbsp;</p>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09=09</tbody>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09=09</td>
+=09=09=09=09=09</tr>
+=09=09=09=09</tbody>
+=09=09=09</table>
+=09=09=09</td>
+=09=09</tr>
+=09</tbody>
+</table>
+</div>
+</body>
+</html>
+<img src=3D"https://marketing.hsploit.com/t/lxmV507bkFEvoRFlr4o3892A/ma1syI=
+aQYs3XtlxV5hGMdg" alt=3D"" style=3D"width:1px;height:1px;"/>

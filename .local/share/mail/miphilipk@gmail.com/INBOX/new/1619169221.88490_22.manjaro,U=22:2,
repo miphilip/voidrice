@@ -1,0 +1,638 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 10.12.168.239 with SMTP id h47csp330198qvc;
+        Tue, 2 Jan 2018 23:01:31 -0800 (PST)
+X-Google-Smtp-Source: ACJfBovZPDhfzb6ErSSbltTBU/AnF9ZvW3HHc1k0g6zc37l/MQdu15TE+LEpXEHfSFCvnf3MNQNA
+X-Received: by 10.31.50.75 with SMTP id y72mr399505vky.175.1514962891893;
+        Tue, 02 Jan 2018 23:01:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1514962891; cv=none;
+        d=google.com; s=arc-20160816;
+        b=07YNFyF6iSszq5C+3NDN8Vb5eMdOdjKC5d1dPPRpKvUp6llYIwNGcP4wx+XXTyvAp0
+         BCQQimQXeB+emTzvD3J6FP7o+PbeFQRnqAEpQ1TBpQDaXeK6zpGrpXe3/rY8mYIr1Js4
+         nQ7QEnHBWoSrch3hx+j67PNmgd+I5vJqOJQYBmDeQ8qcyP5xS6ipM09Kanokd8aVglxl
+         w3FBVcc2dWaz5i4IHAztBzjLY1pEjC0eJgqLD91YF9+1j4ywyn+F5HyuFpyen1wpv30m
+         kYSXIolcpBAQTfAJAqaCkNVhEEA2QbXrmIg/Cu648msmBwXQbOUPa8StX8IkH0mFqfoO
+         rNGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=subject:date:reply-to:to:from:mime-version:message-id
+         :dkim-signature:arc-authentication-results;
+        bh=LoCjSFjq1FuOr4Yd3XTiuEe7QEucnkdzVJHSPa0GuU0=;
+        b=N4H1HyktmcRzhg7/NVNZm1fSmL82jIERjFM8lq/P49p06cs9vZe0N3lmT9tkgIgNy1
+         pBEzSzhnuRoixgzuZLoO785PzhtPYEzVTUGj/1s3jpsmq9vX1mVto1q7yfhzgHJST1Jv
+         LqSfVmoZquL33YBLg+G2/UqEKcwkKap16V2X0uGTCMIkf+3dqpH3mif58BJXtA9dWNw9
+         /+uwSZLs5AJadi6RKtXYObRTjVZgLkoqEqiu+Iz5m9g6z3hy7ZcxFc7oTXw9ymxEn/y8
+         Tvq6Yhjyw0J4oKmzZ4FWmAnPV3V46DF9nmU+pbj0k4I//Ctdo1/tTXVSNXesMSwY+727
+         mvVw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@oracle-mail.com header.s=dk1024-2012 header.b=Hr8qfqdY;
+       spf=pass (google.com: domain of bounces@response.oracle-mail.com designates 142.0.162.55 as permitted sender) smtp.mailfrom=bounces@response.oracle-mail.com
+Return-Path: <bounces@response.oracle-mail.com>
+Received: from mail03.response.oracle-mail.com (mail03.response.oracle-mail.com. [142.0.162.55])
+        by mx.google.com with ESMTPS id e15si164172vke.35.2018.01.02.23.01.31
+        for <miphilipk@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Tue, 02 Jan 2018 23:01:31 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces@response.oracle-mail.com designates 142.0.162.55 as permitted sender) client-ip=142.0.162.55;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@oracle-mail.com header.s=dk1024-2012 header.b=Hr8qfqdY;
+       spf=pass (google.com: domain of bounces@response.oracle-mail.com designates 142.0.162.55 as permitted sender) smtp.mailfrom=bounces@response.oracle-mail.com
+Return-Path: <bounces@response.oracle-mail.com>
+DKIM-Signature: v=1; a=rsa-sha1; d=oracle-mail.com; s=dk1024-2012; c=relaxed/relaxed;
+	q=dns/txt; i=@oracle-mail.com; t=1514962890;
+	h=From:Subject:Date:To:MIME-Version:Content-Type;
+	bh=BtAWz6HRm/bQEj8oiX6ZFYBlqxo=;
+	b=Hr8qfqdYmz8VBY7KeviyNLug6E7Usy5ejPzIzx+5YvkEPExOdBu6NKsVtNT7RNi4
+	IxWQpUG/3Cx4LzNiBSr+WvTLInvAorqdwrMOZv4+ia2bEblrPE+8UbhHp/Tur9l/
+	cVm+bFeEQLYYg/X+MccoNUiSowk4h6BSjC5pywxp8AM=;
+Received: from [10.34.116.103] ([10.34.116.103:49574] helo=P03SNJ005)
+	by msm-mta06-dc6 (envelope-from <bounces@response.oracle-mail.com>)
+	(ecelerity 3.6.9.48312 r(Core:3.6.9.0)) with ESMTP
+	id 38/63-31459-ACF7C4A5; Wed, 03 Jan 2018 02:01:30 -0500
+Message-ID: <434112d5e60f45adbe36591a75a8186a@1973398186>
+X-Binding: 1973398186
+X-elqSiteID: 1973398186
+X-elqPod: 0x4FAD31AC84944479F0D71EA9AF9E5B508254F4720DA05EDD7E2289D7C62F1F76
+X-cid: 124369-93623
+MIME-Version: 1.0
+From: "Oracle University" <replies@oracle-mail.com>
+To: miphilipk@gmail.com
+Reply-To: "Oracle University" <replies@oracle-mail.com>
+Date: 3 Jan 2018 02:01:31 -0500
+Subject: Instructor insight into Oracle Database 12c R2
+Content-Type: multipart/alternative;
+ boundary=--boundary_3340180_3761b843-8c9b-4883-8e56-3f25de8c8170
+X-TUID: TkYJ5Y8CLnqk
+
+
+----boundary_3340180_3761b843-8c9b-4883-8e56-3f25de8c8170
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+DQoNClZpZXcgPGh0dHA6Ly9hcHAucmVzcG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/
+ZWxxX21pZD05MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0
+MDgwODMzMTAmY21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2Jmxp
+ZD0yNTAzODEmZWxxVHJhY2tJZD03M2JjYTQ2ZTU4NWI0OTY0OThmZjVmMTUwMzBiZTQ1
+MSZlbHE9NDM0MTEyZDVlNjBmNDVhZGJlMzY1OTFhNzVhODE4NmEmZWxxYWlkPTkzNjIz
+JmVscWF0PTE+IHRoaXMgbWVzc2FnZSBpbiBhIFdlYiBicm93c2VyICAgICAgICAgIA0K
+DQoiT3JhY2xlIiAgICAgICAgIA0KDQpUYWtlIGEgcGVlayBpbnNpZGUgT3JhY2xlIERC
+MTJjIFIyICAgICAgICAgICAgICAgDQpKb2luIGV4cGVydCBpbnN0cnVjdG9yLCBIYXJh
+bGQgdmFuIEJyZWVkZXJvZGUsIHdoZW4gaGUgc2hvd3MgeW91IGEgc2VsZWN0aW9uIG9m
+IGVuaGFuY2VtZW50cywgc3VjaCBhcyBPcmFjbGUgTXVsdGl0ZW5hbnQgQXJjaGl0ZWN0
+dXJlLCBzZWN1cml0eSwgZGF0YSBhdmFpbGFiaWxpdHkgYW5kIHBlcmZvcm1hbmNlLCBp
+bnRyb2R1Y2VkIGluIE9yYWNsZSBEYXRhYmFzZSAxMmMgUmVsIDIuDQoNCiJWaWRlbyIg
+PGh0dHA6Ly9hcHAucmVzcG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/ZWxxX21pZD05
+MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMzMTAm
+Y21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2JmxpZD0xOTE2MTkm
+ZWxxVHJhY2tJZD0wZjkxY2M3MTlmOTE0OTY3YTBmOWQ5NTM4NTY1NWEzMSZlbHE9NDM0
+MTEyZDVlNjBmNDVhZGJlMzY1OTFhNzVhODE4NmEmZWxxYWlkPTkzNjIzJmVscWF0PTE+
+ICAgICAgICAgICAgICANCg0KTGVhcm4gZnJvbSBIYXJhbGQgPGh0dHA6Ly9hcHAucmVz
+cG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/ZWxxX21pZD05MzYyMyZzaD0xNDI1MDYy
+MDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMzMTAmY21pZD1PVU5WMTcwNDA1
+UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2JmxpZD0xOTE2MTkmZWxxVHJhY2tJZD1lZDNi
+NDJhNWYyNDI0MmJiYmNjNzk4YTg2N2EwYTE1ZiZlbHE9NDM0MTEyZDVlNjBmNDVhZGJl
+MzY1OTFhNzVhODE4NmEmZWxxYWlkPTkzNjIzJmVscWF0PTE+ICAgICAgICAgICAgICAg
+ICJjdGEtYXJyb3ciICAgICAgICAgICAgICAgDQoNCkRlYXIgTWJ1Z2EgUGhpbGlwIEl2
+YW4sDQoNClRyYWluZXJzIGNhbiBnaXZlIHlvdSB0ZWNobmljYWwgaW5zaWdodCBmb3Ig
+YSBwcm9kdWN0IHJlbGVhc2UsIHdoaWNoIGlzIGRpZmZpY3VsdCB0byBmaW5kIGVsc2V3
+aGVyZS4gRXhwbG9yZSBPcmFjbGUgRGF0YWJhc2UgMTJjIFIyIHdpdGggb25lIG9mIG91
+ciB0b3AgdHJhaW5lcnMgYW5kIGRpc2NvdmVyIHNvbWUgb2YgdGhlIGxhdGVzdCBmZWF0
+dXJlcyB0aGF0IHdpbGwgZ2V0IHlvdSB1cCBhbmQgcnVubmluZyB3aXRoIG5ldyBtYW5h
+Z2VtZW50IHRvb2xzLCBvcHRpbWFsIHBlcmZvcm1hbmNlIGFuZCBhbiBlYXN5IHRvIGRl
+cGxveSBPcmFjbGUgRGF0YWJhc2UgMTJjIFIyIHNvbHV0aW9uLiANCg0KV2F0Y2ggVmlk
+ZW8gInRleHQtY3RhLWFycm93IiA8aHR0cDovL2FwcC5yZXNwb25zZS5vcmFjbGUtbWFp
+bC5jb20vZS9lcj9lbHFfbWlkPTkzNjIzJnNoPTE0MjUwNjIwMjYxMTE5MTgxNTE4MTEx
+ODA1MjYxMzI5MzQwODA4MzMxMCZjbWlkPU9VTlYxNzA0MDVQMDAwMzRDMDAwMiZzPTE5
+NzMzOTgxODYmbGlkPTE5MTYxOSZlbHFUcmFja0lkPWUzNTg4MGI4ZmRiYjQ5NmI4MjM4
+NWUzMjFlYjU0Zjg0JmVscT00MzQxMTJkNWU2MGY0NWFkYmUzNjU5MWE3NWE4MTg2YSZl
+bHFhaWQ9OTM2MjMmZWxxYXQ9MT4gICAgICAgICAgICANCg0KT3JhY2xlIERhdGFiYXNl
+IFVwZ3JhZGUgTGVhcm5pbmcgU3Vic2NyaXB0aW9uICAgICAgICAgICAgICAgIA0KInNs
+YXAtaHIiICAgICAgICAgICAgICAgIA0KDQpBcyB0aGUgT3JhY2xlIERhdGFiYXNlIG1v
+dmVzIHRvIGEgY29udGludW91cyByZWxlYXNlIG1vZGVsLCBuZXcgZmVhdHVyZXMgd2ls
+bCBiZSBhZGRlZCBtb3JlIHJhcGlkbHkgdGhhbiBldmVyIGJlZm9yZS4NClRoZSBEYXRh
+YmFzZSBVcGdyYWRlIExlYXJuaW5nIFN1YnNjcmlwdGlvbiBoYXMgYmVlbiBkZXNpZ25l
+ZCB0byBldm9sdmUgYXMgdGhlIGRhdGFiYXNlIGRvZXMgc28gdGhhdCB5b3UgY2FuIGtl
+ZXAgeW91ciBEQkEgc2tpbGxzIHVwLXRvLWRhdGUgd2l0aCB0aGUgbGF0ZXN0IGZlYXR1
+cmVzIGFuZCBjYXBhYmlsaXRpZXMuICAgICAgICAgICAgICAgICAgIA0KDQpFeHBsb3Jl
+IG5vdyA8aHR0cDovL2FwcC5yZXNwb25zZS5vcmFjbGUtbWFpbC5jb20vZS9lcj9lbHFf
+bWlkPTkzNjIzJnNoPTE0MjUwNjIwMjYxMTE5MTgxNTE4MTExODA1MjYxMzI5MzQwODA4
+MzMxMCZjbWlkPU9VTlYxNzA0MDVQMDAwMzRDMDAwMiZzPTE5NzMzOTgxODYmbGlkPTI0
+MDUzMiZlbHFUcmFja0lkPTZhYWFhOWJhNWZhMTQyNTI5N2QzMzZjMjBkODIxZjQ0JmVs
+cT00MzQxMTJkNWU2MGY0NWFkYmUzNjU5MWE3NWE4MTg2YSZlbHFhaWQ9OTM2MjMmZWxx
+YXQ9MT4gICAgICAgICAgICAgICAgICAgICAgICAgImN0YS1hcnJvdyIgICAgICAgICAg
+ICAgICAgICAgICAgIA0KDQoiUXVvdGUiICAgICAgICAgICAgICAgICAgT3JhY2xlIFVu
+aXZlcnNpdHkgaGFzIGdpdmVuIHVzIHRoZSBleHBlcnRpc2UgdG8gZWxpbWluYXRlIGV4
+dGVybmFsIGRhdGFiYXNlIGFkbWluaXN0cmF0aW9uIGVmZm9ydCBmb3IgZGFpbHkgb3Bl
+cmF0aW9uIGFuZCBmYXVsdCBtYW5hZ2VtZW50LCB3aGljaCBlbmFibGVzIHVzIHRvIHJl
+YWN0IHVwIHRvIDZ4IGZhc3RlciBpbiB0aGUgZXZlbnQgb2YgZmFpbHVyZS4gVGhlIGRp
+Z2l0YWwgZm9ybWF0IHdhcyBjcml0aWNhbCB0byBsZWFybmluZyBvbiB0aGUgam9iIGFu
+ZCBhdm9pZGluZyB0aW1lIGF3YXkgZnJvbSBvcGVyYXRpb25zLg0KDQpPbGl2ZXIgS3Vp
+cGVyDQpEYXRhYmFzZSBBZG1pbmlzdHJhdG9yDQpQb2xpY2UgRGVwYXJ0bWVudCBPbGRl
+bmJ1cmcNCg0KV2UgYXJlIGhlcmUgdG8gaGVscCENCg0KInNsYXAtaHIiICAgICAgICAg
+ICAgICAgDQoNCkNvbnRhY3QgeW91ciBPcmFjbGUgVW5pdmVyc2l0eSBBY2NvdW50IE1h
+bmFnZXIgb3IgeW91ciBMb2NhbCBPcmFjbGUgVW5pdmVyc2l0eSBTZXJ2aWNlIERlc2sg
+PGh0dHA6Ly9hcHAucmVzcG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/ZWxxX21pZD05
+MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMzMTAm
+Y21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2JmxpZD0xMDA1NDcm
+ZWxxVHJhY2tJZD0yNmQ3MjQyNTI4OTc0MGFiOGM5ZGY3YzA1N2QxNjk0YiZlbHE9NDM0
+MTEyZDVlNjBmNDVhZGJlMzY1OTFhNzVhODE4NmEmZWxxYWlkPTkzNjIzJmVscWF0PTE+
+DQoNClN0YXkgQ29ubmVjdGVkICAgICAgICAgICAgICAgICAgDQoNCiJGYWNlYm9vayIg
+PGh0dHA6Ly9hcHAucmVzcG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/ZWxxX21pZD05
+MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMzMTAm
+Y21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2JmxpZD0zNjc1MCZl
+bHFUcmFja0lkPTc0MDBmY2MyYzhiNzRiMzU4NzE0NWRhMmY2MGRjNDQ1JmVscT00MzQx
+MTJkNWU2MGY0NWFkYmUzNjU5MWE3NWE4MTg2YSZlbHFhaWQ9OTM2MjMmZWxxYXQ9MT4g
+ICAgICAgICAgICAgICAgICAgICJMaW5rZWRpbiIgPGh0dHA6Ly9hcHAucmVzcG9uc2Uu
+b3JhY2xlLW1haWwuY29tL2UvZXI/ZWxxX21pZD05MzYyMyZzaD0xNDI1MDYyMDI2MTEx
+OTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMzMTAmY21pZD1PVU5WMTcwNDA1UDAwMDM0
+QzAwMDImcz0xOTczMzk4MTg2JmxpZD0xMDU3NDImZWxxVHJhY2tJZD0wMTEwNTBkMDc4
+NGE0ZTdmYmMxNDY4YmZhZWRjNzcxYiZlbHE9NDM0MTEyZDVlNjBmNDVhZGJlMzY1OTFh
+NzVhODE4NmEmZWxxYWlkPTkzNjIzJmVscWF0PTE+ICAgICAgICAgICAgICAgICAgICAi
+VHdpdHRlciIgPGh0dHA6Ly9hcHAucmVzcG9uc2Uub3JhY2xlLW1haWwuY29tL2UvZXI/
+ZWxxX21pZD05MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0
+MDgwODMzMTAmY21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImcz0xOTczMzk4MTg2Jmxp
+ZD03Nzc0NCZlbHFUcmFja0lkPWYwODI2MGI3ZGUzNzQzMWFhMThkMDc3MjBlZmUwYmUx
+JmVscT00MzQxMTJkNWU2MGY0NWFkYmUzNjU5MWE3NWE4MTg2YSZlbHFhaWQ9OTM2MjMm
+ZWxxYXQ9MT4gICAgICAgICAgICAgICAgICAgICJHb29nbGVQbHVzIiA8aHR0cDovL2Fw
+cC5yZXNwb25zZS5vcmFjbGUtbWFpbC5jb20vZS9lcj9lbHFfbWlkPTkzNjIzJnNoPTE0
+MjUwNjIwMjYxMTE5MTgxNTE4MTExODA1MjYxMzI5MzQwODA4MzMxMCZjbWlkPU9VTlYx
+NzA0MDVQMDAwMzRDMDAwMiZzPTE5NzMzOTgxODYmbGlkPTM2NzUzJmVscVRyYWNrSWQ9
+OWYwZjdkMGUyZDMwNDVlZThkY2E1YjFkNGU1YjI4ODMmZWxxPTQzNDExMmQ1ZTYwZjQ1
+YWRiZTM2NTkxYTc1YTgxODZhJmVscWFpZD05MzYyMyZlbHFhdD0xPiAgICAgICAgICAg
+ICAgICAgICAgIkJsb2ciIDxodHRwOi8vYXBwLnJlc3BvbnNlLm9yYWNsZS1tYWlsLmNv
+bS9lL2VyP2VscV9taWQ9OTM2MjMmc2g9MTQyNTA2MjAyNjExMTkxODE1MTgxMTE4MDUy
+NjEzMjkzNDA4MDgzMzEwJmNtaWQ9T1VOVjE3MDQwNVAwMDAzNEMwMDAyJnM9MTk3MzM5
+ODE4NiZsaWQ9MzUzNDMmZWxxVHJhY2tJZD01ZTE5N2RjYTE0MjA0OTNlODM2ZmE2ZTU3
+YTBmYjM2ZSZlbHE9NDM0MTEyZDVlNjBmNDVhZGJlMzY1OTFhNzVhODE4NmEmZWxxYWlk
+PTkzNjIzJmVscWF0PTE+ICAgICAgICAgICAgICAgICAgICANCg0KDQoNCg0KIkludGVn
+cmF0ZWQgQ2xvdWQgQXBwbGljYXRpb25zIGFuZCBQbGF0Zm9ybSBTZXJ2aWNlcyIgPGh0
+dHA6Ly93d3cub3JhY2xlLmNvbS91cy9jb3Jwb3JhdGUvaW5kZXguaHRtbD9lbHFfbWlk
+PTkzNjIzJnNoPTE0MjUwNjIwMjYxMTE5MTgxNTE4MTExODA1MjYxMzI5MzQwODA4MzMx
+MCZjbWlkPU9VTlYxNzA0MDVQMDAwMzRDMDAwMiZlbHFUcmFja0lkPTBkODEzODU0NDc4
+NTQxYzRhMGUyYzI5NGIxOGE0ZWZjJmVscT00MzQxMTJkNWU2MGY0NWFkYmUzNjU5MWE3
+NWE4MTg2YSZlbHFhaWQ9OTM2MjMmZWxxYXQ9MSZlbHFDYW1wYWlnbklkPTEyNDM2OT4g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQpUZXJtcyBvZiBVc2Ug
+YW5kIFByaXZhY3kgPGh0dHBzOi8vd3d3Lm9yYWNsZS5jb20vbGVnYWwvcHJpdmFjeS9p
+bmRleC5odG1sP2VscV9taWQ9OTM2MjMmc2g9MTQyNTA2MjAyNjExMTkxODE1MTgxMTE4
+MDUyNjEzMjkzNDA4MDgzMzEwJmNtaWQ9T1VOVjE3MDQwNVAwMDAzNEMwMDAyJmVscVRy
+YWNrSWQ9ZTg5ZmNkM2QwZTkxNDEyYmFiMjZlOTNmNzcxYmIzMjYmZWxxPTQzNDExMmQ1
+ZTYwZjQ1YWRiZTM2NTkxYTc1YTgxODZhJmVscWFpZD05MzYyMyZlbHFhdD0xJmVscUNh
+bXBhaWduSWQ9MTI0MzY5PiB8IFN1YnNjcmlwdGlvbnMgPGh0dHBzOi8vZ28ub3JhY2xl
+LmNvbS9zdWJzY3JpcHRpb25zP2VscV9taWQ9OTM2MjMmc2g9MTQyNTA2MjAyNjExMTkx
+ODE1MTgxMTE4MDUyNjEzMjkzNDA4MDgzMzEwJmNtaWQ9T1VOVjE3MDQwNVAwMDAzNEMw
+MDAyJmxfY29kZT1lbi11cyZzcmMxPUVNOkZPJmVscVRyYWNrSWQ9NDEyMjVmMzUxMmE2
+NGIwZTgzOGVmM2JiMWM2Y2Y2ZTcmZWxxPTQzNDExMmQ1ZTYwZjQ1YWRiZTM2NTkxYTc1
+YTgxODZhJmVscWFpZD05MzYyMyZlbHFhdD0xJmVscUNhbXBhaWduSWQ9MTI0MzY5PiB8
+IFVuJnp3bmo7c3Vic2NyaWJlIDxodHRwczovL2dvLm9yYWNsZS5jb20vZG5lP2VscV9t
+aWQ9OTM2MjMmc2g9MTQyNTA2MjAyNjExMTkxODE1MTgxMTE4MDUyNjEzMjkzNDA4MDgz
+MzEwJmNtaWQ9T1VOVjE3MDQwNVAwMDAzNEMwMDAyJmxfY29kZT1lbi11cyZlbHFUcmFj
+a0lkPWIyMDVmNWU5ZmIxYTQ5YWZhYmUwMDMwMzkyMjE2YzEyJmVscT00MzQxMTJkNWU2
+MGY0NWFkYmUzNjU5MWE3NWE4MTg2YSZlbHFhaWQ9OTM2MjMmZWxxYXQ9MSZlbHFDYW1w
+YWlnbklkPTEyNDM2OT4gfCBDb250YWN0IFVzIDxodHRwczovL29yYWNsZS5ldGhpY3Nw
+b2ludHZwLmNvbS9jdXN0b20vb3JhY2xlL2RwL2VuL2Zvcm1fZGF0YS5hc3A/ZWxxX21p
+ZD05MzYyMyZzaD0xNDI1MDYyMDI2MTExOTE4MTUxODExMTgwNTI2MTMyOTM0MDgwODMz
+MTAmY21pZD1PVU5WMTcwNDA1UDAwMDM0QzAwMDImZWxxVHJhY2tJZD1jNDZmOTU3NDI4
+MWU0OGZkYWM2YTExODY2OWM3ODgxMSZlbHE9NDM0MTEyZDVlNjBmNDVhZGJlMzY1OTFh
+NzVhODE4NmEmZWxxYWlkPTkzNjIzJmVscWF0PTEmZWxxQ2FtcGFpZ25JZD0xMjQzNjk+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KQ29weXJpZ2h0IMKp
+IDIwMTgsIE9yYWNsZSBhbmQvb3IgaXRzIGFmZmlsaWF0ZXMuIEFsbCByaWdodHMgcmVz
+ZXJ2ZWQuDQpPcmFjbGUgQ29ycG9yYXRpb24gLSBXb3JsZHdpZGUgSGVhZHF1YXJ0ZXJz
+LCA1MDAgT3JhY2xlIFBhcmt3YXksIE9QTCAtIEUtbWFpbCBTZXJ2aWNlcywgUmVkd29v
+ZCBTaG9yZXMsIENBIDk0MDY1LCBVbml0ZWQgU3RhdGVzICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIA0KDQo=
+----boundary_3340180_3761b843-8c9b-4883-8e56-3f25de8c8170
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"> 
+  <title>Instructor
+ insight into Oracle Database 12c R2</title> 
+  <style>#outlook
+
+ a {padding:0;} a {word-break: normal !important;} body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:20px 0px; padding:0; background-color:#FFFFFF; -webkit-font-smoothing: antialiased;} img {outline:none; text-decoration:none; border:none; -ms-interpolation-mode: bicubic; } a img {border:none;} a.anchorCls{color:#1f4f82 !important; text-decoration:underline !important; font-family:Arial, Helvetica, sans-serif;} table td {border-collapse: collapse;} #innerdesk{ 
+background-color:#FFFFFF;}.cb-blue-btn-txt a{color:#ffffff !important;} .cb-grey-btn-txt a{color:#2b2b2b !important;} .cb-spkr{padding-left:10px !important;} @media only screen and (max-device-width: 640px) and (orientation : landscape), screen and (max-width: 640px) { table[class="devicewidth"] {text-align:center!important; padding-right:20px !important; width:100% !important; 
+padding-left:20px !important; } table[class="devicewidthinner"] {text-align:center!important; padding-right:0px !important; 
+width:100% !important; padding-left:0px !important; } .vb-fullwidth{ width: 100% !important; height:auto !important;} img[class="cb-slabhr"]{width:100% !important; height:auto !important;} img[class="cb-headerimage"]{ width: 100% !important; height:auto !important; } .cb-h1{font-family:Arial, Helvetica, sans-serif; font-size:28px !important;} .cb-h2{font-family:Arial, Helvetica, sans-serif; font-size:21px !important;} .cb-h3{font-family:Arial, Helvetica, sans-serif; font-size:16px !important;} 
+.cb-space3{padding-bottom:20px !important;} .cb-tagline-logo{padding-top:15px !important; float:left !important;} .cb-footer{margin:0px !important; padding-left:0px !important; width: 100% !important; padding-top:0px !important;} .cb-middle{ margin:0 auto !important;} 
+.cb-footer td{font-size:14px !important;} .cb-phone-txt{font-family:Arial, Helvetica, sans-serif; font-size:16px !important; font-weight:bold !important; padding-top:20px !important;} .cb-stayconnect{float:left !important;} 
+.cb-tagline-wrapper{padding-bottom:5px !important} .cb-btn-txt{font-size:16px !important;} .cb-space2{padding-bottom:30px !important;} .cb-sep{border:none !important; } .cb-blue-btn-txt, .cb-grey-btn-txt{font-size:16px !important;} .cb-thumb-t1{ font-family:Arial, Helvetica, sans-serif; font-size:28px !important;} .cb-thumb-t2{font-family:Arial, Helvetica, sans-serif; font-size:24px !important;} .cb-logo-img{width:90px !important; height:auto !important} .cb-spkr{padding-left:10px !important;} 
+.devicewidthinner{text-align:center!important; padding-right:0px !important; width:100% !important; padding-left:0px !important;} .cb-quote{width:25%; padding-right:15px 
+!important;} .cb-quote-txt{width:80%;} .cb-quote2{width:25%; padding-left:15px !important;} .cb-quote-txt2{width:75%;} .cb-center{ padding-right:0px !important; text-align:center !important;} .cb-btn-ctr{text-align:center !important; margin:auto !important; } .cb-autoheight{ height:auto !important;} table[class="ftr-devicewidth"] 
+{text-align: center!important; padding-right: 20px !important; width: 100% !important; padding-left: 20px !important;}.rs-ftr {margin: 0px !important; padding-left: 0px !important; width: 100% !important; padding-top: 0px !important; }.rs-ftr td {font-size: 13px !important;} .rs-ftr-logo {width: 320px; height: auto;} .line-sp{line-height:30px;} .txt-top{display:none;} .img-top{ display: block !important; max-height: none !important;} .right-sp{padding-right:0px !important;} } /*iphone*/ @media only 
+screen and (max-device-width: 480px) and (orientation : 
+landscape), screen and (max-width: 480px) { table[class="devicewidth"] {text-align:center!important; padding-right:0px !important; width:100% !important; padding-left:0px !important; } table[class="devicewidthinner"] {text-align:center!important; padding-right:0px !important; width:100% !important; padding-left:0px !important; } .vb-fullwidth{ width: 100% !important; height:auto !important;} img[class="cb-slabhr"]{width:100% !important; 
+height:auto !important;} img[class="cb-headerimage"]{ width: 100% !important; height:auto !important; } .cb-h1{font-family:Arial, Helvetica, sans-serif; font-size:24px !important;} .cb-h2{font-family:Arial, Helvetica, sans-serif; font-size:18px !important;} .cb-h3{font-family:Arial, Helvetica, sans-serif; font-size:14px !important;} .cb-space3{padding-bottom:20px !important;} .cb-footer{margin:0px !important; padding-left:0px !important; width: 100% 
+!important; padding-top:0px !important;} .cb-footer 
+td{font-size:12px !important;} .cb-tagline-logo{padding-top:15px !important; float:left !important;} .cb-thumb-img{width:160px !important; height:166px !important; } .cb-footer-logo{width:180px !important; height:65px !important;} .cb-phone-txt{font-family:Arial, Helvetica, sans-serif; font-size:14px !important; font-weight:bold !important; padding-top:20px !important;} .cb-stayconnect{float:left !important;} .cb-tagline-wrapper{padding-bottom:5px !important} .cb-btn-txt{font-size:13px !important; 
+padding-left:13px !important;} .cb-btn-arrow{width:35px !important; height:30px !important} .cb-space2{padding-bottom:30px !important;} .cb-h4{font-family:Arial, Helvetica, sans-serif; font-size:12px !important;} .cb-sep{border:none !important; } .cb-blue-btn-txt, .cb-grey-btn-txt{font-size:13px !important;} .cb-thumb-t1{ font-family:Arial, 
+Helvetica, sans-serif; font-size:20px !important;} .cb-thumb-t2{font-family:Arial, Helvetica, sans-serif; font-size:16px !important;} .cb-logo-img{width:75px 
+!important; height:auto !important} .cb-spkr{padding-left:0px !important;} .devicewidthinner{text-align:center!important; padding-right:0px !important; width:100% !important; padding-left:0px !important; } .tagline_logo{ width:234px !important; height: 57px !important;} .cb-middle{ margin:0 auto !important;} .cb-quote{width:25%; padding-right:15px !important;} .cb-quote-txt{width:80%;} .cb-quote2{width:25%; padding-left:15px !important;} .cb-quote-txt2{width:75%;} .cb-center{ padding-right:0px 
+!important; text-align:center !important;} .cb-btn-ctr{text-align:center !important; margin:auto !important; } .cb-autoheight{ height:auto !important;} table[class="ftr-devicewidth"] {text-align: center!important; padding-right: 0px 
+!important; width: 100% !important; padding-left: 0px !important; }.rs-ftr {margin: 0px !important; padding-left: 0px !important; width: 100% !important; padding-top: 0px !important; }.rs-ftr td {font-size: 12px !important;} .rs-ftr-logo {width: 320px; height: auto; } 
+.rs-ftr-lr{padding-left:15px !important; padding-right:15px !important;} .line-sp{line-height:30px;} .txt-top{display:none;} .img-top{ display: block !important; max-height: none !important;} .right-sp{padding-right:0px !important;} } @media only screen and (max-width: 414px){ .cb-signature{width:55% !important; height:auto !important;} nobr{display:inline-block;} .cb-center{ padding-right:0px !important; text-align:center !important;} .cb-btn-ctr{text-align:center !important; margin:auto !important; } 
+.cb-autoheight{ height:auto !important;} .rs-ftr-logo {width: 250px; height: auto;} .rs-ftr-lr{padding-left:15px 
+!important; padding-right:15px !important;} .line-sp{line-height:30px;} }</style> 
+ </head>
+<body>
+
+
+  
+ 
+  <table id="mainTable" class="devicewidth" cellspacing="0" cellpadding="0" align="center" border="0" width="614"> 
+   <tbody> 
+    <tr> 
+     <td>
+ 
+      <table class="edtrBtnParent" btn-out-count="1" data-unique-id="CE012" id="viewBrowser" cellspacing="0" cellpadding="0" align="center" border="0" width="100%">
+       <tbody>
+        <tr>
+         <td style="font-size:10px; color:#2b2b2b; font-family:Arial, Helvetica, sans-serif; padding-bottom:10px;" align="center"> <span class="tmpIFrame" data-personalization="false">
+<a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=250381&elqTrackId=73bca46e585b496498ff5f15030be451&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank" class="edtrLnk" style="color: rgb(31, 79, 130); text-decoration: none;">View</a> this message in a Web browser</span> </td>
+        </tr>
+       </tbody>
+      </table>
+ 
+      <table class="edtrBtnParent" btn-out-count="2" data-unique-id="CE044" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+       <tbody> 
+        <tr> 
+         <td><a name="top" id="top"></a><img id="campaignImage" data-browse="true" src="http://www.oracle.com/us/education/oracle-database-upgrade-banner-3941992.jpg" alt="Oracle" style="display:block;" data-width="614" class="vb-fullwidth tmpImage Mob-full-image" height="137" border="0" width="614"></td> 
+        </tr>
+ 
+        <tr> 
+         <td style="height:20px;" bgcolor="#e6e6e6"></td> 
+        </tr> 
+       </tbody> 
+      </table> 
+      <table class="edtrBtnParent" btn-out-count="3" data-unique-id="CL030" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+       <tbody> 
+        <tr> 
+         <td style="padding:20px 20px 20px 20px; background-color:#e6e6e6;" align="left"> 
+          <table class="devicewidthinner" cellspacing="0" cellpadding="0" border="0" width="100%">
+ 
+           <tbody> 
+            <tr> 
+             <td valign="top" align="left"> 
+              <table class="devicewidthinner" cellspacing="0" cellpadding="0" align="left" border="0" width="50%"> 
+               <tbody> 
+                <tr> 
+                 <td valign="top" align="left"> 
+                  <table class="devicewidthinner " cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                   <tbody> 
+                    <tr>
+ 
+                     <td style="font-family: Arial, Helvetica, sans-serif; font-size: 28px; color: rgb(43, 43, 43); font-weight: bold; padding-bottom: 24px; padding-right: 5px;" class="cb-thumb-t1" valign="top" align="left"><span class="tmpTitle" data-font="offer">Take a peek inside Oracle DB12<i>c</i> R2</span></td> 
+                    </tr> 
+                    <tr>
+ 
+                     <td style="font-family:Arial, Helvetica, sans-serif; font-size:20px; color:#2b2b2b; padding-bottom:20px; padding-right:5px; word-break:break-word;" class="cb-thumb-t2" valign="top" align="left"><span class="tmpIFrame">Join expert instructor, Harald van Breederode, when he shows you a selection of enhancements, such as Oracle Multitenant Architecture, security, data availability and performance, introduced in Oracle Database 12<em>c</em> Rel 2.<br></span></td>
+ 
+                    </tr> 
+                   </tbody> 
+                  </table> </td> 
+                </tr> 
+               </tbody> 
+              </table> 
+              <table class="devicewidthinner" cellspacing="0" cellpadding="0" align="right" border="0" width="47%"> 
+               <tbody> 
+                <tr> 
+                 <td valign="top" align="center">
+<a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=191619&elqTrackId=0f91cc719f914967a0f9d95385655a31&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank"><img src="http://www.oracle.com/uk/education/db12cr2-sneakpeakvideo-180px-3900752.png" alt="Video" style="display:block;" data-width="260" class="tmpImage" data-browse="true" align="middle" height="213" border="0" width="180"></a>
+ </td> 
+                </tr> 
+               </tbody> 
+              </table> </td> 
+            </tr> 
+            <tr> 
+             <td style="padding-top:20px;" valign="top" align="left"> 
+              <table class="cb-middle" cellspacing="0" cellpadding="0" border="0" width="auto"> 
+               <tbody> 
+                <tr>
+ 
+                 <td style="border:1px solid #011c47; background-color:#215084; background-image: url(http://www.oracleimg.com/us/dm/blue-cta-btn-bg-2541283.jpg); background-repeat:repeat-x;" bgcolor="#215084"> 
+                  <table cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                   <tbody> 
+                    <tr>
+ 
+                     <td style="padding-left:20px; padding-right:15px; font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold; color:#ffffff;" valign="middle" align="left">
+<a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=191619&elqTrackId=ed3b42a5f24242bbbcc798a867a0a15f&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank" style="color:#ffffff; text-decoration:none;" class="tmpLink"><span class="cb-blue-btn-txt"><span class="tmpBtn">Learn from Harald</span></span></a></td> 
+                     <td valign="top" align="right">
+<img src="http://www.oracleimg.com/us/dm/cta-btn-arrow-icon-2541284.png" alt="cta-arrow" style="display:block;" class="cb-btn-arrow" height="43" border="0" width="50"></td> 
+                    </tr> 
+                   </tbody> 
+                  </table> </td> 
+                </tr> 
+               </tbody> 
+              </table> </td> 
+            </tr> 
+           </tbody> 
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="height:20px;" bgcolor="#e6e6e6"></td>
+ 
+        </tr> 
+       </tbody> 
+      </table> 
+      <table class="edtrBtnParent" btn-out-count="4" data-unique-id="CE026" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+       <tbody> 
+        <tr> 
+         <td style="  padding-left:20px; padding-right:20px; padding-bottom:20px;" valign="top" bgcolor="#e6e6e6" align="left"> 
+          <table cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+           <tbody> 
+            <tr>
+ 
+             <td style="padding:20px;" valign="top" bgcolor="#FFFFFF" align="left"> <span style="font-family:Arial, Helvetica, sans-serif; color:#666666; font-size:18px;" class="cb-h3"> <span class="tmpAddRemoveText"> <span class="tmpTitle" etitle="Greeting"><strong>Dear&nbsp;&#8204;Mbuga&nbsp; Philip Ivan,</strong><br><br> </span> </span> <span class="tmpIFrame">Trainers can give you technical insight for a product release, which is difficult to find elsewhere. Explore Oracle Database 12<em>c</em>
+ R2 with one of our top trainers and discover some of the latest features that will get you up and running with new management tools, optimal performance and an easy to deploy Oracle Database 12<em>c</em> R2 solution. <br><br></span> </span> <span class="tmpdynamiccta">
+
+ <a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=191619&elqTrackId=e35880b8fdbb496b82385e321eb54f84&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank" style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#1f4f82; text-decoration:none; font-weight:bold;" class="cb-h3 tmpLink"> <span class="tmpBtn">Watch Video</span>
+ <img src="http://www.oracleimg.com/us/dm/res-cta-arrow-2548956.png" class="arw" alt="text-cta-arrow" align="bottom" height="12" width="15"> </a> </span> </td> 
+            </tr>  
+           </tbody> 
+          </table> </td> 
+        </tr> 
+       </tbody> 
+      </table> 
+      <table class="ui-sortable" spid="0" id="BodyTable" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+       <tbody> 
+        <tr> 
+         <td>
+ 
+          <table class="edtrBtnParent" btn-out-count="6" data-unique-id="CE018" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+           <tbody> 
+            <tr> 
+             <td style="padding-left:20px; padding-right:20px; padding-bottom:20px; " valign="top" bgcolor="#e6e6e6" align="left"> 
+              <!-- Inner Table --> 
+              <table cellspacing="0" cellpadding="0" border="0" width="100%"> 
+               <tbody> 
+                <tr>
+ 
+                 <td style="padding:20px;" valign="top" bgcolor="#FFFFFF" align="left"> 
+                  <table class="devicewidthinner" cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                   <!-- Main Title --> 
+                   <tbody> 
+                    <tr class="tmpAddRemoveText"> 
+                     <td style="font-family: Arial,Helvetica,sans-serif; font-size: 26px; font-weight: bold; color: rgb(43, 43, 43);" class="cb-h2" valign="top" align="left">
+<span class="tmpTitle" data-personalization="false" data-font="mainTitle">Oracle Database Upgrade Learning Subscription</span> </td> 
+                    </tr> 
+                    <tr> 
+                     <td style="padding-top:12px; padding-bottom:30px;" valign="top" align="left"> <img src="http://www.oracleimg.com/us/dm/clean-b-wp-slab-hr-2527863.jpg" alt="slap-hr" class="cb-slabhr" height="6" border="0" width="530"> </td> 
+                    </tr> 
+                    <!-- End Main Title -->
+ 
+                    <tr> 
+                     <td valign="top" align="left"> 
+                      <table class="devicewidthinner" cellspacing="0" cellpadding="0" align="left" border="0" width="100%"> 
+                       <tbody> 
+                        <tr> 
+                         <td valign="top" align="left"> 
+                          <table cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+                           <tbody> 
+                            <tr>
+ 
+                             <td style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#666666;" class="cb-h3" valign="top" align="left"><span class="tmpIFrame">As the Oracle Database moves to a continuous release model, new features will be added more rapidly than ever before.<br>The Database Upgrade Learning Subscription has been designed to evolve as the database does so that you can keep your DBA skills up-to-date with the latest features and capabilities.</span></td>
+ 
+                            </tr> 
+                            <!-- CTA Button --> 
+                            <tr class="tmpdynamiccta"> 
+                             <td style="padding-top:30px;" valign="top" align="left"> 
+                              <table class="cb-btn-ctr" cellspacing="0" cellpadding="0" border="0" width="auto"> 
+                               <tbody> 
+                                <tr>
+ 
+                                 <td style="border:1px solid #c4c4c4; background-color:#d5d5d5; background-image: url(http://www.oracleimg.com/us/dm/grey2-cta-btn-bg-2544073.jpg); background-repeat:repeat-x;" bgcolor="#d5d5d5"> 
+                                  <table cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                                   <tbody> 
+                                    <tr>
+ 
+                                     <td style="padding-left:20px; padding-right:15px; font-family:Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold;" class="cb-grey-btn-txt" valign="middle" align="left">
+ <a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=240532&elqTrackId=6aaaa9ba5fa1425297d336c20d821f44&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank" style="color:#2b2b2b; text-decoration:none;" class="tmpLink"><span class="tmpBtn">Explore now</span></a> </td> 
+                                     <td valign="top" align="right">
+<img src="http://www.oracleimg.com/us/dm/cta-btn-arrow-icon-2541284.png" alt="cta-arrow" style="display:block;" class="cb-btn-arrow" height="43" border="0" width="50"></td> 
+                                    </tr> 
+                                   </tbody> 
+                                  </table> </td> 
+                                </tr> 
+                               </tbody> 
+                              </table> </td> 
+                            </tr>
+ 
+                            <!-- End CTA Button --> 
+                           </tbody> 
+                          </table> </td> 
+                        </tr> 
+                       </tbody> 
+                      </table> </td> 
+                    </tr> 
+                   </tbody> 
+                  </table> </td> 
+                </tr>  
+               </tbody> 
+              </table> 
+              <!-- End inner table --> </td> 
+            </tr> 
+           </tbody>
+ 
+          </table> 
+          <table class="edtrBtnParent" btn-out-count="5" data-unique-id="CE038" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+           <tbody> 
+            <tr> 
+             <td style="padding-left:20px; padding-right:20px; padding-bottom:20px; " valign="top" bgcolor="#e6e6e6" align="left"> 
+              <table cellspacing="0" cellpadding="0" border="0" width="100%"> 
+               <tbody> 
+                <tr>
+ 
+                 <td valign="top"> 
+                  <table class="cb-quote-row" cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                   <tbody> 
+                    <tr> 
+                     <td style="padding:20px;" valign="top" bgcolor="#FFFFFF" align="left"> 
+                      <table class="devicewidthinner" cellspacing="0" cellpadding="0" align="left" border="0" width="100%"> 
+                       <tbody> 
+                        <tr>
+ 
+                         <td style="padding-right:30px;" class="quote-swap cb-quote" valign="top" align="center"><img src="http://www.oracleimg.com/us/dm/cb-wp-quote-2550104.png" alt="Quote" class="cb-headerimage" align="left" height="85" border="0" width="84"></td> 
+                         <td style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#666666;" class="cb-h3 cb-quote-txt quote-swap" valign="top" align="left"><i>Oracle
+ University has given us the expertise to eliminate external database administration effort for daily operation and fault management, which enables us to react up to 6x faster in the event of failure. The digital format was critical to learning on the job and avoiding time away from operations.</i><b><br><br>Oliver Kuiper<br>Database Administrator<br>Police Department Oldenburg</b><br></td> 
+                        </tr> 
+                       </tbody> 
+                      </table> </td>
+ 
+                    </tr> 
+                   </tbody> 
+                  </table> </td> 
+                </tr> 
+               </tbody> 
+              </table> </td> 
+            </tr> 
+           </tbody> 
+          </table> 
+          <table class="edtrBtnParent" btn-out-count="7" data-unique-id="CE019" cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+           <tbody> 
+            <tr>
+ 
+             <td style="padding-left:20px; padding-right:20px; padding-bottom:20px; " valign="top" bgcolor="#e6e6e6" align="left"> 
+              <table cellspacing="0" cellpadding="0" border="0" width="100%"> 
+               <tbody> 
+                <tr> 
+                 <td style="padding:20px;" class="tmpSalesChat" id="salesChat" valign="top" bgcolor="#FFFFFF" align="left"> 
+                  <table class="Call" cellspacing="0" cellpadding="0" border="0" width="100%">
+ 
+                   <tbody> 
+                    <tr> 
+                     <td style="font-family:Arial, Helvetica, sans-serif; font-size:28px; font-weight:bold; color:#2b2b2b; word-break:break-word;" class="cb-h2" data-font="mediumTitle" valign="top" align="left">We are here to help!<br></td> 
+                    </tr> 
+                    <tr> 
+                     <td style="padding-top:12px; padding-bottom:0px;" valign="top" align="left">
+<img src="http://www.oracleimg.com/us/dm/clean-b-wp-slab-hr-2527863.jpg" alt="slap-hr" class="cb-slabhr" height="6" border="0" width="530"></td> 
+                    </tr> 
+                    <tr> 
+                     <td style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#666666;" valign="top" align="left"> 
+                      <table class="devicewidthinner cb-btn-ctr" cellspacing="0" cellpadding="0" border="0" width="100%"> 
+                       <tbody>
+ 
+                        <tr> 
+                         <td style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#666666;padding-top:10px" class="cb-phone-txt"><span id="ESCCalTxt"><span id="ESCCalTxt">Contact
+ your Oracle University Account Manager or your <a class="edtrLnk" target="_blank" style="color: rgb(31, 79, 130); font-family: Arial,Helvetica,sans-serif; text-decoration: none;" href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=100547&elqTrackId=26d72425289740ab8c9df7c057d1694b&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1">Local Oracle University Service Desk</a></span><br>
+<span id="ESCCalTxt"><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#333333"></span></span></span> <span class="phNumber" style="font-weight:bold;"></span></td> 
+                        </tr> 
+                       </tbody> 
+                      </table> </td> 
+                    </tr> 
+                   </tbody> 
+                  </table> </td> 
+                </tr>  
+               </tbody> 
+              </table> </td> 
+            </tr> 
+           </tbody>
+ 
+          </table> 
+          <table class="edtrBtnParent" btn-out-count="8" data-unique-id="CE028" cellspacing="0" cellpadding="0" border="0" width="100%"> 
+           <tbody> 
+            <tr> 
+             <td> 
+              <div class="tmpStayConnect"> 
+               <table cellspacing="0" cellpadding="0" align="center" border="0" width="100%"> 
+                <tbody> 
+                 <tr>
+ 
+                  <td style="padding-left:20px; padding-right:20px; padding-bottom:20px; " valign="top" bgcolor="#e6e6e6" align="left"> 
+                   <table cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" border="0" width="100%"> 
+                    <tbody> 
+                     <tr> 
+                      <td style="color:#2b2b2b; padding-top:20px; padding-left:20px; padding-right:20px;" class="cb-h2" valign="top" align="left">
+ 
+                       <table class="devicewidthinner" cellspacing="0" cellpadding="0" align="left" border="0" width="60%"> 
+                        <tbody> 
+                         <tr> 
+                          <td style="font-family:Arial, Helvetica, sans-serif; font-size:28px; font-weight:bold; padding-bottom:10px; color:#2b2b2b;" class="UserSCLabel cb-h2 cb-btn-ctr" data-font="mediumTitle" valign="top" align="left"><span class="SCTrans" id="stayConnected">Stay Connected</span></td>
+ 
+                         </tr> 
+                        </tbody> 
+                       </table> 
+                       <table class="cb-btn-ctr devicewidthinner" cellspacing="0" cellpadding="0" align="right" border="0"> 
+                        <tbody> 
+                         <tr> 
+                          <td style="padding-bottom:10px;" valign="top"> 
+                           <table class="SCPlaceHolder" cellspacing="0" cellpadding="4" align="center" border="0">
+ 
+                            <tbody> 
+                             <tr> 
+                              <td style="padding:5px 5px 0px 7px;" width="26"><a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=36750&elqTrackId=7400fcc2c8b74b3587145da2f60dc445&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank">
+<img alt="Facebook" src="http://www.oracleimg.com/us/dm/facebook-black-1945638.png" height="26" border="0" width="26"></a></td> 
+                              <td style="padding:5px 5px 0px 0px;" width="26"><a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=105742&elqTrackId=011050d0784a4e7fbc1468bfaedc771b&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank">
+<img alt="Linkedin" src="http://www.oracleimg.com/us/dm/linkedin-black-1945640.png" height="26" border="0" width="26"></a></td> 
+                              <td style="padding:5px 5px 0px 0px;" width="26"><a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=77744&elqTrackId=f08260b7de37431aa18d07720efe0be1&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank">
+<img alt="Twitter" src="http://www.oracleimg.com/us/dm/twitter-black-1945654.png" height="26" border="0" width="26"></a></td> 
+                              <td style="padding:5px 5px 0px 0px;" width="26"><a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=36753&elqTrackId=9f0f7d0e2d3045ee8dca5b1d4e5b2883&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank">
+<img alt="GooglePlus" src="http://www.oracleimg.com/us/dm/googleplus-black-1958671.png" height="26" border="0" width="26"></a></td> 
+                              <td style="padding:5px 5px 0px 0px;" width="26"><a href="http://app.response.oracle-mail.com/e/er?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&s=1973398186&lid=35343&elqTrackId=5e197dca1420493e836fa6e57a0fb36e&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1" target="_blank">
+<img alt="Blog" src="http://www.oracleimg.com/us/dm/oracleblog-black-1958173.png" height="26" border="0" width="26"></a></td> 
+                             </tr> 
+                            </tbody> 
+                           </table> </td> 
+                         </tr> 
+                         <tr> 
+                          <td> 
+                           <table class="SCHashtagTbl" style="display:none" cellspacing="0" cellpadding="0" border="0" width="176">
+ 
+                            <tbody> 
+                             <tr> 
+                              <td class="SCHashtag" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333333; padding:0px 5px 5px 7px;"></td> 
+                             </tr> 
+                            </tbody> 
+                           </table> </td> 
+                         </tr> 
+                        </tbody> 
+                       </table> </td> 
+                     </tr>
+  
+                    </tbody> 
+                   </table> </td> 
+                 </tr> 
+                </tbody> 
+               </table> 
+              </div> </td> 
+            </tr> 
+           </tbody> 
+          </table> </td> 
+        </tr> 
+       </tbody> 
+      </table> </td> 
+    </tr> 
+   </tbody> 
+  </table>
+  <!-- TBID=CMP1000022571-EML1000063744 -->
+  <!-- rpcampaign: SEV100664921 -->
+  <!-- GMSSNO: SEV100664921 -->
+
+ 
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="ftr-devicewidth" width="614">
+	<tbody>
+		<tr>
+			<td>
+			<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td align="left" class="rs-ftr-lr" style="padding-top:30px; padding-bottom:30px; padding-right:20px;padding-left:20px;" valign="top">
+						<table border="0" cellpadding="0" cellspacing="0" class="rs-ftr" width="100%">
+							<tbody>
+								<tr>
+									
+<td align="center" valign="top"><a class="tmpLink" href="http://www.oracle.com/us/corporate/index.html?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&elqTrackId=0d813854478541c4a0e2c294b18a4efc&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1&elqCampaignId=124369" target="_blank">
+<img alt="Integrated Cloud Applications and Platform Services" border="0" class="rs-ftr-logo" height="auto" src="http://www.oracleimg.com/us/dm/o-corp-tagline-1-line-3112743.png" style="display:block;" width="350"></a></td>
+								</tr>
+								<tr>
+									<td align="center" class="line-sp" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#1f4f82; word-break:break-all;">
+<a href="https://www.oracle.com/legal/privacy/index.html?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&elqTrackId=e89fcd3d0e91412bab26e93f771bb326&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1&elqCampaignId=124369" style="font-family:Arial, Helvetica, sans-serif; color:#1f4f82; text-decoration:none; word-break:break-all; white-space: nowrap;" target="_blank">Terms of Use and Privacy</a> <span style="color:#666666;">|</span>
+ <a href="https://go.oracle.com/subscriptions?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&l_code=en-us&src1=EM:FO&elqTrackId=41225f3512a64b0e838ef3bb1c6cf6e7&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1&elqCampaignId=124369" style="font-family:Arial, Helvetica, sans-serif; color:#1f4f82; text-decoration:none; word-break:break-all; white-space: nowrap;" target="_blank">Subscriptions</a> <span style="color:#666666;">|</span>
+ <a href="https://go.oracle.com/dne?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&l_code=en-us&elqTrackId=b205f5e9fb1a49afabe0030392216c12&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1&elqCampaignId=124369" style="font-family:Arial, Helvetica, sans-serif; color:#1f4f82; text-decoration:none; word-break:break-all; white-space: nowrap;" target="_blank">Un&zwnj;subscribe</a> <span style="color:#666666;">|</span>
+ <a href="https://oracle.ethicspointvp.com/custom/oracle/dp/en/form_data.asp?elq_mid=93623&sh=142506202611191815181118052613293408083310&cmid=OUNV170405P00034C0002&elqTrackId=c46f9574281e48fdac6a118669c78811&elq=434112d5e60f45adbe36591a75a8186a&elqaid=93623&elqat=1&elqCampaignId=124369" style="font-family:Arial, Helvetica, sans-serif; color:#1f4f82; text-decoration:none; word-break:break-all; white-space: nowrap;" target="_blank">Contact Us</a></td>
+								</tr>
+								<tr>
+									
+<td align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#2b2b2b; padding-bottom:10px; padding-top:10px;">Copyright &copy; 2018, Oracle and/or its affiliates. All rights reserved.<br>
+									Oracle Corporation - Worldwide Headquarters, 500 Oracle Parkway, OPL - E-mail Services, Redwood Shores, CA 94065, United States</td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<img src='http://app.response.oracle-mail.com/e/FooterImages/FooterImage1?elq=434112d5e60f45adbe36591a75a8186a&siteid=1973398186' alt="" border=0 width=1px height=1px></body></html>
+----boundary_3340180_3761b843-8c9b-4883-8e56-3f25de8c8170--
+
+

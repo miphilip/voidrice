@@ -1,0 +1,249 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:350:0:0:0:0:0 with SMTP id 74csp5822382uat;
+        Sun, 27 Dec 2020 01:25:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxATrUuVT8JRAnVBmwMaCd6Fwj5Uj5Maz+1xpPhaFqNRZOaC6QAA6zIwRrBTixppeY4s8cL
+X-Received: by 2002:a25:cf95:: with SMTP id f143mr55206457ybg.419.1609061133421;
+        Sun, 27 Dec 2020 01:25:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1609061133; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WMZSKtl5unhqRxDtl1U898QidHxkXtwjn0B84qwHAh7/aQTrsP0QfwqeSCnIKhVgic
+         GdOF2CUNp6dJmApU0++QiFHW/QrklaTaxp0mjHC1Z0aLFnrMXYiD2D7/0GW1tpMJUqbE
+         uqcuRAvTYFa7o3h4D2+id7S1v8wZN0qHb1NI5Thnredfj/Vl0gBherWodTldzp860hCU
+         0nzL98oF+taDRp/00f+hH0kcFb8lgr4pCEJxCZUklGL9TDp5GTs9GroAFTbu5gw8dCMs
+         gsvuId/4oVEsk5O2nFIq73vzEmdNJ6kF8r66UWs1PkDZ2wMvkLu7faBkRisgURX6ilue
+         6qzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=auto-submitted:content-transfer-encoding:mime-version:subject
+         :message-id:to:reply-to:from:date:sender:dkim-signature
+         :dkim-signature;
+        bh=hLZgfv9BbgrfsVZw+TjoSU6lyo5nzZzvKuWuyTgE8pM=;
+        b=XSsVNF6ZOmBi+bM1tDzzBHhmr81EOnNRIhXcyESvBRmUROYmooytM3gOaIdW6TOGB9
+         xAU6658N/XKphz4COY5nH42A7o/dOCr3AKt6TXAJgIru1rLgka06CMefORh6xGHk0FxP
+         azIMEBdw7XZpmldN8Hk6qAn9jhe+vm+TDxugvadRZ/MR128n47sLI/jreAdMnXxVW02s
+         ucuT87uVgMsFZ9xYYj3IBnYgp+B2yT0VVZf53PkI0JRvfKTUkL+oA4p+gyoP/JdscrLL
+         ekXigpYvWrU4dMobJeT/jT3qkOdAQtuQmYqRbxIaZtxX1/UXBLxmh1dEAUbZzW1g47yo
+         QJRQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mg.gitlab.com header.s=mailo header.b=O9jDeRJl;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=DCeVfGIX;
+       spf=pass (google.com: domain of bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com designates 192.237.158.143 as permitted sender) smtp.mailfrom="bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=gitlab.com
+Return-Path: <bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com>
+Received: from do158-143.mg.gitlab.com (do158-143.mg.gitlab.com. [192.237.158.143])
+        by mx.google.com with UTF8SMTPS id t7si28526067ybp.281.2020.12.27.01.25.32
+        for <miphilipk@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Dec 2020 01:25:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com designates 192.237.158.143 as permitted sender) client-ip=192.237.158.143;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mg.gitlab.com header.s=mailo header.b=O9jDeRJl;
+       dkim=pass header.i=@mailgun.org header.s=mg header.b=DCeVfGIX;
+       spf=pass (google.com: domain of bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com designates 192.237.158.143 as permitted sender) smtp.mailfrom="bounce+8b0236.947b4-miphilipk=gmail.com@mg.gitlab.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=gitlab.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.gitlab.com; q=dns/txt;
+ s=mailo; t=1609061133; h=Content-Transfer-Encoding: Content-Type:
+ Mime-Version: Subject: Message-ID: To: Reply-To: From: Date: Sender:
+ X-Feedback-Id; bh=hLZgfv9BbgrfsVZw+TjoSU6lyo5nzZzvKuWuyTgE8pM=; b=O9jDeRJlcED3GdjYfGd7Ezco5+u722s2pl2kKrqaKBdSXq2uB/3tinRJlCuP0OsOS/QblZfn
+ 5YR3NaRAZx8IPv76VEl20Fbtp9CDk+aWZP5ZC9yA2/cby+4jN7bc4MNfxIeextIdZA/psjS4
+ qh2XczQZtYXK7yrjxzguZEmTxp4=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mailgun.org; q=dns/txt; s=mg;
+ t=1609061133; h=Content-Transfer-Encoding: Content-Type: Mime-Version:
+ Subject: Message-ID: To: Reply-To: From: Date: Sender: X-Feedback-Id;
+ bh=hLZgfv9BbgrfsVZw+TjoSU6lyo5nzZzvKuWuyTgE8pM=; b=DCeVfGIXgYLxRlGsuJAeGUYXbwYIceUx//t3gb4LUJSX93aKyOOZ1tf0NH1NwGJWjhnw2y3u
+ Ok6n6Z0Z46M2c7qnL+u82qsnKFCdHmTWbqqItYYEOWmnp9I4CaP14MemfbEHh4g9Cmg2KCNP
+ O2pIkpgy6ts/OBf7/JMkzvGTILY=
+X-Feedback-Id: 531ee07d5a76185406c6480b:mailgun
+X-Mailgun-Sending-Ip: 192.237.158.143
+X-Mailgun-Sid: WyIwMzNlZiIsICJtaXBoaWxpcGtAZ21haWwuY29tIiwgIjk0N2I0Il0=
+Received: from mg.gitlab.com (73.90.74.34.bc.googleusercontent.com
+ [34.74.90.73]) by smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5fe85302120d248bb539b1d3 (version=TLS1.3, cipher=TLS_AES_128_GCM_SHA256);
+ Sun, 27 Dec 2020 09:25:22 GMT
+Sender: gitlab@mg.gitlab.com
+Date: Sun, 27 Dec 2020 09:25:22 +0000
+From: GitLab <gitlab@mg.gitlab.com>
+Reply-To: GitLab <noreply@gitlab.com>
+To: miphilipk@gmail.com
+Message-ID: <5fe85302590db_93c84838189@gitlab-sidekiq-catchall-v1-576c7ff959-8vxdn.mail>
+Subject: gitlab.com sign-in from new location
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5fe853024e8b6_93c8483808d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Auto-Submitted: auto-generated
+X-Auto-Response-Suppress: All
+X-TUID: AIiNaiOlYEwp
+
+
+----==_mimepart_5fe853024e8b6_93c8483808d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+
+Hi united10!
+A sign-in to your account has been made from the following IP address: 102.85.119.36
+If you recently signed in and recognize the IP address, you may disregard this email.
+If you did not recently sign in, you should immediately change your password: https://docs.gitlab.com/ee/user/profile/#changing-your-password.
+Passwords should be unique and not used for any other sites or services.
+To further protect your account, consider configuring a two-factor authentication method: https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html.
+
+-- 
+You're receiving this email because of your account on gitlab.com.
+
+
+
+
+----==_mimepart_5fe853024e8b6_93c8483808d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<title>gitlab.com sign-in from new location</title>
+<style data-premailer="ignore" type="text/css">
+body,table,td,a{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}table,td{mso-table-lspace:0pt;mso-table-rspace:0pt}img{-ms-interpolation-mode:bicubic}.hidden{display:none !important;visibility:hidden !important}a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}div[style*='margin: 16px 0']{margin:0 !important}@media only screen and (max-width: 639px){body,#body{min-width:320px !important}table.wrapper{width:100% !important;min-width:320px !important}table.wrapper td.wrapper-cell{border-left:0 !important;border-right:0 !important;border-radius:0 !important;padding-left:10px !important;padding-right:10px !important}}
+
+</style>
+
+<style>body {
+margin: 0 !important; background-color: #fafafa; padding: 0; text-align: center; min-width: 640px; width: 100%; height: 100%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style></head>
+<body style="text-align: center; min-width: 640px; width: 100%; height: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; margin: 0; padding: 0;" bgcolor="#fafafa">
+<table border="0" cellpadding="0" cellspacing="0" id="body" style="text-align: center; min-width: 640px; width: 100%; margin: 0; padding: 0;" bgcolor="#fafafa">
+<tbody>
+<tr class="line">
+<td style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; height: 4px; font-size: 4px; line-height: 4px;" bgcolor="#6b4fbb"></td>
+</tr>
+<tr class="header">
+<td style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #5c5c5c; padding: 25px 0;">
+
+<img alt="GitLab" src="https://gitlab.com/assets/mailers/gitlab_header_logo-153749eaa7ea6fafcb995161abd3247bc4c4500f31498b0c4024f50093983ac0.gif" width="55" height="50" />
+</td>
+</tr>
+<tr>
+<td style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 640px; border-collapse: separate; border-spacing: 0; margin: 0 auto;">
+<tbody>
+<tr>
+<td class="wrapper-cell" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; border-radius: 3px; overflow: hidden; padding: 18px 25px; border: 1px solid #ededed;" align="left" bgcolor="#fff">
+<table border="0" cellpadding="0" cellspacing="0" class="content" style="width: 100%; border-collapse: separate; border-spacing: 0;">
+<tbody>
+<tr class="alert">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; border-radius: 3px; font-size: 14px; line-height: 1.3; overflow: hidden; color: #ffffff; padding: 10px;" align="center" bgcolor="#FC6D26">
+<table border="0" cellpadding="0" cellspacing="0" class="img" style="border-collapse: collapse; margin: 0 auto;">
+<tbody>
+<tr>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; color: #ffffff;" align="center" valign="middle">
+<span>
+Your gitlab.com account was signed in to from a new location
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="spacer">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; height: 18px; font-size: 18px; line-height: 18px;">
+&#160;
+</td>
+</tr>
+<tr class="section">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; border-radius: 3px; overflow: hidden; padding: 0 15px; border: 1px solid #ededed;">
+<table border="0" cellpadding="0" cellspacing="0" class="info" style="width: 100%;">
+<tbody>
+<tr>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #8c8c8c; font-weight: 300; margin: 0; padding: 14px 0;">
+Hostname
+</td>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #333333; font-weight: 400; width: 75%; margin: 0; padding: 14px 0 14px 5px;">
+gitlab.com
+</td>
+</tr>
+<tr>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #8c8c8c; font-weight: 300; border-top-width: 1px; border-top-color: #ededed; border-top-style: solid; margin: 0; padding: 14px 0;">
+IP Address
+</td>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #333333; font-weight: 400; width: 75%; border-top-width: 1px; border-top-color: #ededed; border-top-style: solid; margin: 0; padding: 14px 0 14px 5px;">
+<span class="muted" style="color: #333333; text-decoration: none;">
+102.85.119.36
+</span>
+</td>
+</tr>
+<tr>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #8c8c8c; font-weight: 300; border-top-width: 1px; border-top-color: #ededed; border-top-style: solid; margin: 0; padding: 14px 0;">
+Time
+</td>
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #333333; font-weight: 400; width: 75%; border-top-width: 1px; border-top-color: #ededed; border-top-style: solid; margin: 0; padding: 14px 0 14px 5px;">
+2020-12-27  9:25:22 AM UTC
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="spacer">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; height: 18px; font-size: 18px; line-height: 18px;">
+&#160;
+</td>
+</tr>
+<tr class="section">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; line-height: 1.4; overflow: hidden; padding: 0 15px;" align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="img" style="border-collapse: collapse; width: 100%;">
+<tbody>
+<tr style="width: 100%;">
+<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.4; color: #8c8c8c; font-weight: 300; margin: 0; padding: 14px 0;" align="center">
+If you recently signed in and recognize the IP address, you may disregard this email.
+<p>
+If you did not recently sign in, you should immediately <a href="https://docs.gitlab.com/ee/user/profile/#changing-your-password" target="_blank" rel="noopener noreferrer" style="color: #3777b0; text-decoration: none;">change your password</a>.
+Passwords should be unique and not used for any other sites or services.
+</p>
+<p>
+To further protect your account, consider configuring a <a href="https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html" target="_blank" style="color: #3777b0; text-decoration: none;">two-factor authentication</a> method.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+
+<tr class="footer">
+<td style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #5c5c5c; padding: 25px 0;">
+<img alt="GitLab" class="footer-logo" src="https://gitlab.com/assets/mailers/gitlab_footer_logo-078860f148cc9596195e6bb3fa7db31c30538355576c5c3b569c414902e3d095.gif" style="display: block; width: 90px; height: 33px; margin: 0 auto 1em;" />
+<div>
+You're receiving this email because of your account on gitlab.com. <a class="mng-notif-link" href="https://gitlab.com/-/profile/notifications" style="color: #3777b0; text-decoration: none;">Manage all notifications</a> &#183; <a class="help-link" href="https://gitlab.com/help" style="color: #3777b0; text-decoration: none;">Help</a>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<td class="footer-message" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #5c5c5c; padding: 25px 0;">
+
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
+
+----==_mimepart_5fe853024e8b6_93c8483808d--

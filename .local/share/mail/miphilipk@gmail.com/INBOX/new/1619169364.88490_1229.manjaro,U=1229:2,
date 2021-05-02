@@ -1,0 +1,1035 @@
+Delivered-To: miphilipk@gmail.com
+Received: by 2002:ab0:45d3:0:0:0:0:0 with SMTP id u77csp759509uau;
+        Thu, 19 Nov 2020 11:32:41 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzAIMzbJ+IGPghdfOhMgE5USdAC9KefrdrQIpwK+IbqC0V4aKzL+Ng8uoyb0ThtU3fuBr7E
+X-Received: by 2002:a05:620a:705:: with SMTP id 5mr13160535qkc.372.1605814361474;
+        Thu, 19 Nov 2020 11:32:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1605814361; cv=none;
+        d=google.com; s=arc-20160816;
+        b=l7DZlvTCx7I9TCdOtYAwK5DY0FGyG1vI5RpYYqO3ybXgam71PgdmmmcIv7XobcVsiS
+         2LtgcNHBQuZgasQX31X0HT4cDnyc9mB424QB6CIl5Jm1KtBqAvS0avlEYdoF2GX/Fc15
+         d5S3ZQDAJuAIamKYcRk78bPNwOxAbEdO09UXJa9/wN/AHGfmBz9zKIqjTadfT4l72hF2
+         I0g4XaSf8sWNAvHkcjjEpdf6iVzqoNtTf0Uh9wol+mO7HxyCjn9Pqd+maCsjzXrU1GOn
+         kYHYjKTmPeJZ/ktjv2qOjnUHJCBPpF50F7spHb4dvGcSwSUxd9/iuhEvjbhdlHrXUUYS
+         yuHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:date:list-unsubscribe:subject:to:from:mime-version
+         :dkim-signature;
+        bh=sVnN/4Obtog5TxFXux3koRYIXZGx3Y/we8LwudGbuvU=;
+        b=tOkW/cYtTvmVvMraDRUihjA+Ce4740POblV8xmJR4j7etvKI4kdsi+xiZlx+HDcl8g
+         EKAd+Kss7msQj8YC86QDPsbZ7RpD9p5SlhziQyjCz9HihcoVWVPNik9B3JdF7qspip9x
+         zB1VbuUCeJTi/WNa3udpKCrHvQjSx1xqztK5sL2KFTCSDtTaxn2MjxyGNQOaHWnih1c2
+         kgtDSJA6G+Wz+cNlXke34rNN0uQKIxb5yNyZeW7yrCfdM1HuGBuzkVaCE4j4um2H6WZ1
+         QC0oq7t6i3BFRNUkPjTtaSRY/BQg4Hn9vgTYz3hJRHY400EnqUXhP3Ju4TAjuDSKWroa
+         Go0A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=wEtNq70c;
+       spf=pass (google.com: domain of noreply@quora.com designates 52.203.188.135 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Return-Path: <noreply@quora.com>
+Received: from o21.pigeon.quora.com (o21.pigeon.quora.com. [52.203.188.135])
+        by mx.google.com with ESMTPS id v17si218856qvz.127.2020.11.19.11.32.41
+        for <miphilipk@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Nov 2020 11:32:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@quora.com designates 52.203.188.135 as permitted sender) client-ip=52.203.188.135;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=wEtNq70c;
+       spf=pass (google.com: domain of noreply@quora.com designates 52.203.188.135 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Received: 
+	by pigeon-at-10029 (OpenSMTPD) with ESMTP id 5d2f0a17
+	for <miphilipk@gmail.com>;
+	Thu, 19 Nov 2020 19:32:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=quora.com; h=
+	content-type:mime-version:from:to:subject:list-unsubscribe:date
+	:message-id; s=pigeon; bh=SG4h0sxqaHsJaDZ5zst+3/4wne8=; b=wEtNq7
+	0cbBnkTqcp5sYVoQP4DYqx1x4rm2kiMjDclMQly6Fh9kiUFGofXovtrGPMvq2MCq
+	85CQJU+OFH/9B2Zyx3859fixZCV/0x2QgqFtfkxt8g//nQgJhUdX3A1s5iLBQIKr
+	xoAGDDMN4/oAk14mXLdc68Vc+7Qh6WX9qaKdmXd7cKh0+bNuSm4+H/TQ5IIIXAGs
+	vvdGesf/iSz8SGZPu7h7tLjeqnF++BIgeyqOIhMgT2KjXZ5Iraj9uhbfN+aCDTl4
+	9T+G/VvMqB6Kd48An+kSuku9bdnKe+8HUX3DSBrrS0X/QJUTzKlsp+mAFnD3mWZB
+	fAk5asWv7tqM3QUA==
+Content-Type: multipart/alternative;
+ boundary="===============5844442656329670044=="
+MIME-Version: 1.0
+From: Quora Digest <digest-noreply@quora.com>
+To: miphilipk@gmail.com
+Subject: =?utf-8?q?Why_did_Bob_Marley_refuse_treatment_for_cancer=3F?=
+List-Unsubscribe: <http://www.quora.com/email_optout/qemail_unsubscribe?email_track_id=2749841b1e9c4f919c8f0eb408aa1bf4&t=1605814353794217&token=849c864c22d08fd1db3d22c8bb6facdd7ae2165210392519d08996913cabf5dcc093f1a720864d3ec560f3081cc8b678402a0764fe2f0c42a1119d11fe32d985&type=2&uid=865920808>
+X-CID: 6IsaHr984dVWHF2ixq_YSDkjKyH2N_E97Gen8_NY8yo4ad4Bq2Dy5W9TOlQtzbNAp065o8S_dQfKP91kD5jR9JJameUL-F3H6YuqNzDAjVoPRnsiOj-JfWMJWUGAn5uLyvvlB5XrfWFHizUAAQIA
+Date: Thu, 19 Nov 2020 19:32:36 +0000
+Message-ID: <6IsaHr984dVWHF2ixq_YSDkjKyH2N_E97Gen8_NY8yo4ad4Bq2Dy5W9TOlQtzbNAp065o8S_dQfKP91kD5jR9JJameUL-F3H6YuqNzDAjVoPRnsiOj-JfWMJWUGAn5uLyvvlB5XrfWFHizUAAQIA@t1.msgid.quoramail.com>
+X-SMTPAPI: =?utf-8?q?=7B=22unique=5Fargs=22=3A_=7B=22Message-ID=22=3A_=22=3C6IsaHr984dV?=
+ =?utf-8?q?WHF2ixq=5FYSDkjKyH2N=5FE97Gen8=5FNY8yo4ad4Bq2Dy5W9TOlQtzbNAp065o8?=
+ =?utf-8?q?S=5FdQfKP91kD5jR9JJameUL-F3H6YuqNzDAjVoPRnsiOj-JfWMJWUGAn5uLyvvlB?=
+ =?utf-8?q?5XrfWFHizUAAQIA=40t1=2Emsgid=2Equoramail=2Ecom=3E=22=2C_=22accoun?=
+ =?utf-8?q?t=22=3A_=22digest=22=2C_=22email=5Ftype=22=3A_2=2C_=22ip=5Fpool?=
+ =?utf-8?q?=22=3A_=22main=22=2C_=22X-QMSG=22=3A_=22HNd1TEeD6KyfXBZ1POdIyFyCq?=
+ =?utf-8?q?dIlmNjTdn-qSouNVxdMyiMC3rxH85wYEASXoGwOjl73zOzxE2FECE7fJRvhUaxjxX?=
+ =?utf-8?q?AemzPjrzwqx48aUiV1v0gMIM2wGfGlwZt4k8QLHh1ox1uESyfr-NpXg9JJuLzAUVX?=
+ =?utf-8?q?J0HArS=5FwoxSRJdirbt2655wAo2zGcyaGW5jFGCnkQWgDoT9kXtXRpKKrZ1Zecfp?=
+ =?utf-8?q?Thz=5FvF5ynjWgxQYR8QWbRMS=5FnMtpuFUU5B1Xb2WFRJ=5F4XJ6J9JVuKQMTjsc?=
+ =?utf-8?q?4xzS3MG2TFHpnjDZr4rp3MXw0nUaa4lv2kp0N5Ee3DvYfRcdNfFcwmppmUkoeUJET?=
+ =?utf-8?q?=5FVwkCKwQXUTjQrFTW-U6eo65kodoSq3dVf9EFUnOxIi=5FL6=5FreEYAQD2sRxK?=
+ =?utf-8?q?F6pRMC7NuLnwa95XXYQLhRLRHXYiQpYPfqf1JPHe4Ox26QiXcW8cgE1C6Ia1It=5F?=
+ =?utf-8?q?ffiF0iVEj79jOqYVDcxdTf9biGPXDesF-DiBpnL3qrfXpxjnr1IEeT0nMqvRp8lM0?=
+ =?utf-8?q?-Ix3667SYjaFW8Huco7awOQurO=5Fi6UMqxmJ34C4fAxdTi5KAykFJVCOJNdRAAEC?=
+ =?utf-8?q?AA=3D=3D=22=7D=2C_=22category=22=3A_=5B=22account=5Fdigest=22=2C_?=
+ =?utf-8?q?=22email=5Ftype=5F2=22=2C_=22ip=5Fpool=5Fmain=22=5D=2C_=22filters?=
+ =?utf-8?q?=22=3A_=7B=22bypass=5Flist=5Fmanagement=22=3A_=7B=22settings=22?=
+ =?utf-8?q?=3A_=7B=22enable=22=3A_1=7D=7D=7D=2C_=22ip=5Fpool=22=3A_=22main?=
+ =?utf-8?q?=22=7D?=
+X-QMSG: =?utf-8?q?HNd1TEeD6KyfXBZ1POdIyFyCqdIlmNjTdn-qSouNVxdMyiMC3rxH85wYEASXoGwOjl?=
+ =?utf-8?q?73zOzxE2FECE7fJRvhUaxjxXAemzPjrzwqx48aUiV1v0gMIM2wGfGlwZt4k8QLHh1?=
+ =?utf-8?q?ox1uESyfr-NpXg9JJuLzAUVXJ0HArS=5FwoxSRJdirbt2655wAo2zGcyaGW5jFGCn?=
+ =?utf-8?q?kQWgDoT9kXtXRpKKrZ1ZecfpThz=5FvF5ynjWgxQYR8QWbRMS=5FnMtpuFUU5B1Xb?=
+ =?utf-8?q?2WFRJ=5F4XJ6J9JVuKQMTjsc4xzS3MG2TFHpnjDZr4rp3MXw0nUaa4lv2kp0N5Ee3?=
+ =?utf-8?q?DvYfRcdNfFcwmppmUkoeUJET=5FVwkCKwQXUTjQrFTW-U6eo65kodoSq3dVf9EFUn?=
+ =?utf-8?q?OxIi=5FL6=5FreEYAQD2sRxKF6pRMC7NuLnwa95XXYQLhRLRHXYiQpYPfqf1JPHe4?=
+ =?utf-8?q?Ox26QiXcW8cgE1C6Ia1It=5FffiF0iVEj79jOqYVDcxdTf9biGPXDesF-DiBpnL3q?=
+ =?utf-8?q?rfXpxjnr1IEeT0nMqvRp8lM0-Ix3667SYjaFW8Huco7awOQurO=5Fi6UMqxmJ34C4?=
+ =?utf-8?q?fAxdTi5KAykFJVCOJNdRAAECAA=3D=3D?=
+X-TUID: +BLXTZEsqjWE
+
+--===============5844442656329670044==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+Phillip's Digest
+Your Quora Digest
+
+-----
+
+
+Question: Why did Bob Marley refuse treatment for cancer?
+
+Answer from Rocci Disopa
+
+Marley was a Rastafarian.
+
+He was diagnosed with a melanoma in his toe in 1977. Doctors advised Marley=
+, who was a devout Rastafarian, to have the toe amputated. He refused, on
+Read More: http://www.quora.com/Why-did-Bob-Marley-refuse-treatment-for-can=
+cer?top_ans=3D244551021
+-----
+Question: What is the dark side of PhD?
+
+Answer from Pureum Kim
+
+Here are some dark sides of PhDs.
+
+1. Impostor syndrome. You feel that you are not good enough. You always que=
+stion yourself.
+2. Tunnel vision. PhDs are trained to become expe
+Read More: http://www.quora.com/What-is-the-dark-side-of-PhD-1?top_ans=3D44=
+861238
+-----
+Question: I found a small blue book with my dead grandfather=E2=80=99s Free=
+masons paraphernalia. It's written in a strange code and I cannot find any =
+place to decode it. How can I find out what's written on it?
+
+Answer from Dave Bowman
+
+First, I want to find out why you say it is a =E2=80=9Cstrange=E2=80=9D cod=
+e. What is =E2=80=9Cstrange=E2=80=9D about it? There are different types of=
+ codes, but, in this case, it is simply a form of writing
+Read More: http://www.quora.com/I-found-a-small-blue-book-with-my-dead-gran=
+dfather-s-Freemasons-paraphernalia-Its-written-in-a-strange-code-and-I-cann=
+ot-find-any-place-to-decode-it-How-can-I-find-out-whats-written-on-it?top_a=
+ns=3D231180485
+-----
+Question: I=E2=80=99m a 13-year-old and I like Arabic people. Is it okay?
+
+Answer from =E2=80=8EAser Ahmad (=D8=A2=D8=B3=D8=B1 =D8=A3=D8=AD=D9=85=D8=
+=AF)=E2=80=8E
+
+It is so sad that you (or anyone, for that matter) needs to ask such questi=
+on. Arabs are not a punch of murderers! We have a very bad stereotypical im=
+age that is promoted by t
+Read More: http://www.quora.com/I-m-a-13-year-old-and-I-like-Arabic-people-=
+Is-it-okay?top_ans=3D246138869
+-----
+Question: Do you smoke?
+
+Answer from Josh Hill
+
+Nope. I stopped maybe 10=E2=80=9315 years ago because, well, I didn=E2=80=
+=99t want to die.
+
+But I did smoke from the time I was maybe 13 into middle age. I can=E2=80=
+=99t pretend I didn=E2=80=99t like it. I=E2=80=99d
+Read More: http://www.quora.com/Do-you-smoke-2?top_ans=3D223486198
+-----
+Question: I just got accepted by JYP through an online audition, but my par=
+ents are unsure about sending me to Korea. How can I convince them?
+
+Answer from Cadence Miss
+
+Hi, I am korean. So my english is not perfect. I am sorry because I am goin=
+g to tell you about reality.
+
+First I am korean so I know many Idols in korean.
+
+If you passed audit
+Read More: http://www.quora.com/I-just-got-accepted-by-JYP-through-an-onlin=
+e-audition-but-my-parents-are-unsure-about-sending-me-to-Korea-How-can-I-co=
+nvince-them?top_ans=3D243575171
+-----
+Question: Can Cristiano Ronaldo become president of Portugal?
+
+Answer from Hugo Leitao
+
+In order to be a presidential candidate in Portugal you need to fulfil the =
+following criteria:
+
+ * Be Portuguese (by birth)
+ * Be at least 35 years old
+ * Collect at least 750
+Read More: http://www.quora.com/Can-Cristiano-Ronaldo-become-president-of-P=
+ortugal?top_ans=3D59302643
+-----
+Question: Assuming Biden wins the election, how long will it take for the T=
+rump family to vacate the White House?
+
+Answer from Le Sellers
+
+Exactly two hours, the same as for the presidents before him.
+
+You see, the White House staff takes pride in waiting until the president a=
+nd his family leave at 11:00 A.M. to=20
+Read More: http://www.quora.com/Assuming-Biden-wins-the-election-how-long-w=
+ill-it-take-for-the-Trump-family-to-vacate-the-White-House?top_ans=3D246096=
+113
+-----
+Question: I'm 12 turning 14 and I'm 5=C2=B46. Will I be tall enough for the=
+ NBA?
+
+Answer from Kyle Dring
+
+You=E2=80=99re 12 turning 14. Well=E2=80=A6. Ummmm=E2=80=A6=E2=80=A6. Sure.
+
+I guess you mean 13?
+
+You=E2=80=99re not going to the NBA at you=E2=80=99re age and you can=E2=80=
+=99t just be a certain size to join. You got to work at i
+Read More: http://www.quora.com/Im-12-turning-14-and-Im-5-6-Will-I-be-tall-=
+enough-for-the-NBA?top_ans=3D217064000
+-----
+Question: What should you avoid in writing?
+
+Answer from Tyler Knapke
+
+1. Don=E2=80=99t use passive voice.
+2. Try not to use the same words over, and over again.
+3. Don=E2=80=99t use the same sentence length, or type of sentence every ti=
+me.
+4. Avoid using the sa
+Read More: http://www.quora.com/What-should-you-avoid-in-writing?top_ans=3D=
+247096602
+-----
+
+-----
+To control which emails we send you, visit: https://www.quora.com/qemail/tc=
+?aoid&aoty=3D14&aty=3D4&cp=3D0&id=3D2749841b1e9c4f919c8f0eb408aa1bf4
+
+To unsubscribe from this type of email, visit: http://www.quora.com/email_o=
+ptout/qemail_unsubscribe?email_track_id=3D2749841b1e9c4f919c8f0eb408aa1bf4&=
+t=3D1605814354056173&token=3De2dbe1d8842c331226a101aa9a976cade36772c1fd3c3e=
+dfc17ee44be08ee8a723e73ae65c039d590576bcd0112e3966c8184ab923f627d40c90364bc=
+2904f27&type=3D2&uid=3D865920808
+--===============5844442656329670044==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style type=3D"text/css">
+@media screen and (max-width:480px) {
+  .v {
+    padding: 0 8px 16px!important;
+  }
+  .r {
+    border-top: 1px solid #e2e2e2!important;
+  }
+  .rd {
+    padding: 10px 0!important;
+  }
+  .r7 img.rt {
+    width: 118px!important;
+    height: 40px!important;
+  }
+  .a {
+    font-size: 16px!important;
+    padding-top: 0!important;
+    padding-bottom: 5px!important;
+  }
+}
+</style>
+</head><body style=3D"-webkit-text-size-adjust:100%;-ms-text-size-adjust:10=
+0%;margin:0;padding:0;width:100%"><div dir=3D"ltr" lang=3D"en"><table cellp=
+adding=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspac=
+e:0;mso-table-rspace:0;background:#eee;font-family:-apple-system,BlinkMacSy=
+stemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sa=
+ns-serif;font-size:13px;width:100%;height:100%;text-align:left" width=3D"10=
+0%" height=3D"100%" align=3D"left"><tbody><tr><td class=3D"rd" align=3D"cen=
+ter" valign=3D"top" style=3D"border-collapse:collapse;padding:0;background:=
+#fff"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"bord=
+er-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td =
+class=3D"v" align=3D"left" style=3D"border-collapse:collapse;background:#ff=
+f;padding:32px;width:525px;height:100%;border-radius:3px" width=3D"525" hei=
+ght=3D"100%"><table style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0;width:100%;cellpadding:0;cellspacing:0;border:0" width=3D"=
+100%"><tbody><tr><td style=3D"border-collapse:collapse"><span style=3D"disp=
+lay:none;font-size:1px;color:white;line-height:1px;max-height:0px;max-width=
+:0px;opacity:0;overflow:hidden">Answer: Marley was a Rastafarian.=E2=80=8B =
+ He was diagnosed with a melanoma in his toe.=E2=80=8B.=E2=80=8B.=E2=80=8B<=
+/span><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%=
+" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0">=
+<tbody><tr><td class=3D"r7" style=3D"border-collapse:collapse;text-align:ce=
+nter" align=3D"center"><a href=3D"https://www.quora.com/qemail/tc?aoid&amp;=
+aoty=3D7&amp;aty=3D4&amp;cp=3D0&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" =
+style=3D"text-decoration:none;color:#2b6dad"><img class=3D"rt" src=3D"http:=
+//qsf.fs.quoracdn.net/-4-images.logo.WordmarkLogo_592x200_4x.png-26-b469cd6=
+53dba282b.png" alt=3D"Quora" style=3D"outline:0;text-decoration:none;-ms-in=
+terpolation-mode:bicubic;border:0;width:148px;height:50px" width=3D"148" he=
+ight=3D"50" /><img style=3D"outline:0;text-decoration:none;-ms-interpolatio=
+n-mode:bicubic;border:0;display:none" width=3D"1" height=3D"1" src=3D"https=
+://www.quora.com/qemail/mark_read?ct=3D1605814353673470&amp;et=3D2&amp;id=
+=3D2749841b1e9c4f919c8f0eb408aa1bf4&amp;request_id=3D482090215683920511&amp=
+;src=3D1&amp;st=3D1605814353673470&amp;stories=3D1_MkMb0yLij3Q%7C1_FW8qaelz=
+qrF%7C1_8ged9u34JxZ%7C1_V4Lk7uZap0i%7C1_Va9tfH7C2cq%7C1_bYCiDAQe3FF%7C1_myb=
+nylnnjmD%7C1_mtBXPEKjzHF%7C1_zsD0l3T8fz4%7C1_j8suKtEcIiu&amp;uid=3D3sE2gvko=
+3ih&amp;v=3D0" /></a></td></tr><tr><td class=3D"a" style=3D"border-collapse=
+:collapse;text-align:center;font-size:19px;font-family:-apple-system,BlinkM=
+acSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue=
+',sans-serif;color:#333;font-weight:400;padding-bottom:20px" align=3D"cente=
+r">Phillip's Digest</td></tr></tbody></table></td></tr><tr><td bgcolor=3D"#=
+ffffff" style=3D"border-collapse:collapse"><table style=3D"border-collapse:=
+collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" width=3D"100%"><tbody><tr><td style=3D"bor=
+der-collapse:collapse"><table style=3D"border-collapse:collapse;mso-table-l=
+space:0;mso-table-rspace:0;width:100%" cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collaps=
+e"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" s=
+tyle=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tb=
+ody><tr><td style=3D"border-collapse:collapse;text-transform:uppercase;padd=
+ing-bottom:4px;font-size:12px;margin-top:20px;border-bottom:1px solid #e2e2=
+e2">Top Stories For You</td></tr></tbody></table><div><div><table cellspaci=
+ng=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;=
+mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"borde=
+r-collapse:collapse;padding-top:15px;padding:20px 0;border-bottom:0"><table=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><=
+tbody><tr><td style=3D"border-collapse:collapse;padding-bottom:4px"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:c=
+ollapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td valign=3D"top=
+" style=3D"border-collapse:collapse"></td></tr></tbody></table></td></tr><t=
+r><td style=3D"border-collapse:collapse"><a href=3D"https://www.quora.com/q=
+email/tc?al_pri=3D1&amp;aoid=3D3tRvw8vKqah&amp;aoty=3D2&amp;aty=3D4&amp;cp=
+=3D1&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;display:block;font-size:19px;letter-spacing:-0.5px;font-weight:bold;colo=
+r:#333;line-height:1.4"><span style=3D"word-break:break-word">Why did Bob M=
+arley refuse treatment for cancer?</span></a></td></tr><tr><td style=3D"bor=
+der-collapse:collapse"><table cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0=
+;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collaps=
+e;padding:8px 0"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" st=
+yle=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tbo=
+dy><tr><td style=3D"border-collapse:collapse;vertical-align:top" valign=3D"=
+top"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DIcuiymn9vCW&amp;aoty=
+=3D3&amp;aty=3D4&amp;cp=3D1&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" styl=
+e=3D"text-decoration:none;color:#2b6dad"><div><div><div> </div></div><span>=
+<img src=3D"http://qph.fs.quoracdn.net/main-thumb-394028448-50-wavejotwxoiy=
+yrpptoiepsjvgnpjjidb.jpeg" alt=3D"Rocci Disopa" style=3D"outline:0;text-dec=
+oration:none;-ms-interpolation-mode:bicubic;border:0;display:block;height:4=
+0px;width:40px;border-radius:100px;border-style:none" height=3D"40" width=
+=3D"40" /></span></div></a></td><td style=3D"border-collapse:collapse;paddi=
+ng-left:8px;color:#333"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspac=
+e:0"><tbody><tr><td style=3D"border-collapse:collapse"><a href=3D"https://w=
+ww.quora.com/qemail/tc?aoid=3DIcuiymn9vCW&amp;aoty=3D3&amp;aty=3D4&amp;cp=
+=3D1&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;color:#333;font-weight:bold;font-size:15px;line-height:1.4">Rocci Disopa=
+</a></td></tr><tr><td style=3D"border-collapse:collapse;color:#999;font-siz=
+e:13px"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DMkMb0yLij3Q&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D1&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" s=
+tyle=3D"text-decoration:none;color:#999">Updated Oct 24</a></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr><tr><td style=3D"border-colla=
+pse:collapse;display:block;font-family:-apple-system,BlinkMacSystemFont,'Se=
+goe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;col=
+or:#333;font-size:15px;line-height:1.4"><a href=3D"https://www.quora.com/qe=
+mail/tc?al_pri=3D0&amp;aoid=3DMkMb0yLij3Q&amp;aoty=3D1&amp;aty=3D4&amp;cp=
+=3D1&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;color:#333333"><div><div style=3D"display:inline;line-height:1.6"><div s=
+tyle=3D"display:inline;float:right"><span style=3D"word-break:break-word"><=
+div><div><img src=3D"http://qph.fs.quoracdn.net/main-qimg-1887fe5676d42d5f2=
+73eb1a7d39beb6a" style=3D"outline:0;text-decoration:none;-ms-interpolation-=
+mode:bicubic;border:0;margin-left:10px;max-width:200px;max-height:100px;flo=
+at:left;border-style:none" /></div></div></span></div><span style=3D"word-b=
+reak:break-word"><p style=3D"margin:1em 0;display:inline;line-height:1.6">M=
+arley was a Rastafarian.</p><p style=3D"margin:1em 0;display:inline;line-he=
+ight:1.6">He was diagnosed with a melanoma in his toe in 1977. Doctors advi=
+sed Marley, who was a devout Rastafarian, to have the toe amputated. He ref=
+used, o...</p></span> <a href=3D"https://www.quora.com/qemail/tc?al_pri=3D8=
+&amp;aoid=3DMkMb0yLij3Q&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D1&amp;id=3D274984=
+1b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#168de9">Re=
+ad More =C2=BB</a></div></div><tr><td style=3D"border-collapse:collapse"><d=
+iv><div><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DMk=
+Mb0yLij3Q&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D1&amp;id=3D2749841b1e9c4f919c8f=
+0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"></a></div></div>=
+</td></tr></a></td></tr></tbody></table></td></tr></tbody></table></td></tr=
+></tbody></table></div></div><div><div><table style=3D"border-collapse:coll=
+apse;mso-table-lspace:0;mso-table-rspace:0;cellpadding:0;border:0;width:100=
+%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse"></td><t=
+d style=3D"border-collapse:collapse;border-bottom:1px solid #eee;height:1px=
+;width:140px" width=3D"140" height=3D"1"></td><td style=3D"border-collapse:=
+collapse"></td></tr></tbody></table><table cellspacing=3D"0" border=3D"0" s=
+tyle=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;widt=
+h:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse;pad=
+ding:20px 0;border-bottom:0"><table cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rs=
+pace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:c=
+ollapse;padding-bottom:4px"><table cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rsp=
+ace:0"><tbody><tr><td valign=3D"top" style=3D"border-collapse:collapse"></t=
+d></tr></tbody></table></td></tr><tr><td style=3D"border-collapse:collapse"=
+><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D1&amp;aoid=3DmWwEgZDLx=
+KF&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb408a=
+a1bf4" style=3D"text-decoration:none;display:block;font-size:19px;letter-sp=
+acing:-0.5px;font-weight:bold;color:#333;line-height:1.4"><span style=3D"wo=
+rd-break:break-word">What is the dark side of PhD?</span></a></td></tr><tr>=
+<td style=3D"border-collapse:collapse"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-=
+collapse:collapse;padding:8px 0"><table cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-tabl=
+e-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse;vertical-align=
+:top" valign=3D"top"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DXzAm=
+g5anQ4Z&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0e=
+b408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"><div><div><div> </=
+div></div><span><img src=3D"http://qph.fs.quoracdn.net/main-thumb-25531916-=
+50-p0QDhKvSnoaNsMo9GCAE4vQqRG59aeAf.jpeg" alt=3D"Pureum Kim" style=3D"outli=
+ne:0;text-decoration:none;-ms-interpolation-mode:bicubic;border:0;display:b=
+lock;height:40px;width:40px;border-radius:100px;border-style:none" height=
+=3D"40" width=3D"40" /></span></div></a></td><td style=3D"border-collapse:c=
+ollapse;padding-left:8px;color:#333"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse"><a href=
+=3D"https://www.quora.com/qemail/tc?aoid=3DXzAmg5anQ4Z&amp;aoty=3D3&amp;aty=
+=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-de=
+coration:none;color:#333;font-weight:bold;font-size:15px;line-height:1.4">P=
+ureum Kim</a><span style=3D"font-size:15px;line-height:1.4">, Assistant Pro=
+fessor, Accounting at California State University, Fullerton (2017-...</spa=
+n></td></tr><tr><td style=3D"border-collapse:collapse;color:#999;font-size:=
+13px"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DFW8qaelzqrF&amp;aot=
+y=3D1&amp;aty=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" sty=
+le=3D"text-decoration:none;color:#999">Written May 18, 2017</a></td></tr></=
+tbody></table></td></tr></tbody></table></td></tr><tr><td style=3D"border-c=
+ollapse:collapse;display:block;font-family:-apple-system,BlinkMacSystemFont=
+,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif=
+;color:#333;font-size:15px;line-height:1.4"><a href=3D"https://www.quora.co=
+m/qemail/tc?al_pri=3D0&amp;aoid=3DFW8qaelzqrF&amp;aoty=3D1&amp;aty=3D4&amp;=
+cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:=
+none;color:#333333"><div><div style=3D"display:inline;line-height:1.6"><spa=
+n style=3D"word-break:break-word"><p style=3D"margin:1em 0;display:inline;l=
+ine-height:1.6">Here are some dark sides of PhDs.</p><ol><li>Impostor syndr=
+ome. You feel that you are not good enough. You always question yourself.</=
+li><li>Tunnel vision. PhDs are trained to become expert in ...</li></ol></s=
+pan> <a href=3D"https://www.quora.com/qemail/tc?al_pri=3D8&amp;aoid=3DFW8qa=
+elzqrF&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb=
+408aa1bf4" style=3D"text-decoration:none;color:#168de9">Read More =C2=BB</a=
+></div></div><tr><td style=3D"border-collapse:collapse"><div><div><a href=
+=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DFW8qaelzqrF&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D2&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" s=
+tyle=3D"text-decoration:none;color:#2b6dad"></a></div></div></td></tr></a><=
+/td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tabl=
+e></div></div><table style=3D"border-collapse:collapse;mso-table-lspace:0;m=
+so-table-rspace:0;cellpadding:0;border:0;width:100%" width=3D"100%"><tbody>=
+<tr><td style=3D"border-collapse:collapse"></td><td style=3D"border-collaps=
+e:collapse;border-bottom:1px solid #eee;height:1px;width:140px" width=3D"14=
+0" height=3D"1"></td><td style=3D"border-collapse:collapse"></td></tr></tbo=
+dy></table><a href=3D"https://www.quora.com/_/cli?ct=3D1605814353673470&amp=
+;id=3D2749841b1e9c4f919c8f0eb408aa1bf4&amp;is_mobile=3DFalse&amp;new_digest=
+_email_exp_version=3Dv0&amp;uid=3D3sE2gvko3ih" style=3D"text-decoration:non=
+e;color:#2b6dad"><img style=3D"outline:0;text-decoration:none;-ms-interpola=
+tion-mode:bicubic;border:0;max-width:320px" src=3D"https://www.quora.com/_/=
+imp?ct=3D1605814353673470&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4&amp;is_=
+mobile=3DFalse&amp;new_digest_email_exp_version=3Dv0&amp;uid=3D3sE2gvko3ih"=
+ /></a><div><div><table style=3D"border-collapse:collapse;mso-table-lspace:=
+0;mso-table-rspace:0;cellpadding:0;border:0;width:100%" width=3D"100%"><tbo=
+dy><tr><td style=3D"border-collapse:collapse"></td><td style=3D"border-coll=
+apse:collapse;border-bottom:1px solid #eee;height:1px;width:140px" width=3D=
+"140" height=3D"1"></td><td style=3D"border-collapse:collapse"></td></tr></=
+tbody></table><table cellspacing=3D"0" border=3D"0" style=3D"border-collaps=
+e:collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"=
+><tbody><tr><td style=3D"border-collapse:collapse;padding:20px 0;border-bot=
+tom:0"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"bor=
+der-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" wid=
+th=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse;padding-bottom=
+:4px"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"bord=
+er-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td =
+valign=3D"top" style=3D"border-collapse:collapse"></td></tr></tbody></table=
+></td></tr><tr><td style=3D"border-collapse:collapse"><a href=3D"https://ww=
+w.quora.com/qemail/tc?al_pri=3D1&amp;aoid=3DjhOxBOckXk6&amp;aoty=3D2&amp;at=
+y=3D4&amp;cp=3D3&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-d=
+ecoration:none;display:block;font-size:19px;letter-spacing:-0.5px;font-weig=
+ht:bold;color:#333;line-height:1.4"><span style=3D"word-break:break-word">I=
+ found a small blue book with my dead grandfather=E2=80=99s Freemasons para=
+phernalia. It's written in a strange code and I cannot find any place to de=
+code it. How can I find out what's written on it?</span></a></td></tr><tr><=
+td style=3D"border-collapse:collapse"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-=
+collapse:collapse;padding:8px 0"><table cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-tabl=
+e-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse;vertical-align=
+:top" valign=3D"top"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DIhYh=
+KcAPobd&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D3&amp;id=3D2749841b1e9c4f919c8f0e=
+b408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"><div><div><div> </=
+div></div><span><img src=3D"http://qph.fs.quoracdn.net/main-thumb-355270561=
+-50-zvmtclginqeuwfdmyejappcltlhdulkr.jpeg" alt=3D"Dave Bowman" style=3D"out=
+line:0;text-decoration:none;-ms-interpolation-mode:bicubic;border:0;display=
+:block;height:40px;width:40px;border-radius:100px;border-style:none" height=
+=3D"40" width=3D"40" /></span></div></a></td><td style=3D"border-collapse:c=
+ollapse;padding-left:8px;color:#333"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse"><a href=
+=3D"https://www.quora.com/qemail/tc?aoid=3DIhYhKcAPobd&amp;aoty=3D3&amp;aty=
+=3D4&amp;cp=3D3&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-de=
+coration:none;color:#333;font-weight:bold;font-size:15px;line-height:1.4">D=
+ave Bowman</a><span style=3D"font-size:15px;line-height:1.4">, Fellow, Scot=
+tish Rite Research Society</span></td></tr><tr><td style=3D"border-collapse=
+:collapse;color:#999;font-size:13px"><a href=3D"https://www.quora.com/qemai=
+l/tc?aoid=3D8ged9u34JxZ&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D3&amp;id=3D274984=
+1b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#999">Updat=
+ed Oct 10</a></td></tr></tbody></table></td></tr></tbody></table></td></tr>=
+<tr><td style=3D"border-collapse:collapse;display:block;font-family:-apple-=
+system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'H=
+elvetica Neue',sans-serif;color:#333;font-size:15px;line-height:1.4"><a hre=
+f=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3D8ged9u34JxZ&amp;=
+aoty=3D1&amp;aty=3D4&amp;cp=3D3&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" =
+style=3D"text-decoration:none;color:#333333"><div><div style=3D"display:inl=
+ine;line-height:1.6"><span style=3D"word-break:break-word"><p style=3D"marg=
+in:1em 0;display:inline;line-height:1.6">First, I want to find out why you =
+say it is a =E2=80=9Cstrange=E2=80=9D code. What is =E2=80=9Cstrange=E2=80=
+=9D about it? There are different types of codes, but, in this case, it is =
+simply a form of writ...</p></span> <a href=3D"https://www.quora.com/qemail=
+/tc?al_pri=3D8&amp;aoid=3D8ged9u34JxZ&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D3&a=
+mp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;col=
+or:#168de9">Read More =C2=BB</a></div></div><tr><td style=3D"border-collaps=
+e:collapse"><div><div><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D0=
+&amp;aoid=3D8ged9u34JxZ&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D3&amp;id=3D274984=
+1b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"></=
+a></div></div></td></tr></a></td></tr></tbody></table></td></tr></tbody></t=
+able></td></tr></tbody></table></div></div><div><div><table style=3D"border=
+-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;cellpadding:0;bord=
+er:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:col=
+lapse"></td><td style=3D"border-collapse:collapse;border-bottom:1px solid #=
+eee;height:1px;width:140px" width=3D"140" height=3D"1"></td><td style=3D"bo=
+rder-collapse:collapse"></td></tr></tbody></table><table cellspacing=3D"0" =
+border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table=
+-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collaps=
+e:collapse;padding:20px 0;border-bottom:0"><table cellpadding=3D"0" cellspa=
+cing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:=
+0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"bor=
+der-collapse:collapse;padding-bottom:4px"><table cellpadding=3D"0" cellspac=
+ing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0=
+;mso-table-rspace:0"><tbody><tr><td valign=3D"top" style=3D"border-collapse=
+:collapse"></td></tr></tbody></table></td></tr><tr><td style=3D"border-coll=
+apse:collapse"><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D1&amp;ao=
+id=3DjK7oD9qQD8u&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D4&amp;id=3D2749841b1e9c4=
+f919c8f0eb408aa1bf4" style=3D"text-decoration:none;display:block;font-size:=
+19px;letter-spacing:-0.5px;font-weight:bold;color:#333;line-height:1.4"><sp=
+an style=3D"word-break:break-word">I=E2=80=99m a 13-year-old and I like Ara=
+bic people. Is it okay?</span></a></td></tr><tr><td style=3D"border-collaps=
+e:collapse"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;width:10=
+0%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse;padding=
+:8px 0"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"bo=
+rder-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><t=
+d style=3D"border-collapse:collapse;vertical-align:top" valign=3D"top"><a h=
+ref=3D"https://www.quora.com/qemail/tc?aoid=3DIlGIchUeSUZ&amp;aoty=3D3&amp;=
+aty=3D4&amp;cp=3D4&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text=
+-decoration:none;color:#2b6dad"><div><div><div> </div></div><span><img src=
+=3D"http://qph.fs.quoracdn.net/main-thumb-95611297-50-kpoqvuzzyegchvslazmfp=
+mxcanqwtfyj.jpeg" alt=3D"Aser Ahmad (=D8=A2=D8=B3=D8=B1 =D8=A3=D8=AD=D9=85=
+=D8=AF)" style=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bic=
+ubic;border:0;display:block;height:40px;width:40px;border-radius:100px;bord=
+er-style:none" height=3D"40" width=3D"40" /></span></div></a></td><td style=
+=3D"border-collapse:collapse;padding-left:8px;color:#333"><table cellpaddin=
+g=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;ms=
+o-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-collaps=
+e:collapse"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DIlGIchUeSUZ&a=
+mp;aoty=3D3&amp;aty=3D4&amp;cp=3D4&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf=
+4" style=3D"text-decoration:none;color:#333;font-weight:bold;font-size:15px=
+;line-height:1.4">Aser Ahmad (=D8=A2=D8=B3=D8=B1 =D8=A3=D8=AD=D9=85=D8=AF)<=
+/a><span style=3D"font-size:15px;line-height:1.4">, knows Arabic</span></td=
+></tr><tr><td style=3D"border-collapse:collapse;color:#999;font-size:13px">=
+<a href=3D"https://www.quora.com/qemail/tc?aoid=3DV4Lk7uZap0i&amp;aoty=3D1&=
+amp;aty=3D4&amp;cp=3D4&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"=
+text-decoration:none;color:#999">Written Oct 25</a></td></tr></tbody></tabl=
+e></td></tr></tbody></table></td></tr><tr><td style=3D"border-collapse:coll=
+apse;display:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',=
+Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;color:#333;=
+font-size:15px;line-height:1.4"><a href=3D"https://www.quora.com/qemail/tc?=
+al_pri=3D0&amp;aoid=3DV4Lk7uZap0i&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D4&amp;i=
+d=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#=
+333333"><div><div style=3D"display:inline;line-height:1.6"><span style=3D"w=
+ord-break:break-word"><p style=3D"margin:1em 0;display:inline;line-height:1=
+.6">It is so sad that you (or anyone, for that matter) needs to ask such qu=
+estion. Arabs are not a punch of murderers! We have a very bad stereotypica=
+l image that is promoted b...</p></span> <a href=3D"https://www.quora.com/q=
+email/tc?al_pri=3D8&amp;aoid=3DV4Lk7uZap0i&amp;aoty=3D1&amp;aty=3D4&amp;cp=
+=3D4&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;color:#168de9">Read More =C2=BB</a></div></div><tr><td style=3D"border-c=
+ollapse:collapse"><div><div><a href=3D"https://www.quora.com/qemail/tc?al_p=
+ri=3D0&amp;aoid=3DV4Lk7uZap0i&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D4&amp;id=3D=
+2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6d=
+ad"></a></div></div></td></tr></a></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></div></div><div><div><table style=3D"=
+border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;cellpadding:=
+0;border:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collap=
+se:collapse"></td><td style=3D"border-collapse:collapse;border-bottom:1px s=
+olid #eee;height:1px;width:140px" width=3D"140" height=3D"1"></td><td style=
+=3D"border-collapse:collapse"></td></tr></tbody></table><table cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-=
+collapse:collapse;padding:20px 0;border-bottom:0"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-=
+lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=
+=3D"border-collapse:collapse;padding-bottom:4px"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-l=
+space:0;mso-table-rspace:0"><tbody><tr><td valign=3D"top" style=3D"border-c=
+ollapse:collapse"></td></tr></tbody></table></td></tr><tr><td style=3D"bord=
+er-collapse:collapse"><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D1=
+&amp;aoid=3DRQwM09OpkSm&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D5&amp;id=3D274984=
+1b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;display:block;fon=
+t-size:19px;letter-spacing:-0.5px;font-weight:bold;color:#333;line-height:1=
+.4"><span style=3D"word-break:break-word">Do you smoke?</span></a></td></tr=
+><tr><td style=3D"border-collapse:collapse"><table cellpadding=3D"0" cellsp=
+acing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace=
+:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"bo=
+rder-collapse:collapse;padding:8px 0"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse;vertical=
+-align:top" valign=3D"top"><a href=3D"https://www.quora.com/qemail/tc?aoid=
+=3D1YM0A5WCymD&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D5&amp;id=3D2749841b1e9c4f9=
+19c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"><div><div><=
+div> </div></div><span><img src=3D"http://qph.fs.quoracdn.net/main-thumb-94=
+121615-50-nzwcraxelmabvwwxgxfiisseyzublwkv.jpeg" alt=3D"Josh Hill" style=3D=
+"outline:0;text-decoration:none;-ms-interpolation-mode:bicubic;border:0;dis=
+play:block;height:40px;width:40px;border-radius:100px;border-style:none" he=
+ight=3D"40" width=3D"40" /></span></div></a></td><td style=3D"border-collap=
+se:collapse;padding-left:8px;color:#333"><table cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;=
+mso-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse"><a hr=
+ef=3D"https://www.quora.com/qemail/tc?aoid=3D1YM0A5WCymD&amp;aoty=3D3&amp;a=
+ty=3D4&amp;cp=3D5&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-=
+decoration:none;color:#333;font-weight:bold;font-size:15px;line-height:1.4"=
+>Josh Hill</a><span style=3D"font-size:15px;line-height:1.4">, EE, Worked i=
+n HDTV Research</span></td></tr><tr><td style=3D"border-collapse:collapse;c=
+olor:#999;font-size:13px"><a href=3D"https://www.quora.com/qemail/tc?aoid=
+=3DVa9tfH7C2cq&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D5&amp;id=3D2749841b1e9c4f9=
+19c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#999">Written Jun 23=
+</a></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td s=
+tyle=3D"border-collapse:collapse;display:block;font-family:-apple-system,Bl=
+inkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#333;font-size:15px;line-height:1.4"><a href=3D"http=
+s://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DVa9tfH7C2cq&amp;aoty=3D1&=
+amp;aty=3D4&amp;cp=3D5&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"=
+text-decoration:none;color:#333333"><div><div style=3D"display:inline;line-=
+height:1.6"><span style=3D"word-break:break-word"><p style=3D"margin:1em 0;=
+display:inline;line-height:1.6">Nope. I stopped maybe 10=E2=80=9315 years a=
+go because, well, I didn=E2=80=99t want to die.</p><p style=3D"margin:1em 0=
+;display:inline;line-height:1.6">But I did smoke from the time I was maybe =
+13 into middle age. I can=E2=80=99t pretend I didn=E2=80=99t like it. I=E2=
+=80=99...</p></span> <a href=3D"https://www.quora.com/qemail/tc?al_pri=3D8&=
+amp;aoid=3DVa9tfH7C2cq&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D5&amp;id=3D2749841=
+b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#168de9">Rea=
+d More =C2=BB</a></div></div><tr><td style=3D"border-collapse:collapse"><di=
+v><div><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DVa9=
+tfH7C2cq&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D5&amp;id=3D2749841b1e9c4f919c8f0=
+eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"></a></div></div><=
+/td></tr></a></td></tr></tbody></table></td></tr></tbody></table></td></tr>=
+</tbody></table></div></div><div><div><table style=3D"border-collapse:colla=
+pse;mso-table-lspace:0;mso-table-rspace:0;cellpadding:0;border:0;width:100%=
+" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse"></td><td=
+ style=3D"border-collapse:collapse;border-bottom:1px solid #eee;height:1px;=
+width:140px" width=3D"140" height=3D"1"></td><td style=3D"border-collapse:c=
+ollapse"></td></tr></tbody></table><table cellspacing=3D"0" border=3D"0" st=
+yle=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;width=
+:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:collapse;padd=
+ing:20px 0;border-bottom:0"><table cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rsp=
+ace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:co=
+llapse;padding-bottom:4px"><table cellpadding=3D"0" cellspacing=3D"0" borde=
+r=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspa=
+ce:0"><tbody><tr><td valign=3D"top" style=3D"border-collapse:collapse"></td=
+></tr></tbody></table></td></tr><tr><td style=3D"border-collapse:collapse">=
+<a href=3D"https://www.quora.com/qemail/tc?al_pri=3D1&amp;aoid=3DVhLuP8ogoM=
+i&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D6&amp;id=3D2749841b1e9c4f919c8f0eb408aa=
+1bf4" style=3D"text-decoration:none;display:block;font-size:19px;letter-spa=
+cing:-0.5px;font-weight:bold;color:#333;line-height:1.4"><span style=3D"wor=
+d-break:break-word">I just got accepted by JYP through an online audition, =
+but my parents are unsure about sending me to Korea. How can I convince the=
+m?</span></a></td></tr><tr><td style=3D"border-collapse:collapse"><table ce=
+llpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:col=
+lapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbo=
+dy><tr><td style=3D"border-collapse:collapse;padding:8px 0"><table cellpadd=
+ing=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;=
+mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-colla=
+pse:collapse;vertical-align:top" valign=3D"top"><a href=3D"https://www.quor=
+a.com/qemail/tc?aoid=3DoURL4HrYv8T&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D6&amp;=
+id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:=
+#2b6dad"><div><div><div> </div></div><span><img src=3D"http://qph.fs.quorac=
+dn.net/main-thumb-1296776418-50-rshaayzourfvoexlplumsplpewklnyrm.jpeg" alt=
+=3D"Cadence Miss" style=3D"outline:0;text-decoration:none;-ms-interpolation=
+-mode:bicubic;border:0;display:block;height:40px;width:40px;border-radius:1=
+00px;border-style:none" height=3D"40" width=3D"40" /></span></div></a></td>=
+<td style=3D"border-collapse:collapse;padding-left:8px;color:#333"><table c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:co=
+llapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"borde=
+r-collapse:collapse"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DoURL=
+4HrYv8T&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D6&amp;id=3D2749841b1e9c4f919c8f0e=
+b408aa1bf4" style=3D"text-decoration:none;color:#333;font-weight:bold;font-=
+size:15px;line-height:1.4">Cadence Miss</a></td></tr><tr><td style=3D"borde=
+r-collapse:collapse;color:#999;font-size:13px"><a href=3D"https://www.quora=
+.com/qemail/tc?aoid=3DbYCiDAQe3FF&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D6&amp;i=
+d=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#=
+999">Written Oct 11</a></td></tr></tbody></table></td></tr></tbody></table>=
+</td></tr><tr><td style=3D"border-collapse:collapse;display:block;font-fami=
+ly:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Ca=
+ntarell,'Helvetica Neue',sans-serif;color:#333;font-size:15px;line-height:1=
+.4"><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DbYCiDA=
+Qe3FF&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D6&amp;id=3D2749841b1e9c4f919c8f0eb4=
+08aa1bf4" style=3D"text-decoration:none;color:#333333"><div><div style=3D"d=
+isplay:inline;line-height:1.6"><span style=3D"word-break:break-word"><p sty=
+le=3D"margin:1em 0;display:inline;line-height:1.6">Hi, I am korean. So my e=
+nglish is not perfect. I am sorry because I am going to tell you about real=
+ity.</p><p style=3D"margin:1em 0;display:inline;line-height:1.6">First I am=
+ korean so I know many Idols in korean.</p><p style=3D"margin:1em 0;display=
+:inline;line-height:1.6">If you passed auditi...</p></span> <a href=3D"http=
+s://www.quora.com/qemail/tc?al_pri=3D8&amp;aoid=3DbYCiDAQe3FF&amp;aoty=3D1&=
+amp;aty=3D4&amp;cp=3D6&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"=
+text-decoration:none;color:#168de9">Read More =C2=BB</a></div></div><tr><td=
+ style=3D"border-collapse:collapse"><div><div><a href=3D"https://www.quora.=
+com/qemail/tc?al_pri=3D0&amp;aoid=3DbYCiDAQe3FF&amp;aoty=3D1&amp;aty=3D4&am=
+p;cp=3D6&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoratio=
+n:none;color:#2b6dad"></a></div></div></td></tr></a></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></div></div><div><di=
+v><table style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rsp=
+ace:0;cellpadding:0;border:0;width:100%" width=3D"100%"><tbody><tr><td styl=
+e=3D"border-collapse:collapse"></td><td style=3D"border-collapse:collapse;b=
+order-bottom:1px solid #eee;height:1px;width:140px" width=3D"140" height=3D=
+"1"></td><td style=3D"border-collapse:collapse"></td></tr></tbody></table><=
+table cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-=
+table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td=
+ style=3D"border-collapse:collapse;padding:20px 0;border-bottom:0"><table c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:co=
+llapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tb=
+ody><tr><td style=3D"border-collapse:collapse;padding-bottom:4px"><table ce=
+llpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:col=
+lapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td valign=3D"top" =
+style=3D"border-collapse:collapse"></td></tr></tbody></table></td></tr><tr>=
+<td style=3D"border-collapse:collapse"><a href=3D"https://www.quora.com/qem=
+ail/tc?al_pri=3D1&amp;aoid=3DarqDv7OALJU&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D=
+7&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;=
+display:block;font-size:19px;letter-spacing:-0.5px;font-weight:bold;color:#=
+333;line-height:1.4"><span style=3D"word-break:break-word">Can Cristiano Ro=
+naldo become president of Portugal?</span></a></td></tr><tr><td style=3D"bo=
+rder-collapse:collapse"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspac=
+e:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collapse:coll=
+apse;padding:8px 0"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0"><=
+tbody><tr><td style=3D"border-collapse:collapse;vertical-align:top" valign=
+=3D"top"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DV6vvJThviB8&amp;=
+aoty=3D3&amp;aty=3D4&amp;cp=3D7&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" =
+style=3D"text-decoration:none;color:#2b6dad"><div><div><div> </div></div><s=
+pan><img src=3D"http://qph.fs.quoracdn.net/main-thumb-34990843-50-ddrrarizq=
+eqtwtcaslrrllpaldcxhveu.jpeg" alt=3D"Hugo Leitao" style=3D"outline:0;text-d=
+ecoration:none;-ms-interpolation-mode:bicubic;border:0;display:block;height=
+:40px;width:40px;border-radius:100px;border-style:none" height=3D"40" width=
+=3D"40" /></span></div></a></td><td style=3D"border-collapse:collapse;paddi=
+ng-left:8px;color:#333"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspac=
+e:0"><tbody><tr><td style=3D"border-collapse:collapse"><a href=3D"https://w=
+ww.quora.com/qemail/tc?aoid=3DV6vvJThviB8&amp;aoty=3D3&amp;aty=3D4&amp;cp=
+=3D7&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;color:#333;font-weight:bold;font-size:15px;line-height:1.4">Hugo Leitao<=
+/a><span style=3D"font-size:15px;line-height:1.4">, I'm Portuguese. Born an=
+d raised in Portugal.</span></td></tr><tr><td style=3D"border-collapse:coll=
+apse;color:#999;font-size:13px"><a href=3D"https://www.quora.com/qemail/tc?=
+aoid=3DmybnylnnjmD&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D7&amp;id=3D2749841b1e9=
+c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#999">Updated Au=
+g 15, 2018</a></td></tr></tbody></table></td></tr></tbody></table></td></tr=
+><tr><td style=3D"border-collapse:collapse;display:block;font-family:-apple=
+-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'=
+Helvetica Neue',sans-serif;color:#333;font-size:15px;line-height:1.4"><a hr=
+ef=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DmybnylnnjmD&amp=
+;aoty=3D1&amp;aty=3D4&amp;cp=3D7&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4"=
+ style=3D"text-decoration:none;color:#333333"><div><div style=3D"display:in=
+line;line-height:1.6"><span style=3D"word-break:break-word"><p style=3D"mar=
+gin:1em 0;display:inline;line-height:1.6">In order to be a presidential can=
+didate in Portugal you need to fulfil the following criteria:</p><ul><li>Be=
+ Portuguese (by birth)</li><li>Be at least 35 years old</li><li>Collect at =
+least 7500 signatur...</li></ul></span> <a href=3D"https://www.quora.com/qe=
+mail/tc?al_pri=3D8&amp;aoid=3DmybnylnnjmD&amp;aoty=3D1&amp;aty=3D4&amp;cp=
+=3D7&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:no=
+ne;color:#168de9">Read More =C2=BB</a></div></div><tr><td style=3D"border-c=
+ollapse:collapse"><div><div><a href=3D"https://www.quora.com/qemail/tc?al_p=
+ri=3D0&amp;aoid=3DmybnylnnjmD&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D7&amp;id=3D=
+2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6d=
+ad"></a></div></div></td></tr></a></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></div></div><div><div><table style=3D"=
+border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;cellpadding:=
+0;border:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-collap=
+se:collapse"></td><td style=3D"border-collapse:collapse;border-bottom:1px s=
+olid #eee;height:1px;width:140px" width=3D"140" height=3D"1"></td><td style=
+=3D"border-collapse:collapse"></td></tr></tbody></table><table cellspacing=
+=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;ms=
+o-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-=
+collapse:collapse;padding:20px 0;border-bottom:0"><table cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-=
+lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=
+=3D"border-collapse:collapse;padding-bottom:4px"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-l=
+space:0;mso-table-rspace:0"><tbody><tr><td valign=3D"top" style=3D"border-c=
+ollapse:collapse"></td></tr></tbody></table></td></tr><tr><td style=3D"bord=
+er-collapse:collapse"><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D1=
+&amp;aoid=3DI5sqKChWVI7&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D8&amp;id=3D274984=
+1b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;display:block;fon=
+t-size:19px;letter-spacing:-0.5px;font-weight:bold;color:#333;line-height:1=
+.4"><span style=3D"word-break:break-word">Assuming Biden wins the election,=
+ how long will it take for the Trump family to vacate the White House?</spa=
+n></a></td></tr><tr><td style=3D"border-collapse:collapse"><table cellpaddi=
+ng=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;m=
+so-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr>=
+<td style=3D"border-collapse:collapse;padding:8px 0"><table cellpadding=3D"=
+0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-tab=
+le-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-collapse:col=
+lapse;vertical-align:top" valign=3D"top"><a href=3D"https://www.quora.com/q=
+email/tc?aoid=3DowpjpIvr9xx&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D8&amp;id=3D27=
+49841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad=
+"><div><div><div> </div></div><span><img src=3D"http://qph.fs.quoracdn.net/=
+main-thumb-486052579-50-kjkqnmvvctgzzjicoxhizbawgsyymnxa.jpeg" alt=3D"Le Se=
+llers" style=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bicub=
+ic;border:0;display:block;height:40px;width:40px;border-radius:100px;border=
+-style:none" height=3D"40" width=3D"40" /></span></div></a></td><td style=
+=3D"border-collapse:collapse;padding-left:8px;color:#333"><table cellpaddin=
+g=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;ms=
+o-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-collaps=
+e:collapse"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DowpjpIvr9xx&a=
+mp;aoty=3D3&amp;aty=3D4&amp;cp=3D8&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf=
+4" style=3D"text-decoration:none;color:#333;font-weight:bold;font-size:15px=
+;line-height:1.4">Le Sellers</a></td></tr><tr><td style=3D"border-collapse:=
+collapse;color:#999;font-size:13px"><a href=3D"https://www.quora.com/qemail=
+/tc?aoid=3DmtBXPEKjzHF&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D8&amp;id=3D2749841=
+b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#999">Writte=
+n Oct 25</a></td></tr></tbody></table></td></tr></tbody></table></td></tr><=
+tr><td style=3D"border-collapse:collapse;display:block;font-family:-apple-s=
+ystem,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'He=
+lvetica Neue',sans-serif;color:#333;font-size:15px;line-height:1.4"><a href=
+=3D"https://www.quora.com/qemail/tc?al_pri=3D0&amp;aoid=3DmtBXPEKjzHF&amp;a=
+oty=3D1&amp;aty=3D4&amp;cp=3D8&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" s=
+tyle=3D"text-decoration:none;color:#333333"><div><div style=3D"display:inli=
+ne;line-height:1.6"><span style=3D"word-break:break-word"><p style=3D"margi=
+n:1em 0;display:inline;line-height:1.6">Exactly two hours, the same as for =
+the presidents before him.</p><p style=3D"margin:1em 0;display:inline;line-=
+height:1.6">You see, the White House staff takes pride in waiting until the=
+ president and his family leave at 11:00 A.M. to...</p></span> <a href=3D"h=
+ttps://www.quora.com/qemail/tc?al_pri=3D8&amp;aoid=3DmtBXPEKjzHF&amp;aoty=
+=3D1&amp;aty=3D4&amp;cp=3D8&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" styl=
+e=3D"text-decoration:none;color:#168de9">Read More =C2=BB</a></div></div><t=
+r><td style=3D"border-collapse:collapse"><div><div><a href=3D"https://www.q=
+uora.com/qemail/tc?al_pri=3D0&amp;aoid=3DmtBXPEKjzHF&amp;aoty=3D1&amp;aty=
+=3D4&amp;cp=3D8&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-de=
+coration:none;color:#2b6dad"></a></div></div></td></tr></a></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table></div></div><=
+div><div><table style=3D"border-collapse:collapse;mso-table-lspace:0;mso-ta=
+ble-rspace:0;cellpadding:0;border:0;width:100%" width=3D"100%"><tbody><tr><=
+td style=3D"border-collapse:collapse"></td><td style=3D"border-collapse:col=
+lapse;border-bottom:1px solid #eee;height:1px;width:140px" width=3D"140" he=
+ight=3D"1"></td><td style=3D"border-collapse:collapse"></td></tr></tbody></=
+table><table cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collap=
+se;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody>=
+<tr><td style=3D"border-collapse:collapse;padding:20px 0;border-bottom:0"><=
+table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-coll=
+apse:collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"10=
+0%"><tbody><tr><td style=3D"border-collapse:collapse;padding-bottom:4px"><t=
+able cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-colla=
+pse:collapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td valign=
+=3D"top" style=3D"border-collapse:collapse"></td></tr></tbody></table></td>=
+</tr><tr><td style=3D"border-collapse:collapse"><a href=3D"https://www.quor=
+a.com/qemail/tc?al_pri=3D1&amp;aoid=3DIh35JCVIj7Z&amp;aoty=3D2&amp;aty=3D4&=
+amp;cp=3D9&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decorat=
+ion:none;display:block;font-size:19px;letter-spacing:-0.5px;font-weight:bol=
+d;color:#333;line-height:1.4"><span style=3D"word-break:break-word">I'm 12 =
+turning 14 and I'm 5=C2=B46. Will I be tall enough for the NBA?</span></a><=
+/td></tr><tr><td style=3D"border-collapse:collapse"><table cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-tabl=
+e-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td sty=
+le=3D"border-collapse:collapse;padding:8px 0"><table cellpadding=3D"0" cell=
+spacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspa=
+ce:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collapse;v=
+ertical-align:top" valign=3D"top"><a href=3D"https://www.quora.com/qemail/t=
+c?aoid=3DVYUssygJaKm&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D9&amp;id=3D2749841b1=
+e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad"><div>=
+<div><div> </div></div><span><img src=3D"http://qph.fs.quoracdn.net/main-th=
+umb-903286776-50-pcoetwnjapxpeiohalwqeyittvukfqxo.jpeg" alt=3D"Kyle Dring" =
+style=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bicubic;bord=
+er:0;display:block;height:40px;width:40px;border-radius:100px;border-style:=
+none" height=3D"40" width=3D"40" /></span></div></a></td><td style=3D"borde=
+r-collapse:collapse;padding-left:8px;color:#333"><table cellpadding=3D"0" c=
+ellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-l=
+space:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-collapse:collaps=
+e"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DVYUssygJaKm&amp;aoty=
+=3D3&amp;aty=3D4&amp;cp=3D9&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" styl=
+e=3D"text-decoration:none;color:#333;font-weight:bold;font-size:15px;line-h=
+eight:1.4">Kyle Dring</a><span style=3D"font-size:15px;line-height:1.4">, G=
+CSE in Graphic Design from Secondary School Education</span></td></tr><tr><=
+td style=3D"border-collapse:collapse;color:#999;font-size:13px"><a href=3D"=
+https://www.quora.com/qemail/tc?aoid=3DzsD0l3T8fz4&amp;aoty=3D1&amp;aty=3D4=
+&amp;cp=3D9&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decora=
+tion:none;color:#999">Updated May 25</a></td></tr></tbody></table></td></tr=
+></tbody></table></td></tr><tr><td style=3D"border-collapse:collapse;displa=
+y:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxyg=
+en-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;color:#333;font-size:1=
+5px;line-height:1.4"><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D0&=
+amp;aoid=3DzsD0l3T8fz4&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D9&amp;id=3D2749841=
+b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#333333"><di=
+v><div style=3D"display:inline;line-height:1.6"><div style=3D"display:inlin=
+e;float:right"><span style=3D"word-break:break-word"><div><div><img src=3D"=
+http://qph.fs.quoracdn.net/main-qimg-b39bddb88b117eb6d73af30852d457c4" styl=
+e=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bicubic;border:0=
+;margin-left:10px;max-width:200px;max-height:100px;float:left;border-style:=
+none" /></div></div></span></div><span style=3D"word-break:break-word"><p s=
+tyle=3D"margin:1em 0;display:inline;line-height:1.6">You=E2=80=99re 12 turn=
+ing 14. Well=E2=80=A6. Ummmm=E2=80=A6=E2=80=A6. Sure.</p><p style=3D"margin=
+:1em 0;display:inline;line-height:1.6">I guess you mean 13?</p><p style=3D"=
+margin:1em 0;display:inline;line-height:1.6">You=E2=80=99re not going to th=
+e NBA at you=E2=80=99re age and you can=E2=80=99t just be a certain size to=
+ join. You got to work at it...</p></span> <a href=3D"https://www.quora.com=
+/qemail/tc?al_pri=3D8&amp;aoid=3DzsD0l3T8fz4&amp;aoty=3D1&amp;aty=3D4&amp;c=
+p=3D9&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:n=
+one;color:#168de9">Read More =C2=BB</a></div></div><tr><td style=3D"border-=
+collapse:collapse"><div><div><a href=3D"https://www.quora.com/qemail/tc?al_=
+pri=3D0&amp;aoid=3DzsD0l3T8fz4&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D9&amp;id=
+=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2=
+b6dad"></a></div></div></td></tr></a></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr></tbody></table></div></div><div><div><table style=
+=3D"border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;cellpadd=
+ing:0;border:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"border-co=
+llapse:collapse"></td><td style=3D"border-collapse:collapse;border-bottom:1=
+px solid #eee;height:1px;width:140px" width=3D"140" height=3D"1"></td><td s=
+tyle=3D"border-collapse:collapse"></td></tr></tbody></table><table cellspac=
+ing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0=
+;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td style=3D"bord=
+er-collapse:collapse;padding:20px 0;border-bottom:0"><table cellpadding=3D"=
+0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-tab=
+le-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><tbody><tr><td st=
+yle=3D"border-collapse:collapse;padding-bottom:4px"><table cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;mso-tabl=
+e-lspace:0;mso-table-rspace:0"><tbody><tr><td valign=3D"top" style=3D"borde=
+r-collapse:collapse"></td></tr></tbody></table></td></tr><tr><td style=3D"b=
+order-collapse:collapse"><a href=3D"https://www.quora.com/qemail/tc?al_pri=
+=3D1&amp;aoid=3D9gDd37036eW&amp;aoty=3D2&amp;aty=3D4&amp;cp=3D10&amp;id=3D2=
+749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;display:bloc=
+k;font-size:19px;letter-spacing:-0.5px;font-weight:bold;color:#333;line-hei=
+ght:1.4"><span style=3D"word-break:break-word">What should you avoid in wri=
+ting?</span></a></td></tr><tr><td style=3D"border-collapse:collapse"><table=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+collapse;mso-table-lspace:0;mso-table-rspace:0;width:100%" width=3D"100%"><=
+tbody><tr><td style=3D"border-collapse:collapse;padding:8px 0"><table cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collap=
+se;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"border-co=
+llapse:collapse;vertical-align:top" valign=3D"top"><a href=3D"https://www.q=
+uora.com/qemail/tc?aoid=3DmGBYnC8yBXr&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D10&=
+amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;co=
+lor:#2b6dad"><div><div><div> </div></div><span><img src=3D"http://qph.fs.qu=
+oracdn.net/main-thumb-265355763-50-wtrjkgidxgptjiruxvnzalqacimgjekn.jpeg" a=
+lt=3D"Tyler Knapke" style=3D"outline:0;text-decoration:none;-ms-interpolati=
+on-mode:bicubic;border:0;display:block;height:40px;width:40px;border-radius=
+:100px;border-style:none" height=3D"40" width=3D"40" /></span></div></a></t=
+d><td style=3D"border-collapse:collapse;padding-left:8px;color:#333"><table=
+ cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:=
+collapse;mso-table-lspace:0;mso-table-rspace:0"><tbody><tr><td style=3D"bor=
+der-collapse:collapse"><a href=3D"https://www.quora.com/qemail/tc?aoid=3DmG=
+BYnC8yBXr&amp;aoty=3D3&amp;aty=3D4&amp;cp=3D10&amp;id=3D2749841b1e9c4f919c8=
+f0eb408aa1bf4" style=3D"text-decoration:none;color:#333;font-weight:bold;fo=
+nt-size:15px;line-height:1.4">Tyler Knapke</a><span style=3D"font-size:15px=
+;line-height:1.4">, Part Time Grain Farmer (2008-present)</span></td></tr><=
+tr><td style=3D"border-collapse:collapse;color:#999;font-size:13px"><a href=
+=3D"https://www.quora.com/qemail/tc?aoid=3Dj8suKtEcIiu&amp;aoty=3D1&amp;aty=
+=3D4&amp;cp=3D10&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-d=
+ecoration:none;color:#999">Written Oct 31</a></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr><tr><td style=3D"border-collapse:collapse;d=
+isplay:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto=
+,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;color:#333;font-s=
+ize:15px;line-height:1.4"><a href=3D"https://www.quora.com/qemail/tc?al_pri=
+=3D0&amp;aoid=3Dj8suKtEcIiu&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D10&amp;id=3D2=
+749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#33333=
+3"><div><div style=3D"display:inline;line-height:1.6"><span style=3D"word-b=
+reak:break-word"><ol><li>Don=E2=80=99t use passive voice.</li><li>Try not t=
+o use the same words over, and over again.</li><li>Don=E2=80=99t use the sa=
+me sentence length, or type of sentence every time.</li><li>Avoid using the=
+ same punctuati...</li></ol></span> <a href=3D"https://www.quora.com/qemail=
+/tc?al_pri=3D8&amp;aoid=3Dj8suKtEcIiu&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D10&=
+amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;co=
+lor:#168de9">Read More =C2=BB</a></div></div><tr><td style=3D"border-collap=
+se:collapse"><div><div><a href=3D"https://www.quora.com/qemail/tc?al_pri=3D=
+0&amp;aoid=3Dj8suKtEcIiu&amp;aoty=3D1&amp;aty=3D4&amp;cp=3D10&amp;id=3D2749=
+841b1e9c4f919c8f0eb408aa1bf4" style=3D"text-decoration:none;color:#2b6dad">=
+</a></div></div></td></tr></a></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></div></div></td></tr></tbody></table></td=
+><td style=3D"border-collapse:collapse"> </td></tr></tbody></table></td></t=
+r><tr><td style=3D"border-collapse:collapse"><div style=3D"text-align:cente=
+r;margin-bottom:25px"><a href=3D"https://www.quora.com/qemail/tc?aoid&amp;a=
+oty=3D7&amp;aty=3D4&amp;cp=3D0&amp;id=3D2749841b1e9c4f919c8f0eb408aa1bf4" s=
+tyle=3D"font-size:15px;line-height:1.4;border-radius:3px;box-shadow:0 1px 1=
+px 0 rgba(200,200,200,0.2);display:inline-block;outline:0;padding:15px 20px=
+;text-align:center;text-decoration:none;cursor:pointer;background-color:#16=
+8de9;color:#fff;padding:15px 25px">Read More in Your Feed</a></div></td></t=
+r><tr><td style=3D"border-collapse:collapse"><table cellpadding=3D"0" cells=
+pacing=3D"0" border=3D"0" align=3D"center" style=3D"border-collapse:collaps=
+e;mso-table-lspace:0;mso-table-rspace:0"><tr><td style=3D"border-collapse:c=
+ollapse"><div style=3D"text-align:center;color:#999;margin-top:16px"><div>F=
+ollow Quora on:</div><a href=3D"https://www.facebook.com/quora" style=3D"te=
+xt-decoration:none;color:#2b6dad"><img src=3D"http://qsf.fs.quoracdn.net/-4=
+-images.new_grid.facebook_white_bg_2x.png-26-6a6d9d338bdec1a8.png" alt=3D"F=
+acebook" style=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bic=
+ubic;border:0;width:32px;height:32px;margin-right:8px" width=3D"32" height=
+=3D"32" /></a><a href=3D"https://www.twitter.com/quora" style=3D"text-decor=
+ation:none;color:#2b6dad"><img src=3D"http://qsf.fs.quoracdn.net/-4-images.=
+icons.twitter_bird.png-26-28be3fa2581da595.png" alt=3D"Twitter" style=3D"ou=
+tline:0;text-decoration:none;-ms-interpolation-mode:bicubic;border:0;width:=
+30px;height:24px;margin-bottom:4px" width=3D"30" height=3D"24" /></a></div>=
+</td></tr><tr><td style=3D"border-collapse:collapse"><div style=3D"text-ali=
+gn:center;color:#999;margin-top:16px"><div>Get the App for iOS and Android<=
+/div><a href=3D"http://www.quora.com/app?campaign=3Demail_footer_links" sty=
+le=3D"text-decoration:none;color:#2b6dad"><img src=3D"http://qsf.fs.quoracd=
+n.net/-4-images.apple_touch_icon.png-26-ba480f11ef52890e.png" alt=3D"Quora"=
+ style=3D"outline:0;text-decoration:none;-ms-interpolation-mode:bicubic;bor=
+der:0;width:32px;height:32px;border-radius:3px;margin-top:8px" width=3D"32"=
+ height=3D"32" /></a></div></td></tr></table></td></tr></tbody></table></td=
+></tr><tr><td align=3D"center" style=3D"border-collapse:collapse;margin-top=
+:16px;max-width:525px"><table class=3D"r" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" style=3D"border-collapse:collapse;mso-table-lspace:0;mso-ta=
+ble-rspace:0;font-size:11px;color:#999;padding-top:16px;width:100%;text-ali=
+gn:center" width=3D"100%" align=3D"center"><tr><td style=3D"border-collapse=
+:collapse"><div style=3D"padding:25px 20px"><div><span style=3D"display:blo=
+ck;padding-bottom:8px;color:#999">This email was sent by Quora (605 Castro =
+Street, Mountain View, CA 94041). </span><span style=3D"display:block;paddi=
+ng-bottom:8px;color:#999">If you don't want to receive this type of email i=
+n the future, please <a href=3D"http://www.quora.com/email_optout/qemail_un=
+subscribe?email_track_id=3D2749841b1e9c4f919c8f0eb408aa1bf4&amp;t=3D1605814=
+354221198&amp;token=3D7d4f53d7b6dcbe5944c694cef492f2c8935d5af92c6063c9e46e7=
+a7539b08d4e89cff3e47411dcc7b940b294f236e165b068ecd758a922514593bbb664f0883b=
+&amp;type=3D2&amp;uid=3D865920808" style=3D"color:#999;text-decoration:unde=
+rline">unsubscribe</a>.</span><span style=3D"display:block;padding-bottom:8=
+px;color:#999"><a href=3D"http://www.quora.com/" style=3D"color:#999;text-d=
+ecoration:underline">http://www.quora.com/</a></span></div></div></td></tr>=
+</table></td></tr></tbody></table></td></tr></tbody></table></div></body></=
+html>
+--===============5844442656329670044==--
