@@ -2,10 +2,13 @@
 
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit like a Chad, this file will also be sourced.
-xrandr -s 1024x576 &
-xbacklight -set 1.0 &
+
+xrandr -s 1024x576  &
+#xbacklight -set 1.0 &
+light -S 1.0 &
 /usr/bin/lxpolkit &
-cbatticon -u 60 -i symbolic -c "poweroff" -l 15 -r 5 &
+cbatticon -u 60 -i symbolic -c "poweroff" -l 20 -r 5 &
+#batsignal -a dunst -f 100 -w 20 -c 10 -d 5 -m 60 -F "battery full" -W "battery low" -C "battery critically low" -n BAT1 &
 setbg &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &	# Uncomment to use Xresources colors/settings on startup
 #mpd &			# music player daemon-you might prefer it as a service though
@@ -19,6 +22,6 @@ pgrep redshift &> /dev/null ||redshift &> /dev/null &
 # This line autostarts an instance of Pulseaudio that does not exit on idle.
 # This is "necessary" on Artix due to a current bug between PA and
 # Chromium-based browsers where they fail to start PA and use dummy output.
-pidof -s runit &&
-	! pidof -s pulseaudio >/dev/null 2>&1 &&
-	setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
+# pidof -s runit &&
+	#! pidof -s pulseaudio >/dev/null 2>&1 &&
+	#setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
