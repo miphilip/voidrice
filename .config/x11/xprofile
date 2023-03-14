@@ -8,14 +8,16 @@ xrandr -s 1280x720  		# Set DPI. User may want to use a larger number for larger
 light -S 1.0 &
 sxhkd &
 /usr/bin/lxpolkit &
-cbatticon -u 60 -i symbolic -c "poweroff" -l 20 -r 5 &
+cbatticon -u 60 -i symbolic -c "poweroff" -l 35 -r 10 &
 setbg &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 #remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 #xset r rate 300 50 &	# Speed xrate up
 #trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --height 22 &
 #pgrep redshift &> /dev/null ||redshift &> /dev/null &
-autostart="mpd xcompmgr dunst unclutter remapd "
+autostart="mpd xcompmgr dunst unclutter pipewire remapd "
+
+Exec=/usr/bin/nohup /usr/bin/easyeffects --gapplication-service &
 
 for program in $autostart; do
 	pidof -s "$program" || setsid -f "$program"
