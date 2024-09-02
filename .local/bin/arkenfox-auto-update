@@ -16,5 +16,12 @@ IFS='
 
 # Update each found profile.
 for profile in $profiles; do
+<<<<<<< HEAD
 	arkenfox-updater -p "${profile%%/user.js*}" -s
+=======
+	userjs=${profile%%/user.js*}
+	user=$(stat -c '%U' "$userjs") || continue
+
+	su -l "$user" -c "arkenfox-updater -c -p $userjs -s"
+>>>>>>> upstream/master
 done
